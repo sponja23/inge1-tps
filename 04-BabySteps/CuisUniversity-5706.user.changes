@@ -1,0 +1,2985 @@
+
+
+----QUIT----(20 March 2023 11:15:29) CuisUniversity-5706.image priorSource: 4313282!
+
+----STARTUP---- (20 March 2023 11:15:29) as /Users/hernan/Documents/Cuis/5.0-64Bits/Cuis-University-Installer/CuisUniversity-5706.image!
+
+
+----QUIT----(20 March 2023 11:15:30) CuisUniversity-5706.image priorSource: 8712809!
+
+----STARTUP---- (27 April 2023 18:18:22) as /home/clinux01/Descargas/linux64/CuisUniversity-5706.image!
+
+
+----End fileIn of /home/clinux01/Descargas/linux64/TDDBabyStepsGame.st----!
+
+TDDBabyStepsGameRot13 start!
+
+!classDefinition: #TDDBabyStepsRot13Test category: 'TDDBabyStepsGameRot13' stamp: 'TS 4/27/2023 18:19:34'!
+TestCase subclass: #TDDBabyStepsRot13Test
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'TDDBabyStepsGameRot13'!
+!TDDBabyStepsRot13Test methodsFor: 'tests' stamp: 'TS 4/27/2023 18:20:00'!
+test01CorrectlyEncodesALowercaseCharFromTheFirstPartOfTheAlphabet
+	
+	self assert: $n equals: $a asRot13
+	! !
+
+!testRun: #TDDBabyStepsRot13Test #test01CorrectlyEncodesALowercaseCharFromTheFirstPartOfTheAlphabet stamp: 'TS 4/27/2023 18:20:20'!
+ERROR!
+!Character methodsFor: 'rot13' stamp: 'TS 4/27/2023 18:20:40'!
+asRot13
+	self shouldBeImplemented.! !
+!Character methodsFor: 'rot13' stamp: 'TS 4/27/2023 18:20:48' prior: 50605757!
+asRot13
+
+	^$n! !
+
+!testRun: #TDDBabyStepsRot13Test #test01CorrectlyEncodesALowercaseCharFromTheFirstPartOfTheAlphabet stamp: 'TS 4/27/2023 18:20:51'!
+PASSED!
+
+!testRun: #TDDBabyStepsRot13Test #test01CorrectlyEncodesALowercaseCharFromTheFirstPartOfTheAlphabet stamp: 'TS 4/27/2023 18:20:51'!
+PASSED!
+
+!testRun: #TDDBabyStepsRot13Test #test01CorrectlyEncodesALowercaseCharFromTheFirstPartOfTheAlphabet stamp: 'TS 4/27/2023 18:20:55'!
+PASSED!
+!TDDBabyStepsRot13Test methodsFor: 'tests' stamp: 'TS 4/27/2023 18:20:55'!
+test02CorrectlyEncodesALowercaseCharFromTheFirstPartOfTheAlphabet
+	
+	self assert: $z equals: $m asRot13
+	! !
+
+!testRun: #TDDBabyStepsRot13Test #test02CorrectlyEncodesALowercaseCharFromTheFirstPartOfTheAlphabet stamp: 'TS 4/27/2023 18:20:55'!
+FAILURE!
+
+!methodRemoval: TDDBabyStepsRot13Test #test02CorrectlyEncodesALowercaseCharFromTheFirstPartOfTheAlphabet stamp: 'TS 4/27/2023 18:20:55'!
+test02CorrectlyEncodesALowercaseCharFromTheFirstPartOfTheAlphabet
+	
+	self assert: $z equals: $m asRot13
+	!
+!TDDBabyStepsRot13Test methodsFor: 'tests' stamp: 'TS 4/27/2023 18:20:55'!
+test02CorrectlyEncodesALowercaseCharFromTheFirstPartOfTheAlphabet
+	
+	self assert: $z equals: $m asRot13
+	! !
+
+!testRun: #TDDBabyStepsRot13Test #test02CorrectlyEncodesALowercaseCharFromTheFirstPartOfTheAlphabet stamp: 'TS 4/27/2023 18:20:55'!
+FAILURE!
+
+!testRun: #TDDBabyStepsRot13Test #test02CorrectlyEncodesALowercaseCharFromTheFirstPartOfTheAlphabet stamp: 'TS 4/27/2023 18:23:32'!
+FAILURE!
+
+!testRun: #TDDBabyStepsRot13Test #test02CorrectlyEncodesALowercaseCharFromTheFirstPartOfTheAlphabet stamp: 'TS 4/27/2023 18:24:13'!
+FAILURE!
+
+!testRun: #TDDBabyStepsRot13Test #test02CorrectlyEncodesALowercaseCharFromTheFirstPartOfTheAlphabet stamp: 'TS 4/27/2023 18:24:23'!
+FAILURE!
+
+1=1 ifTrue: [2]!
+
+1=2 ifTrue: [2]!
+!Character methodsFor: 'rot13' stamp: 'TS 4/27/2023 18:27:15' prior: 50605761!
+asRot13
+
+	self = $a ifTrue: [^$n].
+	^$z! !
+
+!testRun: #TDDBabyStepsRot13Test #test02CorrectlyEncodesALowercaseCharFromTheFirstPartOfTheAlphabet stamp: 'TS 4/27/2023 18:27:19'!
+PASSED!
+
+!testRun: #TDDBabyStepsRot13Test #test01CorrectlyEncodesALowercaseCharFromTheFirstPartOfTheAlphabet stamp: 'TS 4/27/2023 18:27:19'!
+PASSED!
+
+!testRun: #TDDBabyStepsRot13Test #test02CorrectlyEncodesALowercaseCharFromTheFirstPartOfTheAlphabet stamp: 'TS 4/27/2023 18:27:19'!
+PASSED!
+!Character methodsFor: 'rot13' stamp: 'TS 4/27/2023 18:31:47' prior: 50605821!
+asRot13
+
+	^self class asciiValue: (self asciiValue + 13)! !
+
+!testRun: #TDDBabyStepsRot13Test #test01CorrectlyEncodesALowercaseCharFromTheFirstPartOfTheAlphabet stamp: 'TS 4/27/2023 18:31:53'!
+PASSED!
+
+!testRun: #TDDBabyStepsRot13Test #test01CorrectlyEncodesALowercaseCharFromTheFirstPartOfTheAlphabet stamp: 'TS 4/27/2023 18:31:53'!
+PASSED!
+
+!testRun: #TDDBabyStepsRot13Test #test02CorrectlyEncodesALowercaseCharFromTheFirstPartOfTheAlphabet stamp: 'TS 4/27/2023 18:31:53'!
+PASSED!
+!TDDBabyStepsRot13Test methodsFor: 'tests' stamp: 'TS 4/27/2023 18:32:05' prior: 50605747!
+test01CorrectlyEncodesALowercaseCharFromTheFirstPartOfTheAlphabet
+	
+	self assert: $n equals: $a asRot13
+! !
+!TDDBabyStepsRot13Test methodsFor: 'tests' stamp: 'TS 4/27/2023 18:32:06' prior: 50605857!
+test01CorrectlyEncodesALowercaseCharFromTheFirstPartOfTheAlphabet
+	
+	self assert: $n equals: $a asRot13
+	! !
+
+!testRun: #TDDBabyStepsRot13Test #test01CorrectlyEncodesALowercaseCharFromTheFirstPartOfTheAlphabet stamp: 'TS 4/27/2023 18:32:16'!
+PASSED!
+
+!testRun: #TDDBabyStepsRot13Test #test02CorrectlyEncodesALowercaseCharFromTheFirstPartOfTheAlphabet stamp: 'TS 4/27/2023 18:32:16'!
+PASSED!
+!TDDBabyStepsRot13Test methodsFor: 'tests' stamp: 'TS 4/27/2023 18:32:16'!
+test03CorrectlyEncodesALowercaseCharFromTheSecondPartOfTheAlphabet
+	
+	self assert: $a equals: $n asRot13
+	! !
+
+!testRun: #TDDBabyStepsRot13Test #test03CorrectlyEncodesALowercaseCharFromTheSecondPartOfTheAlphabet stamp: 'TS 4/27/2023 18:32:16'!
+FAILURE!
+
+!methodRemoval: TDDBabyStepsRot13Test #test03CorrectlyEncodesALowercaseCharFromTheSecondPartOfTheAlphabet stamp: 'TS 4/27/2023 18:32:16'!
+test03CorrectlyEncodesALowercaseCharFromTheSecondPartOfTheAlphabet
+	
+	self assert: $a equals: $n asRot13
+	!
+!TDDBabyStepsRot13Test methodsFor: 'tests' stamp: 'TS 4/27/2023 18:32:17'!
+test03CorrectlyEncodesALowercaseCharFromTheSecondPartOfTheAlphabet
+	
+	self assert: $a equals: $n asRot13
+	! !
+
+!testRun: #TDDBabyStepsRot13Test #test03CorrectlyEncodesALowercaseCharFromTheSecondPartOfTheAlphabet stamp: 'TS 4/27/2023 18:32:17'!
+FAILURE!
+
+!testRun: #TDDBabyStepsRot13Test #test03CorrectlyEncodesALowercaseCharFromTheSecondPartOfTheAlphabet stamp: 'TS 4/27/2023 18:32:52'!
+FAILURE!
+!Character methodsFor: 'rot13' stamp: 'TS 4/27/2023 18:33:49' prior: 50605839!
+asRot13
+
+	self = $n ifTrue: [^$a].
+	^self class asciiValue: (self asciiValue + 13)! !
+
+!testRun: #TDDBabyStepsRot13Test #test03CorrectlyEncodesALowercaseCharFromTheSecondPartOfTheAlphabet stamp: 'TS 4/27/2023 18:33:56'!
+PASSED!
+
+!testRun: #TDDBabyStepsRot13Test #test01CorrectlyEncodesALowercaseCharFromTheFirstPartOfTheAlphabet stamp: 'TS 4/27/2023 18:33:56'!
+PASSED!
+
+!testRun: #TDDBabyStepsRot13Test #test02CorrectlyEncodesALowercaseCharFromTheFirstPartOfTheAlphabet stamp: 'TS 4/27/2023 18:33:56'!
+PASSED!
+
+!testRun: #TDDBabyStepsRot13Test #test03CorrectlyEncodesALowercaseCharFromTheSecondPartOfTheAlphabet stamp: 'TS 4/27/2023 18:33:56'!
+PASSED!
+
+!testRun: #TDDBabyStepsRot13Test #test01CorrectlyEncodesALowercaseCharFromTheFirstPartOfTheAlphabet stamp: 'TS 4/27/2023 18:34:26'!
+PASSED!
+
+!testRun: #TDDBabyStepsRot13Test #test02CorrectlyEncodesALowercaseCharFromTheFirstPartOfTheAlphabet stamp: 'TS 4/27/2023 18:34:26'!
+PASSED!
+
+!testRun: #TDDBabyStepsRot13Test #test03CorrectlyEncodesALowercaseCharFromTheSecondPartOfTheAlphabet stamp: 'TS 4/27/2023 18:34:26'!
+PASSED!
+!TDDBabyStepsRot13Test methodsFor: 'tests' stamp: 'TS 4/27/2023 18:34:26'!
+test04CorrectlyEncodesALowercaseCharFromTheSecondPartOfTheAlphabet
+	
+	self assert: $m equals: $z asRot13
+	! !
+
+!testRun: #TDDBabyStepsRot13Test #test04CorrectlyEncodesALowercaseCharFromTheSecondPartOfTheAlphabet stamp: 'TS 4/27/2023 18:34:26'!
+FAILURE!
+
+!methodRemoval: TDDBabyStepsRot13Test #test04CorrectlyEncodesALowercaseCharFromTheSecondPartOfTheAlphabet stamp: 'TS 4/27/2023 18:34:26'!
+test04CorrectlyEncodesALowercaseCharFromTheSecondPartOfTheAlphabet
+	
+	self assert: $m equals: $z asRot13
+	!
+!TDDBabyStepsRot13Test methodsFor: 'tests' stamp: 'TS 4/27/2023 18:34:26'!
+test04CorrectlyEncodesALowercaseCharFromTheSecondPartOfTheAlphabet
+	
+	self assert: $m equals: $z asRot13
+	! !
+
+!testRun: #TDDBabyStepsRot13Test #test04CorrectlyEncodesALowercaseCharFromTheSecondPartOfTheAlphabet stamp: 'TS 4/27/2023 18:34:26'!
+FAILURE!
+!Character methodsFor: 'rot13' stamp: 'TS 4/27/2023 18:36:02' prior: 50605912!
+asRot13
+
+	self = $n ifTrue: [^$a].
+	self = $z ifTrue: [^$m].
+	^self class asciiValue: (self asciiValue + 13)! !
+
+!testRun: #TDDBabyStepsRot13Test #test04CorrectlyEncodesALowercaseCharFromTheSecondPartOfTheAlphabet stamp: 'TS 4/27/2023 18:36:04'!
+PASSED!
+
+!testRun: #TDDBabyStepsRot13Test #test01CorrectlyEncodesALowercaseCharFromTheFirstPartOfTheAlphabet stamp: 'TS 4/27/2023 18:36:04'!
+PASSED!
+
+!testRun: #TDDBabyStepsRot13Test #test02CorrectlyEncodesALowercaseCharFromTheFirstPartOfTheAlphabet stamp: 'TS 4/27/2023 18:36:04'!
+PASSED!
+
+!testRun: #TDDBabyStepsRot13Test #test03CorrectlyEncodesALowercaseCharFromTheSecondPartOfTheAlphabet stamp: 'TS 4/27/2023 18:36:04'!
+PASSED!
+
+!testRun: #TDDBabyStepsRot13Test #test04CorrectlyEncodesALowercaseCharFromTheSecondPartOfTheAlphabet stamp: 'TS 4/27/2023 18:36:04'!
+PASSED!
+!Character methodsFor: 'rot13' stamp: 'TS 4/27/2023 18:38:29' prior: 50605977!
+asRot13
+
+	self >= $n ifTrue: [ ^self class asciiValue: (self asciiValue - 13) ].
+	^self class asciiValue: (self asciiValue + 13)! !
+
+!testRun: #TDDBabyStepsRot13Test #test04CorrectlyEncodesALowercaseCharFromTheSecondPartOfTheAlphabet stamp: 'TS 4/27/2023 18:38:31'!
+PASSED!
+
+!testRun: #TDDBabyStepsRot13Test #test01CorrectlyEncodesALowercaseCharFromTheFirstPartOfTheAlphabet stamp: 'TS 4/27/2023 18:38:31'!
+PASSED!
+
+!testRun: #TDDBabyStepsRot13Test #test02CorrectlyEncodesALowercaseCharFromTheFirstPartOfTheAlphabet stamp: 'TS 4/27/2023 18:38:31'!
+PASSED!
+
+!testRun: #TDDBabyStepsRot13Test #test03CorrectlyEncodesALowercaseCharFromTheSecondPartOfTheAlphabet stamp: 'TS 4/27/2023 18:38:31'!
+PASSED!
+
+!testRun: #TDDBabyStepsRot13Test #test04CorrectlyEncodesALowercaseCharFromTheSecondPartOfTheAlphabet stamp: 'TS 4/27/2023 18:38:31'!
+PASSED!
+!Character methodsFor: 'converting' stamp: 'TS 4/27/2023 18:40:03'!
+XXX
+
+	^ self class asciiValue: (self asciiValue + 13)! !
+!Character methodsFor: 'converting' stamp: 'TS 4/27/2023 18:40:03' prior: 50606006!
+asRot13
+
+	self >= $n ifTrue: [ ^self class asciiValue: (self asciiValue - 13) ].
+	^self XXX! !
+!Character methodsFor: 'converting' stamp: 'TS 4/27/2023 18:40:54'!
+XXX: aDifference
+
+	^ self class asciiValue: (self asciiValue + aDifference)! !
+
+!methodRemoval: Character #XXX: stamp: 'TS 4/27/2023 18:41:08'!
+XXX: aDifference
+
+	^ self class asciiValue: (self asciiValue + aDifference)!
+!Character methodsFor: 'converting' stamp: 'TS 4/27/2023 18:41:25'!
+XXX: aDifference
+
+	^ self class asciiValue: (self asciiValue + 13)! !
+!Character methodsFor: 'as yet unclassified' stamp: 'TS 4/27/2023 18:41:25' prior: 50606040!
+asRot13
+
+	self >= $n ifTrue: [ ^self class asciiValue: (self asciiValue - 13) ].
+	^self XXX: 13! !
+
+!methodRemoval: Character #XXX stamp: 'TS 4/27/2023 18:41:25'!
+XXX
+
+	^ self class asciiValue: (self asciiValue + 13)!
+!Character methodsFor: 'as yet unclassified' stamp: 'TS 4/27/2023 18:41:25' prior: 50606056!
+XXX: aDifference
+
+	^ self class asciiValue: (self asciiValue + aDifference)! !
+!Character methodsFor: 'converting' stamp: 'TS 4/27/2023 18:43:59'!
+asCharacterWithAsciiDistance: aDifference
+
+	^ self class asciiValue: (self asciiValue + aDifference)! !
+!Character methodsFor: 'as yet unclassified' stamp: 'TS 4/27/2023 18:43:59' prior: 50606062!
+asRot13
+
+	self >= $n ifTrue: [ ^self class asciiValue: (self asciiValue - 13) ].
+	^self asCharacterWithAsciiDistance: 13! !
+
+!methodRemoval: Character #XXX: stamp: 'TS 4/27/2023 18:43:59'!
+XXX: aDifference
+
+	^ self class asciiValue: (self asciiValue + aDifference)!
+!Character methodsFor: 'converting' stamp: 'TS 4/27/2023 18:44:21' prior: 50606084!
+asRot13
+
+	self >= $n ifTrue: [ ^self asCharacterWithAsciiDistance: -13 ].
+	^self asCharacterWithAsciiDistance: 13! !
+
+!testRun: #TDDBabyStepsRot13Test #test04CorrectlyEncodesALowercaseCharFromTheSecondPartOfTheAlphabet stamp: 'TS 4/27/2023 18:44:22'!
+PASSED!
+
+!testRun: #TDDBabyStepsRot13Test #test01CorrectlyEncodesALowercaseCharFromTheFirstPartOfTheAlphabet stamp: 'TS 4/27/2023 18:44:22'!
+PASSED!
+
+!testRun: #TDDBabyStepsRot13Test #test02CorrectlyEncodesALowercaseCharFromTheFirstPartOfTheAlphabet stamp: 'TS 4/27/2023 18:44:22'!
+PASSED!
+
+!testRun: #TDDBabyStepsRot13Test #test03CorrectlyEncodesALowercaseCharFromTheSecondPartOfTheAlphabet stamp: 'TS 4/27/2023 18:44:22'!
+PASSED!
+
+!testRun: #TDDBabyStepsRot13Test #test04CorrectlyEncodesALowercaseCharFromTheSecondPartOfTheAlphabet stamp: 'TS 4/27/2023 18:44:22'!
+PASSED!
+
+!testRun: #TDDBabyStepsRot13Test #test04CorrectlyEncodesALowercaseCharFromTheSecondPartOfTheAlphabet stamp: 'TS 4/27/2023 18:44:38'!
+PASSED!
+
+!testRun: #TDDBabyStepsRot13Test #test01CorrectlyEncodesALowercaseCharFromTheFirstPartOfTheAlphabet stamp: 'TS 4/27/2023 18:44:38'!
+PASSED!
+
+!testRun: #TDDBabyStepsRot13Test #test02CorrectlyEncodesALowercaseCharFromTheFirstPartOfTheAlphabet stamp: 'TS 4/27/2023 18:44:38'!
+PASSED!
+
+!testRun: #TDDBabyStepsRot13Test #test03CorrectlyEncodesALowercaseCharFromTheSecondPartOfTheAlphabet stamp: 'TS 4/27/2023 18:44:38'!
+PASSED!
+
+!testRun: #TDDBabyStepsRot13Test #test04CorrectlyEncodesALowercaseCharFromTheSecondPartOfTheAlphabet stamp: 'TS 4/27/2023 18:44:38'!
+PASSED!
+
+!testRun: #TDDBabyStepsRot13Test #test04CorrectlyEncodesALowercaseCharFromTheSecondPartOfTheAlphabet stamp: 'TS 4/27/2023 18:45:00'!
+PASSED!
+
+!testRun: #TDDBabyStepsRot13Test #test01CorrectlyEncodesALowercaseCharFromTheFirstPartOfTheAlphabet stamp: 'TS 4/27/2023 18:45:00'!
+PASSED!
+
+!testRun: #TDDBabyStepsRot13Test #test02CorrectlyEncodesALowercaseCharFromTheFirstPartOfTheAlphabet stamp: 'TS 4/27/2023 18:45:00'!
+PASSED!
+
+!testRun: #TDDBabyStepsRot13Test #test03CorrectlyEncodesALowercaseCharFromTheSecondPartOfTheAlphabet stamp: 'TS 4/27/2023 18:45:00'!
+PASSED!
+
+!testRun: #TDDBabyStepsRot13Test #test04CorrectlyEncodesALowercaseCharFromTheSecondPartOfTheAlphabet stamp: 'TS 4/27/2023 18:45:00'!
+PASSED!
+
+!testRun: #TDDBabyStepsRot13Test #test01CorrectlyEncodesALowercaseCharFromTheFirstPartOfTheAlphabet stamp: 'TS 4/27/2023 18:45:22'!
+PASSED!
+
+!testRun: #TDDBabyStepsRot13Test #test02CorrectlyEncodesALowercaseCharFromTheFirstPartOfTheAlphabet stamp: 'TS 4/27/2023 18:45:22'!
+PASSED!
+
+!testRun: #TDDBabyStepsRot13Test #test03CorrectlyEncodesALowercaseCharFromTheSecondPartOfTheAlphabet stamp: 'TS 4/27/2023 18:45:22'!
+PASSED!
+
+!testRun: #TDDBabyStepsRot13Test #test04CorrectlyEncodesALowercaseCharFromTheSecondPartOfTheAlphabet stamp: 'TS 4/27/2023 18:45:22'!
+PASSED!
+!TDDBabyStepsRot13Test methodsFor: 'tests' stamp: 'TS 4/27/2023 18:45:22'!
+test05CharOnTheBelowRangeDoesntChange
+	
+	self assert: $` equals: $` asRot13
+	! !
+
+!testRun: #TDDBabyStepsRot13Test #test05CharOnTheBelowRangeDoesntChange stamp: 'TS 4/27/2023 18:45:22'!
+FAILURE!
+
+!methodRemoval: TDDBabyStepsRot13Test #test05CharOnTheBelowRangeDoesntChange stamp: 'TS 4/27/2023 18:45:22'!
+test05CharOnTheBelowRangeDoesntChange
+	
+	self assert: $` equals: $` asRot13
+	!
+!TDDBabyStepsRot13Test methodsFor: 'tests' stamp: 'TS 4/27/2023 18:45:22'!
+test05CharOnTheBelowRangeDoesntChange
+	
+	self assert: $` equals: $` asRot13
+	! !
+
+!testRun: #TDDBabyStepsRot13Test #test05CharOnTheBelowRangeDoesntChange stamp: 'TS 4/27/2023 18:45:22'!
+FAILURE!
+
+!testRun: #TDDBabyStepsRot13Test #test05CharOnTheBelowRangeDoesntChange stamp: 'TS 4/27/2023 18:48:14'!
+FAILURE!
+!Character methodsFor: 'converting' stamp: 'TS 4/27/2023 18:48:27' prior: 50606095!
+asRot13
+
+	self = $` ifTrue: [^self].
+	self >= $n ifTrue: [ ^self asCharacterWithAsciiDistance: -13 ].
+	^self asCharacterWithAsciiDistance: 13! !
+
+!testRun: #TDDBabyStepsRot13Test #test05CharOnTheBelowRangeDoesntChange stamp: 'TS 4/27/2023 18:48:30'!
+PASSED!
+
+!testRun: #TDDBabyStepsRot13Test #test01CorrectlyEncodesALowercaseCharFromTheFirstPartOfTheAlphabet stamp: 'TS 4/27/2023 18:48:30'!
+PASSED!
+
+!testRun: #TDDBabyStepsRot13Test #test02CorrectlyEncodesALowercaseCharFromTheFirstPartOfTheAlphabet stamp: 'TS 4/27/2023 18:48:30'!
+PASSED!
+
+!testRun: #TDDBabyStepsRot13Test #test03CorrectlyEncodesALowercaseCharFromTheSecondPartOfTheAlphabet stamp: 'TS 4/27/2023 18:48:30'!
+PASSED!
+
+!testRun: #TDDBabyStepsRot13Test #test04CorrectlyEncodesALowercaseCharFromTheSecondPartOfTheAlphabet stamp: 'TS 4/27/2023 18:48:30'!
+PASSED!
+
+!testRun: #TDDBabyStepsRot13Test #test05CharOnTheBelowRangeDoesntChange stamp: 'TS 4/27/2023 18:48:30'!
+PASSED!
+!Character methodsFor: 'converting' stamp: 'TS 4/27/2023 18:49:25' prior: 50606214!
+asRot13
+
+	self asciiValue < $a asciiValue ifTrue: [^self].
+	self >= $n ifTrue: [ ^self asCharacterWithAsciiDistance: -13 ].
+	^self asCharacterWithAsciiDistance: 13! !
+
+!testRun: #TDDBabyStepsRot13Test #test05CharOnTheBelowRangeDoesntChange stamp: 'TS 4/27/2023 18:49:33'!
+PASSED!
+
+!testRun: #TDDBabyStepsRot13Test #test01CorrectlyEncodesALowercaseCharFromTheFirstPartOfTheAlphabet stamp: 'TS 4/27/2023 18:49:33'!
+PASSED!
+
+!testRun: #TDDBabyStepsRot13Test #test02CorrectlyEncodesALowercaseCharFromTheFirstPartOfTheAlphabet stamp: 'TS 4/27/2023 18:49:33'!
+PASSED!
+
+!testRun: #TDDBabyStepsRot13Test #test03CorrectlyEncodesALowercaseCharFromTheSecondPartOfTheAlphabet stamp: 'TS 4/27/2023 18:49:33'!
+PASSED!
+
+!testRun: #TDDBabyStepsRot13Test #test04CorrectlyEncodesALowercaseCharFromTheSecondPartOfTheAlphabet stamp: 'TS 4/27/2023 18:49:33'!
+PASSED!
+
+!testRun: #TDDBabyStepsRot13Test #test05CharOnTheBelowRangeDoesntChange stamp: 'TS 4/27/2023 18:49:33'!
+PASSED!
+
+!testRun: #TDDBabyStepsRot13Test #test01CorrectlyEncodesALowercaseCharFromTheFirstPartOfTheAlphabet stamp: 'TS 4/27/2023 18:49:47'!
+PASSED!
+
+!testRun: #TDDBabyStepsRot13Test #test02CorrectlyEncodesALowercaseCharFromTheFirstPartOfTheAlphabet stamp: 'TS 4/27/2023 18:49:47'!
+PASSED!
+
+!testRun: #TDDBabyStepsRot13Test #test03CorrectlyEncodesALowercaseCharFromTheSecondPartOfTheAlphabet stamp: 'TS 4/27/2023 18:49:47'!
+PASSED!
+
+!testRun: #TDDBabyStepsRot13Test #test04CorrectlyEncodesALowercaseCharFromTheSecondPartOfTheAlphabet stamp: 'TS 4/27/2023 18:49:47'!
+PASSED!
+
+!testRun: #TDDBabyStepsRot13Test #test05CharOnTheBelowRangeDoesntChange stamp: 'TS 4/27/2023 18:49:47'!
+PASSED!
+!TDDBabyStepsRot13Test methodsFor: 'tests' stamp: 'TS 4/27/2023 18:49:47'!
+test06CharOnTheUpperRangeDoesntChange
+	
+	self assert: ${ equals: ${ asRot13
+	! !
+
+!testRun: #TDDBabyStepsRot13Test #test06CharOnTheUpperRangeDoesntChange stamp: 'TS 4/27/2023 18:49:47'!
+FAILURE!
+
+!methodRemoval: TDDBabyStepsRot13Test #test06CharOnTheUpperRangeDoesntChange stamp: 'TS 4/27/2023 18:49:47'!
+test06CharOnTheUpperRangeDoesntChange
+	
+	self assert: ${ equals: ${ asRot13
+	!
+!TDDBabyStepsRot13Test methodsFor: 'tests' stamp: 'TS 4/27/2023 18:49:47'!
+test06CharOnTheUpperRangeDoesntChange
+	
+	self assert: ${ equals: ${ asRot13
+	! !
+
+!testRun: #TDDBabyStepsRot13Test #test06CharOnTheUpperRangeDoesntChange stamp: 'TS 4/27/2023 18:49:47'!
+FAILURE!
+!Character methodsFor: 'converting' stamp: 'TS 4/27/2023 18:52:17' prior: 50606246!
+asRot13
+
+	(self asciiValue between: $a asciiValue and: $z asciiValue) ifTrue: [
+		self >= $n ifTrue: [ ^self asCharacterWithAsciiDistance: -13 ].
+		^self asCharacterWithAsciiDistance: 13
+	]! !
+
+!testRun: #TDDBabyStepsRot13Test #test06CharOnTheUpperRangeDoesntChange stamp: 'TS 4/27/2023 18:52:18'!
+PASSED!
+
+!testRun: #TDDBabyStepsRot13Test #test01CorrectlyEncodesALowercaseCharFromTheFirstPartOfTheAlphabet stamp: 'TS 4/27/2023 18:52:18'!
+PASSED!
+
+!testRun: #TDDBabyStepsRot13Test #test02CorrectlyEncodesALowercaseCharFromTheFirstPartOfTheAlphabet stamp: 'TS 4/27/2023 18:52:18'!
+PASSED!
+
+!testRun: #TDDBabyStepsRot13Test #test03CorrectlyEncodesALowercaseCharFromTheSecondPartOfTheAlphabet stamp: 'TS 4/27/2023 18:52:18'!
+PASSED!
+
+!testRun: #TDDBabyStepsRot13Test #test04CorrectlyEncodesALowercaseCharFromTheSecondPartOfTheAlphabet stamp: 'TS 4/27/2023 18:52:18'!
+PASSED!
+
+!testRun: #TDDBabyStepsRot13Test #test05CharOnTheBelowRangeDoesntChange stamp: 'TS 4/27/2023 18:52:18'!
+PASSED!
+
+!testRun: #TDDBabyStepsRot13Test #test06CharOnTheUpperRangeDoesntChange stamp: 'TS 4/27/2023 18:52:18'!
+PASSED!
+!Character methodsFor: 'converting' stamp: 'TS 4/27/2023 18:52:52' prior: 50606324!
+asRot13
+
+	(self asciiValue between: $a asciiValue and: $z asciiValue) ifTrue: [
+		self >= $n ifTrue: [ ^self asCharacterWithAsciiDistance: -13 ].
+		^self asCharacterWithAsciiDistance: 13
+	].
+	^self! !
+!Character methodsFor: 'converting' stamp: 'TS 4/27/2023 18:53:02' prior: 50606361!
+asRot13
+
+	(self asciiValue between: $a asciiValue and: $z asciiValue)
+		ifTrue: [
+		self >= $n ifTrue: [ ^self asCharacterWithAsciiDistance: -13 ].
+		^self asCharacterWithAsciiDistance: 13
+	].
+	^self! !
+
+!testRun: #TDDBabyStepsRot13Test #test01CorrectlyEncodesALowercaseCharFromTheFirstPartOfTheAlphabet stamp: 'TS 4/27/2023 18:53:19'!
+PASSED!
+
+!testRun: #TDDBabyStepsRot13Test #test02CorrectlyEncodesALowercaseCharFromTheFirstPartOfTheAlphabet stamp: 'TS 4/27/2023 18:53:19'!
+PASSED!
+
+!testRun: #TDDBabyStepsRot13Test #test03CorrectlyEncodesALowercaseCharFromTheSecondPartOfTheAlphabet stamp: 'TS 4/27/2023 18:53:19'!
+PASSED!
+
+!testRun: #TDDBabyStepsRot13Test #test04CorrectlyEncodesALowercaseCharFromTheSecondPartOfTheAlphabet stamp: 'TS 4/27/2023 18:53:19'!
+PASSED!
+
+!testRun: #TDDBabyStepsRot13Test #test05CharOnTheBelowRangeDoesntChange stamp: 'TS 4/27/2023 18:53:19'!
+PASSED!
+
+!testRun: #TDDBabyStepsRot13Test #test06CharOnTheUpperRangeDoesntChange stamp: 'TS 4/27/2023 18:53:19'!
+PASSED!
+!TDDBabyStepsRot13Test methodsFor: 'tests' stamp: 'TS 4/27/2023 18:53:19'!
+test07CorrectlyEncodesAnUppercaseCharFromTheFirstPartOfTheAlphabet
+	
+	self assert: $N equals: $A asRot13.
+	self assert: $Z equals: $M asRot13
+	! !
+
+!testRun: #TDDBabyStepsRot13Test #test07CorrectlyEncodesAnUppercaseCharFromTheFirstPartOfTheAlphabet stamp: 'TS 4/27/2023 18:53:19'!
+FAILURE!
+
+!methodRemoval: TDDBabyStepsRot13Test #test07CorrectlyEncodesAnUppercaseCharFromTheFirstPartOfTheAlphabet stamp: 'TS 4/27/2023 18:53:19'!
+test07CorrectlyEncodesAnUppercaseCharFromTheFirstPartOfTheAlphabet
+	
+	self assert: $N equals: $A asRot13.
+	self assert: $Z equals: $M asRot13
+	!
+!TDDBabyStepsRot13Test methodsFor: 'tests' stamp: 'TS 4/27/2023 18:53:19'!
+test07CorrectlyEncodesAnUppercaseCharFromTheFirstPartOfTheAlphabet
+	
+	self assert: $N equals: $A asRot13.
+	self assert: $Z equals: $M asRot13
+	! !
+
+!testRun: #TDDBabyStepsRot13Test #test07CorrectlyEncodesAnUppercaseCharFromTheFirstPartOfTheAlphabet stamp: 'TS 4/27/2023 18:53:19'!
+FAILURE!
+!Character methodsFor: 'converting' stamp: 'TS 4/27/2023 18:55:07' prior: 50606370!
+asRot13
+
+	(self asciiValue between: $a asciiValue and: $z asciiValue)
+		ifTrue: [
+			self >= $n ifTrue: [ ^self asCharacterWithAsciiDistance: -13 ].
+			^self asCharacterWithAsciiDistance: 13
+		].
+	(self asciiValue between: $A asciiValue and: $M asciiValue)
+		ifTrue: [
+			^self asCharacterWithAsciiDistance: 13
+		].
+	^self! !
+!Character methodsFor: 'converting' stamp: 'TS 4/27/2023 18:57:25' prior: 50606437!
+asRot13
+
+	(self asciiValue between: $a asciiValue and: $z asciiValue)
+		ifTrue: [
+			self >= $n ifTrue: [ ^self asCharacterWithAsciiDistance: -13 ].
+			self asCharacterWithAsciiDistance: 13
+		].
+	(self asciiValue between: $A asciiValue and: $M asciiValue)
+		ifTrue: [
+			^self asCharacterWithAsciiDistance: 13
+		].
+	^self! !
+
+!testRun: #TDDBabyStepsRot13Test #test07CorrectlyEncodesAnUppercaseCharFromTheFirstPartOfTheAlphabet stamp: 'TS 4/27/2023 18:57:29'!
+PASSED!
+
+!testRun: #TDDBabyStepsRot13Test #test01CorrectlyEncodesALowercaseCharFromTheFirstPartOfTheAlphabet stamp: 'TS 4/27/2023 18:57:29'!
+FAILURE!
+
+!testRun: #TDDBabyStepsRot13Test #test02CorrectlyEncodesALowercaseCharFromTheFirstPartOfTheAlphabet stamp: 'TS 4/27/2023 18:57:29'!
+FAILURE!
+
+!testRun: #TDDBabyStepsRot13Test #test03CorrectlyEncodesALowercaseCharFromTheSecondPartOfTheAlphabet stamp: 'TS 4/27/2023 18:57:29'!
+PASSED!
+
+!testRun: #TDDBabyStepsRot13Test #test04CorrectlyEncodesALowercaseCharFromTheSecondPartOfTheAlphabet stamp: 'TS 4/27/2023 18:57:29'!
+PASSED!
+
+!testRun: #TDDBabyStepsRot13Test #test05CharOnTheBelowRangeDoesntChange stamp: 'TS 4/27/2023 18:57:29'!
+PASSED!
+
+!testRun: #TDDBabyStepsRot13Test #test06CharOnTheUpperRangeDoesntChange stamp: 'TS 4/27/2023 18:57:29'!
+PASSED!
+
+!testRun: #TDDBabyStepsRot13Test #test07CorrectlyEncodesAnUppercaseCharFromTheFirstPartOfTheAlphabet stamp: 'TS 4/27/2023 18:57:29'!
+PASSED!
+
+!testRun: #TDDBabyStepsRot13Test #test07CorrectlyEncodesAnUppercaseCharFromTheFirstPartOfTheAlphabet stamp: 'TS 4/27/2023 18:58:11'!
+PASSED!
+
+!testRun: #TDDBabyStepsRot13Test #test01CorrectlyEncodesALowercaseCharFromTheFirstPartOfTheAlphabet stamp: 'TS 4/27/2023 18:58:11'!
+FAILURE!
+
+!testRun: #TDDBabyStepsRot13Test #test02CorrectlyEncodesALowercaseCharFromTheFirstPartOfTheAlphabet stamp: 'TS 4/27/2023 18:58:11'!
+FAILURE!
+
+!testRun: #TDDBabyStepsRot13Test #test03CorrectlyEncodesALowercaseCharFromTheSecondPartOfTheAlphabet stamp: 'TS 4/27/2023 18:58:11'!
+PASSED!
+
+!testRun: #TDDBabyStepsRot13Test #test04CorrectlyEncodesALowercaseCharFromTheSecondPartOfTheAlphabet stamp: 'TS 4/27/2023 18:58:11'!
+PASSED!
+
+!testRun: #TDDBabyStepsRot13Test #test05CharOnTheBelowRangeDoesntChange stamp: 'TS 4/27/2023 18:58:11'!
+PASSED!
+
+!testRun: #TDDBabyStepsRot13Test #test06CharOnTheUpperRangeDoesntChange stamp: 'TS 4/27/2023 18:58:11'!
+PASSED!
+
+!testRun: #TDDBabyStepsRot13Test #test07CorrectlyEncodesAnUppercaseCharFromTheFirstPartOfTheAlphabet stamp: 'TS 4/27/2023 18:58:11'!
+PASSED!
+
+!testRun: #TDDBabyStepsRot13Test #test07CorrectlyEncodesAnUppercaseCharFromTheFirstPartOfTheAlphabet stamp: 'TS 4/27/2023 18:58:14'!
+PASSED!
+
+!testRun: #TDDBabyStepsRot13Test #test01CorrectlyEncodesALowercaseCharFromTheFirstPartOfTheAlphabet stamp: 'TS 4/27/2023 18:58:14'!
+FAILURE!
+
+!testRun: #TDDBabyStepsRot13Test #test02CorrectlyEncodesALowercaseCharFromTheFirstPartOfTheAlphabet stamp: 'TS 4/27/2023 18:58:14'!
+FAILURE!
+
+!testRun: #TDDBabyStepsRot13Test #test03CorrectlyEncodesALowercaseCharFromTheSecondPartOfTheAlphabet stamp: 'TS 4/27/2023 18:58:14'!
+PASSED!
+
+!testRun: #TDDBabyStepsRot13Test #test04CorrectlyEncodesALowercaseCharFromTheSecondPartOfTheAlphabet stamp: 'TS 4/27/2023 18:58:14'!
+PASSED!
+
+!testRun: #TDDBabyStepsRot13Test #test05CharOnTheBelowRangeDoesntChange stamp: 'TS 4/27/2023 18:58:14'!
+PASSED!
+
+!testRun: #TDDBabyStepsRot13Test #test06CharOnTheUpperRangeDoesntChange stamp: 'TS 4/27/2023 18:58:14'!
+PASSED!
+
+!testRun: #TDDBabyStepsRot13Test #test07CorrectlyEncodesAnUppercaseCharFromTheFirstPartOfTheAlphabet stamp: 'TS 4/27/2023 18:58:14'!
+PASSED!
+!Character methodsFor: 'converting' stamp: 'TS 4/27/2023 18:58:40' prior: 50606450!
+asRot13
+
+	(self asciiValue between: $a asciiValue and: $z asciiValue)
+		ifTrue: [
+			self >= $n ifTrue: [ ^self asCharacterWithAsciiDistance: -13 ].
+			^self asCharacterWithAsciiDistance: 13
+		].
+	(self asciiValue between: $A asciiValue and: $M asciiValue)
+		ifTrue: [
+			^self asCharacterWithAsciiDistance: 13
+		].
+	^self! !
+
+!testRun: #TDDBabyStepsRot13Test #test07CorrectlyEncodesAnUppercaseCharFromTheFirstPartOfTheAlphabet stamp: 'TS 4/27/2023 18:58:42'!
+PASSED!
+
+!testRun: #TDDBabyStepsRot13Test #test01CorrectlyEncodesALowercaseCharFromTheFirstPartOfTheAlphabet stamp: 'TS 4/27/2023 18:58:42'!
+PASSED!
+
+!testRun: #TDDBabyStepsRot13Test #test02CorrectlyEncodesALowercaseCharFromTheFirstPartOfTheAlphabet stamp: 'TS 4/27/2023 18:58:42'!
+PASSED!
+
+!testRun: #TDDBabyStepsRot13Test #test03CorrectlyEncodesALowercaseCharFromTheSecondPartOfTheAlphabet stamp: 'TS 4/27/2023 18:58:42'!
+PASSED!
+
+!testRun: #TDDBabyStepsRot13Test #test04CorrectlyEncodesALowercaseCharFromTheSecondPartOfTheAlphabet stamp: 'TS 4/27/2023 18:58:42'!
+PASSED!
+
+!testRun: #TDDBabyStepsRot13Test #test05CharOnTheBelowRangeDoesntChange stamp: 'TS 4/27/2023 18:58:42'!
+PASSED!
+
+!testRun: #TDDBabyStepsRot13Test #test06CharOnTheUpperRangeDoesntChange stamp: 'TS 4/27/2023 18:58:42'!
+PASSED!
+
+!testRun: #TDDBabyStepsRot13Test #test07CorrectlyEncodesAnUppercaseCharFromTheFirstPartOfTheAlphabet stamp: 'TS 4/27/2023 18:58:42'!
+PASSED!
+
+!testRun: #TDDBabyStepsRot13Test #test01CorrectlyEncodesALowercaseCharFromTheFirstPartOfTheAlphabet stamp: 'TS 4/27/2023 18:58:46'!
+PASSED!
+
+!testRun: #TDDBabyStepsRot13Test #test02CorrectlyEncodesALowercaseCharFromTheFirstPartOfTheAlphabet stamp: 'TS 4/27/2023 18:58:46'!
+PASSED!
+
+!testRun: #TDDBabyStepsRot13Test #test03CorrectlyEncodesALowercaseCharFromTheSecondPartOfTheAlphabet stamp: 'TS 4/27/2023 18:58:46'!
+PASSED!
+
+!testRun: #TDDBabyStepsRot13Test #test04CorrectlyEncodesALowercaseCharFromTheSecondPartOfTheAlphabet stamp: 'TS 4/27/2023 18:58:46'!
+PASSED!
+
+!testRun: #TDDBabyStepsRot13Test #test05CharOnTheBelowRangeDoesntChange stamp: 'TS 4/27/2023 18:58:46'!
+PASSED!
+
+!testRun: #TDDBabyStepsRot13Test #test06CharOnTheUpperRangeDoesntChange stamp: 'TS 4/27/2023 18:58:46'!
+PASSED!
+
+!testRun: #TDDBabyStepsRot13Test #test07CorrectlyEncodesAnUppercaseCharFromTheFirstPartOfTheAlphabet stamp: 'TS 4/27/2023 18:58:46'!
+PASSED!
+!TDDBabyStepsRot13Test methodsFor: 'tests' stamp: 'TS 4/27/2023 18:58:46'!
+test08CorrectlyEncodesAnUppercaseCharFromTheSecondPartOfTheAlphabet
+	
+	self assert: $A equals: $N asRot13.
+	self assert: $M equals: $Z asRot13
+	! !
+
+!testRun: #TDDBabyStepsRot13Test #test08CorrectlyEncodesAnUppercaseCharFromTheSecondPartOfTheAlphabet stamp: 'TS 4/27/2023 18:58:46'!
+FAILURE!
+
+!methodRemoval: TDDBabyStepsRot13Test #test08CorrectlyEncodesAnUppercaseCharFromTheSecondPartOfTheAlphabet stamp: 'TS 4/27/2023 18:58:46'!
+test08CorrectlyEncodesAnUppercaseCharFromTheSecondPartOfTheAlphabet
+	
+	self assert: $A equals: $N asRot13.
+	self assert: $M equals: $Z asRot13
+	!
+!TDDBabyStepsRot13Test methodsFor: 'tests' stamp: 'TS 4/27/2023 18:58:46'!
+test08CorrectlyEncodesAnUppercaseCharFromTheSecondPartOfTheAlphabet
+	
+	self assert: $A equals: $N asRot13.
+	self assert: $M equals: $Z asRot13
+	! !
+
+!testRun: #TDDBabyStepsRot13Test #test08CorrectlyEncodesAnUppercaseCharFromTheSecondPartOfTheAlphabet stamp: 'TS 4/27/2023 18:58:46'!
+FAILURE!
+!Character methodsFor: 'converting' stamp: 'TS 4/27/2023 18:59:03' prior: 50606564!
+asRot13
+
+	(self asciiValue between: $a asciiValue and: $z asciiValue)
+		ifTrue: [
+			self >= $n ifTrue: [ ^self asCharacterWithAsciiDistance: -13 ].
+			^self asCharacterWithAsciiDistance: 13
+		].
+	(self asciiValue between: $A asciiValue and: $Z asciiValue)
+		ifTrue: [
+			self >= $N ifTrue: [ ^self asCharacterWithAsciiDistance: -13 ].
+			^self asCharacterWithAsciiDistance: 13
+		].
+	^self! !
+
+!testRun: #TDDBabyStepsRot13Test #test01CorrectlyEncodesALowercaseCharFromTheFirstPartOfTheAlphabet stamp: 'TS 4/27/2023 18:59:07'!
+PASSED!
+
+!testRun: #TDDBabyStepsRot13Test #test02CorrectlyEncodesALowercaseCharFromTheFirstPartOfTheAlphabet stamp: 'TS 4/27/2023 18:59:07'!
+PASSED!
+
+!testRun: #TDDBabyStepsRot13Test #test03CorrectlyEncodesALowercaseCharFromTheSecondPartOfTheAlphabet stamp: 'TS 4/27/2023 18:59:07'!
+PASSED!
+
+!testRun: #TDDBabyStepsRot13Test #test04CorrectlyEncodesALowercaseCharFromTheSecondPartOfTheAlphabet stamp: 'TS 4/27/2023 18:59:07'!
+PASSED!
+
+!testRun: #TDDBabyStepsRot13Test #test05CharOnTheBelowRangeDoesntChange stamp: 'TS 4/27/2023 18:59:07'!
+PASSED!
+
+!testRun: #TDDBabyStepsRot13Test #test06CharOnTheUpperRangeDoesntChange stamp: 'TS 4/27/2023 18:59:07'!
+PASSED!
+
+!testRun: #TDDBabyStepsRot13Test #test07CorrectlyEncodesAnUppercaseCharFromTheFirstPartOfTheAlphabet stamp: 'TS 4/27/2023 18:59:07'!
+PASSED!
+
+!testRun: #TDDBabyStepsRot13Test #test08CorrectlyEncodesAnUppercaseCharFromTheSecondPartOfTheAlphabet stamp: 'TS 4/27/2023 18:59:07'!
+PASSED!
+!Character methodsFor: 'converting' stamp: 'TS 4/27/2023 19:00:31'!
+between
+
+	^ self asciiValue between: $a asciiValue and: $z asciiValue! !
+!Character methodsFor: 'converting' stamp: 'TS 4/27/2023 19:00:31' prior: 50606673!
+asRot13
+
+	(self between)
+		ifTrue: [
+			self >= $n ifTrue: [ ^self asCharacterWithAsciiDistance: -13 ].
+			^self asCharacterWithAsciiDistance: 13
+		].
+	(self asciiValue between: $A asciiValue and: $Z asciiValue)
+		ifTrue: [
+			self >= $N ifTrue: [ ^self asCharacterWithAsciiDistance: -13 ].
+			^self asCharacterWithAsciiDistance: 13
+		].
+	^self! !
+!Character methodsFor: 'converting' stamp: 'TS 4/27/2023 19:01:32'!
+between: minCharacter
+
+	^ self asciiValue between: $a asciiValue and: $z asciiValue! !
+!Character methodsFor: 'as yet unclassified' stamp: 'TS 4/27/2023 19:01:32' prior: 50606727!
+asRot13
+
+	(self between: $a)
+		ifTrue: [
+			self >= $n ifTrue: [ ^self asCharacterWithAsciiDistance: -13 ].
+			^self asCharacterWithAsciiDistance: 13
+		].
+	(self asciiValue between: $A asciiValue and: $Z asciiValue)
+		ifTrue: [
+			self >= $N ifTrue: [ ^self asCharacterWithAsciiDistance: -13 ].
+			^self asCharacterWithAsciiDistance: 13
+		].
+	^self! !
+
+!methodRemoval: Character #between stamp: 'TS 4/27/2023 19:01:32'!
+between
+
+	^ self asciiValue between: $a asciiValue and: $z asciiValue!
+!Character methodsFor: 'as yet unclassified' stamp: 'TS 4/27/2023 19:01:32' prior: 50606740!
+between: minCharacter
+
+	^ self asciiValue between: minCharacter asciiValue and: $z asciiValue! !
+!Character methodsFor: 'converting' stamp: 'TS 4/27/2023 19:01:58'!
+between: minCharacter and: maxCharacter 
+
+	^ self asciiValue between: minCharacter asciiValue and: $z asciiValue! !
+!Character methodsFor: 'as yet unclassified' stamp: 'TS 4/27/2023 19:01:58' prior: 50606746!
+asRot13
+
+	(self between: $a and: $z)
+		ifTrue: [
+			self >= $n ifTrue: [ ^self asCharacterWithAsciiDistance: -13 ].
+			^self asCharacterWithAsciiDistance: 13
+		].
+	(self asciiValue between: $A asciiValue and: $Z asciiValue)
+		ifTrue: [
+			self >= $N ifTrue: [ ^self asCharacterWithAsciiDistance: -13 ].
+			^self asCharacterWithAsciiDistance: 13
+		].
+	^self! !
+
+!methodRemoval: Character #between: stamp: 'TS 4/27/2023 19:01:58'!
+between: minCharacter
+
+	^ self asciiValue between: minCharacter asciiValue and: $z asciiValue!
+!Character methodsFor: 'as yet unclassified' stamp: 'TS 4/27/2023 19:01:58' prior: 50606771!
+between: minCharacter and: maxCharacter 
+
+	^ self asciiValue between: minCharacter asciiValue and: maxCharacter asciiValue! !
+!Character methodsFor: 'converting' stamp: 'TS 4/27/2023 19:03:12' prior: 50606778!
+asRot13
+
+	(self between: $a and: $z)
+		ifTrue: [
+			self >= $n ifTrue: [ ^self asCharacterWithAsciiDistance: -13 ].
+			^self asCharacterWithAsciiDistance: 13
+		].
+	(self between: $A and: $Z)
+		ifTrue: [
+			self >= $N ifTrue: [ ^self asCharacterWithAsciiDistance: -13 ].
+			^self asCharacterWithAsciiDistance: 13
+		].
+	^self! !
+
+!testRun: #TDDBabyStepsRot13Test #test01CorrectlyEncodesALowercaseCharFromTheFirstPartOfTheAlphabet stamp: 'TS 4/27/2023 19:03:17'!
+PASSED!
+
+!testRun: #TDDBabyStepsRot13Test #test02CorrectlyEncodesALowercaseCharFromTheFirstPartOfTheAlphabet stamp: 'TS 4/27/2023 19:03:17'!
+PASSED!
+
+!testRun: #TDDBabyStepsRot13Test #test03CorrectlyEncodesALowercaseCharFromTheSecondPartOfTheAlphabet stamp: 'TS 4/27/2023 19:03:17'!
+PASSED!
+
+!testRun: #TDDBabyStepsRot13Test #test04CorrectlyEncodesALowercaseCharFromTheSecondPartOfTheAlphabet stamp: 'TS 4/27/2023 19:03:17'!
+PASSED!
+
+!testRun: #TDDBabyStepsRot13Test #test05CharOnTheBelowRangeDoesntChange stamp: 'TS 4/27/2023 19:03:17'!
+PASSED!
+
+!testRun: #TDDBabyStepsRot13Test #test06CharOnTheUpperRangeDoesntChange stamp: 'TS 4/27/2023 19:03:17'!
+PASSED!
+
+!testRun: #TDDBabyStepsRot13Test #test07CorrectlyEncodesAnUppercaseCharFromTheFirstPartOfTheAlphabet stamp: 'TS 4/27/2023 19:03:17'!
+PASSED!
+
+!testRun: #TDDBabyStepsRot13Test #test08CorrectlyEncodesAnUppercaseCharFromTheSecondPartOfTheAlphabet stamp: 'TS 4/27/2023 19:03:17'!
+PASSED!
+!Character methodsFor: 'converting' stamp: 'TS 4/27/2023 19:04:56'!
+isAsciiLowercase
+
+	^ self between: $a and: $z! !
+!Character methodsFor: 'converting' stamp: 'TS 4/27/2023 19:04:56' prior: 50606805!
+asRot13
+
+	(self isAsciiLowercase)
+		ifTrue: [
+			self >= $n ifTrue: [ ^self asCharacterWithAsciiDistance: -13 ].
+			^self asCharacterWithAsciiDistance: 13
+		].
+	(self between: $A and: $Z)
+		ifTrue: [
+			self >= $N ifTrue: [ ^self asCharacterWithAsciiDistance: -13 ].
+			^self asCharacterWithAsciiDistance: 13
+		].
+	^self! !
+!Character methodsFor: 'converting' stamp: 'TS 4/27/2023 19:05:08'!
+isAsciiUppercase
+
+	^ self between: $A and: $Z! !
+!Character methodsFor: 'converting' stamp: 'TS 4/27/2023 19:05:08' prior: 50606856!
+asRot13
+
+	(self isAsciiLowercase)
+		ifTrue: [
+			self >= $n ifTrue: [ ^self asCharacterWithAsciiDistance: -13 ].
+			^self asCharacterWithAsciiDistance: 13
+		].
+	(self isAsciiUppercase)
+		ifTrue: [
+			self >= $N ifTrue: [ ^self asCharacterWithAsciiDistance: -13 ].
+			^self asCharacterWithAsciiDistance: 13
+		].
+	^self! !
+!Character methodsFor: 'converting' stamp: 'TS 4/27/2023 19:06:30'!
+asRot13Lowercase
+
+	self >= $n ifTrue: [ ^self asCharacterWithAsciiDistance: -13 ].
+	^self asCharacterWithAsciiDistance: 13! !
+!Character methodsFor: 'converting' stamp: 'TS 4/27/2023 19:08:04' prior: 50606874!
+asRot13
+
+	(self isAsciiLowercase) ifTrue: [
+		^self asRot13Lowercase
+	].
+	(self isAsciiUppercase) ifTrue: [
+		^self asLowercase asRot13Lowercase asUppercase
+	].
+	^self! !
+!Character methodsFor: 'converting' stamp: 'TS 4/27/2023 19:09:41' prior: 50606894!
+asRot13
+
+	(self isAsciiLowercase) ifTrue: [
+		^self asRot13Lowercase
+	].
+	(self isAsciiUppercase) ifTrue: [
+		| lowercase lowercaseRot13 |
+		lowercase := self asLowercase.
+		lowercaseRot13 := lowercase asRot13.
+		^ lowercaseRot13 asUppercase
+	].
+	^self! !
+
+!testRun: #TDDBabyStepsRot13Test #test08CorrectlyEncodesAnUppercaseCharFromTheSecondPartOfTheAlphabet stamp: 'TS 4/27/2023 19:09:53'!
+PASSED!
+
+!testRun: #TDDBabyStepsRot13Test #test01CorrectlyEncodesALowercaseCharFromTheFirstPartOfTheAlphabet stamp: 'TS 4/27/2023 19:09:53'!
+PASSED!
+
+!testRun: #TDDBabyStepsRot13Test #test02CorrectlyEncodesALowercaseCharFromTheFirstPartOfTheAlphabet stamp: 'TS 4/27/2023 19:09:53'!
+PASSED!
+
+!testRun: #TDDBabyStepsRot13Test #test03CorrectlyEncodesALowercaseCharFromTheSecondPartOfTheAlphabet stamp: 'TS 4/27/2023 19:09:53'!
+PASSED!
+
+!testRun: #TDDBabyStepsRot13Test #test04CorrectlyEncodesALowercaseCharFromTheSecondPartOfTheAlphabet stamp: 'TS 4/27/2023 19:09:53'!
+PASSED!
+
+!testRun: #TDDBabyStepsRot13Test #test05CharOnTheBelowRangeDoesntChange stamp: 'TS 4/27/2023 19:09:53'!
+PASSED!
+
+!testRun: #TDDBabyStepsRot13Test #test06CharOnTheUpperRangeDoesntChange stamp: 'TS 4/27/2023 19:09:53'!
+PASSED!
+
+!testRun: #TDDBabyStepsRot13Test #test07CorrectlyEncodesAnUppercaseCharFromTheFirstPartOfTheAlphabet stamp: 'TS 4/27/2023 19:09:53'!
+PASSED!
+
+!testRun: #TDDBabyStepsRot13Test #test08CorrectlyEncodesAnUppercaseCharFromTheSecondPartOfTheAlphabet stamp: 'TS 4/27/2023 19:09:53'!
+PASSED!
+
+!testRun: #TDDBabyStepsRot13Test #test01CorrectlyEncodesALowercaseCharFromTheFirstPartOfTheAlphabet stamp: 'TS 4/27/2023 19:09:55'!
+PASSED!
+
+!testRun: #TDDBabyStepsRot13Test #test02CorrectlyEncodesALowercaseCharFromTheFirstPartOfTheAlphabet stamp: 'TS 4/27/2023 19:09:55'!
+PASSED!
+
+!testRun: #TDDBabyStepsRot13Test #test03CorrectlyEncodesALowercaseCharFromTheSecondPartOfTheAlphabet stamp: 'TS 4/27/2023 19:09:55'!
+PASSED!
+
+!testRun: #TDDBabyStepsRot13Test #test04CorrectlyEncodesALowercaseCharFromTheSecondPartOfTheAlphabet stamp: 'TS 4/27/2023 19:09:55'!
+PASSED!
+
+!testRun: #TDDBabyStepsRot13Test #test05CharOnTheBelowRangeDoesntChange stamp: 'TS 4/27/2023 19:09:55'!
+PASSED!
+
+!testRun: #TDDBabyStepsRot13Test #test06CharOnTheUpperRangeDoesntChange stamp: 'TS 4/27/2023 19:09:55'!
+PASSED!
+
+!testRun: #TDDBabyStepsRot13Test #test07CorrectlyEncodesAnUppercaseCharFromTheFirstPartOfTheAlphabet stamp: 'TS 4/27/2023 19:09:55'!
+PASSED!
+
+!testRun: #TDDBabyStepsRot13Test #test08CorrectlyEncodesAnUppercaseCharFromTheSecondPartOfTheAlphabet stamp: 'TS 4/27/2023 19:09:55'!
+PASSED!
+!TDDBabyStepsRot13Test methodsFor: 'tests' stamp: 'TS 4/27/2023 19:09:55'!
+test09TheEmptyStringDoesntChange
+	
+	self assert: '' equals: '' asRot13
+	! !
+
+!testRun: #TDDBabyStepsRot13Test #test09TheEmptyStringDoesntChange stamp: 'TS 4/27/2023 19:09:56'!
+ERROR!
+
+!methodRemoval: TDDBabyStepsRot13Test #test09TheEmptyStringDoesntChange stamp: 'TS 4/27/2023 19:09:56'!
+test09TheEmptyStringDoesntChange
+	
+	self assert: '' equals: '' asRot13
+	!
+!TDDBabyStepsRot13Test methodsFor: 'tests' stamp: 'TS 4/27/2023 19:09:56'!
+test09TheEmptyStringDoesntChange
+	
+	self assert: '' equals: '' asRot13
+	! !
+
+!testRun: #TDDBabyStepsRot13Test #test09TheEmptyStringDoesntChange stamp: 'TS 4/27/2023 19:09:56'!
+ERROR!
+
+!testRun: #TDDBabyStepsRot13Test #test09TheEmptyStringDoesntChange stamp: 'TS 4/27/2023 19:09:59'!
+ERROR!
+
+!testRun: #TDDBabyStepsRot13Test #test09TheEmptyStringDoesntChange stamp: 'TS 4/27/2023 19:10:30'!
+ERROR!
+!String methodsFor: 'converting' stamp: 'TS 4/27/2023 19:10:37'!
+asRot13
+	self shouldBeImplemented.! !
+!String methodsFor: 'converting' stamp: 'TS 4/27/2023 19:10:46' prior: 50607014!
+asRot13
+
+	^''! !
+
+!testRun: #TDDBabyStepsRot13Test #test09TheEmptyStringDoesntChange stamp: 'TS 4/27/2023 19:10:49'!
+PASSED!
+
+!testRun: #TDDBabyStepsRot13Test #test01CorrectlyEncodesALowercaseCharFromTheFirstPartOfTheAlphabet stamp: 'TS 4/27/2023 19:10:49'!
+PASSED!
+
+!testRun: #TDDBabyStepsRot13Test #test02CorrectlyEncodesALowercaseCharFromTheFirstPartOfTheAlphabet stamp: 'TS 4/27/2023 19:10:49'!
+PASSED!
+
+!testRun: #TDDBabyStepsRot13Test #test03CorrectlyEncodesALowercaseCharFromTheSecondPartOfTheAlphabet stamp: 'TS 4/27/2023 19:10:49'!
+PASSED!
+
+!testRun: #TDDBabyStepsRot13Test #test04CorrectlyEncodesALowercaseCharFromTheSecondPartOfTheAlphabet stamp: 'TS 4/27/2023 19:10:49'!
+PASSED!
+
+!testRun: #TDDBabyStepsRot13Test #test05CharOnTheBelowRangeDoesntChange stamp: 'TS 4/27/2023 19:10:49'!
+PASSED!
+
+!testRun: #TDDBabyStepsRot13Test #test06CharOnTheUpperRangeDoesntChange stamp: 'TS 4/27/2023 19:10:49'!
+PASSED!
+
+!testRun: #TDDBabyStepsRot13Test #test07CorrectlyEncodesAnUppercaseCharFromTheFirstPartOfTheAlphabet stamp: 'TS 4/27/2023 19:10:49'!
+PASSED!
+
+!testRun: #TDDBabyStepsRot13Test #test08CorrectlyEncodesAnUppercaseCharFromTheSecondPartOfTheAlphabet stamp: 'TS 4/27/2023 19:10:49'!
+PASSED!
+
+!testRun: #TDDBabyStepsRot13Test #test09TheEmptyStringDoesntChange stamp: 'TS 4/27/2023 19:10:49'!
+PASSED!
+
+!testRun: #TDDBabyStepsRot13Test #test01CorrectlyEncodesALowercaseCharFromTheFirstPartOfTheAlphabet stamp: 'TS 4/27/2023 19:10:57'!
+PASSED!
+
+!testRun: #TDDBabyStepsRot13Test #test02CorrectlyEncodesALowercaseCharFromTheFirstPartOfTheAlphabet stamp: 'TS 4/27/2023 19:10:57'!
+PASSED!
+
+!testRun: #TDDBabyStepsRot13Test #test03CorrectlyEncodesALowercaseCharFromTheSecondPartOfTheAlphabet stamp: 'TS 4/27/2023 19:10:57'!
+PASSED!
+
+!testRun: #TDDBabyStepsRot13Test #test04CorrectlyEncodesALowercaseCharFromTheSecondPartOfTheAlphabet stamp: 'TS 4/27/2023 19:10:57'!
+PASSED!
+
+!testRun: #TDDBabyStepsRot13Test #test05CharOnTheBelowRangeDoesntChange stamp: 'TS 4/27/2023 19:10:57'!
+PASSED!
+
+!testRun: #TDDBabyStepsRot13Test #test06CharOnTheUpperRangeDoesntChange stamp: 'TS 4/27/2023 19:10:57'!
+PASSED!
+
+!testRun: #TDDBabyStepsRot13Test #test07CorrectlyEncodesAnUppercaseCharFromTheFirstPartOfTheAlphabet stamp: 'TS 4/27/2023 19:10:57'!
+PASSED!
+
+!testRun: #TDDBabyStepsRot13Test #test08CorrectlyEncodesAnUppercaseCharFromTheSecondPartOfTheAlphabet stamp: 'TS 4/27/2023 19:10:57'!
+PASSED!
+
+!testRun: #TDDBabyStepsRot13Test #test09TheEmptyStringDoesntChange stamp: 'TS 4/27/2023 19:10:57'!
+PASSED!
+!TDDBabyStepsRot13Test methodsFor: 'tests' stamp: 'TS 4/27/2023 19:10:57'!
+test10CorrectlyEncodesAOneCharString
+	
+	self assert: 'n' equals: 'a' asRot13.
+	self assert: 'Z' equals: 'M' asRot13.
+	self assert: 'a' equals: 'n' asRot13.
+	self assert: '{' equals: '{' asRot13
+	! !
+
+!testRun: #TDDBabyStepsRot13Test #test10CorrectlyEncodesAOneCharString stamp: 'TS 4/27/2023 19:10:57'!
+FAILURE!
+
+!methodRemoval: TDDBabyStepsRot13Test #test10CorrectlyEncodesAOneCharString stamp: 'TS 4/27/2023 19:10:57'!
+test10CorrectlyEncodesAOneCharString
+	
+	self assert: 'n' equals: 'a' asRot13.
+	self assert: 'Z' equals: 'M' asRot13.
+	self assert: 'a' equals: 'n' asRot13.
+	self assert: '{' equals: '{' asRot13
+	!
+!TDDBabyStepsRot13Test methodsFor: 'tests' stamp: 'TS 4/27/2023 19:10:57'!
+test10CorrectlyEncodesAOneCharString
+	
+	self assert: 'n' equals: 'a' asRot13.
+	self assert: 'Z' equals: 'M' asRot13.
+	self assert: 'a' equals: 'n' asRot13.
+	self assert: '{' equals: '{' asRot13
+	! !
+
+!testRun: #TDDBabyStepsRot13Test #test10CorrectlyEncodesAOneCharString stamp: 'TS 4/27/2023 19:10:57'!
+FAILURE!
+!Character methodsFor: 'converting' stamp: 'TS 4/27/2023 19:12:34'!
+asRot13Uppercase
+
+	| lowercase lowercaseRot13 |
+	lowercase := self asLowercase.
+	lowercaseRot13 := lowercase asRot13.
+	^ lowercaseRot13 asUppercase! !
+!Character methodsFor: 'converting' stamp: 'TS 4/27/2023 19:12:46' prior: 50606902!
+asRot13
+
+	(self isAsciiLowercase) ifTrue: [
+		^self asRot13Lowercase
+	].
+	(self isAsciiUppercase) ifTrue: [
+		^self asRot13Uppercase
+	].
+	^self! !
+!String methodsFor: 'converting' stamp: 'TS 4/27/2023 19:16:28' prior: 50607018!
+asRot13
+
+	^self class with: (self first asRot13)! !
+
+!testRun: #TDDBabyStepsRot13Test #test10CorrectlyEncodesAOneCharString stamp: 'TS 4/27/2023 19:16:31'!
+PASSED!
+
+!testRun: #TDDBabyStepsRot13Test #test01CorrectlyEncodesALowercaseCharFromTheFirstPartOfTheAlphabet stamp: 'TS 4/27/2023 19:16:31'!
+PASSED!
+
+!testRun: #TDDBabyStepsRot13Test #test02CorrectlyEncodesALowercaseCharFromTheFirstPartOfTheAlphabet stamp: 'TS 4/27/2023 19:16:31'!
+PASSED!
+
+!testRun: #TDDBabyStepsRot13Test #test03CorrectlyEncodesALowercaseCharFromTheSecondPartOfTheAlphabet stamp: 'TS 4/27/2023 19:16:31'!
+PASSED!
+
+!testRun: #TDDBabyStepsRot13Test #test04CorrectlyEncodesALowercaseCharFromTheSecondPartOfTheAlphabet stamp: 'TS 4/27/2023 19:16:31'!
+PASSED!
+
+!testRun: #TDDBabyStepsRot13Test #test05CharOnTheBelowRangeDoesntChange stamp: 'TS 4/27/2023 19:16:31'!
+PASSED!
+
+!testRun: #TDDBabyStepsRot13Test #test06CharOnTheUpperRangeDoesntChange stamp: 'TS 4/27/2023 19:16:31'!
+PASSED!
+
+!testRun: #TDDBabyStepsRot13Test #test07CorrectlyEncodesAnUppercaseCharFromTheFirstPartOfTheAlphabet stamp: 'TS 4/27/2023 19:16:31'!
+PASSED!
+
+!testRun: #TDDBabyStepsRot13Test #test08CorrectlyEncodesAnUppercaseCharFromTheSecondPartOfTheAlphabet stamp: 'TS 4/27/2023 19:16:31'!
+PASSED!
+
+!testRun: #TDDBabyStepsRot13Test #test09TheEmptyStringDoesntChange stamp: 'TS 4/27/2023 19:16:31'!
+ERROR!
+
+!testRun: #TDDBabyStepsRot13Test #test10CorrectlyEncodesAOneCharString stamp: 'TS 4/27/2023 19:16:31'!
+PASSED!
+
+!testRun: #TDDBabyStepsRot13Test #test09TheEmptyStringDoesntChange stamp: 'TS 4/27/2023 19:16:31'!
+ERROR!
+!String methodsFor: 'converting' stamp: 'TS 4/27/2023 19:17:33' prior: 50607149!
+asRot13
+
+	self isEmpty ifTrue: [^self].
+	self class with: (self first asRot13)! !
+
+!testRun: #TDDBabyStepsRot13Test #test01CorrectlyEncodesALowercaseCharFromTheFirstPartOfTheAlphabet stamp: 'TS 4/27/2023 19:17:37'!
+PASSED!
+
+!testRun: #TDDBabyStepsRot13Test #test02CorrectlyEncodesALowercaseCharFromTheFirstPartOfTheAlphabet stamp: 'TS 4/27/2023 19:17:37'!
+PASSED!
+
+!testRun: #TDDBabyStepsRot13Test #test03CorrectlyEncodesALowercaseCharFromTheSecondPartOfTheAlphabet stamp: 'TS 4/27/2023 19:17:37'!
+PASSED!
+
+!testRun: #TDDBabyStepsRot13Test #test04CorrectlyEncodesALowercaseCharFromTheSecondPartOfTheAlphabet stamp: 'TS 4/27/2023 19:17:37'!
+PASSED!
+
+!testRun: #TDDBabyStepsRot13Test #test05CharOnTheBelowRangeDoesntChange stamp: 'TS 4/27/2023 19:17:37'!
+PASSED!
+
+!testRun: #TDDBabyStepsRot13Test #test06CharOnTheUpperRangeDoesntChange stamp: 'TS 4/27/2023 19:17:37'!
+PASSED!
+
+!testRun: #TDDBabyStepsRot13Test #test07CorrectlyEncodesAnUppercaseCharFromTheFirstPartOfTheAlphabet stamp: 'TS 4/27/2023 19:17:37'!
+PASSED!
+
+!testRun: #TDDBabyStepsRot13Test #test08CorrectlyEncodesAnUppercaseCharFromTheSecondPartOfTheAlphabet stamp: 'TS 4/27/2023 19:17:37'!
+PASSED!
+
+!testRun: #TDDBabyStepsRot13Test #test09TheEmptyStringDoesntChange stamp: 'TS 4/27/2023 19:17:37'!
+PASSED!
+
+!testRun: #TDDBabyStepsRot13Test #test10CorrectlyEncodesAOneCharString stamp: 'TS 4/27/2023 19:17:37'!
+FAILURE!
+
+!testRun: #TDDBabyStepsRot13Test #test10CorrectlyEncodesAOneCharString stamp: 'TS 4/27/2023 19:17:37'!
+FAILURE!
+!String methodsFor: 'converting' stamp: 'TS 4/27/2023 19:17:59' prior: 50607201!
+asRot13
+
+	self isEmpty ifTrue: [^self].
+	^self class with: (self first asRot13)! !
+
+!testRun: #TDDBabyStepsRot13Test #test01CorrectlyEncodesALowercaseCharFromTheFirstPartOfTheAlphabet stamp: 'TS 4/27/2023 19:18:03'!
+PASSED!
+
+!testRun: #TDDBabyStepsRot13Test #test02CorrectlyEncodesALowercaseCharFromTheFirstPartOfTheAlphabet stamp: 'TS 4/27/2023 19:18:03'!
+PASSED!
+
+!testRun: #TDDBabyStepsRot13Test #test03CorrectlyEncodesALowercaseCharFromTheSecondPartOfTheAlphabet stamp: 'TS 4/27/2023 19:18:03'!
+PASSED!
+
+!testRun: #TDDBabyStepsRot13Test #test04CorrectlyEncodesALowercaseCharFromTheSecondPartOfTheAlphabet stamp: 'TS 4/27/2023 19:18:03'!
+PASSED!
+
+!testRun: #TDDBabyStepsRot13Test #test05CharOnTheBelowRangeDoesntChange stamp: 'TS 4/27/2023 19:18:03'!
+PASSED!
+
+!testRun: #TDDBabyStepsRot13Test #test06CharOnTheUpperRangeDoesntChange stamp: 'TS 4/27/2023 19:18:03'!
+PASSED!
+
+!testRun: #TDDBabyStepsRot13Test #test07CorrectlyEncodesAnUppercaseCharFromTheFirstPartOfTheAlphabet stamp: 'TS 4/27/2023 19:18:03'!
+PASSED!
+
+!testRun: #TDDBabyStepsRot13Test #test08CorrectlyEncodesAnUppercaseCharFromTheSecondPartOfTheAlphabet stamp: 'TS 4/27/2023 19:18:03'!
+PASSED!
+
+!testRun: #TDDBabyStepsRot13Test #test09TheEmptyStringDoesntChange stamp: 'TS 4/27/2023 19:18:03'!
+PASSED!
+
+!testRun: #TDDBabyStepsRot13Test #test10CorrectlyEncodesAOneCharString stamp: 'TS 4/27/2023 19:18:03'!
+PASSED!
+
+!testRun: #TDDBabyStepsRot13Test #test01CorrectlyEncodesALowercaseCharFromTheFirstPartOfTheAlphabet stamp: 'TS 4/27/2023 19:18:09'!
+PASSED!
+
+!testRun: #TDDBabyStepsRot13Test #test02CorrectlyEncodesALowercaseCharFromTheFirstPartOfTheAlphabet stamp: 'TS 4/27/2023 19:18:09'!
+PASSED!
+
+!testRun: #TDDBabyStepsRot13Test #test03CorrectlyEncodesALowercaseCharFromTheSecondPartOfTheAlphabet stamp: 'TS 4/27/2023 19:18:09'!
+PASSED!
+
+!testRun: #TDDBabyStepsRot13Test #test04CorrectlyEncodesALowercaseCharFromTheSecondPartOfTheAlphabet stamp: 'TS 4/27/2023 19:18:09'!
+PASSED!
+
+!testRun: #TDDBabyStepsRot13Test #test05CharOnTheBelowRangeDoesntChange stamp: 'TS 4/27/2023 19:18:09'!
+PASSED!
+
+!testRun: #TDDBabyStepsRot13Test #test06CharOnTheUpperRangeDoesntChange stamp: 'TS 4/27/2023 19:18:09'!
+PASSED!
+
+!testRun: #TDDBabyStepsRot13Test #test07CorrectlyEncodesAnUppercaseCharFromTheFirstPartOfTheAlphabet stamp: 'TS 4/27/2023 19:18:09'!
+PASSED!
+
+!testRun: #TDDBabyStepsRot13Test #test08CorrectlyEncodesAnUppercaseCharFromTheSecondPartOfTheAlphabet stamp: 'TS 4/27/2023 19:18:09'!
+PASSED!
+
+!testRun: #TDDBabyStepsRot13Test #test09TheEmptyStringDoesntChange stamp: 'TS 4/27/2023 19:18:09'!
+PASSED!
+
+!testRun: #TDDBabyStepsRot13Test #test10CorrectlyEncodesAOneCharString stamp: 'TS 4/27/2023 19:18:09'!
+PASSED!
+!TDDBabyStepsRot13Test methodsFor: 'tests' stamp: 'TS 4/27/2023 19:18:09'!
+test11CorrectlyEncodesATwoCharString
+	
+	self assert: 'nm' equals: 'az' asRot13
+	! !
+
+!testRun: #TDDBabyStepsRot13Test #test11CorrectlyEncodesATwoCharString stamp: 'TS 4/27/2023 19:18:09'!
+FAILURE!
+
+!methodRemoval: TDDBabyStepsRot13Test #test11CorrectlyEncodesATwoCharString stamp: 'TS 4/27/2023 19:18:09'!
+test11CorrectlyEncodesATwoCharString
+	
+	self assert: 'nm' equals: 'az' asRot13
+	!
+!TDDBabyStepsRot13Test methodsFor: 'tests' stamp: 'TS 4/27/2023 19:18:09'!
+test11CorrectlyEncodesATwoCharString
+	
+	self assert: 'nm' equals: 'az' asRot13
+	! !
+
+!testRun: #TDDBabyStepsRot13Test #test11CorrectlyEncodesATwoCharString stamp: 'TS 4/27/2023 19:18:09'!
+FAILURE!
+!String methodsFor: 'converting' stamp: 'TS 4/27/2023 19:20:26' prior: 50607251!
+asRot13
+
+	self isEmpty ifTrue: [^self].
+	self size = 1 ifTrue: [^self class with: (self first asRot13)].
+	^self class with: self first asRot13 with: self second asRot13.! !
+
+!testRun: #TDDBabyStepsRot13Test #test11CorrectlyEncodesATwoCharString stamp: 'TS 4/27/2023 19:20:28'!
+PASSED!
+
+!testRun: #TDDBabyStepsRot13Test #test01CorrectlyEncodesALowercaseCharFromTheFirstPartOfTheAlphabet stamp: 'TS 4/27/2023 19:20:28'!
+PASSED!
+
+!testRun: #TDDBabyStepsRot13Test #test02CorrectlyEncodesALowercaseCharFromTheFirstPartOfTheAlphabet stamp: 'TS 4/27/2023 19:20:28'!
+PASSED!
+
+!testRun: #TDDBabyStepsRot13Test #test03CorrectlyEncodesALowercaseCharFromTheSecondPartOfTheAlphabet stamp: 'TS 4/27/2023 19:20:28'!
+PASSED!
+
+!testRun: #TDDBabyStepsRot13Test #test04CorrectlyEncodesALowercaseCharFromTheSecondPartOfTheAlphabet stamp: 'TS 4/27/2023 19:20:28'!
+PASSED!
+
+!testRun: #TDDBabyStepsRot13Test #test05CharOnTheBelowRangeDoesntChange stamp: 'TS 4/27/2023 19:20:28'!
+PASSED!
+
+!testRun: #TDDBabyStepsRot13Test #test06CharOnTheUpperRangeDoesntChange stamp: 'TS 4/27/2023 19:20:28'!
+PASSED!
+
+!testRun: #TDDBabyStepsRot13Test #test07CorrectlyEncodesAnUppercaseCharFromTheFirstPartOfTheAlphabet stamp: 'TS 4/27/2023 19:20:28'!
+PASSED!
+
+!testRun: #TDDBabyStepsRot13Test #test08CorrectlyEncodesAnUppercaseCharFromTheSecondPartOfTheAlphabet stamp: 'TS 4/27/2023 19:20:28'!
+PASSED!
+
+!testRun: #TDDBabyStepsRot13Test #test09TheEmptyStringDoesntChange stamp: 'TS 4/27/2023 19:20:28'!
+PASSED!
+
+!testRun: #TDDBabyStepsRot13Test #test10CorrectlyEncodesAOneCharString stamp: 'TS 4/27/2023 19:20:28'!
+PASSED!
+
+!testRun: #TDDBabyStepsRot13Test #test11CorrectlyEncodesATwoCharString stamp: 'TS 4/27/2023 19:20:28'!
+PASSED!
+
+!testRun: #TDDBabyStepsRot13Test #test01CorrectlyEncodesALowercaseCharFromTheFirstPartOfTheAlphabet stamp: 'TS 4/27/2023 19:20:34'!
+PASSED!
+
+!testRun: #TDDBabyStepsRot13Test #test02CorrectlyEncodesALowercaseCharFromTheFirstPartOfTheAlphabet stamp: 'TS 4/27/2023 19:20:34'!
+PASSED!
+
+!testRun: #TDDBabyStepsRot13Test #test03CorrectlyEncodesALowercaseCharFromTheSecondPartOfTheAlphabet stamp: 'TS 4/27/2023 19:20:34'!
+PASSED!
+
+!testRun: #TDDBabyStepsRot13Test #test04CorrectlyEncodesALowercaseCharFromTheSecondPartOfTheAlphabet stamp: 'TS 4/27/2023 19:20:34'!
+PASSED!
+
+!testRun: #TDDBabyStepsRot13Test #test05CharOnTheBelowRangeDoesntChange stamp: 'TS 4/27/2023 19:20:34'!
+PASSED!
+
+!testRun: #TDDBabyStepsRot13Test #test06CharOnTheUpperRangeDoesntChange stamp: 'TS 4/27/2023 19:20:34'!
+PASSED!
+
+!testRun: #TDDBabyStepsRot13Test #test07CorrectlyEncodesAnUppercaseCharFromTheFirstPartOfTheAlphabet stamp: 'TS 4/27/2023 19:20:34'!
+PASSED!
+
+!testRun: #TDDBabyStepsRot13Test #test08CorrectlyEncodesAnUppercaseCharFromTheSecondPartOfTheAlphabet stamp: 'TS 4/27/2023 19:20:34'!
+PASSED!
+
+!testRun: #TDDBabyStepsRot13Test #test09TheEmptyStringDoesntChange stamp: 'TS 4/27/2023 19:20:34'!
+PASSED!
+
+!testRun: #TDDBabyStepsRot13Test #test10CorrectlyEncodesAOneCharString stamp: 'TS 4/27/2023 19:20:34'!
+PASSED!
+
+!testRun: #TDDBabyStepsRot13Test #test11CorrectlyEncodesATwoCharString stamp: 'TS 4/27/2023 19:20:34'!
+PASSED!
+!TDDBabyStepsRot13Test methodsFor: 'tests' stamp: 'TS 4/27/2023 19:20:34'!
+test12CorrectlyEncodesMoreThanTwoCharString
+	
+	self assert: 'uByN!!' equals: 'hOlA!!' asRot13
+	! !
+
+!testRun: #TDDBabyStepsRot13Test #test12CorrectlyEncodesMoreThanTwoCharString stamp: 'TS 4/27/2023 19:20:34'!
+FAILURE!
+
+!methodRemoval: TDDBabyStepsRot13Test #test12CorrectlyEncodesMoreThanTwoCharString stamp: 'TS 4/27/2023 19:20:34'!
+test12CorrectlyEncodesMoreThanTwoCharString
+	
+	self assert: 'uByN!!' equals: 'hOlA!!' asRot13
+	!
+!TDDBabyStepsRot13Test methodsFor: 'tests' stamp: 'TS 4/27/2023 19:20:34'!
+test12CorrectlyEncodesMoreThanTwoCharString
+	
+	self assert: 'uByN!!' equals: 'hOlA!!' asRot13
+	! !
+
+!testRun: #TDDBabyStepsRot13Test #test12CorrectlyEncodesMoreThanTwoCharString stamp: 'TS 4/27/2023 19:20:34'!
+FAILURE!
+!String methodsFor: 'converting' stamp: 'TS 4/27/2023 19:21:07' prior: 50607361!
+asRot13
+
+	self isEmpty ifTrue: [^self].! !
+!String methodsFor: 'converting' stamp: 'TS 4/27/2023 19:23:11' prior: 50607487!
+asRot13
+
+	self isEmpty ifTrue: [ ^self ].
+	self collect: [ :aChar | aChar asRot13 ].! !
+
+!testRun: #TDDBabyStepsRot13Test #test12CorrectlyEncodesMoreThanTwoCharString stamp: 'TS 4/27/2023 19:23:13'!
+FAILURE!
+!String methodsFor: 'converting' stamp: 'TS 4/27/2023 19:23:28' prior: 50607491!
+asRot13
+
+	self isEmpty ifTrue: [ ^self ].
+	^self collect: [ :aChar | aChar asRot13 ].! !
+
+!testRun: #TDDBabyStepsRot13Test #test12CorrectlyEncodesMoreThanTwoCharString stamp: 'TS 4/27/2023 19:23:31'!
+PASSED!
+
+!testRun: #TDDBabyStepsRot13Test #test01CorrectlyEncodesALowercaseCharFromTheFirstPartOfTheAlphabet stamp: 'TS 4/27/2023 19:23:31'!
+PASSED!
+
+!testRun: #TDDBabyStepsRot13Test #test02CorrectlyEncodesALowercaseCharFromTheFirstPartOfTheAlphabet stamp: 'TS 4/27/2023 19:23:31'!
+PASSED!
+
+!testRun: #TDDBabyStepsRot13Test #test03CorrectlyEncodesALowercaseCharFromTheSecondPartOfTheAlphabet stamp: 'TS 4/27/2023 19:23:31'!
+PASSED!
+
+!testRun: #TDDBabyStepsRot13Test #test04CorrectlyEncodesALowercaseCharFromTheSecondPartOfTheAlphabet stamp: 'TS 4/27/2023 19:23:31'!
+PASSED!
+
+!testRun: #TDDBabyStepsRot13Test #test05CharOnTheBelowRangeDoesntChange stamp: 'TS 4/27/2023 19:23:31'!
+PASSED!
+
+!testRun: #TDDBabyStepsRot13Test #test06CharOnTheUpperRangeDoesntChange stamp: 'TS 4/27/2023 19:23:31'!
+PASSED!
+
+!testRun: #TDDBabyStepsRot13Test #test07CorrectlyEncodesAnUppercaseCharFromTheFirstPartOfTheAlphabet stamp: 'TS 4/27/2023 19:23:31'!
+PASSED!
+
+!testRun: #TDDBabyStepsRot13Test #test08CorrectlyEncodesAnUppercaseCharFromTheSecondPartOfTheAlphabet stamp: 'TS 4/27/2023 19:23:31'!
+PASSED!
+
+!testRun: #TDDBabyStepsRot13Test #test09TheEmptyStringDoesntChange stamp: 'TS 4/27/2023 19:23:31'!
+PASSED!
+
+!testRun: #TDDBabyStepsRot13Test #test10CorrectlyEncodesAOneCharString stamp: 'TS 4/27/2023 19:23:31'!
+PASSED!
+
+!testRun: #TDDBabyStepsRot13Test #test11CorrectlyEncodesATwoCharString stamp: 'TS 4/27/2023 19:23:31'!
+PASSED!
+
+!testRun: #TDDBabyStepsRot13Test #test12CorrectlyEncodesMoreThanTwoCharString stamp: 'TS 4/27/2023 19:23:31'!
+PASSED!
+
+!testRun: #TDDBabyStepsRot13Test #test01CorrectlyEncodesALowercaseCharFromTheFirstPartOfTheAlphabet stamp: 'TS 4/27/2023 19:23:35'!
+PASSED!
+
+!testRun: #TDDBabyStepsRot13Test #test02CorrectlyEncodesALowercaseCharFromTheFirstPartOfTheAlphabet stamp: 'TS 4/27/2023 19:23:35'!
+PASSED!
+
+!testRun: #TDDBabyStepsRot13Test #test03CorrectlyEncodesALowercaseCharFromTheSecondPartOfTheAlphabet stamp: 'TS 4/27/2023 19:23:35'!
+PASSED!
+
+!testRun: #TDDBabyStepsRot13Test #test04CorrectlyEncodesALowercaseCharFromTheSecondPartOfTheAlphabet stamp: 'TS 4/27/2023 19:23:35'!
+PASSED!
+
+!testRun: #TDDBabyStepsRot13Test #test05CharOnTheBelowRangeDoesntChange stamp: 'TS 4/27/2023 19:23:35'!
+PASSED!
+
+!testRun: #TDDBabyStepsRot13Test #test06CharOnTheUpperRangeDoesntChange stamp: 'TS 4/27/2023 19:23:35'!
+PASSED!
+
+!testRun: #TDDBabyStepsRot13Test #test07CorrectlyEncodesAnUppercaseCharFromTheFirstPartOfTheAlphabet stamp: 'TS 4/27/2023 19:23:35'!
+PASSED!
+
+!testRun: #TDDBabyStepsRot13Test #test08CorrectlyEncodesAnUppercaseCharFromTheSecondPartOfTheAlphabet stamp: 'TS 4/27/2023 19:23:35'!
+PASSED!
+
+!testRun: #TDDBabyStepsRot13Test #test09TheEmptyStringDoesntChange stamp: 'TS 4/27/2023 19:23:35'!
+PASSED!
+
+!testRun: #TDDBabyStepsRot13Test #test10CorrectlyEncodesAOneCharString stamp: 'TS 4/27/2023 19:23:35'!
+PASSED!
+
+!testRun: #TDDBabyStepsRot13Test #test11CorrectlyEncodesATwoCharString stamp: 'TS 4/27/2023 19:23:35'!
+PASSED!
+
+!testRun: #TDDBabyStepsRot13Test #test12CorrectlyEncodesMoreThanTwoCharString stamp: 'TS 4/27/2023 19:23:35'!
+PASSED!
+!TDDBabyStepsRot13Test methodsFor: 'tests' stamp: 'TS 4/27/2023 19:23:35'!
+testExtraToCheckGeneralizationOnKata
+		
+	self assert: 'Ju3er j3 4e3 t01at j3 q0ag a3rq e04q$...' equals: 'Wh3re w3 4r3 g01ng w3 d0nt n3ed r04d$...' asRot13
+	! !
+
+!testRun: #TDDBabyStepsRot13Test #testExtraToCheckGeneralizationOnKata stamp: 'TS 4/27/2023 19:23:35'!
+PASSED!
+
+TDDBabyStepsGamePrimeFactors start!
+
+!classDefinition: #TDDBabyStepsPrimeFactorsTest category: 'TDDBabyStepsGamePrimeFactors' stamp: 'TS 4/27/2023 19:27:26'!
+TestCase subclass: #TDDBabyStepsPrimeFactorsTest
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'TDDBabyStepsGamePrimeFactors'!
+!String methodsFor: 'converting' stamp: 'TS 4/27/2023 19:30:48' prior: 50607501!
+asRot13
+
+	^self collect: [ :aChar | aChar asRot13 ].! !
+
+!testRun: #TDDBabyStepsRot13Test #test12CorrectlyEncodesMoreThanTwoCharString stamp: 'TS 4/27/2023 19:30:51'!
+PASSED!
+
+!testRun: #TDDBabyStepsRot13Test #test01CorrectlyEncodesALowercaseCharFromTheFirstPartOfTheAlphabet stamp: 'TS 4/27/2023 19:30:51'!
+PASSED!
+
+!testRun: #TDDBabyStepsRot13Test #test02CorrectlyEncodesALowercaseCharFromTheFirstPartOfTheAlphabet stamp: 'TS 4/27/2023 19:30:51'!
+PASSED!
+
+!testRun: #TDDBabyStepsRot13Test #test03CorrectlyEncodesALowercaseCharFromTheSecondPartOfTheAlphabet stamp: 'TS 4/27/2023 19:30:51'!
+PASSED!
+
+!testRun: #TDDBabyStepsRot13Test #test04CorrectlyEncodesALowercaseCharFromTheSecondPartOfTheAlphabet stamp: 'TS 4/27/2023 19:30:51'!
+PASSED!
+
+!testRun: #TDDBabyStepsRot13Test #test05CharOnTheBelowRangeDoesntChange stamp: 'TS 4/27/2023 19:30:51'!
+PASSED!
+
+!testRun: #TDDBabyStepsRot13Test #test06CharOnTheUpperRangeDoesntChange stamp: 'TS 4/27/2023 19:30:51'!
+PASSED!
+
+!testRun: #TDDBabyStepsRot13Test #test07CorrectlyEncodesAnUppercaseCharFromTheFirstPartOfTheAlphabet stamp: 'TS 4/27/2023 19:30:51'!
+PASSED!
+
+!testRun: #TDDBabyStepsRot13Test #test08CorrectlyEncodesAnUppercaseCharFromTheSecondPartOfTheAlphabet stamp: 'TS 4/27/2023 19:30:51'!
+PASSED!
+
+!testRun: #TDDBabyStepsRot13Test #test09TheEmptyStringDoesntChange stamp: 'TS 4/27/2023 19:30:51'!
+PASSED!
+
+!testRun: #TDDBabyStepsRot13Test #test10CorrectlyEncodesAOneCharString stamp: 'TS 4/27/2023 19:30:51'!
+PASSED!
+
+!testRun: #TDDBabyStepsRot13Test #test11CorrectlyEncodesATwoCharString stamp: 'TS 4/27/2023 19:30:51'!
+PASSED!
+
+!testRun: #TDDBabyStepsRot13Test #test12CorrectlyEncodesMoreThanTwoCharString stamp: 'TS 4/27/2023 19:30:51'!
+PASSED!
+
+!testRun: #TDDBabyStepsRot13Test #testExtraToCheckGeneralizationOnKata stamp: 'TS 4/27/2023 19:30:51'!
+PASSED!
+!TDDBabyStepsPrimeFactorsTest methodsFor: 'tests' stamp: 'TS 4/27/2023 19:32:23'!
+test01OneHasNoPrimeFactors
+	
+	self assert: Bag new equals: 1 factorize
+	! !
+
+!testRun: #TDDBabyStepsPrimeFactorsTest #test01OneHasNoPrimeFactors stamp: 'TS 4/27/2023 19:32:44'!
+ERROR!
+!Integer methodsFor: 'mathematical functions' stamp: 'TS 4/27/2023 19:33:53'!
+factorize
+	self shouldBeImplemented.! !
+!Integer methodsFor: 'mathematical functions' stamp: 'TS 4/27/2023 19:34:00' prior: 50607697!
+factorize
+
+	^Bag new! !
+
+!testRun: #TDDBabyStepsPrimeFactorsTest #test01OneHasNoPrimeFactors stamp: 'TS 4/27/2023 19:34:18'!
+PASSED!
+
+!testRun: #TDDBabyStepsPrimeFactorsTest #test01OneHasNoPrimeFactors stamp: 'TS 4/27/2023 19:34:18'!
+PASSED!
+
+!testRun: #TDDBabyStepsRot13Test #test01CorrectlyEncodesALowercaseCharFromTheFirstPartOfTheAlphabet stamp: 'TS 4/27/2023 19:34:31'!
+PASSED!
+
+!testRun: #TDDBabyStepsRot13Test #test02CorrectlyEncodesALowercaseCharFromTheFirstPartOfTheAlphabet stamp: 'TS 4/27/2023 19:34:31'!
+PASSED!
+
+!testRun: #TDDBabyStepsRot13Test #test03CorrectlyEncodesALowercaseCharFromTheSecondPartOfTheAlphabet stamp: 'TS 4/27/2023 19:34:31'!
+PASSED!
+
+!testRun: #TDDBabyStepsRot13Test #test04CorrectlyEncodesALowercaseCharFromTheSecondPartOfTheAlphabet stamp: 'TS 4/27/2023 19:34:31'!
+PASSED!
+
+!testRun: #TDDBabyStepsRot13Test #test05CharOnTheBelowRangeDoesntChange stamp: 'TS 4/27/2023 19:34:31'!
+PASSED!
+
+!testRun: #TDDBabyStepsRot13Test #test06CharOnTheUpperRangeDoesntChange stamp: 'TS 4/27/2023 19:34:31'!
+PASSED!
+
+!testRun: #TDDBabyStepsRot13Test #test07CorrectlyEncodesAnUppercaseCharFromTheFirstPartOfTheAlphabet stamp: 'TS 4/27/2023 19:34:31'!
+PASSED!
+
+!testRun: #TDDBabyStepsRot13Test #test08CorrectlyEncodesAnUppercaseCharFromTheSecondPartOfTheAlphabet stamp: 'TS 4/27/2023 19:34:31'!
+PASSED!
+
+!testRun: #TDDBabyStepsRot13Test #test09TheEmptyStringDoesntChange stamp: 'TS 4/27/2023 19:34:31'!
+PASSED!
+
+!testRun: #TDDBabyStepsRot13Test #test10CorrectlyEncodesAOneCharString stamp: 'TS 4/27/2023 19:34:31'!
+PASSED!
+
+!testRun: #TDDBabyStepsRot13Test #test11CorrectlyEncodesATwoCharString stamp: 'TS 4/27/2023 19:34:31'!
+PASSED!
+
+!testRun: #TDDBabyStepsRot13Test #test12CorrectlyEncodesMoreThanTwoCharString stamp: 'TS 4/27/2023 19:34:31'!
+PASSED!
+
+!testRun: #TDDBabyStepsRot13Test #testExtraToCheckGeneralizationOnKata stamp: 'TS 4/27/2023 19:34:31'!
+PASSED!
+
+----SNAPSHOT----(27 April 2023 19:40:01) CuisUniversity-5706.image priorSource: 8713034!
+
+!testRun: #TDDBabyStepsPrimeFactorsTest #test01OneHasNoPrimeFactors stamp: 'TS 4/27/2023 19:55:00'!
+PASSED!
+!TDDBabyStepsPrimeFactorsTest methodsFor: 'tests' stamp: 'TS 4/27/2023 19:55:00'!
+test02FactorsOfAPrimeNumberAreThePrimeNumber
+
+	self assert: (Bag with: 2) equals: 2 factorize
+	! !
+
+!testRun: #TDDBabyStepsPrimeFactorsTest #test02FactorsOfAPrimeNumberAreThePrimeNumber stamp: 'TS 4/27/2023 19:55:00'!
+FAILURE!
+
+!methodRemoval: TDDBabyStepsPrimeFactorsTest #test02FactorsOfAPrimeNumberAreThePrimeNumber stamp: 'TS 4/27/2023 19:55:00'!
+test02FactorsOfAPrimeNumberAreThePrimeNumber
+
+	self assert: (Bag with: 2) equals: 2 factorize
+	!
+!TDDBabyStepsPrimeFactorsTest methodsFor: 'tests' stamp: 'TS 4/27/2023 19:55:00'!
+test02FactorsOfAPrimeNumberAreThePrimeNumber
+
+	self assert: (Bag with: 2) equals: 2 factorize
+	! !
+
+!testRun: #TDDBabyStepsPrimeFactorsTest #test02FactorsOfAPrimeNumberAreThePrimeNumber stamp: 'TS 4/27/2023 19:55:00'!
+FAILURE!
+!Integer methodsFor: 'mathematical functions' stamp: 'TS 4/27/2023 19:55:41' prior: 50607702!
+factorize
+
+	self = 1 ifTrue: [^Bag new].
+	^Bag with: 2! !
+
+!testRun: #TDDBabyStepsPrimeFactorsTest #test02FactorsOfAPrimeNumberAreThePrimeNumber stamp: 'TS 4/27/2023 19:55:43'!
+PASSED!
+
+!testRun: #TDDBabyStepsPrimeFactorsTest #test01OneHasNoPrimeFactors stamp: 'TS 4/27/2023 19:55:43'!
+PASSED!
+
+!testRun: #TDDBabyStepsPrimeFactorsTest #test02FactorsOfAPrimeNumberAreThePrimeNumber stamp: 'TS 4/27/2023 19:55:43'!
+PASSED!
+
+!testRun: #TDDBabyStepsPrimeFactorsTest #test01OneHasNoPrimeFactors stamp: 'TS 4/27/2023 19:55:46'!
+PASSED!
+
+!testRun: #TDDBabyStepsPrimeFactorsTest #test02FactorsOfAPrimeNumberAreThePrimeNumber stamp: 'TS 4/27/2023 19:55:46'!
+PASSED!
+!TDDBabyStepsPrimeFactorsTest methodsFor: 'tests' stamp: 'TS 4/27/2023 19:55:46'!
+test03FactorsOfAPrimeNumberAreThePrimeNumber
+
+	self assert: (Bag with: 3) equals: 3 factorize
+	! !
+
+!testRun: #TDDBabyStepsPrimeFactorsTest #test03FactorsOfAPrimeNumberAreThePrimeNumber stamp: 'TS 4/27/2023 19:55:46'!
+FAILURE!
+
+!methodRemoval: TDDBabyStepsPrimeFactorsTest #test03FactorsOfAPrimeNumberAreThePrimeNumber stamp: 'TS 4/27/2023 19:55:46'!
+test03FactorsOfAPrimeNumberAreThePrimeNumber
+
+	self assert: (Bag with: 3) equals: 3 factorize
+	!
+!TDDBabyStepsPrimeFactorsTest methodsFor: 'tests' stamp: 'TS 4/27/2023 19:55:46'!
+test03FactorsOfAPrimeNumberAreThePrimeNumber
+
+	self assert: (Bag with: 3) equals: 3 factorize
+	! !
+
+!testRun: #TDDBabyStepsPrimeFactorsTest #test03FactorsOfAPrimeNumberAreThePrimeNumber stamp: 'TS 4/27/2023 19:55:46'!
+FAILURE!
+!Integer methodsFor: 'mathematical functions' stamp: 'TS 4/27/2023 19:57:09' prior: 50607798!
+factorize
+
+	self = 1 ifTrue: [^Bag new].
+	self isPrime ifTrue: [^Bag with: self].
+	! !
+
+!testRun: #TDDBabyStepsPrimeFactorsTest #test03FactorsOfAPrimeNumberAreThePrimeNumber stamp: 'TS 4/27/2023 19:57:11'!
+PASSED!
+
+!testRun: #TDDBabyStepsPrimeFactorsTest #test01OneHasNoPrimeFactors stamp: 'TS 4/27/2023 19:57:11'!
+PASSED!
+
+!testRun: #TDDBabyStepsPrimeFactorsTest #test02FactorsOfAPrimeNumberAreThePrimeNumber stamp: 'TS 4/27/2023 19:57:11'!
+PASSED!
+
+!testRun: #TDDBabyStepsPrimeFactorsTest #test03FactorsOfAPrimeNumberAreThePrimeNumber stamp: 'TS 4/27/2023 19:57:11'!
+PASSED!
+
+!testRun: #TDDBabyStepsPrimeFactorsTest #test01OneHasNoPrimeFactors stamp: 'TS 4/27/2023 19:57:20'!
+PASSED!
+
+!testRun: #TDDBabyStepsPrimeFactorsTest #test02FactorsOfAPrimeNumberAreThePrimeNumber stamp: 'TS 4/27/2023 19:57:20'!
+PASSED!
+
+!testRun: #TDDBabyStepsPrimeFactorsTest #test03FactorsOfAPrimeNumberAreThePrimeNumber stamp: 'TS 4/27/2023 19:57:20'!
+PASSED!
+!TDDBabyStepsPrimeFactorsTest methodsFor: 'tests' stamp: 'TS 4/27/2023 19:57:20'!
+test04CorrectlyFactorizesACompositeNumberWithTwoFactors2
+	
+	self assert: (Bag with: 2 with: 2) equals: 4 factorize
+	! !
+
+!testRun: #TDDBabyStepsPrimeFactorsTest #test04CorrectlyFactorizesACompositeNumberWithTwoFactors2 stamp: 'TS 4/27/2023 19:57:20'!
+FAILURE!
+
+!methodRemoval: TDDBabyStepsPrimeFactorsTest #test04CorrectlyFactorizesACompositeNumberWithTwoFactors2 stamp: 'TS 4/27/2023 19:57:20'!
+test04CorrectlyFactorizesACompositeNumberWithTwoFactors2
+	
+	self assert: (Bag with: 2 with: 2) equals: 4 factorize
+	!
+!TDDBabyStepsPrimeFactorsTest methodsFor: 'tests' stamp: 'TS 4/27/2023 19:57:20'!
+test04CorrectlyFactorizesACompositeNumberWithTwoFactors2
+	
+	self assert: (Bag with: 2 with: 2) equals: 4 factorize
+	! !
+
+!testRun: #TDDBabyStepsPrimeFactorsTest #test04CorrectlyFactorizesACompositeNumberWithTwoFactors2 stamp: 'TS 4/27/2023 19:57:20'!
+FAILURE!
+!Integer methodsFor: 'mathematical functions' stamp: 'TS 4/27/2023 20:23:30'!
+smallestPrimeFactor
+
+	^(2 to: self) detect: [ :aPossiblePrimeFactor |
+		self isDivisibleBy: aPossiblePrimeFactor 
+	].! !
+!Integer methodsFor: 'mathematical functions' stamp: 'TS 4/27/2023 20:23:31' prior: 50607912!
+smallestPrimeFactor
+
+	^(2 to: self) detect: [ :aPossiblePrimeFactor |
+		self isDivisibleBy: aPossiblePrimeFactor
+	].! !
+!Integer methodsFor: 'mathematical functions' stamp: 'TS 4/27/2023 20:25:33' prior: 50607850!
+factorize
+	
+	| mySmallestPrimeFactor |
+
+	self = 1 ifTrue: [^Bag new].
+
+	mySmallestPrimeFactor  := 	self smallestPrimeFactor.
+	
+	^Bag with: mySmallestPrimeFactor with: (self / mySmallestPrimeFactor)! !
+!Integer methodsFor: 'mathematical functions' stamp: 'TS 4/27/2023 20:25:46' prior: 50607926!
+factorize
+	
+	| mySmallestPrimeFactor |
+
+	self = 1 ifTrue: [^Bag new].
+
+	mySmallestPrimeFactor  := 	self smallestPrimeFactor.
+	
+	^Bag with: mySmallestPrimeFactor with: self / mySmallestPrimeFactor! !
+
+!testRun: #TDDBabyStepsPrimeFactorsTest #test04CorrectlyFactorizesACompositeNumberWithTwoFactors2 stamp: 'TS 4/27/2023 20:25:49'!
+PASSED!
+
+!testRun: #TDDBabyStepsPrimeFactorsTest #test01OneHasNoPrimeFactors stamp: 'TS 4/27/2023 20:25:49'!
+PASSED!
+
+!testRun: #TDDBabyStepsPrimeFactorsTest #test02FactorsOfAPrimeNumberAreThePrimeNumber stamp: 'TS 4/27/2023 20:25:49'!
+FAILURE!
+
+!testRun: #TDDBabyStepsPrimeFactorsTest #test03FactorsOfAPrimeNumberAreThePrimeNumber stamp: 'TS 4/27/2023 20:25:49'!
+FAILURE!
+
+!testRun: #TDDBabyStepsPrimeFactorsTest #test04CorrectlyFactorizesACompositeNumberWithTwoFactors2 stamp: 'TS 4/27/2023 20:25:49'!
+PASSED!
+
+!testRun: #TDDBabyStepsPrimeFactorsTest #test02FactorsOfAPrimeNumberAreThePrimeNumber stamp: 'TS 4/27/2023 20:25:53'!
+FAILURE!
+!Integer methodsFor: 'mathematical functions' stamp: 'TS 4/27/2023 20:26:51' prior: 50607936!
+factorize
+	
+	| mySmallestPrimeFactor |
+
+	self = 1 ifTrue: [^Bag new].
+
+	mySmallestPrimeFactor  := 	self smallestPrimeFactor.
+	
+	self = mySmallestPrimeFactor ifTrue: [ ^Bag with: self ].
+
+	^Bag with: mySmallestPrimeFactor with: self / mySmallestPrimeFactor! !
+
+!testRun: #TDDBabyStepsPrimeFactorsTest #test04CorrectlyFactorizesACompositeNumberWithTwoFactors2 stamp: 'TS 4/27/2023 20:27:03'!
+PASSED!
+
+!testRun: #TDDBabyStepsPrimeFactorsTest #test01OneHasNoPrimeFactors stamp: 'TS 4/27/2023 20:27:03'!
+PASSED!
+
+!testRun: #TDDBabyStepsPrimeFactorsTest #test02FactorsOfAPrimeNumberAreThePrimeNumber stamp: 'TS 4/27/2023 20:27:03'!
+PASSED!
+
+!testRun: #TDDBabyStepsPrimeFactorsTest #test03FactorsOfAPrimeNumberAreThePrimeNumber stamp: 'TS 4/27/2023 20:27:03'!
+PASSED!
+
+!testRun: #TDDBabyStepsPrimeFactorsTest #test04CorrectlyFactorizesACompositeNumberWithTwoFactors2 stamp: 'TS 4/27/2023 20:27:03'!
+PASSED!
+
+!testRun: #TDDBabyStepsPrimeFactorsTest #test01OneHasNoPrimeFactors stamp: 'TS 4/27/2023 20:27:36'!
+PASSED!
+
+!testRun: #TDDBabyStepsPrimeFactorsTest #test02FactorsOfAPrimeNumberAreThePrimeNumber stamp: 'TS 4/27/2023 20:27:36'!
+PASSED!
+
+!testRun: #TDDBabyStepsPrimeFactorsTest #test03FactorsOfAPrimeNumberAreThePrimeNumber stamp: 'TS 4/27/2023 20:27:36'!
+PASSED!
+
+!testRun: #TDDBabyStepsPrimeFactorsTest #test04CorrectlyFactorizesACompositeNumberWithTwoFactors2 stamp: 'TS 4/27/2023 20:27:36'!
+PASSED!
+!TDDBabyStepsPrimeFactorsTest methodsFor: 'tests' stamp: 'TS 4/27/2023 20:27:36'!
+test08CorrectlyFactorizesACompositeNumberWithMoreThanTwoFactors2
+	
+	self assert: (Bag with: 2 with: 2 with: 2) equals: 8 factorize
+	! !
+
+!testRun: #TDDBabyStepsPrimeFactorsTest #test08CorrectlyFactorizesACompositeNumberWithMoreThanTwoFactors2 stamp: 'TS 4/27/2023 20:27:36'!
+FAILURE!
+
+!methodRemoval: TDDBabyStepsPrimeFactorsTest #test08CorrectlyFactorizesACompositeNumberWithMoreThanTwoFactors2 stamp: 'TS 4/27/2023 20:27:36'!
+test08CorrectlyFactorizesACompositeNumberWithMoreThanTwoFactors2
+	
+	self assert: (Bag with: 2 with: 2 with: 2) equals: 8 factorize
+	!
+!TDDBabyStepsPrimeFactorsTest methodsFor: 'tests' stamp: 'TS 4/27/2023 20:27:36'!
+test08CorrectlyFactorizesACompositeNumberWithMoreThanTwoFactors2
+	
+	self assert: (Bag with: 2 with: 2 with: 2) equals: 8 factorize
+	! !
+
+!testRun: #TDDBabyStepsPrimeFactorsTest #test08CorrectlyFactorizesACompositeNumberWithMoreThanTwoFactors2 stamp: 'TS 4/27/2023 20:27:36'!
+FAILURE!
+!Integer methodsFor: 'mathematical functions' stamp: 'TS 4/27/2023 20:30:50' prior: 50607970!
+factorize
+	
+	| mySmallestPrimeFactor |
+
+	self = 1 ifTrue: [^Bag new].
+
+	self = 2 ifTrue: [^2].
+	
+	(self isDivisibleBy: 2) ifTrue: [^Bag with: 2 with: self/2].
+	! !
+!Integer methodsFor: 'mathematical functions' stamp: 'TS 4/27/2023 20:30:56' prior: 50608050!
+factorize
+	
+	self = 1 ifTrue: [^Bag new].
+
+	self = 2 ifTrue: [^2].
+	
+	(self isDivisibleBy: 2) ifTrue: [^Bag with: 2 with: self/2].
+	! !
+!Integer methodsFor: 'mathematical functions' stamp: 'TS 4/27/2023 20:31:06' prior: 50608059!
+factorize
+	
+	self = 1 ifTrue: [^Bag new].
+
+	self = 2 ifTrue: [^2].
+	
+	(self isDivisibleBy: 2) ifTrue: [^Bag with: 2 with: self/2].
+	
+	^Bag with: self! !
+
+!testRun: #TDDBabyStepsPrimeFactorsTest #test04CorrectlyFactorizesACompositeNumberWithTwoFactors2 stamp: 'TS 4/27/2023 20:31:15'!
+PASSED!
+
+!testRun: #TDDBabyStepsPrimeFactorsTest #test01OneHasNoPrimeFactors stamp: 'TS 4/27/2023 20:31:15'!
+PASSED!
+
+!testRun: #TDDBabyStepsPrimeFactorsTest #test02FactorsOfAPrimeNumberAreThePrimeNumber stamp: 'TS 4/27/2023 20:31:15'!
+FAILURE!
+
+!testRun: #TDDBabyStepsPrimeFactorsTest #test03FactorsOfAPrimeNumberAreThePrimeNumber stamp: 'TS 4/27/2023 20:31:15'!
+PASSED!
+
+!testRun: #TDDBabyStepsPrimeFactorsTest #test04CorrectlyFactorizesACompositeNumberWithTwoFactors2 stamp: 'TS 4/27/2023 20:31:15'!
+PASSED!
+
+!testRun: #TDDBabyStepsPrimeFactorsTest #test08CorrectlyFactorizesACompositeNumberWithMoreThanTwoFactors2 stamp: 'TS 4/27/2023 20:31:15'!
+FAILURE!
+!Integer methodsFor: 'mathematical functions' stamp: 'TS 4/27/2023 20:32:19' prior: 50608067!
+factorize
+	
+	self = 1 ifTrue: [^Bag new].
+
+	self = 2 ifTrue: [^Bag with: 2].
+	
+	(self isDivisibleBy: 2) ifFalse: [^Bag with: 2 with: self/2].
+	
+	^Bag with: self! !
+
+!testRun: #TDDBabyStepsPrimeFactorsTest #test04CorrectlyFactorizesACompositeNumberWithTwoFactors2 stamp: 'TS 4/27/2023 20:32:20'!
+FAILURE!
+!Integer methodsFor: 'mathematical functions' stamp: 'TS 4/27/2023 20:33:36' prior: 50608100!
+factorize
+	
+	self = 1 ifTrue: [^Bag new].
+
+	self = 2 ifTrue: [^Bag with: 2].
+	
+	(self isDivisibleBy: 4) ifTrue: [^Bag with: 2 with: 2 with: self/4].
+	
+	(self isDivisibleBy: 2) ifTrue: [^Bag with: 2 with: self/2].
+
+	^Bag with: self! !
+
+!testRun: #TDDBabyStepsPrimeFactorsTest #test08CorrectlyFactorizesACompositeNumberWithMoreThanTwoFactors2 stamp: 'TS 4/27/2023 20:33:39'!
+PASSED!
+
+!testRun: #TDDBabyStepsPrimeFactorsTest #test01OneHasNoPrimeFactors stamp: 'TS 4/27/2023 20:33:39'!
+PASSED!
+
+!testRun: #TDDBabyStepsPrimeFactorsTest #test02FactorsOfAPrimeNumberAreThePrimeNumber stamp: 'TS 4/27/2023 20:33:39'!
+PASSED!
+
+!testRun: #TDDBabyStepsPrimeFactorsTest #test03FactorsOfAPrimeNumberAreThePrimeNumber stamp: 'TS 4/27/2023 20:33:39'!
+PASSED!
+
+!testRun: #TDDBabyStepsPrimeFactorsTest #test04CorrectlyFactorizesACompositeNumberWithTwoFactors2 stamp: 'TS 4/27/2023 20:33:39'!
+FAILURE!
+
+!testRun: #TDDBabyStepsPrimeFactorsTest #test08CorrectlyFactorizesACompositeNumberWithMoreThanTwoFactors2 stamp: 'TS 4/27/2023 20:33:39'!
+PASSED!
+
+!testRun: #TDDBabyStepsPrimeFactorsTest #test04CorrectlyFactorizesACompositeNumberWithTwoFactors2 stamp: 'TS 4/27/2023 20:33:39'!
+FAILURE!
+!Integer methodsFor: 'mathematical functions' stamp: 'TS 4/27/2023 20:34:00' prior: 50608113!
+factorize
+	
+	self = 1 ifTrue: [^Bag new].
+
+	self = 2 ifTrue: [^Bag with: 2].
+	
+	self = 4 ifTrue: [^Bag with: 2 with: 2].
+
+	(self isDivisibleBy: 4) ifTrue: [^Bag with: 2 with: 2 with: self/4].
+	
+	(self isDivisibleBy: 2) ifTrue: [^Bag with: 2 with: self/2].
+
+	^Bag with: self! !
+
+!testRun: #TDDBabyStepsPrimeFactorsTest #test08CorrectlyFactorizesACompositeNumberWithMoreThanTwoFactors2 stamp: 'TS 4/27/2023 20:34:20'!
+PASSED!
+
+!testRun: #TDDBabyStepsPrimeFactorsTest #test01OneHasNoPrimeFactors stamp: 'TS 4/27/2023 20:34:20'!
+PASSED!
+
+!testRun: #TDDBabyStepsPrimeFactorsTest #test02FactorsOfAPrimeNumberAreThePrimeNumber stamp: 'TS 4/27/2023 20:34:20'!
+PASSED!
+
+!testRun: #TDDBabyStepsPrimeFactorsTest #test03FactorsOfAPrimeNumberAreThePrimeNumber stamp: 'TS 4/27/2023 20:34:20'!
+PASSED!
+
+!testRun: #TDDBabyStepsPrimeFactorsTest #test04CorrectlyFactorizesACompositeNumberWithTwoFactors2 stamp: 'TS 4/27/2023 20:34:20'!
+PASSED!
+
+!testRun: #TDDBabyStepsPrimeFactorsTest #test08CorrectlyFactorizesACompositeNumberWithMoreThanTwoFactors2 stamp: 'TS 4/27/2023 20:34:20'!
+PASSED!
+
+!testRun: #TDDBabyStepsPrimeFactorsTest #test01OneHasNoPrimeFactors stamp: 'TS 4/27/2023 20:34:45'!
+PASSED!
+
+!testRun: #TDDBabyStepsPrimeFactorsTest #test02FactorsOfAPrimeNumberAreThePrimeNumber stamp: 'TS 4/27/2023 20:34:45'!
+PASSED!
+
+!testRun: #TDDBabyStepsPrimeFactorsTest #test03FactorsOfAPrimeNumberAreThePrimeNumber stamp: 'TS 4/27/2023 20:34:45'!
+PASSED!
+
+!testRun: #TDDBabyStepsPrimeFactorsTest #test04CorrectlyFactorizesACompositeNumberWithTwoFactors2 stamp: 'TS 4/27/2023 20:34:45'!
+PASSED!
+
+!testRun: #TDDBabyStepsPrimeFactorsTest #test08CorrectlyFactorizesACompositeNumberWithMoreThanTwoFactors2 stamp: 'TS 4/27/2023 20:34:45'!
+PASSED!
+!TDDBabyStepsPrimeFactorsTest methodsFor: 'tests' stamp: 'TS 4/27/2023 20:34:45'!
+test09CorrectlyFactorizesACompositeNumberWithMoreThanOneFactorsDifferentThan2
+	
+	self assert: (Bag with: 3 with: 3) equals: 9 factorize
+	! !
+
+!testRun: #TDDBabyStepsPrimeFactorsTest #test09CorrectlyFactorizesACompositeNumberWithMoreThanOneFactorsDifferentThan2 stamp: 'TS 4/27/2023 20:34:45'!
+FAILURE!
+
+!methodRemoval: TDDBabyStepsPrimeFactorsTest #test09CorrectlyFactorizesACompositeNumberWithMoreThanOneFactorsDifferentThan2 stamp: 'TS 4/27/2023 20:34:45'!
+test09CorrectlyFactorizesACompositeNumberWithMoreThanOneFactorsDifferentThan2
+	
+	self assert: (Bag with: 3 with: 3) equals: 9 factorize
+	!
+!TDDBabyStepsPrimeFactorsTest methodsFor: 'tests' stamp: 'TS 4/27/2023 20:34:45'!
+test09CorrectlyFactorizesACompositeNumberWithMoreThanOneFactorsDifferentThan2
+	
+	self assert: (Bag with: 3 with: 3) equals: 9 factorize
+	! !
+
+!testRun: #TDDBabyStepsPrimeFactorsTest #test09CorrectlyFactorizesACompositeNumberWithMoreThanOneFactorsDifferentThan2 stamp: 'TS 4/27/2023 20:34:45'!
+FAILURE!
+!Integer methodsFor: 'mathematical functions' stamp: 'TS 4/27/2023 20:39:03' prior: 50608153!
+factorize
+
+	| mySmallestFactor otherFactors |
+	
+	self = 1 ifTrue: [^Bag new].
+
+	self = 2 ifTrue: [^Bag with: 2].
+	
+	self = 4 ifTrue: [^Bag with: 2 with: 2].
+
+	(self isDivisibleBy: 4) ifTrue: [^Bag with: 2 with: 2 with: self/4].
+	
+	(self isDivisibleBy: 2) ifTrue: [^Bag with: 2 with: self/2].
+
+	mySmallestFactor := self smallestPrimeFactor .
+	
+	self = mySmallestFactor ifTrue: [^Bag with: self].
+	
+	otherFactors := (self / mySmallestFactor) factorize.
+	
+	^otherFactors add: mySmallestFactor.! !
+
+!testRun: #TDDBabyStepsPrimeFactorsTest #test09CorrectlyFactorizesACompositeNumberWithMoreThanOneFactorsDifferentThan2 stamp: 'TS 4/27/2023 20:39:16'!
+FAILURE!
+!Integer methodsFor: 'mathematical functions' stamp: 'TS 4/27/2023 20:39:24' prior: 50608245!
+factorize
+
+	| mySmallestFactor otherFactors |
+	
+	self = 1 ifTrue: [^Bag new].
+
+	self = 2 ifTrue: [^Bag with: 2].
+	
+	self = 4 ifTrue: [^Bag with: 2 with: 2].
+
+	(self isDivisibleBy: 4) ifTrue: [^Bag with: 2 with: 2 with: self/4].
+	
+	(self isDivisibleBy: 2) ifTrue: [^Bag with: 2 with: self/2].
+
+	mySmallestFactor := self smallestPrimeFactor.
+	
+	self = mySmallestFactor ifTrue: [^Bag with: self].
+	
+	otherFactors := (self / mySmallestFactor) factorize.
+	
+	^otherFactors add: mySmallestFactor.! !
+
+!testRun: #TDDBabyStepsPrimeFactorsTest #test09CorrectlyFactorizesACompositeNumberWithMoreThanOneFactorsDifferentThan2 stamp: 'TS 4/27/2023 20:39:29'!
+FAILURE!
+!Integer methodsFor: 'mathematical functions' stamp: 'TS 4/27/2023 20:40:03' prior: 50608269!
+factorize
+
+	| mySmallestFactor otherFactors |
+	
+	self = 1 ifTrue: [^Bag new].
+
+	self = 2 ifTrue: [^Bag with: 2].
+	
+	self = 4 ifTrue: [^Bag with: 2 with: 2].
+
+	(self isDivisibleBy: 4) ifTrue: [^Bag with: 2 with: 2 with: self/4].
+	
+	(self isDivisibleBy: 2) ifTrue: [^Bag with: 2 with: self/2].
+
+	mySmallestFactor := self smallestPrimeFactor.
+	
+	self = mySmallestFactor ifTrue: [^Bag with: self].
+	
+	otherFactors := (self / mySmallestFactor) factorize.
+	
+	otherFactors add: mySmallestFactor.
+	
+	^otherFactors ! !
+
+!testRun: #TDDBabyStepsPrimeFactorsTest #test09CorrectlyFactorizesACompositeNumberWithMoreThanOneFactorsDifferentThan2 stamp: 'TS 4/27/2023 20:40:06'!
+PASSED!
+
+!testRun: #TDDBabyStepsPrimeFactorsTest #test01OneHasNoPrimeFactors stamp: 'TS 4/27/2023 20:40:06'!
+PASSED!
+
+!testRun: #TDDBabyStepsPrimeFactorsTest #test02FactorsOfAPrimeNumberAreThePrimeNumber stamp: 'TS 4/27/2023 20:40:06'!
+PASSED!
+
+!testRun: #TDDBabyStepsPrimeFactorsTest #test03FactorsOfAPrimeNumberAreThePrimeNumber stamp: 'TS 4/27/2023 20:40:06'!
+PASSED!
+
+!testRun: #TDDBabyStepsPrimeFactorsTest #test04CorrectlyFactorizesACompositeNumberWithTwoFactors2 stamp: 'TS 4/27/2023 20:40:06'!
+PASSED!
+
+!testRun: #TDDBabyStepsPrimeFactorsTest #test08CorrectlyFactorizesACompositeNumberWithMoreThanTwoFactors2 stamp: 'TS 4/27/2023 20:40:06'!
+PASSED!
+
+!testRun: #TDDBabyStepsPrimeFactorsTest #test09CorrectlyFactorizesACompositeNumberWithMoreThanOneFactorsDifferentThan2 stamp: 'TS 4/27/2023 20:40:06'!
+PASSED!
+!Integer methodsFor: 'mathematical functions' stamp: 'TS 4/27/2023 20:41:30'!
+factorizeComposite
+
+	| mySmallestFactor otherFactors |
+
+	mySmallestFactor := self smallestPrimeFactor.
+
+	otherFactors := (self / mySmallestFactor) factorize.
+	otherFactors add: mySmallestFactor.
+
+	^otherFactors ! !
+!Integer methodsFor: 'mathematical functions' stamp: 'TS 4/27/2023 20:41:43' prior: 50608293!
+factorize
+
+	| mySmallestFactor otherFactors |
+	
+	self = 1 ifTrue: [^Bag new].
+
+	mySmallestFactor := self smallestPrimeFactor.
+	
+	self = mySmallestFactor ifTrue: [^Bag with: self].
+	
+	otherFactors := (self / mySmallestFactor) factorize.
+	
+	otherFactors add: mySmallestFactor.
+	
+	^otherFactors ! !
+!Integer methodsFor: 'mathematical functions' stamp: 'TS 4/27/2023 20:41:58' prior: 50608352!
+factorize
+
+	| mySmallestFactor |
+	
+	self = 1 ifTrue: [^Bag new].
+
+	mySmallestFactor := self smallestPrimeFactor.
+	
+	self = mySmallestFactor ifTrue: [^Bag with: self].
+	
+	^self factorizeComposite ! !
+!Integer methodsFor: 'mathematical functions' stamp: 'TS 4/27/2023 20:42:03' prior: 50608365!
+factorize
+
+	| mySmallestFactor |
+	
+	self = 1 ifTrue: [^Bag new].
+
+	mySmallestFactor := self smallestPrimeFactor.
+	
+	self = mySmallestFactor ifTrue: [^Bag with: self].
+	
+	^self factorizeComposite! !
+!Integer methodsFor: 'mathematical functions' stamp: 'TS 4/27/2023 20:42:20' prior: 50608375!
+factorize
+
+	| mySmallestFactor |
+	
+	self = 1 ifTrue: [^Bag new].
+	
+	self = self smallestPrimeFactor ifTrue: [^Bag with: self].
+	
+	^self factorizeComposite! !
+!Integer methodsFor: 'mathematical functions' stamp: 'TS 4/27/2023 20:42:26' prior: 50608385!
+factorize
+
+	self = 1 ifTrue: [^Bag new].
+	
+	self = self smallestPrimeFactor ifTrue: [^Bag with: self].
+	
+	^self factorizeComposite! !
+
+!testRun: #TDDBabyStepsPrimeFactorsTest #test09CorrectlyFactorizesACompositeNumberWithMoreThanOneFactorsDifferentThan2 stamp: 'TS 4/27/2023 20:42:47'!
+PASSED!
+
+!testRun: #TDDBabyStepsPrimeFactorsTest #test01OneHasNoPrimeFactors stamp: 'TS 4/27/2023 20:42:47'!
+PASSED!
+
+!testRun: #TDDBabyStepsPrimeFactorsTest #test02FactorsOfAPrimeNumberAreThePrimeNumber stamp: 'TS 4/27/2023 20:42:47'!
+PASSED!
+
+!testRun: #TDDBabyStepsPrimeFactorsTest #test03FactorsOfAPrimeNumberAreThePrimeNumber stamp: 'TS 4/27/2023 20:42:47'!
+PASSED!
+
+!testRun: #TDDBabyStepsPrimeFactorsTest #test04CorrectlyFactorizesACompositeNumberWithTwoFactors2 stamp: 'TS 4/27/2023 20:42:47'!
+PASSED!
+
+!testRun: #TDDBabyStepsPrimeFactorsTest #test08CorrectlyFactorizesACompositeNumberWithMoreThanTwoFactors2 stamp: 'TS 4/27/2023 20:42:47'!
+PASSED!
+
+!testRun: #TDDBabyStepsPrimeFactorsTest #test09CorrectlyFactorizesACompositeNumberWithMoreThanOneFactorsDifferentThan2 stamp: 'TS 4/27/2023 20:42:47'!
+PASSED!
+
+!testRun: #TDDBabyStepsPrimeFactorsTest #test01OneHasNoPrimeFactors stamp: 'TS 4/27/2023 20:43:13'!
+PASSED!
+
+!testRun: #TDDBabyStepsPrimeFactorsTest #test02FactorsOfAPrimeNumberAreThePrimeNumber stamp: 'TS 4/27/2023 20:43:13'!
+PASSED!
+
+!testRun: #TDDBabyStepsPrimeFactorsTest #test03FactorsOfAPrimeNumberAreThePrimeNumber stamp: 'TS 4/27/2023 20:43:13'!
+PASSED!
+
+!testRun: #TDDBabyStepsPrimeFactorsTest #test04CorrectlyFactorizesACompositeNumberWithTwoFactors2 stamp: 'TS 4/27/2023 20:43:13'!
+PASSED!
+
+!testRun: #TDDBabyStepsPrimeFactorsTest #test08CorrectlyFactorizesACompositeNumberWithMoreThanTwoFactors2 stamp: 'TS 4/27/2023 20:43:13'!
+PASSED!
+
+!testRun: #TDDBabyStepsPrimeFactorsTest #test09CorrectlyFactorizesACompositeNumberWithMoreThanOneFactorsDifferentThan2 stamp: 'TS 4/27/2023 20:43:13'!
+PASSED!
+!TDDBabyStepsPrimeFactorsTest methodsFor: 'tests' stamp: 'TS 4/27/2023 20:43:13'!
+testExtraToCheckGeneralizationOnKata
+	
+	self assert: (Bag with: 2 with: 2 with: 3 with: 3 with: 5 with: 13) equals: (2*2*3*3*5*13) factorize
+	! !
+
+!testRun: #TDDBabyStepsPrimeFactorsTest #testExtraToCheckGeneralizationOnKata stamp: 'TS 4/27/2023 20:43:13'!
+PASSED!
+
+!testRun: #TDDBabyStepsPrimeFactorsTest #test09CorrectlyFactorizesACompositeNumberWithMoreThanOneFactorsDifferentThan2 stamp: 'TS 4/27/2023 20:43:26'!
+PASSED!
+
+!testRun: #TDDBabyStepsPrimeFactorsTest #test01OneHasNoPrimeFactors stamp: 'TS 4/27/2023 20:43:26'!
+PASSED!
+
+!testRun: #TDDBabyStepsPrimeFactorsTest #test02FactorsOfAPrimeNumberAreThePrimeNumber stamp: 'TS 4/27/2023 20:43:26'!
+PASSED!
+
+!testRun: #TDDBabyStepsPrimeFactorsTest #test03FactorsOfAPrimeNumberAreThePrimeNumber stamp: 'TS 4/27/2023 20:43:26'!
+PASSED!
+
+!testRun: #TDDBabyStepsPrimeFactorsTest #test04CorrectlyFactorizesACompositeNumberWithTwoFactors2 stamp: 'TS 4/27/2023 20:43:26'!
+PASSED!
+
+!testRun: #TDDBabyStepsPrimeFactorsTest #test08CorrectlyFactorizesACompositeNumberWithMoreThanTwoFactors2 stamp: 'TS 4/27/2023 20:43:26'!
+PASSED!
+
+!testRun: #TDDBabyStepsPrimeFactorsTest #test09CorrectlyFactorizesACompositeNumberWithMoreThanOneFactorsDifferentThan2 stamp: 'TS 4/27/2023 20:43:26'!
+PASSED!
+
+!testRun: #TDDBabyStepsPrimeFactorsTest #testExtraToCheckGeneralizationOnKata stamp: 'TS 4/27/2023 20:43:26'!
+PASSED!
+
+----SNAPSHOT----(27 April 2023 20:43:49) CuisUniversity-5706.image priorSource: 8835609!
+
+TDDBabyStepsGameAnagrams start!
+
+!classDefinition: #TDDBabyStepsAnagramsTest category: 'TDDBabyStepsGameAnagrams' stamp: 'TS 4/27/2023 20:43:57'!
+TestCase subclass: #TDDBabyStepsAnagramsTest
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'TDDBabyStepsGameAnagrams'!
+!TDDBabyStepsAnagramsTest methodsFor: 'tests' stamp: 'TS 4/27/2023 20:44:20'!
+test01EmptyStringAnagramIsJustACollectionWithTheEmptyString
+
+	self assert: (Set with: '') equals: '' anagrams
+	! !
+
+!testRun: #TDDBabyStepsAnagramsTest #test01EmptyStringAnagramIsJustACollectionWithTheEmptyString stamp: 'TS 4/27/2023 20:44:43'!
+ERROR!
+!String methodsFor: 'anagrams' stamp: 'TS 4/27/2023 20:45:54'!
+anagrams
+	self shouldBeImplemented.! !
+!String methodsFor: 'anagrams' stamp: 'TS 4/27/2023 20:46:11' prior: 50608524!
+anagrams
+
+	^Set with: ''! !
+
+!testRun: #TDDBabyStepsAnagramsTest #test01EmptyStringAnagramIsJustACollectionWithTheEmptyString stamp: 'TS 4/27/2023 20:46:24'!
+PASSED!
+
+!testRun: #TDDBabyStepsAnagramsTest #test01EmptyStringAnagramIsJustACollectionWithTheEmptyString stamp: 'TS 4/27/2023 20:46:24'!
+PASSED!
+
+!testRun: #TDDBabyStepsAnagramsTest #test01EmptyStringAnagramIsJustACollectionWithTheEmptyString stamp: 'TS 4/27/2023 20:46:36'!
+PASSED!
+
+!testRun: #TDDBabyStepsAnagramsTest #test01EmptyStringAnagramIsJustACollectionWithTheEmptyString stamp: 'TS 4/27/2023 20:46:36'!
+PASSED!
+
+!testRun: #TDDBabyStepsAnagramsTest #test01EmptyStringAnagramIsJustACollectionWithTheEmptyString stamp: 'TS 4/27/2023 20:46:42'!
+PASSED!
+!TDDBabyStepsAnagramsTest methodsFor: 'tests' stamp: 'TS 4/27/2023 20:46:42'!
+test02OneCharStringAnagramReturnsACollectionWithTheSameOneCharString
+
+	self assert: (Set with:'a') equals: 'a' anagrams
+	! !
+
+!testRun: #TDDBabyStepsAnagramsTest #test02OneCharStringAnagramReturnsACollectionWithTheSameOneCharString stamp: 'TS 4/27/2023 20:46:42'!
+FAILURE!
+
+!methodRemoval: TDDBabyStepsAnagramsTest #test02OneCharStringAnagramReturnsACollectionWithTheSameOneCharString stamp: 'TS 4/27/2023 20:46:42'!
+test02OneCharStringAnagramReturnsACollectionWithTheSameOneCharString
+
+	self assert: (Set with:'a') equals: 'a' anagrams
+	!
+!TDDBabyStepsAnagramsTest methodsFor: 'tests' stamp: 'TS 4/27/2023 20:46:42'!
+test02OneCharStringAnagramReturnsACollectionWithTheSameOneCharString
+
+	self assert: (Set with:'a') equals: 'a' anagrams
+	! !
+
+!testRun: #TDDBabyStepsAnagramsTest #test02OneCharStringAnagramReturnsACollectionWithTheSameOneCharString stamp: 'TS 4/27/2023 20:46:42'!
+FAILURE!
+
+!testRun: #TDDBabyStepsAnagramsTest #test02OneCharStringAnagramReturnsACollectionWithTheSameOneCharString stamp: 'TS 4/27/2023 20:46:50'!
+FAILURE!
+
+!testRun: #TDDBabyStepsAnagramsTest #test02OneCharStringAnagramReturnsACollectionWithTheSameOneCharString stamp: 'TS 4/27/2023 20:46:57'!
+FAILURE!
+!String methodsFor: 'anagrams' stamp: 'TS 4/27/2023 20:47:53' prior: 50608528!
+anagrams
+
+	self isEmpty ifTrue: [^Set with: ''].
+	^Set with: 'a'! !
+
+!testRun: #TDDBabyStepsAnagramsTest #test02OneCharStringAnagramReturnsACollectionWithTheSameOneCharString stamp: 'TS 4/27/2023 20:47:55'!
+PASSED!
+
+!testRun: #TDDBabyStepsAnagramsTest #test01EmptyStringAnagramIsJustACollectionWithTheEmptyString stamp: 'TS 4/27/2023 20:47:55'!
+PASSED!
+
+!testRun: #TDDBabyStepsAnagramsTest #test02OneCharStringAnagramReturnsACollectionWithTheSameOneCharString stamp: 'TS 4/27/2023 20:47:55'!
+PASSED!
+!String methodsFor: 'anagrams' stamp: 'TS 4/27/2023 20:48:20' prior: 50608594!
+anagrams
+
+	self isEmpty ifTrue: [^Set with: ''].
+	^Set with: self! !
+
+!testRun: #TDDBabyStepsAnagramsTest #test02OneCharStringAnagramReturnsACollectionWithTheSameOneCharString stamp: 'TS 4/27/2023 20:48:23'!
+PASSED!
+
+!testRun: #TDDBabyStepsAnagramsTest #test01EmptyStringAnagramIsJustACollectionWithTheEmptyString stamp: 'TS 4/27/2023 20:48:23'!
+PASSED!
+
+!testRun: #TDDBabyStepsAnagramsTest #test02OneCharStringAnagramReturnsACollectionWithTheSameOneCharString stamp: 'TS 4/27/2023 20:48:23'!
+PASSED!
+
+!testRun: #TDDBabyStepsAnagramsTest #test01EmptyStringAnagramIsJustACollectionWithTheEmptyString stamp: 'TS 4/27/2023 20:48:26'!
+PASSED!
+
+!testRun: #TDDBabyStepsAnagramsTest #test02OneCharStringAnagramReturnsACollectionWithTheSameOneCharString stamp: 'TS 4/27/2023 20:48:26'!
+PASSED!
+!TDDBabyStepsAnagramsTest methodsFor: 'tests' stamp: 'TS 4/27/2023 20:48:26'!
+test03TwoCharStringAnagramReturnsTheOriginalStringAndAnotherOneFlipped
+
+	self assert: (Set with:'ab' with: 'ba') equals: 'ab' anagrams
+	! !
+
+!testRun: #TDDBabyStepsAnagramsTest #test03TwoCharStringAnagramReturnsTheOriginalStringAndAnotherOneFlipped stamp: 'TS 4/27/2023 20:48:26'!
+FAILURE!
+
+!methodRemoval: TDDBabyStepsAnagramsTest #test03TwoCharStringAnagramReturnsTheOriginalStringAndAnotherOneFlipped stamp: 'TS 4/27/2023 20:48:26'!
+test03TwoCharStringAnagramReturnsTheOriginalStringAndAnotherOneFlipped
+
+	self assert: (Set with:'ab' with: 'ba') equals: 'ab' anagrams
+	!
+!TDDBabyStepsAnagramsTest methodsFor: 'tests' stamp: 'TS 4/27/2023 20:48:26'!
+test03TwoCharStringAnagramReturnsTheOriginalStringAndAnotherOneFlipped
+
+	self assert: (Set with:'ab' with: 'ba') equals: 'ab' anagrams
+	! !
+
+!testRun: #TDDBabyStepsAnagramsTest #test03TwoCharStringAnagramReturnsTheOriginalStringAndAnotherOneFlipped stamp: 'TS 4/27/2023 20:48:26'!
+FAILURE!
+!String methodsFor: 'anagrams' stamp: 'TS 4/27/2023 20:50:48' prior: 50608613!
+anagrams
+
+	self isEmpty ifTrue: [^Set with: ''].
+	self size = 1 ifTrue: [^Set with: self].
+	^Set with: self with: self reversed! !
+
+!testRun: #TDDBabyStepsAnagramsTest #test03TwoCharStringAnagramReturnsTheOriginalStringAndAnotherOneFlipped stamp: 'TS 4/27/2023 20:50:59'!
+PASSED!
+
+!testRun: #TDDBabyStepsAnagramsTest #test01EmptyStringAnagramIsJustACollectionWithTheEmptyString stamp: 'TS 4/27/2023 20:50:59'!
+PASSED!
+
+!testRun: #TDDBabyStepsAnagramsTest #test02OneCharStringAnagramReturnsACollectionWithTheSameOneCharString stamp: 'TS 4/27/2023 20:50:59'!
+PASSED!
+
+!testRun: #TDDBabyStepsAnagramsTest #test03TwoCharStringAnagramReturnsTheOriginalStringAndAnotherOneFlipped stamp: 'TS 4/27/2023 20:50:59'!
+PASSED!
+
+!testRun: #TDDBabyStepsAnagramsTest #test01EmptyStringAnagramIsJustACollectionWithTheEmptyString stamp: 'TS 4/27/2023 20:51:23'!
+PASSED!
+
+!testRun: #TDDBabyStepsAnagramsTest #test02OneCharStringAnagramReturnsACollectionWithTheSameOneCharString stamp: 'TS 4/27/2023 20:51:23'!
+PASSED!
+
+!testRun: #TDDBabyStepsAnagramsTest #test03TwoCharStringAnagramReturnsTheOriginalStringAndAnotherOneFlipped stamp: 'TS 4/27/2023 20:51:23'!
+PASSED!
+!TDDBabyStepsAnagramsTest methodsFor: 'tests' stamp: 'TS 4/27/2023 20:51:23'!
+test04ThreeCharStringAnagramReturnsAllThe6PossibleOrderCombinations
+
+	| anagrams |
+	
+	anagrams := Set new.
+	anagrams add: 'abc'.
+	anagrams add: 'acb'.
+	anagrams add: 'bac'.
+	anagrams add: 'bca'.
+	anagrams add: 'cab'.
+	anagrams add: 'cba'.
+
+	self assert: anagrams equals: 'abc' anagrams
+	! !
+
+!testRun: #TDDBabyStepsAnagramsTest #test04ThreeCharStringAnagramReturnsAllThe6PossibleOrderCombinations stamp: 'TS 4/27/2023 20:51:23'!
+FAILURE!
+
+!methodRemoval: TDDBabyStepsAnagramsTest #test04ThreeCharStringAnagramReturnsAllThe6PossibleOrderCombinations stamp: 'TS 4/27/2023 20:51:23'!
+test04ThreeCharStringAnagramReturnsAllThe6PossibleOrderCombinations
+
+	| anagrams |
+	
+	anagrams := Set new.
+	anagrams add: 'abc'.
+	anagrams add: 'acb'.
+	anagrams add: 'bac'.
+	anagrams add: 'bca'.
+	anagrams add: 'cab'.
+	anagrams add: 'cba'.
+
+	self assert: anagrams equals: 'abc' anagrams
+	!
+!TDDBabyStepsAnagramsTest methodsFor: 'tests' stamp: 'TS 4/27/2023 20:51:23'!
+test04ThreeCharStringAnagramReturnsAllThe6PossibleOrderCombinations
+
+	| anagrams |
+	
+	anagrams := Set new.
+	anagrams add: 'abc'.
+	anagrams add: 'acb'.
+	anagrams add: 'bac'.
+	anagrams add: 'bca'.
+	anagrams add: 'cab'.
+	anagrams add: 'cba'.
+
+	self assert: anagrams equals: 'abc' anagrams
+	! !
+
+!testRun: #TDDBabyStepsAnagramsTest #test04ThreeCharStringAnagramReturnsAllThe6PossibleOrderCombinations stamp: 'TS 4/27/2023 20:51:23'!
+FAILURE!
+!String methodsFor: 'anagrams' stamp: 'TS 4/27/2023 20:54:18' prior: 50608673!
+anagrams
+
+	self size <= 1 ifTrue: [^Set with: self].
+	self size = 2 ifTrue: [^Set with: self with: self reversed].
+	! !
+
+!testRun: #TDDBabyStepsAnagramsTest #test04ThreeCharStringAnagramReturnsAllThe6PossibleOrderCombinations stamp: 'TS 4/27/2023 20:54:23'!
+FAILURE!
+!String methodsFor: 'anagrams' stamp: 'TS 4/27/2023 20:58:17' prior: 50608759!
+anagrams
+
+	| anagramsStartingWithFirstChar anagramsStartingWithSecondChar anagramsStartingWithThirdChar |
+
+	self size <= 1 ifTrue: [^Set with: self].
+	self size = 2 ifTrue: [^Set with: self with: self reversed].
+	! !
+
+'aa' remove: $a!
+!String methodsFor: 'anagrams' stamp: 'TS 4/27/2023 21:06:11' prior: 50608770!
+anagrams
+
+	| anagramsStartingWithFirstChar anagramsStartingWithSecondChar anagramsStartingWithThirdChar |
+
+	self size <= 1 ifTrue: [^Set with: self].
+	self size = 2 ifTrue: [^Set with: self with: self reversed].
+	
+	anagramsStartingWithFirstChar := (String with: self second with: self third) anagrams! !
+!String methodsFor: 'anagrams' stamp: 'TS 4/27/2023 21:06:31' prior: 50608780!
+anagrams
+
+	| anagramsStartingWithFirstChar anagramsStartingWithSecondChar anagramsStartingWithThirdChar anagramsWithoutFirstChar |
+
+	self size <= 1 ifTrue: [^Set with: self].
+	self size = 2 ifTrue: [^Set with: self with: self reversed].
+	
+	anagramsWithoutFirstChar := (String with: self second with: self third) anagrams.
+	anagramsStartingWithFirstChar := anagramsWithoutFirstChar! !
+!String methodsFor: 'anagrams' stamp: 'TS 4/27/2023 21:08:35' prior: 50608792!
+anagrams
+
+	| anagramsStartingWithFirstChar anagramsStartingWithSecondChar anagramsStartingWithThirdChar anagramsWithoutFirstChar |
+
+	self size <= 1 ifTrue: [^Set with: self].
+	self size = 2 ifTrue: [^Set with: self with: self reversed].
+	
+	anagramsWithoutFirstChar := (String with: self second with: self third) anagrams.
+	anagramsStartingWithFirstChar := anagramsWithoutFirstChar ! !
+!String methodsFor: 'anagrams' stamp: 'TS 4/27/2023 21:09:18' prior: 50608807!
+anagrams
+
+	| anagramsEndingWithFirstChar anagramsEndingWithSecondChar anagramsEndingWithThirdChar anagramsWithoutFirstChar |
+
+	self size <= 1 ifTrue: [^Set with: self].
+	self size = 2 ifTrue: [^Set with: self with: self reversed].
+	
+	anagramsWithoutFirstChar := (String with: self second with: self third) anagrams.
+	anagramsEndingWithFirstChar := anagramsWithoutFirstChar appendToAll: self first.! !
+
+'asd', $a!
+
+'asd', String with: $a!
+
+'asd', (String with: $a)!
+
+'a' isKindOf: #String!
+
+'a' isKindOf: String!
+!Set methodsFor: 'enumerating' stamp: 'TS 4/27/2023 21:17:35'!
+appendToAll: aStringToAppend
+
+	"Append a string to each element of the Set. All elements should all be strings"
+	
+	(self allSatisfy: [:anElement | anElement isKindOf: String ]) ifFalse: [
+		self error: 'Can only appendToAll in a Set of Strings'
+	].
+	
+	^self collect: [ :aString | aString, aStringToAppend ]! !
+!String methodsFor: 'anagrams' stamp: 'TS 4/27/2023 21:18:13' prior: 50608822!
+anagrams
+
+	| anagramsEndingWithFirstChar anagramsEndingWithSecondChar anagramsEndingWithThirdChar anagramsWithoutFirstChar anagramsWithoutSecondChar |
+
+	self size <= 1 ifTrue: [^Set with: self].
+	self size = 2 ifTrue: [^Set with: self with: self reversed].
+	
+	anagramsWithoutFirstChar := (String with: self second with: self third) anagrams.
+	anagramsEndingWithFirstChar := anagramsWithoutFirstChar appendToAll: self first.
+	
+	anagramsWithoutSecondChar := (String with: self second with: self third) anagrams.
+	anagramsEndingWithFirstChar := anagramsWithoutFirstChar appendToAll: self first.
+	
+	anagramsWithoutFirstChar := (String with: self second with: self third) anagrams.
+	anagramsEndingWithFirstChar := anagramsWithoutFirstChar appendToAll: self first.
+! !
+!String methodsFor: 'anagrams' stamp: 'TS 4/27/2023 21:19:09' prior: 50608853!
+anagrams
+
+	| anagramsEndingWithFirstChar anagramsEndingWithSecondChar anagramsEndingWithThirdChar anagramsWithoutFirstChar anagramsWithoutSecondChar anagramsWithoutThirdChar |
+
+	self size <= 1 ifTrue: [^Set with: self].
+	self size = 2 ifTrue: [^Set with: self with: self reversed].
+	
+	anagramsWithoutFirstChar := (String with: self second with: self third) anagrams.
+	anagramsEndingWithFirstChar := anagramsWithoutFirstChar appendToAll: self first.
+	
+	anagramsWithoutSecondChar := (String with: self first with: self third) anagrams.
+	anagramsEndingWithSecondChar := anagramsWithoutSecondChar appendToAll: self second.
+	
+	anagramsWithoutThirdChar := (String with: self first with: self second) anagrams.
+	anagramsEndingWithThirdChar := anagramsWithoutThirdChar appendToAll: self third.
+! !
+!String methodsFor: 'anagrams' stamp: 'TS 4/27/2023 21:19:57' prior: 50608880!
+anagrams
+
+	| anagramsEndingWithFirstChar anagramsEndingWithSecondChar anagramsEndingWithThirdChar anagramsWithoutFirstChar anagramsWithoutSecondChar anagramsWithoutThirdChar |
+
+	self size <= 1 ifTrue: [^Set with: self].
+	self size = 2 ifTrue: [^Set with: self with: self reversed].
+	
+	anagramsWithoutFirstChar := (String with: self second with: self third) anagrams.
+	anagramsEndingWithFirstChar := anagramsWithoutFirstChar appendToAll: self first.
+	
+	anagramsWithoutSecondChar := (String with: self first with: self third) anagrams.
+	anagramsEndingWithSecondChar := anagramsWithoutSecondChar appendToAll: self second.
+	
+	anagramsWithoutThirdChar := (String with: self first with: self second) anagrams.
+	anagramsEndingWithThirdChar := anagramsWithoutThirdChar appendToAll: self third.
+
+	^(anagramsEndingWithFirstChar union: anagramsEndingWithSecondChar) union: anagramsWithoutThirdChar ! !
+!String methodsFor: 'anagrams' stamp: 'TS 4/27/2023 21:20:08' prior: 50608908!
+anagrams
+
+	| anagramsEndingWithFirstChar anagramsEndingWithSecondChar anagramsEndingWithThirdChar anagramsWithoutFirstChar anagramsWithoutSecondChar anagramsWithoutThirdChar |
+
+	self size <= 1 ifTrue: [^Set with: self].
+	self size = 2 ifTrue: [^Set with: self with: self reversed].
+	
+	anagramsWithoutFirstChar := (String with: self second with: self third) anagrams.
+	anagramsEndingWithFirstChar := anagramsWithoutFirstChar appendToAll: self first.
+	
+	anagramsWithoutSecondChar := (String with: self first with: self third) anagrams.
+	anagramsEndingWithSecondChar := anagramsWithoutSecondChar appendToAll: self second.
+	
+	anagramsWithoutThirdChar := (String with: self first with: self second) anagrams.
+	anagramsEndingWithThirdChar := anagramsWithoutThirdChar appendToAll: self third.
+
+	^(anagramsEndingWithFirstChar union: anagramsEndingWithSecondChar) union: anagramsEndingWithThirdChar ! !
+!String methodsFor: 'anagrams' stamp: 'TS 4/27/2023 21:20:14' prior: 50608939!
+anagrams
+
+	| anagramsEndingWithFirstChar anagramsEndingWithSecondChar anagramsEndingWithThirdChar anagramsWithoutFirstChar anagramsWithoutSecondChar anagramsWithoutThirdChar |
+
+	self size <= 1 ifTrue: [^Set with: self].
+	self size = 2 ifTrue: [^Set with: self with: self reversed].
+	
+	anagramsWithoutFirstChar := (String with: self second with: self third) anagrams.
+	anagramsEndingWithFirstChar := anagramsWithoutFirstChar appendToAll: self first.
+	
+	anagramsWithoutSecondChar := (String with: self first with: self third) anagrams.
+	anagramsEndingWithSecondChar := anagramsWithoutSecondChar appendToAll: self second.
+	
+	anagramsWithoutThirdChar := (String with: self first with: self second) anagrams.
+	anagramsEndingWithThirdChar := anagramsWithoutThirdChar appendToAll: self third.
+
+	^(anagramsEndingWithFirstChar union: anagramsEndingWithSecondChar)
+		union: anagramsEndingWithThirdChar ! !
+
+!testRun: #TDDBabyStepsAnagramsTest #test04ThreeCharStringAnagramReturnsAllThe6PossibleOrderCombinations stamp: 'TS 4/27/2023 21:21:01'!
+ERROR!
+!String methodsFor: 'anagrams' stamp: 'TS 4/27/2023 21:22:33' prior: 50608970!
+anagrams
+
+	| anagramsEndingWithFirstChar anagramsEndingWithSecondChar anagramsEndingWithThirdChar anagramsWithoutFirstChar anagramsWithoutSecondChar anagramsWithoutThirdChar |
+
+	self size <= 1 ifTrue: [^Set with: self].
+	self size = 2 ifTrue: [^Set with: self with: self reversed].
+	
+	anagramsWithoutFirstChar := (String with: self second with: self third) anagrams.
+	anagramsEndingWithFirstChar := anagramsWithoutFirstChar appendToAll: (String with: self first).
+	
+	anagramsWithoutSecondChar := (String with: self first with: self third) anagrams.
+	anagramsEndingWithSecondChar := anagramsWithoutSecondChar appendToAll: (String with: self second).
+	
+	anagramsWithoutThirdChar := (String with: self first with: self second) anagrams.
+	anagramsEndingWithThirdChar := anagramsWithoutThirdChar appendToAll: (String with: self third).
+
+	^(anagramsEndingWithFirstChar union: anagramsEndingWithSecondChar)
+		union: anagramsEndingWithThirdChar ! !
+
+!testRun: #TDDBabyStepsAnagramsTest #test04ThreeCharStringAnagramReturnsAllThe6PossibleOrderCombinations stamp: 'TS 4/27/2023 21:22:35'!
+PASSED!
+
+!testRun: #TDDBabyStepsAnagramsTest #test01EmptyStringAnagramIsJustACollectionWithTheEmptyString stamp: 'TS 4/27/2023 21:22:35'!
+PASSED!
+
+!testRun: #TDDBabyStepsAnagramsTest #test02OneCharStringAnagramReturnsACollectionWithTheSameOneCharString stamp: 'TS 4/27/2023 21:22:35'!
+PASSED!
+
+!testRun: #TDDBabyStepsAnagramsTest #test03TwoCharStringAnagramReturnsTheOriginalStringAndAnotherOneFlipped stamp: 'TS 4/27/2023 21:22:35'!
+PASSED!
+
+!testRun: #TDDBabyStepsAnagramsTest #test04ThreeCharStringAnagramReturnsAllThe6PossibleOrderCombinations stamp: 'TS 4/27/2023 21:22:35'!
+PASSED!
+
+!testRun: #TDDBabyStepsAnagramsTest #test01EmptyStringAnagramIsJustACollectionWithTheEmptyString stamp: 'TS 4/27/2023 21:22:55'!
+PASSED!
+
+!testRun: #TDDBabyStepsAnagramsTest #test02OneCharStringAnagramReturnsACollectionWithTheSameOneCharString stamp: 'TS 4/27/2023 21:22:55'!
+PASSED!
+
+!testRun: #TDDBabyStepsAnagramsTest #test03TwoCharStringAnagramReturnsTheOriginalStringAndAnotherOneFlipped stamp: 'TS 4/27/2023 21:22:55'!
+PASSED!
+
+!testRun: #TDDBabyStepsAnagramsTest #test04ThreeCharStringAnagramReturnsAllThe6PossibleOrderCombinations stamp: 'TS 4/27/2023 21:22:55'!
+PASSED!
+!TDDBabyStepsAnagramsTest methodsFor: 'tests' stamp: 'TS 4/27/2023 21:22:55'!
+test05MoreThanThreeCharStringAnagramReturnsAllTheCorrectPossibleOrderCombinations
+
+	| anagrams |
+	
+	anagrams := Set new.
+	anagrams add: 'abcd'; add: 'abdc'; add: 'acbd'; add: 'acdb'; add: 'adbc'; add: 'adcb'; add: 'bacd'; add: 'badc'; add: 'bcad'; add: 'bcda'; add: 'bdac'; add: 'bdca'; add: 'cabd'; add: 'cadb'; add: 'cbad'; add: 'cbda'; add: 'cdab'; add: 'cdba'; add: 'dabc'; add: 'dacb'; add: 'dbac'; add: 'dbca'; add: 'dcab'; add: 'dcba'.
+
+	self assert: anagrams equals: 'abcd' anagrams
+	! !
+
+!testRun: #TDDBabyStepsAnagramsTest #test05MoreThanThreeCharStringAnagramReturnsAllTheCorrectPossibleOrderCombinations stamp: 'TS 4/27/2023 21:22:55'!
+FAILURE!
+
+!methodRemoval: TDDBabyStepsAnagramsTest #test05MoreThanThreeCharStringAnagramReturnsAllTheCorrectPossibleOrderCombinations stamp: 'TS 4/27/2023 21:22:55'!
+test05MoreThanThreeCharStringAnagramReturnsAllTheCorrectPossibleOrderCombinations
+
+	| anagrams |
+	
+	anagrams := Set new.
+	anagrams add: 'abcd'; add: 'abdc'; add: 'acbd'; add: 'acdb'; add: 'adbc'; add: 'adcb'; add: 'bacd'; add: 'badc'; add: 'bcad'; add: 'bcda'; add: 'bdac'; add: 'bdca'; add: 'cabd'; add: 'cadb'; add: 'cbad'; add: 'cbda'; add: 'cdab'; add: 'cdba'; add: 'dabc'; add: 'dacb'; add: 'dbac'; add: 'dbca'; add: 'dcab'; add: 'dcba'.
+
+	self assert: anagrams equals: 'abcd' anagrams
+	!
+!TDDBabyStepsAnagramsTest methodsFor: 'tests' stamp: 'TS 4/27/2023 21:22:55'!
+test05MoreThanThreeCharStringAnagramReturnsAllTheCorrectPossibleOrderCombinations
+
+	| anagrams |
+	
+	anagrams := Set new.
+	anagrams add: 'abcd'; add: 'abdc'; add: 'acbd'; add: 'acdb'; add: 'adbc'; add: 'adcb'; add: 'bacd'; add: 'badc'; add: 'bcad'; add: 'bcda'; add: 'bdac'; add: 'bdca'; add: 'cabd'; add: 'cadb'; add: 'cbad'; add: 'cbda'; add: 'cdab'; add: 'cdba'; add: 'dabc'; add: 'dacb'; add: 'dbac'; add: 'dbca'; add: 'dcab'; add: 'dcba'.
+
+	self assert: anagrams equals: 'abcd' anagrams
+	! !
+
+!testRun: #TDDBabyStepsAnagramsTest #test05MoreThanThreeCharStringAnagramReturnsAllTheCorrectPossibleOrderCombinations stamp: 'TS 4/27/2023 21:22:55'!
+FAILURE!
+
+----SNAPSHOT----(27 April 2023 21:23:38) CuisUniversity-5706.image priorSource: 8859208!
+!String methodsFor: 'anagrams' stamp: 'TS 4/27/2023 21:26:17' prior: 50609005!
+anagrams
+
+	| anagramsEndingWithFirstChar anagramsEndingWithSecondChar anagramsEndingWithThirdChar anagramsWithoutFirstChar anagramsWithoutSecondChar anagramsWithoutThirdChar |
+
+	self size <= 1 ifTrue: [^Set with: self].
+
+	
+	anagramsWithoutFirstChar := (String with: self second with: self third) anagrams.
+	anagramsEndingWithFirstChar := anagramsWithoutFirstChar appendToAll: (String with: self first).
+	
+	anagramsWithoutSecondChar := (String with: self first with: self third) anagrams.
+	anagramsEndingWithSecondChar := anagramsWithoutSecondChar appendToAll: (String with: self second).
+	
+	anagramsWithoutThirdChar := (String with: self first with: self second) anagrams.
+	anagramsEndingWithThirdChar := anagramsWithoutThirdChar appendToAll: (String with: self third).
+
+	^(anagramsEndingWithFirstChar union: anagramsEndingWithSecondChar)
+		union: anagramsEndingWithThirdChar ! !
+!String methodsFor: 'anagrams' stamp: 'TS 4/27/2023 21:26:18' prior: 50609148!
+anagrams
+
+	| anagramsEndingWithFirstChar anagramsEndingWithSecondChar anagramsEndingWithThirdChar anagramsWithoutFirstChar anagramsWithoutSecondChar anagramsWithoutThirdChar |
+
+	self size <= 1 ifTrue: [^Set with: self].
+	
+	anagramsWithoutFirstChar := (String with: self second with: self third) anagrams.
+	anagramsEndingWithFirstChar := anagramsWithoutFirstChar appendToAll: (String with: self first).
+	
+	anagramsWithoutSecondChar := (String with: self first with: self third) anagrams.
+	anagramsEndingWithSecondChar := anagramsWithoutSecondChar appendToAll: (String with: self second).
+	
+	anagramsWithoutThirdChar := (String with: self first with: self second) anagrams.
+	anagramsEndingWithThirdChar := anagramsWithoutThirdChar appendToAll: (String with: self third).
+
+	^(anagramsEndingWithFirstChar union: anagramsEndingWithSecondChar)
+		union: anagramsEndingWithThirdChar ! !
+!String methodsFor: 'anagrams' stamp: 'TS 4/27/2023 21:30:09' prior: 50609178!
+anagrams
+
+	| anagramsEndingWithFirstChar anagramsEndingWithSecondChar anagramsEndingWithThirdChar anagramsWithoutFirstChar anagramsWithoutSecondChar anagramsWithoutThirdChar |
+
+	self size <= 1 ifTrue: [^Set with: self].
+
+	anagramsWithoutFirstChar := (String with: self second with: self third) anagrams.
+	anagramsEndingWithFirstChar := anagramsWithoutFirstChar appendToAll: (String with: self first).
+	
+	anagramsWithoutSecondChar := (String with: self first with: self third) anagrams.
+	anagramsEndingWithSecondChar := anagramsWithoutSecondChar appendToAll: (String with: self second).
+	
+	anagramsWithoutThirdChar := (String with: self first with: self second) anagrams.
+	anagramsEndingWithThirdChar := anagramsWithoutThirdChar appendToAll: (String with: self third).
+
+	^(anagramsEndingWithFirstChar union: anagramsEndingWithSecondChar)
+		union: anagramsEndingWithThirdChar ! !
+
+!methodRemoval: Set #appendToAll: stamp: 'TS 4/27/2023 21:30:46'!
+appendToAll: aStringToAppend
+
+	"Append a string to each element of the Set. All elements should all be strings"
+	
+	(self allSatisfy: [:anElement | anElement isKindOf: String ]) ifFalse: [
+		self error: 'Can only appendToAll in a Set of Strings'
+	].
+	
+	^self collect: [ :aString | aString, aStringToAppend ]!
+!String methodsFor: 'anagrams' stamp: 'TS 4/27/2023 21:31:57'!
+anagramsWithAppendedChar: aNewChar
+
+	^self anagrams collect: [ :aString | aString, (String from: aNewChar) ].! !
+!String methodsFor: 'anagrams' stamp: 'TS 4/27/2023 21:36:24' prior: 50609250!
+anagramsWithAppendedChar: aNewChar
+
+	^self anagrams collect: [ :aString | aString, (String with: aNewChar) ].! !
+!String methodsFor: 'anagrams' stamp: 'TS 4/27/2023 21:41:06' prior: 50609208!
+anagrams
+
+	| anagramsEndingWithFirstChar anagramsEndingWithSecondChar anagramsEndingWithThirdChar |
+
+	self size <= 1 ifTrue: [^Set with: self].
+
+	anagramsEndingWithFirstChar := (String with: self second with: self third) anagramsWithAppendedChar: self first.
+	
+	anagramsEndingWithSecondChar := (String with: self first with: self third) anagramsWithAppendedChar: self second.
+	
+	anagramsEndingWithThirdChar := (String with: self first with: self second) anagramsWithAppendedChar: self third.
+
+	^(anagramsEndingWithFirstChar union: anagramsEndingWithSecondChar)
+		union: anagramsEndingWithThirdChar ! !
+!String methodsFor: 'anagrams' stamp: 'TS 4/27/2023 21:41:16' prior: 50609262!
+anagrams
+
+	| anagramsEndingWithFirstChar anagramsEndingWithSecondChar anagramsEndingWithThirdChar |
+
+	self size <= 1 ifTrue: [^Set with: self].
+
+	anagramsEndingWithFirstChar := (String with: self second with: self third) anagramsWithAppendedChar: self first.	
+	anagramsEndingWithSecondChar := (String with: self first with: self third) anagramsWithAppendedChar: self second.
+	anagramsEndingWithThirdChar := (String with: self first with: self second) anagramsWithAppendedChar: self third.
+
+	^(anagramsEndingWithFirstChar union: anagramsEndingWithSecondChar)
+		union: anagramsEndingWithThirdChar ! !
+
+!testRun: #StringTest #testAfterBlanksEndsWith stamp: 'TS 4/27/2023 21:41:17'!
+PASSED!
+
+!testRun: #StringTest #testArticle stamp: 'TS 4/27/2023 21:41:17'!
+PASSED!
+
+!testRun: #StringTest #testAsUtf8 stamp: 'TS 4/27/2023 21:41:17'!
+PASSED!
+
+!testRun: #StringTest #testBase64 stamp: 'TS 4/27/2023 21:41:17'!
+PASSED!
+
+!testRun: #StringTest #testBeginsWith stamp: 'TS 4/27/2023 21:41:17'!
+PASSED!
+
+!testRun: #StringTest #testCaseConversion stamp: 'TS 4/27/2023 21:41:17'!
+PASSED!
+
+!testRun: #StringTest #testEncompassParagraph1 stamp: 'TS 4/27/2023 21:41:17'!
+PASSED!
+
+!testRun: #StringTest #testEncompassParagraph2 stamp: 'TS 4/27/2023 21:41:17'!
+PASSED!
+
+!testRun: #StringTest #testEncompassParagraph3 stamp: 'TS 4/27/2023 21:41:17'!
+PASSED!
+
+!testRun: #StringTest #testEncompassParagraph4 stamp: 'TS 4/27/2023 21:41:17'!
+PASSED!
+
+!testRun: #StringTest #testEncompassParagraph5 stamp: 'TS 4/27/2023 21:41:17'!
+PASSED!
+
+!testRun: #StringTest #testFindSelector stamp: 'TS 4/27/2023 21:41:17'!
+PASSED!
+
+!testRun: #StringTest #testFirstNonSeparator stamp: 'TS 4/27/2023 21:41:17'!
+PASSED!
+
+!testRun: #StringTest #testIsString stamp: 'TS 4/27/2023 21:41:17'!
+PASSED!
+
+!testRun: #StringTest #testLastNonSeparator stamp: 'TS 4/27/2023 21:41:17'!
+PASSED!
+
+!testRun: #StringTest #testLineSeparators stamp: 'TS 4/27/2023 21:41:17'!
+PASSED!
+
+!testRun: #StringTest #testSorting stamp: 'TS 4/27/2023 21:41:17'!
+PASSED!
+
+!testRun: #StringTest #testWithBlanksTrimmed stamp: 'TS 4/27/2023 21:41:17'!
+PASSED!
+
+!testRun: #StringTest #testWithoutLeadingBlanks stamp: 'TS 4/27/2023 21:41:17'!
+PASSED!
+
+!testRun: #StringTest #testWithoutPrefix stamp: 'TS 4/27/2023 21:41:17'!
+PASSED!
+
+!testRun: #StringTest #testWithoutSeparators stamp: 'TS 4/27/2023 21:41:17'!
+PASSED!
+
+!testRun: #StringTest #testWithoutTrailingBlanks stamp: 'TS 4/27/2023 21:41:17'!
+PASSED!
+
+!testRun: #TDDBabyStepsAnagramsTest #test05MoreThanThreeCharStringAnagramReturnsAllTheCorrectPossibleOrderCombinations stamp: 'TS 4/27/2023 21:41:22'!
+ERROR!
+!String methodsFor: 'anagrams' stamp: 'TS 4/27/2023 21:48:43' prior: 50609284!
+anagrams
+
+	| anagramSet |
+
+	self size <= 1 ifTrue: [^Set with: self].
+	
+	anagramSet := (1 to: self size) collect: [ :anIndex |
+		| aChar theRestOfTheString |
+		aChar := self at: anIndex.
+		theRestOfTheString := (self copyFrom: 1 to: anIndex - 1), (self copyFrom: anIndex + 1 to: self size).
+		theRestOfTheString anagramsWithAppendedChar: aChar
+	].
+
+	^anagramSet fold: [:allAnagrams :anAnagramSet | allAnagrams union: anAnagramSet ].! !
+
+----SNAPSHOT----(27 April 2023 21:48:56) CuisUniversity-5706.image priorSource: 8879824!
+
+!testRun: #TDDBabyStepsAnagramsTest #test05MoreThanThreeCharStringAnagramReturnsAllTheCorrectPossibleOrderCombinations stamp: 'TS 4/27/2023 21:49:42'!
+PASSED!
+
+!testRun: #TDDBabyStepsAnagramsTest #test01EmptyStringAnagramIsJustACollectionWithTheEmptyString stamp: 'TS 4/27/2023 21:49:43'!
+PASSED!
+
+!testRun: #TDDBabyStepsAnagramsTest #test02OneCharStringAnagramReturnsACollectionWithTheSameOneCharString stamp: 'TS 4/27/2023 21:49:43'!
+PASSED!
+
+!testRun: #TDDBabyStepsAnagramsTest #test03TwoCharStringAnagramReturnsTheOriginalStringAndAnotherOneFlipped stamp: 'TS 4/27/2023 21:49:43'!
+PASSED!
+
+!testRun: #TDDBabyStepsAnagramsTest #test04ThreeCharStringAnagramReturnsAllThe6PossibleOrderCombinations stamp: 'TS 4/27/2023 21:49:43'!
+PASSED!
+
+!testRun: #TDDBabyStepsAnagramsTest #test05MoreThanThreeCharStringAnagramReturnsAllTheCorrectPossibleOrderCombinations stamp: 'TS 4/27/2023 21:49:43'!
+PASSED!
+!String methodsFor: 'anagrams' stamp: 'TS 4/27/2023 21:51:00' prior: 50609368!
+anagrams
+
+	self size <= 1 ifTrue: [^Set with: self].
+	
+ 	^(1 to: self size) collect: [ :anIndex |
+		| aChar theRestOfTheString |
+		aChar := self at: anIndex.
+		theRestOfTheString := (self copyFrom: 1 to: anIndex - 1), (self copyFrom: anIndex + 1 to: self size).
+		theRestOfTheString anagramsWithAppendedChar: aChar
+	] andFold: [ :allAnagrams :anAnagramSet | allAnagrams union: anAnagramSet	].! !
+!String methodsFor: 'anagrams' stamp: 'TS 4/27/2023 21:51:15' prior: 50609416!
+anagrams
+
+	self size <= 1 ifTrue: [^Set with: self].
+	
+ 	^(1 to: self size) collect: [ :anIndex |
+		| aChar theRestOfTheString |
+		aChar := self at: anIndex.
+		theRestOfTheString := (self copyFrom: 1 to: anIndex - 1), (self copyFrom: anIndex + 1 to: self size).
+		theRestOfTheString anagramsWithAppendedChar: aChar
+	] andFold: [ :allAnagrams :anAnagramSet |
+		allAnagrams union: anAnagramSet
+	].! !
+
+!testRun: #TDDBabyStepsAnagramsTest #test05MoreThanThreeCharStringAnagramReturnsAllTheCorrectPossibleOrderCombinations stamp: 'TS 4/27/2023 21:51:17'!
+PASSED!
+
+!testRun: #TDDBabyStepsAnagramsTest #test01EmptyStringAnagramIsJustACollectionWithTheEmptyString stamp: 'TS 4/27/2023 21:51:17'!
+PASSED!
+
+!testRun: #TDDBabyStepsAnagramsTest #test02OneCharStringAnagramReturnsACollectionWithTheSameOneCharString stamp: 'TS 4/27/2023 21:51:17'!
+PASSED!
+
+!testRun: #TDDBabyStepsAnagramsTest #test03TwoCharStringAnagramReturnsTheOriginalStringAndAnotherOneFlipped stamp: 'TS 4/27/2023 21:51:17'!
+PASSED!
+
+!testRun: #TDDBabyStepsAnagramsTest #test04ThreeCharStringAnagramReturnsAllThe6PossibleOrderCombinations stamp: 'TS 4/27/2023 21:51:17'!
+PASSED!
+
+!testRun: #TDDBabyStepsAnagramsTest #test05MoreThanThreeCharStringAnagramReturnsAllTheCorrectPossibleOrderCombinations stamp: 'TS 4/27/2023 21:51:17'!
+PASSED!
+
+----SNAPSHOT----(27 April 2023 21:51:24) CuisUniversity-5706.image priorSource: 8887475!
+
+!testRun: #TDDBabyStepsAnagramsTest #test01EmptyStringAnagramIsJustACollectionWithTheEmptyString stamp: 'TS 4/27/2023 21:51:35'!
+PASSED!
+
+!testRun: #TDDBabyStepsAnagramsTest #test02OneCharStringAnagramReturnsACollectionWithTheSameOneCharString stamp: 'TS 4/27/2023 21:51:35'!
+PASSED!
+
+!testRun: #TDDBabyStepsAnagramsTest #test03TwoCharStringAnagramReturnsTheOriginalStringAndAnotherOneFlipped stamp: 'TS 4/27/2023 21:51:35'!
+PASSED!
+
+!testRun: #TDDBabyStepsAnagramsTest #test04ThreeCharStringAnagramReturnsAllThe6PossibleOrderCombinations stamp: 'TS 4/27/2023 21:51:35'!
+PASSED!
+
+!testRun: #TDDBabyStepsAnagramsTest #test05MoreThanThreeCharStringAnagramReturnsAllTheCorrectPossibleOrderCombinations stamp: 'TS 4/27/2023 21:51:35'!
+PASSED!
+!TDDBabyStepsAnagramsTest methodsFor: 'tests' stamp: 'TS 4/27/2023 21:51:35'!
+testExtraToCheckGeneralizationOnKata
+
+	self assert: 40320 equals:`'abcdefgh' anagrams` size.
+	
+	self assert: (`'abcdefgh' anagrams`) includes: 'cghdbeaf'.
+	
+	self assert: 10080 equals: `'abcdefab' anagrams` size
+	! !
+
+!testRun: #TDDBabyStepsAnagramsTest #testExtraToCheckGeneralizationOnKata stamp: 'TS 4/27/2023 21:51:37'!
+PASSED!
+
+----SNAPSHOT----(27 April 2023 21:51:45) CuisUniversity-5706.image priorSource: 8890354!
+
+----SNAPSHOT----(27 April 2023 21:51:58) CuisUniversity-5706.image priorSource: 8891595!
+
+!testRun: #TDDBabyStepsAnagramsTest #testExtraToCheckGeneralizationOnKata stamp: 'TS 4/27/2023 21:51:59'!
+PASSED!
+
+----SNAPSHOT----(27 April 2023 21:52:58) CuisUniversity-5706.image priorSource: 8891685!
+
+----SNAPSHOT----(27 April 2023 21:53:07) CuisUniversity-5706.image priorSource: 8891890!
+
+----QUIT----(27 April 2023 21:53:12) CuisUniversity-5706.image priorSource: 8891980!
