@@ -1,0 +1,3838 @@
+
+
+----QUIT----(20 March 2023 11:15:29) CuisUniversity-5706.image priorSource: 4313282!
+
+----STARTUP---- (20 March 2023 11:15:29) as /Users/hernan/Documents/Cuis/5.0-64Bits/Cuis-University-Installer/CuisUniversity-5706.image!
+
+
+----QUIT----(20 March 2023 11:15:30) CuisUniversity-5706.image priorSource: 8712809!
+
+----STARTUP---- (15 May 2023 06:41:03) as /home/sponja/Temp/Cuises/TDD/CuisUniversity-5706.image!
+
+
+----SNAPSHOT----(15 May 2023 06:41:12) CuisUniversity-5706.image priorSource: 8713034!
+
+TestCase subclass: #MarsRoverTest
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'MarsRover-Ejercicio'!
+
+!classDefinition: #MarsRoverTest category: 'MarsRover-Ejercicio' stamp: 'TS 5/15/2023 06:42:08'!
+TestCase subclass: #MarsRoverTest
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'MarsRover-Ejercicio'!
+
+!classDefinition: #MarsRover category: 'MarsRover-Ejercicio' stamp: 'TS 5/15/2023 06:44:48'!
+Object subclass: #MarsRover
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'MarsRover-Ejercicio'!
+!MarsRoverTest methodsFor: 'no messages' stamp: 'TS 5/15/2023 06:44:22'!
+test01
+
+	| marsRover |
+	marsRover := MarsRover at: 0@0 headingTo: #North.
+	
+	marsRover receiveCommands: ''.
+	
+	self assert: 0@0 equals: marsRover position.
+	self assert: #North equals: marsRover heading.! !
+
+!testRun: #MarsRoverTest #test01 stamp: 'TS 5/15/2023 06:44:53'!
+ERROR!
+!MarsRover class methodsFor: 'instance creation' stamp: 'TS 5/15/2023 06:44:58'!
+at: aPoint headingTo: aSymbol 
+	"DO NOT FORGET TO RENAME COLLABORATORS AND REMOVE THIS COMMENT!!!!"
+	self shouldBeImplemented.
+	^self new initializeAt: aPoint headingTo: aSymbol ! !
+!MarsRover class methodsFor: 'instance creation' stamp: 'TS 5/15/2023 06:45:06' prior: 50603973!
+at: aPoint headingTo: aSymbol
+
+	^self new! !
+
+!testRun: #MarsRoverTest #test01 stamp: 'TS 5/15/2023 06:45:07'!
+ERROR!
+!MarsRover methodsFor: 'command execution' stamp: 'TS 5/15/2023 06:45:22'!
+receiveCommands: aRenameMe1 
+	self shouldBeImplemented.! !
+!MarsRover methodsFor: 'command execution' stamp: 'TS 5/15/2023 06:45:30' prior: 50603989!
+receiveCommands: aCommandString 
+	
+	^ self! !
+
+!testRun: #MarsRoverTest #test01 stamp: 'TS 5/15/2023 06:45:33'!
+ERROR!
+!MarsRover methodsFor: 'accessing' stamp: 'TS 5/15/2023 06:45:39'!
+position
+	self shouldBeImplemented.! !
+!MarsRover methodsFor: 'accessing' stamp: 'TS 5/15/2023 06:45:45' prior: 50604000!
+position
+	
+	^ 0@0! !
+
+!testRun: #MarsRoverTest #test01 stamp: 'TS 5/15/2023 06:45:47'!
+ERROR!
+!MarsRover methodsFor: 'accessing' stamp: 'TS 5/15/2023 06:45:55'!
+heading
+	self shouldBeImplemented.! !
+!MarsRover methodsFor: 'accessing' stamp: 'TS 5/15/2023 06:46:02' prior: 50604010!
+heading
+
+	^ #North! !
+
+!testRun: #MarsRoverTest #test01 stamp: 'TS 5/15/2023 06:46:05'!
+PASSED!
+
+!testRun: #MarsRoverTest #test01 stamp: 'TS 5/15/2023 06:46:05'!
+PASSED!
+
+!testRun: #MarsRoverTest #test01 stamp: 'TS 5/15/2023 06:46:08'!
+PASSED!
+
+!testRun: #MarsRoverTest #test01 stamp: 'TS 5/15/2023 06:46:08'!
+PASSED!
+!MarsRoverTest methodsFor: 'as yet unclassified' stamp: 'TS 5/15/2023 06:46:34'!
+test01EmptyCommandStringDoesNothing
+
+	| marsRover |
+	marsRover := MarsRover at: 0@0 headingTo: #North.
+	
+	marsRover receiveCommands: ''.
+	
+	self assert: 0@0 equals: marsRover position.
+	self assert: #North equals: marsRover heading.! !
+
+!methodRemoval: MarsRoverTest #test01 stamp: 'TS 5/15/2023 06:46:34'!
+test01
+
+	| marsRover |
+	marsRover := MarsRover at: 0@0 headingTo: #North.
+	
+	marsRover receiveCommands: ''.
+	
+	self assert: 0@0 equals: marsRover position.
+	self assert: #North equals: marsRover heading.!
+!MarsRoverTest methodsFor: 'as yet unclassified' stamp: 'TS 5/15/2023 06:46:47' prior: 50604027!
+test01EmptyCommandStringDoesNothing
+
+	| marsRover |
+	
+	marsRover := MarsRover at: 0@0 headingTo: #North.
+	
+	marsRover receiveCommands: ''.
+	
+	self assert: 0@0 equals: marsRover position.
+	self assert: #North equals: marsRover heading.! !
+!MarsRoverTest methodsFor: 'as yet unclassified' stamp: 'TS 5/15/2023 06:47:35'!
+test02MovingForwardWhileHeadingNorthMovesOnYAxis
+
+	| marsRover |
+	
+	marsRover := MarsRover at: 0@0 headingTo: #North.
+	
+	marsRover receiveCommands: 'f'.
+	
+	self assert: 0@1 equals: marsRover position.
+	self assert: #North equals: marsRover heading.! !
+
+!testRun: #MarsRoverTest #test02MovingForwardWhileHeadingNorthMovesOnYAxis stamp: 'TS 5/15/2023 06:47:39'!
+FAILURE!
+!MarsRover class methodsFor: 'instance creation' stamp: 'TS 5/15/2023 06:48:13' prior: 50603982!
+at: aPosition headingTo: aHeading
+
+	^self new initializeAt: aPosition! !
+
+!testRun: #MarsRoverTest #test02MovingForwardWhileHeadingNorthMovesOnYAxis stamp: 'TS 5/15/2023 06:48:21'!
+ERROR!
+
+!classDefinition: #MarsRover category: 'MarsRover-Ejercicio' stamp: 'TS 5/15/2023 06:48:27'!
+Object subclass: #MarsRover
+	instanceVariableNames: 'position'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'MarsRover-Ejercicio'!
+!MarsRover methodsFor: 'initialization' stamp: 'TS 5/15/2023 06:48:27'!
+initializeAt: aPosition 
+	self shouldBeImplemented.
+	position := aPosition.! !
+!MarsRover methodsFor: 'initialization' stamp: 'TS 5/15/2023 06:48:29' prior: 50604088!
+initializeAt: aPosition 
+
+	position := aPosition.! !
+
+!testRun: #MarsRoverTest #test02MovingForwardWhileHeadingNorthMovesOnYAxis stamp: 'TS 5/15/2023 06:48:31'!
+FAILURE!
+!MarsRover methodsFor: 'accessing' stamp: 'TS 5/15/2023 06:48:40' prior: 50604004!
+position
+	
+	^ position! !
+!MarsRover methodsFor: 'command execution' stamp: 'TS 5/15/2023 06:48:44' prior: 50603994!
+receiveCommands: aCommandString 
+	
+	! !
+!MarsRover methodsFor: 'command execution' stamp: 'TS 5/15/2023 06:49:06' prior: 50604106!
+receiveCommands: aCommandString 
+	
+	aCommandString = 'f' ifTrue: [
+		position := 0@1
+	].! !
+!MarsRover methodsFor: 'command execution' stamp: 'TS 5/15/2023 06:49:06' prior: 50604111!
+receiveCommands: aCommandString 
+	
+	aCommandString = 'f' ifTrue: [
+		position := 0@1
+	]! !
+
+!testRun: #MarsRoverTest #test01EmptyCommandStringDoesNothing stamp: 'TS 5/15/2023 06:49:15'!
+PASSED!
+
+!testRun: #MarsRoverTest #test02MovingForwardWhileHeadingNorthMovesOnYAxis stamp: 'TS 5/15/2023 06:49:15'!
+PASSED!
+!MarsRoverTest methodsFor: 'testing' stamp: 'TS 5/15/2023 06:49:46'!
+test02SingleForwardCommandWhileHeadingNorthMoves1UnitOnYAxis
+
+	| marsRover |
+	
+	marsRover := MarsRover at: 0@0 headingTo: #North.
+	
+	marsRover receiveCommands: 'f'.
+	
+	self assert: 0@1 equals: marsRover position.
+	self assert: #North equals: marsRover heading.! !
+
+!methodRemoval: MarsRoverTest #test02MovingForwardWhileHeadingNorthMovesOnYAxis stamp: 'TS 5/15/2023 06:49:46'!
+test02MovingForwardWhileHeadingNorthMovesOnYAxis
+
+	| marsRover |
+	
+	marsRover := MarsRover at: 0@0 headingTo: #North.
+	
+	marsRover receiveCommands: 'f'.
+	
+	self assert: 0@1 equals: marsRover position.
+	self assert: #North equals: marsRover heading.!
+!MarsRoverTest methodsFor: 'testing' stamp: 'TS 5/15/2023 06:50:15'!
+test02DoubleForwardCommandWhileHeadingNorthMoves2UnitsOnYAxis
+
+	| marsRover |
+	
+	marsRover := MarsRover at: 0@0 headingTo: #North.
+	
+	marsRover receiveCommands: 'f'.
+	
+	self assert: 0@1 equals: marsRover position.
+	self assert: #North equals: marsRover heading.! !
+!MarsRover methodsFor: 'command execution' stamp: 'TS 5/15/2023 06:51:07' prior: 50604117!
+receiveCommands: aCommandString 
+	
+	aCommandString = 'ff' ifTrue: [
+		position := 0@2
+	].
+	aCommandString = 'f' ifTrue: [
+		position := 0@1
+	]! !
+!MarsRover methodsFor: 'command execution' stamp: 'TS 5/15/2023 06:51:36' prior: 50604163!
+receiveCommands: aCommandString 
+	
+	aCommandString = 'ff' ifTrue: [ position := 0@2 ].
+	aCommandString = 'f' ifTrue: [ position := 0@1 ].! !
+!MarsRover methodsFor: 'command execution' stamp: 'TS 5/15/2023 06:51:37' prior: 50604171!
+receiveCommands: aCommandString 
+	
+	aCommandString = 'ff' ifTrue: [ position := 0@2 ].
+	aCommandString = 'f' ifTrue: [ position := 0@1 ]! !
+
+!testRun: #MarsRoverTest #test01EmptyCommandStringDoesNothing stamp: 'TS 5/15/2023 06:51:38'!
+PASSED!
+
+!testRun: #MarsRoverTest #test02DoubleForwardCommandWhileHeadingNorthMoves2UnitsOnYAxis stamp: 'TS 5/15/2023 06:51:38'!
+PASSED!
+
+!testRun: #MarsRoverTest #test02SingleForwardCommandWhileHeadingNorthMoves1UnitOnYAxis stamp: 'TS 5/15/2023 06:51:38'!
+PASSED!
+!MarsRoverTest methodsFor: 'testing' stamp: 'TS 5/15/2023 06:52:13'!
+test04MovingForwardWorksWhenStartingInDifferentPosition
+
+	| marsRover |
+	
+	marsRover := MarsRover at: 0@0 headingTo: #North.
+	
+	marsRover receiveCommands: 'f'.
+	
+	self assert: 0@1 equals: marsRover position.
+	self assert: #North equals: marsRover heading.! !
+!MarsRoverTest methodsFor: 'testing' stamp: 'TS 5/15/2023 06:52:17'!
+test03SingleForwardCommandWhileHeadingNorthMoves1UnitOnYAxis
+
+	| marsRover |
+	
+	marsRover := MarsRover at: 0@0 headingTo: #North.
+	
+	marsRover receiveCommands: 'f'.
+	
+	self assert: 0@1 equals: marsRover position.
+	self assert: #North equals: marsRover heading.! !
+
+!methodRemoval: MarsRoverTest #test02SingleForwardCommandWhileHeadingNorthMoves1UnitOnYAxis stamp: 'TS 5/15/2023 06:52:17'!
+test02SingleForwardCommandWhileHeadingNorthMoves1UnitOnYAxis
+
+	| marsRover |
+	
+	marsRover := MarsRover at: 0@0 headingTo: #North.
+	
+	marsRover receiveCommands: 'f'.
+	
+	self assert: 0@1 equals: marsRover position.
+	self assert: #North equals: marsRover heading.!
+!MarsRoverTest methodsFor: 'testing' stamp: 'TS 5/15/2023 06:52:29' prior: 50604197!
+test04MovingForwardWorksWhenStartingInDifferentPosition
+
+	| marsRover |
+	
+	marsRover := MarsRover at: 1@1 headingTo: #North.
+	
+	marsRover receiveCommands: 'f'.
+	
+	self assert: 1@2 equals: marsRover position.
+	self assert: #North equals: marsRover heading.! !
+
+!testRun: #MarsRoverTest #test04MovingForwardWorksWhenStartingInDifferentPosition stamp: 'TS 5/15/2023 06:52:31'!
+FAILURE!
+
+!methodRemoval: MarsRoverTest #test04MovingForwardWorksWhenStartingInDifferentPosition stamp: 'TS 5/15/2023 06:53:20'!
+test04MovingForwardWorksWhenStartingInDifferentPosition
+
+	| marsRover |
+	
+	marsRover := MarsRover at: 1@1 headingTo: #North.
+	
+	marsRover receiveCommands: 'f'.
+	
+	self assert: 1@2 equals: marsRover position.
+	self assert: #North equals: marsRover heading.!
+!MarsRover methodsFor: 'command execution' stamp: 'TS 5/15/2023 06:53:51' prior: 50604179!
+receiveCommands: aCommandString 
+	
+	position := 0@(aCommandString size)! !
+
+!testRun: #MarsRoverTest #test01EmptyCommandStringDoesNothing stamp: 'TS 5/15/2023 06:53:52'!
+PASSED!
+
+!testRun: #MarsRoverTest #test02DoubleForwardCommandWhileHeadingNorthMoves2UnitsOnYAxis stamp: 'TS 5/15/2023 06:53:52'!
+PASSED!
+
+!testRun: #MarsRoverTest #test03SingleForwardCommandWhileHeadingNorthMoves1UnitOnYAxis stamp: 'TS 5/15/2023 06:53:52'!
+PASSED!
+!MarsRoverTest methodsFor: 'testing' stamp: 'TS 5/15/2023 06:54:22'!
+test04MovingForwardWorksWhenStartingInADifferentPosition
+
+	| marsRover |
+	
+	marsRover := MarsRover at: 0@0 headingTo: #North.
+	
+	marsRover receiveCommands: 'f'.
+	
+	self assert: 0@1 equals: marsRover position.
+	self assert: #North equals: marsRover heading.! !
+!MarsRoverTest methodsFor: 'testing' stamp: 'TS 5/15/2023 06:54:30' prior: 50604274!
+test04MovingForwardWorksWhenStartingInADifferentPosition
+
+	| marsRover |
+	
+	marsRover := MarsRover at: 1@1 headingTo: #North.
+	
+	marsRover receiveCommands: 'f'.
+	
+	self assert: 1@2 equals: marsRover position.
+	self assert: #North equals: marsRover heading.! !
+!MarsRoverTest methodsFor: 'testing' stamp: 'TS 5/15/2023 06:54:36' prior: 50604208!
+test03SingleForwardCommandWhileHeadingNorthMoves1UnitOnYAxis
+
+	| marsRover |
+	
+	marsRover := MarsRover at: 0@0 headingTo: #North.
+	
+	marsRover receiveCommands: 'f'.
+	
+	self assert: 0@2 equals: marsRover position.
+	self assert: #North equals: marsRover heading.! !
+!MarsRoverTest methodsFor: 'testing' stamp: 'TS 5/15/2023 06:54:37' prior: 50604296!
+test03SingleForwardCommandWhileHeadingNorthMoves1UnitOnYAxis
+
+	| marsRover |
+	
+	marsRover := MarsRover at: 0@0 headingTo: #North.
+	
+	marsRover receiveCommands: 'ff'.
+	
+	self assert: 0@2 equals: marsRover position.
+	self assert: #North equals: marsRover heading.! !
+
+!testRun: #MarsRoverTest #test03SingleForwardCommandWhileHeadingNorthMoves1UnitOnYAxis stamp: 'TS 5/15/2023 06:54:38'!
+PASSED!
+
+!testRun: #MarsRoverTest #test01EmptyCommandStringDoesNothing stamp: 'TS 5/15/2023 06:54:38'!
+PASSED!
+
+!testRun: #MarsRoverTest #test02DoubleForwardCommandWhileHeadingNorthMoves2UnitsOnYAxis stamp: 'TS 5/15/2023 06:54:38'!
+PASSED!
+
+!testRun: #MarsRoverTest #test03SingleForwardCommandWhileHeadingNorthMoves1UnitOnYAxis stamp: 'TS 5/15/2023 06:54:38'!
+PASSED!
+
+!testRun: #MarsRoverTest #test04MovingForwardWorksWhenStartingInADifferentPosition stamp: 'TS 5/15/2023 06:54:38'!
+FAILURE!
+
+!testRun: #MarsRoverTest #test04MovingForwardWorksWhenStartingInADifferentPosition stamp: 'TS 5/15/2023 06:54:38'!
+FAILURE!
+!MarsRover methodsFor: 'command execution' stamp: 'TS 5/15/2023 06:56:05' prior: 50604258!
+receiveCommands: aCommandString 
+	
+	aCommandString size timesRepeat: [
+		position := position + 0@1
+	]! !
+
+!testRun: #MarsRoverTest #test01EmptyCommandStringDoesNothing stamp: 'TS 5/15/2023 06:56:07'!
+PASSED!
+
+!testRun: #MarsRoverTest #test02DoubleForwardCommandWhileHeadingNorthMoves2UnitsOnYAxis stamp: 'TS 5/15/2023 06:56:07'!
+ERROR!
+
+!testRun: #MarsRoverTest #test03SingleForwardCommandWhileHeadingNorthMoves1UnitOnYAxis stamp: 'TS 5/15/2023 06:56:07'!
+ERROR!
+
+!testRun: #MarsRoverTest #test04MovingForwardWorksWhenStartingInADifferentPosition stamp: 'TS 5/15/2023 06:56:07'!
+ERROR!
+
+!testRun: #MarsRoverTest #test04MovingForwardWorksWhenStartingInADifferentPosition stamp: 'TS 5/15/2023 06:56:08'!
+ERROR!
+!MarsRover methodsFor: 'command execution' stamp: 'TS 5/15/2023 06:56:17' prior: 50604342!
+receiveCommands: aCommandString 
+	
+	aCommandString size timesRepeat: [
+		position := position + (0@1)
+	]! !
+
+!testRun: #MarsRoverTest #test01EmptyCommandStringDoesNothing stamp: 'TS 5/15/2023 06:56:18'!
+PASSED!
+
+!testRun: #MarsRoverTest #test02DoubleForwardCommandWhileHeadingNorthMoves2UnitsOnYAxis stamp: 'TS 5/15/2023 06:56:18'!
+PASSED!
+
+!testRun: #MarsRoverTest #test03SingleForwardCommandWhileHeadingNorthMoves1UnitOnYAxis stamp: 'TS 5/15/2023 06:56:18'!
+PASSED!
+
+!testRun: #MarsRoverTest #test04MovingForwardWorksWhenStartingInADifferentPosition stamp: 'TS 5/15/2023 06:56:18'!
+PASSED!
+!MarsRoverTest methodsFor: 'testing' stamp: 'TS 5/15/2023 06:57:23'!
+assert: aMarsRover isAt: aPosition andIsHeadingTo: aHeading
+
+	self assert: aPosition equals: aMarsRover position.
+	self assert: aHeading equals: aMarsRover heading.! !
+!MarsRoverTest methodsFor: 'testing' stamp: 'TS 5/15/2023 06:57:57' prior: 50604047!
+test01EmptyCommandStringDoesNothing
+
+	| marsRover |
+	
+	marsRover := MarsRover at: 0@0 headingTo: #North.
+	
+	marsRover receiveCommands: ''.
+	
+	self assert: marsRover isAt: 0@0 andIsHeadingTo: #North! !
+
+!testRun: #MarsRoverTest #test01EmptyCommandStringDoesNothing stamp: 'TS 5/15/2023 06:57:57'!
+PASSED!
+
+!testRun: #MarsRoverTest #test01EmptyCommandStringDoesNothing stamp: 'TS 5/15/2023 06:57:57'!
+PASSED!
+
+!testRun: #MarsRoverTest #test02DoubleForwardCommandWhileHeadingNorthMoves2UnitsOnYAxis stamp: 'TS 5/15/2023 06:57:57'!
+PASSED!
+
+!testRun: #MarsRoverTest #test03SingleForwardCommandWhileHeadingNorthMoves1UnitOnYAxis stamp: 'TS 5/15/2023 06:57:57'!
+PASSED!
+
+!testRun: #MarsRoverTest #test04MovingForwardWorksWhenStartingInADifferentPosition stamp: 'TS 5/15/2023 06:57:57'!
+PASSED!
+!MarsRoverTest methodsFor: 'testing' stamp: 'TS 5/15/2023 06:58:09' prior: 50604151!
+test02DoubleForwardCommandWhileHeadingNorthMoves2UnitsOnYAxis
+
+	| marsRover |
+	
+	marsRover := MarsRover at: 0@0 headingTo: #North.
+	
+	marsRover receiveCommands: 'f'.
+	
+	self assert: marsRover isAt: 0@1 andIsHeadingTo: #North! !
+
+!testRun: #MarsRoverTest #test02DoubleForwardCommandWhileHeadingNorthMoves2UnitsOnYAxis stamp: 'TS 5/15/2023 06:58:10'!
+PASSED!
+
+!testRun: #MarsRoverTest #test01EmptyCommandStringDoesNothing stamp: 'TS 5/15/2023 06:58:10'!
+PASSED!
+
+!testRun: #MarsRoverTest #test02DoubleForwardCommandWhileHeadingNorthMoves2UnitsOnYAxis stamp: 'TS 5/15/2023 06:58:10'!
+PASSED!
+
+!testRun: #MarsRoverTest #test03SingleForwardCommandWhileHeadingNorthMoves1UnitOnYAxis stamp: 'TS 5/15/2023 06:58:10'!
+PASSED!
+
+!testRun: #MarsRoverTest #test04MovingForwardWorksWhenStartingInADifferentPosition stamp: 'TS 5/15/2023 06:58:10'!
+PASSED!
+!MarsRoverTest methodsFor: 'testing' stamp: 'TS 5/15/2023 06:58:15' prior: 50604307!
+test03SingleForwardCommandWhileHeadingNorthMoves1UnitOnYAxis
+
+	| marsRover |
+	
+	marsRover := MarsRover at: 0@0 headingTo: #North.
+	
+	marsRover receiveCommands: 'ff'.
+	
+	self assert: marsRover isAt: 0@2 andIsHeadingTo: #North! !
+
+!testRun: #MarsRoverTest #test03SingleForwardCommandWhileHeadingNorthMoves1UnitOnYAxis stamp: 'TS 5/15/2023 06:58:15'!
+PASSED!
+
+!testRun: #MarsRoverTest #test01EmptyCommandStringDoesNothing stamp: 'TS 5/15/2023 06:58:15'!
+PASSED!
+
+!testRun: #MarsRoverTest #test02DoubleForwardCommandWhileHeadingNorthMoves2UnitsOnYAxis stamp: 'TS 5/15/2023 06:58:15'!
+PASSED!
+
+!testRun: #MarsRoverTest #test03SingleForwardCommandWhileHeadingNorthMoves1UnitOnYAxis stamp: 'TS 5/15/2023 06:58:15'!
+PASSED!
+
+!testRun: #MarsRoverTest #test04MovingForwardWorksWhenStartingInADifferentPosition stamp: 'TS 5/15/2023 06:58:15'!
+PASSED!
+!MarsRoverTest methodsFor: 'testing' stamp: 'TS 5/15/2023 06:58:21' prior: 50604285!
+test04MovingForwardWorksWhenStartingInADifferentPosition
+
+	| marsRover |
+	
+	marsRover := MarsRover at: 1@1 headingTo: #East.
+	
+	marsRover receiveCommands: 'f'.
+	
+	self assert: 1@2 equals: marsRover position.
+	self assert: #North equals: marsRover heading.! !
+
+!testRun: #MarsRoverTest #test04MovingForwardWorksWhenStartingInADifferentPosition stamp: 'TS 5/15/2023 06:58:22'!
+PASSED!
+
+!testRun: #MarsRoverTest #test01EmptyCommandStringDoesNothing stamp: 'TS 5/15/2023 06:58:22'!
+PASSED!
+
+!testRun: #MarsRoverTest #test02DoubleForwardCommandWhileHeadingNorthMoves2UnitsOnYAxis stamp: 'TS 5/15/2023 06:58:22'!
+PASSED!
+
+!testRun: #MarsRoverTest #test03SingleForwardCommandWhileHeadingNorthMoves1UnitOnYAxis stamp: 'TS 5/15/2023 06:58:22'!
+PASSED!
+
+!testRun: #MarsRoverTest #test04MovingForwardWorksWhenStartingInADifferentPosition stamp: 'TS 5/15/2023 06:58:22'!
+PASSED!
+!MarsRoverTest methodsFor: 'testing' stamp: 'TS 5/15/2023 06:58:32' prior: 50604483!
+test04MovingForwardWorksWhenStartingInADifferentPosition
+
+	| marsRover |
+	
+	marsRover := MarsRover at: 1@1 headingTo: #North.
+	
+	marsRover receiveCommands: 'f'.
+	
+	self assert: 1@2 equals: marsRover position.
+	self assert: #North equals: marsRover heading.! !
+!MarsRoverTest methodsFor: 'testing' stamp: 'TS 5/15/2023 06:58:38' prior: 50604513!
+test04MovingForwardWorksWhenStartingInADifferentPosition
+
+	| marsRover |
+	
+	marsRover := MarsRover at: 1@1 headingTo: #North.
+	
+	marsRover receiveCommands: 'f'.
+	
+	self assert: marsRover isAt: 1@2 andIsHeadingTo: #North! !
+
+!testRun: #MarsRoverTest #test04MovingForwardWorksWhenStartingInADifferentPosition stamp: 'TS 5/15/2023 06:58:38'!
+PASSED!
+
+!testRun: #MarsRoverTest #test01EmptyCommandStringDoesNothing stamp: 'TS 5/15/2023 06:58:38'!
+PASSED!
+
+!testRun: #MarsRoverTest #test02DoubleForwardCommandWhileHeadingNorthMoves2UnitsOnYAxis stamp: 'TS 5/15/2023 06:58:38'!
+PASSED!
+
+!testRun: #MarsRoverTest #test03SingleForwardCommandWhileHeadingNorthMoves1UnitOnYAxis stamp: 'TS 5/15/2023 06:58:38'!
+PASSED!
+
+!testRun: #MarsRoverTest #test04MovingForwardWorksWhenStartingInADifferentPosition stamp: 'TS 5/15/2023 06:58:38'!
+PASSED!
+!MarsRoverTest methodsFor: 'testing' stamp: 'TS 5/15/2023 06:59:16' prior: 50604397!
+test01EmptyCommandStringDoesNothing
+
+	
+	
+	self assert: 0 isAt: 0@0 andIsHeadingTo: #North! !
+!MarsRoverTest methodsFor: 'testing' stamp: 'TS 5/15/2023 06:59:23' prior: 50604425!
+test02DoubleForwardCommandWhileHeadingNorthMoves2UnitsOnYAxis
+
+	
+	
+	self assert: 0 isAt: 0@1 andIsHeadingTo: #North! !
+!MarsRoverTest methodsFor: 'testing' stamp: 'TS 5/15/2023 06:59:33' prior: 50604454!
+test03SingleForwardCommandWhileHeadingNorthMoves1UnitOnYAxis
+
+	
+	
+	self assert: 0 isAt: 0@2 andIsHeadingTo: #North! !
+!MarsRoverTest methodsFor: 'testing' stamp: 'TS 5/15/2023 07:00:00' prior: 50604524!
+test04MovingForwardWorksWhenStartingInADifferentPosition
+	
+	| marsRoverStartingInDifferentPosition |
+	marsRoverStartingInDifferentPosition := MarsRover at: 1@1 headingTo: #North.
+	
+	marsRoverStartingInDifferentPosition receiveCommands: 'f'.
+	
+	self assert: marsRoverStartingInDifferentPosition isAt: 1@2 andIsHeadingTo: #North! !
+!MarsRoverTest methodsFor: 'testing' stamp: 'TS 5/15/2023 07:00:03' prior: 50604573!
+test04MovingForwardWorksWhenStartingInADifferentPosition
+	
+	| marsRoverStartingInDifferentPosition |
+	
+	marsRoverStartingInDifferentPosition := MarsRover at: 1@1 headingTo: #North.
+	
+	marsRoverStartingInDifferentPosition receiveCommands: 'f'.
+	
+	self assert: marsRoverStartingInDifferentPosition isAt: 1@2 andIsHeadingTo: #North! !
+!MarsRoverTest methodsFor: 'testing' stamp: 'TS 5/15/2023 07:00:03' prior: 50604586!
+test04MovingForwardWorksWhenStartingInADifferentPosition
+	
+	| marsRoverStartingInDifferentPosition |
+
+	marsRoverStartingInDifferentPosition := MarsRover at: 1@1 headingTo: #North.
+	
+	marsRoverStartingInDifferentPosition receiveCommands: 'f'.
+	
+	self assert: marsRoverStartingInDifferentPosition isAt: 1@2 andIsHeadingTo: #North! !
+!MarsRoverTest methodsFor: 'testing' stamp: 'TS 5/15/2023 07:00:14' prior: 50604553!
+test01EmptyCommandStringDoesNothing
+
+	| marsRover |
+	
+	marsRover := MarsRover at: 0@0 headingTo: #North.
+	
+	marsRover receiveCommands: ''.
+	
+	self assert: 0 isAt: 0@0 andIsHeadingTo: #North! !
+!MarsRoverTest methodsFor: 'as yet unclassified' stamp: 'TS 5/15/2023 07:00:25' prior: 50604613!
+test01EmptyCommandStringDoesNothing
+
+	 
+	
+	marsRover := MarsRover at: 0@0 headingTo: #North.
+	
+	marsRover receiveCommands: ''.
+	
+	self assert: 0 isAt: 0@0 andIsHeadingTo: #North! !
+
+!classDefinition: #MarsRoverTest category: 'MarsRover-Ejercicio' stamp: 'TS 5/15/2023 07:00:25'!
+TestCase subclass: #MarsRoverTest
+	instanceVariableNames: 'marsRover'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'MarsRover-Ejercicio'!
+!MarsRoverTest methodsFor: 'testing' stamp: 'TS 5/15/2023 07:00:32' prior: 50604623!
+test01EmptyCommandStringDoesNothing
+
+	
+	marsRover receiveCommands: ''.
+	
+	self assert: 0 isAt: 0@0 andIsHeadingTo: #North! !
+!MarsRoverTest methodsFor: 'testing' stamp: 'TS 5/15/2023 07:00:34' prior: 50604640!
+test01EmptyCommandStringDoesNothing
+
+	marsRover receiveCommands: ''.
+	
+	self assert: 0 isAt: 0@0 andIsHeadingTo: #North! !
+!MarsRoverTest methodsFor: 'setUp/tearDown' stamp: 'TS 5/15/2023 07:00:45' overrides: 16961394!
+setUp
+
+	marsRover := MarsRover at: 0@0 headingTo: #North.! !
+!MarsRoverTest methodsFor: 'testing' stamp: 'TS 5/15/2023 07:00:53' prior: 50604559!
+test02DoubleForwardCommandWhileHeadingNorthMoves2UnitsOnYAxis
+
+	
+	
+	self assert: marsRover isAt: 0@1 andIsHeadingTo: #North! !
+!MarsRoverTest methodsFor: 'testing' stamp: 'TS 5/15/2023 07:00:57' prior: 50604566!
+test03SingleForwardCommandWhileHeadingNorthMoves1UnitOnYAxis
+
+	
+	
+	self assert: marsRover isAt: 0@2 andIsHeadingTo: #North! !
+!MarsRoverTest methodsFor: 'testing' stamp: 'TS 5/15/2023 07:01:03' prior: 50604666!
+test03SingleForwardCommandWhileHeadingNorthMoves1UnitOnYAxis
+
+	self assert: marsRover isAt: 0@2 andIsHeadingTo: #North! !
+
+!testRun: #MarsRoverTest #test03SingleForwardCommandWhileHeadingNorthMoves1UnitOnYAxis stamp: 'TS 5/15/2023 07:01:04'!
+FAILURE!
+!MarsRoverTest methodsFor: 'testing' stamp: 'TS 5/15/2023 07:01:16' prior: 50604673!
+test03SingleForwardCommandWhileHeadingNorthMoves1UnitOnYAxis
+
+	marsRover receiveCommands: 'f'.
+
+	self assert: marsRover isAt: 0@2 andIsHeadingTo: #North! !
+
+!testRun: #MarsRoverTest #test03SingleForwardCommandWhileHeadingNorthMoves1UnitOnYAxis stamp: 'TS 5/15/2023 07:01:17'!
+FAILURE!
+!MarsRoverTest methodsFor: 'testing' stamp: 'TS 5/15/2023 07:01:36'!
+test02SingleForwardCommandWhileHeadingNorthMoves1UnitOnYAxis
+
+	marsRover receiveCommands: 'f'.
+
+	self assert: marsRover isAt: 0@2 andIsHeadingTo: #North! !
+
+!methodRemoval: MarsRoverTest #test03SingleForwardCommandWhileHeadingNorthMoves1UnitOnYAxis stamp: 'TS 5/15/2023 07:01:36'!
+test03SingleForwardCommandWhileHeadingNorthMoves1UnitOnYAxis
+
+	marsRover receiveCommands: 'f'.
+
+	self assert: marsRover isAt: 0@2 andIsHeadingTo: #North!
+!MarsRoverTest methodsFor: 'testing' stamp: 'TS 5/15/2023 07:01:43' prior: 50604696!
+test02SingleForwardCommandWhileHeadingNorthMoves1UnitOnYAxis
+
+	marsRover receiveCommands: 'f'.
+
+	self assert: marsRover isAt: 0@1 andIsHeadingTo: #North! !
+!MarsRoverTest methodsFor: 'testing' stamp: 'TS 5/15/2023 07:01:50' prior: 50604659!
+test02DoubleForwardCommandWhileHeadingNorthMoves2UnitsOnYAxis
+
+	
+	
+	self assert: marsRover isAt: 0@2 andIsHeadingTo: #North! !
+!MarsRoverTest methodsFor: 'testing' stamp: 'TS 5/15/2023 07:01:51' prior: 50604721!
+test02DoubleForwardCommandWhileHeadingNorthMoves2UnitsOnYAxis
+	
+	self assert: marsRover isAt: 0@2 andIsHeadingTo: #North! !
+!MarsRoverTest methodsFor: 'testing' stamp: 'TS 5/15/2023 07:01:57'!
+test02SingleForwardCommandWhileHeadingNorthMoves2UnitsOnYAxis
+	
+	self assert: marsRover isAt: 0@2 andIsHeadingTo: #North! !
+
+!methodRemoval: MarsRoverTest #test02DoubleForwardCommandWhileHeadingNorthMoves2UnitsOnYAxis stamp: 'TS 5/15/2023 07:01:57'!
+test02DoubleForwardCommandWhileHeadingNorthMoves2UnitsOnYAxis
+	
+	self assert: marsRover isAt: 0@2 andIsHeadingTo: #North!
+!MarsRoverTest methodsFor: 'testing' stamp: 'TS 5/15/2023 07:02:05'!
+test03DoubleForwardCommandWhileHeadingNorthMoves2UnitsOnYAxis
+	
+	self assert: marsRover isAt: 0@2 andIsHeadingTo: #North! !
+
+!methodRemoval: MarsRoverTest #test02SingleForwardCommandWhileHeadingNorthMoves2UnitsOnYAxis stamp: 'TS 5/15/2023 07:02:05'!
+test02SingleForwardCommandWhileHeadingNorthMoves2UnitsOnYAxis
+	
+	self assert: marsRover isAt: 0@2 andIsHeadingTo: #North!
+!MarsRoverTest methodsFor: 'testing' stamp: 'TS 5/15/2023 07:02:17' prior: 50604749!
+test03DoubleForwardCommandWhileHeadingNorthMoves2UnitsOnYAxis
+	
+	marsRover receiveCommands: 'ff'.
+	
+	self assert: marsRover isAt: 0@2 andIsHeadingTo: #North! !
+!MarsRoverTest methodsFor: 'testing' stamp: 'TS 5/15/2023 07:02:26' prior: 50604647!
+test01EmptyCommandStringDoesNothing
+
+	marsRover receiveCommands: ''.
+	
+	self assert: marsRover isAt: 0@0 andIsHeadingTo: #North! !
+
+!testRun: #MarsRoverTest #test01EmptyCommandStringDoesNothing stamp: 'TS 5/15/2023 07:02:31'!
+PASSED!
+
+!testRun: #MarsRoverTest #test02SingleForwardCommandWhileHeadingNorthMoves1UnitOnYAxis stamp: 'TS 5/15/2023 07:02:31'!
+PASSED!
+
+!testRun: #MarsRoverTest #test03DoubleForwardCommandWhileHeadingNorthMoves2UnitsOnYAxis stamp: 'TS 5/15/2023 07:02:31'!
+PASSED!
+
+!testRun: #MarsRoverTest #test04MovingForwardWorksWhenStartingInADifferentPosition stamp: 'TS 5/15/2023 07:02:31'!
+PASSED!
+!MarsRoverTest methodsFor: 'testing' stamp: 'TS 5/15/2023 07:03:52'!
+test03BackwardCommandsWhileHeadingNorthMoveBackwardOnYAxis
+	
+	marsRover receiveCommands: 'bbb'.
+	
+	self assert: marsRover isAt: 0@-3 andIsHeadingTo: #North! !
+!MarsRoverTest methodsFor: 'testing' stamp: 'TS 5/15/2023 07:03:58'!
+test05BackwardCommandsWhileHeadingNorthMoveBackwardOnYAxis
+	
+	marsRover receiveCommands: 'bbb'.
+	
+	self assert: marsRover isAt: 0@-3 andIsHeadingTo: #North! !
+
+!methodRemoval: MarsRoverTest #test03BackwardCommandsWhileHeadingNorthMoveBackwardOnYAxis stamp: 'TS 5/15/2023 07:03:58'!
+test03BackwardCommandsWhileHeadingNorthMoveBackwardOnYAxis
+	
+	marsRover receiveCommands: 'bbb'.
+	
+	self assert: marsRover isAt: 0@-3 andIsHeadingTo: #North!
+
+!testRun: #MarsRoverTest #test05BackwardCommandsWhileHeadingNorthMoveBackwardOnYAxis stamp: 'TS 5/15/2023 07:04:01'!
+FAILURE!
+!MarsRover methodsFor: 'command execution' stamp: 'TS 5/15/2023 07:04:14' prior: 50604368!
+receiveCommands: aCommandString 
+	
+	aCommandString do: [
+		position := position + (0@1)
+	]! !
+!MarsRover methodsFor: 'command execution' stamp: 'TS 5/15/2023 07:05:10' prior: 50604823!
+receiveCommands: aCommandString 
+	
+	(aCommandString includes: $f) ifTrue: [
+		aCommandString size timesRepeat: [
+			position := position + (0@1)
+		]
+	].
+	(aCommandString includes: $f) ifTrue: [
+		aCommandString size timesRepeat: [
+			position := position + (0@1)
+		]
+	]! !
+!MarsRover methodsFor: 'command execution' stamp: 'TS 5/15/2023 07:05:22' prior: 50604829!
+receiveCommands: aCommandString 
+	
+	(aCommandString includes: $f) ifTrue: [
+		aCommandString size timesRepeat: [
+			position := position + (0@1)
+		]
+	].
+	(aCommandString includes: $b) ifTrue: [
+		aCommandString size timesRepeat: [
+			position := position - (0@1)
+		]
+	]! !
+
+!testRun: #MarsRoverTest #test01EmptyCommandStringDoesNothing stamp: 'TS 5/15/2023 07:05:23'!
+PASSED!
+
+!testRun: #MarsRoverTest #test02SingleForwardCommandWhileHeadingNorthMoves1UnitOnYAxis stamp: 'TS 5/15/2023 07:05:23'!
+PASSED!
+
+!testRun: #MarsRoverTest #test03DoubleForwardCommandWhileHeadingNorthMoves2UnitsOnYAxis stamp: 'TS 5/15/2023 07:05:23'!
+PASSED!
+
+!testRun: #MarsRoverTest #test04MovingForwardWorksWhenStartingInADifferentPosition stamp: 'TS 5/15/2023 07:05:23'!
+PASSED!
+
+!testRun: #MarsRoverTest #test05BackwardCommandsWhileHeadingNorthMoveBackwardOnYAxis stamp: 'TS 5/15/2023 07:05:23'!
+PASSED!
+!MarsRoverTest methodsFor: 'testing' stamp: 'TS 5/15/2023 07:06:10'!
+test06MixedMovementCommandsWhileHeadingNorthLeaveRoverInCorrectPosition
+	
+	marsRover receiveCommands: 'fbffbbf'.
+	
+	self assert: marsRover isAt: 0@1 andIsHeadingTo: #North! !
+
+!testRun: #MarsRoverTest #test06MixedMovementCommandsWhileHeadingNorthLeaveRoverInCorrectPosition stamp: 'TS 5/15/2023 07:06:11'!
+FAILURE!
+!MarsRover methodsFor: 'command execution' stamp: 'TS 5/15/2023 07:07:32' prior: 50604841!
+receiveCommands: aCommandString 
+
+	aCommandString do: [ :commandCharacter |
+		commandCharacter = $f ifTrue: [ position := position + (0@1) ].
+		commandCharacter = $b ifTrue: [ position := position - (0@1) ].
+	]! !
+
+!testRun: #MarsRoverTest #test01EmptyCommandStringDoesNothing stamp: 'TS 5/15/2023 07:07:34'!
+PASSED!
+
+!testRun: #MarsRoverTest #test02SingleForwardCommandWhileHeadingNorthMoves1UnitOnYAxis stamp: 'TS 5/15/2023 07:07:34'!
+PASSED!
+
+!testRun: #MarsRoverTest #test03DoubleForwardCommandWhileHeadingNorthMoves2UnitsOnYAxis stamp: 'TS 5/15/2023 07:07:34'!
+PASSED!
+
+!testRun: #MarsRoverTest #test04MovingForwardWorksWhenStartingInADifferentPosition stamp: 'TS 5/15/2023 07:07:34'!
+PASSED!
+
+!testRun: #MarsRoverTest #test05BackwardCommandsWhileHeadingNorthMoveBackwardOnYAxis stamp: 'TS 5/15/2023 07:07:34'!
+PASSED!
+
+!testRun: #MarsRoverTest #test06MixedMovementCommandsWhileHeadingNorthLeaveRoverInCorrectPosition stamp: 'TS 5/15/2023 07:07:34'!
+PASSED!
+!MarsRoverTest methodsFor: 'testing' stamp: 'TS 5/15/2023 07:09:42'!
+test07InvalidCommandRaisesAnError
+
+	self
+		should: [ marsRover receiveCommands: 'hola' ]
+		raise: Error - MessageNotUnderstood 
+		description: marsRover class invalidCommandErrorDescription! !
+
+!testRun: #MarsRoverTest #test07InvalidCommandRaisesAnError stamp: 'TS 5/15/2023 07:09:44'!
+ERROR!
+!MarsRover class methodsFor: 'error descriptions' stamp: 'TS 5/15/2023 07:10:12'!
+invalidCommandErrorDescription
+	self shouldBeImplemented.! !
+!MarsRover class methodsFor: 'error descriptions' stamp: 'TS 5/15/2023 07:10:24' prior: 50604929!
+invalidCommandErrorDescription
+	
+	^ 'Comando inválido'! !
+
+!testRun: #MarsRoverTest #test07InvalidCommandRaisesAnError stamp: 'TS 5/15/2023 07:10:25'!
+FAILURE!
+!MarsRover methodsFor: 'command execution' stamp: 'TS 5/15/2023 07:11:26' prior: 50604884!
+receiveCommands: aCommandString 
+
+	aCommandString do: [ :commandCharacter |
+		self runCommand: commandCharacter.
+		commandCharacter = $f ifTrue: [ position := position + (0@1) ].
+		commandCharacter = $b ifTrue: [ position := position - (0@1) ].
+		
+		
+	]! !
+!MarsRover methodsFor: 'command execution' stamp: 'TS 5/15/2023 07:11:47'!
+runCommand: commandCharacter 
+
+	commandCharacter = $f ifTrue: [ position := position + (0@1). ^self ].
+	commandCharacter = $b ifTrue: [ position := position - (0@1). ^self ].! !
+!MarsRover methodsFor: 'command execution' stamp: 'TS 5/15/2023 07:11:56' prior: 50604953!
+runCommand: commandCharacter 
+
+	commandCharacter = $f ifTrue: [ position := position + (0@1). ^self ].
+	commandCharacter = $b ifTrue: [ position := position - (0@1). ^self ].
+	
+	self signalInvalidCommand! !
+!MarsRover methodsFor: 'command execution' stamp: 'TS 5/15/2023 07:12:04' prior: 50604942!
+receiveCommands: aCommandString 
+
+	aCommandString do: [ :commandCharacter |
+		self runCommand: commandCharacter.
+	]! !
+
+!testRun: #MarsRoverTest #test01EmptyCommandStringDoesNothing stamp: 'TS 5/15/2023 07:12:13'!
+PASSED!
+
+!testRun: #MarsRoverTest #test02SingleForwardCommandWhileHeadingNorthMoves1UnitOnYAxis stamp: 'TS 5/15/2023 07:12:13'!
+PASSED!
+
+!testRun: #MarsRoverTest #test03DoubleForwardCommandWhileHeadingNorthMoves2UnitsOnYAxis stamp: 'TS 5/15/2023 07:12:13'!
+PASSED!
+
+!testRun: #MarsRoverTest #test04MovingForwardWorksWhenStartingInADifferentPosition stamp: 'TS 5/15/2023 07:12:13'!
+PASSED!
+
+!testRun: #MarsRoverTest #test05BackwardCommandsWhileHeadingNorthMoveBackwardOnYAxis stamp: 'TS 5/15/2023 07:12:13'!
+PASSED!
+
+!testRun: #MarsRoverTest #test06MixedMovementCommandsWhileHeadingNorthLeaveRoverInCorrectPosition stamp: 'TS 5/15/2023 07:12:13'!
+PASSED!
+
+!testRun: #MarsRoverTest #test07InvalidCommandRaisesAnError stamp: 'TS 5/15/2023 07:12:13'!
+ERROR!
+
+!testRun: #MarsRoverTest #test07InvalidCommandRaisesAnError stamp: 'TS 5/15/2023 07:12:13'!
+ERROR!
+!MarsRover methodsFor: 'error handling' stamp: 'TS 5/15/2023 07:12:32'!
+signalInvalidCommand
+	self shouldBeImplemented.! !
+!MarsRover methodsFor: 'error handling' stamp: 'TS 5/15/2023 07:12:54' prior: 50605008!
+signalInvalidCommand
+	
+	self error: self class invalidCommandErrorDescription ! !
+
+!testRun: #MarsRoverTest #test07InvalidCommandRaisesAnError stamp: 'TS 5/15/2023 07:12:55'!
+PASSED!
+!MarsRoverTest methodsFor: 'testing' stamp: 'TS 5/15/2023 07:13:02' prior: 50604917!
+test07InvalidCommandRaisesAnError
+
+	self
+		should: [ marsRover receiveCommands: 'hola' ]
+		raise: Error - MessageNotUnderstood 
+		description: MarsRover invalidCommandErrorDescription! !
+
+!testRun: #MarsRoverTest #test07InvalidCommandRaisesAnError stamp: 'TS 5/15/2023 07:13:03'!
+PASSED!
+
+!testRun: #MarsRoverTest #test01EmptyCommandStringDoesNothing stamp: 'TS 5/15/2023 07:13:03'!
+PASSED!
+
+!testRun: #MarsRoverTest #test02SingleForwardCommandWhileHeadingNorthMoves1UnitOnYAxis stamp: 'TS 5/15/2023 07:13:03'!
+PASSED!
+
+!testRun: #MarsRoverTest #test03DoubleForwardCommandWhileHeadingNorthMoves2UnitsOnYAxis stamp: 'TS 5/15/2023 07:13:03'!
+PASSED!
+
+!testRun: #MarsRoverTest #test04MovingForwardWorksWhenStartingInADifferentPosition stamp: 'TS 5/15/2023 07:13:03'!
+PASSED!
+
+!testRun: #MarsRoverTest #test05BackwardCommandsWhileHeadingNorthMoveBackwardOnYAxis stamp: 'TS 5/15/2023 07:13:03'!
+PASSED!
+
+!testRun: #MarsRoverTest #test06MixedMovementCommandsWhileHeadingNorthLeaveRoverInCorrectPosition stamp: 'TS 5/15/2023 07:13:03'!
+PASSED!
+
+!testRun: #MarsRoverTest #test07InvalidCommandRaisesAnError stamp: 'TS 5/15/2023 07:13:03'!
+PASSED!
+!MarsRoverTest methodsFor: 'testing' stamp: 'TS 5/15/2023 07:14:18'!
+test08LeftCommandWhileHeadingNorthTurns90DegreesLeft
+	
+	marsRover receiveCommands: 'l'.
+	
+	self assert: marsRover isAt: 0@0 andIsHeadingTo: #West! !
+
+!testRun: #MarsRoverTest #test08LeftCommandWhileHeadingNorthTurns90DegreesLeft stamp: 'TS 5/15/2023 07:14:19'!
+ERROR!
+!MarsRover class methodsFor: 'instance creation' stamp: 'TS 5/15/2023 07:14:44' prior: 50604072!
+at: aPosition headingTo: aHeading
+
+	^self new initializeAt: aPosition headingTo: aHeading! !
+
+!classDefinition: #MarsRover category: 'MarsRover-Ejercicio' stamp: 'TS 5/15/2023 07:15:06'!
+Object subclass: #MarsRover
+	instanceVariableNames: 'position heading'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'MarsRover-Ejercicio'!
+!MarsRover methodsFor: 'initialization' stamp: 'TS 5/15/2023 07:15:02'!
+initializeAt: aPosition headingTo: aHeading
+
+	position := aPosition.
+	heading := aHeading! !
+
+!methodRemoval: MarsRover #initializeAt: stamp: 'TS 5/15/2023 07:15:07'!
+initializeAt: aPosition 
+
+	position := aPosition.!
+!MarsRover methodsFor: 'accessing' stamp: 'TS 5/15/2023 07:15:19' prior: 50604014!
+heading
+
+	^ heading! !
+!MarsRover methodsFor: 'command execution' stamp: 'TS 5/15/2023 07:15:43' prior: 50604962!
+runCommand: commandCharacter 
+
+	commandCharacter = $f ifTrue: [ position := position + (0@1). ^self ].
+	commandCharacter = $b ifTrue: [ position := position - (0@1). ^self ].
+	commandCharacter = $k ifTrue: [ position := position - (0@1). ^self ].
+		
+	self signalInvalidCommand! !
+!MarsRover methodsFor: 'command execution' stamp: 'TS 5/15/2023 07:15:55' prior: 50605099!
+runCommand: commandCharacter 
+
+	commandCharacter = $f ifTrue: [ position := position + (0@1). ^self ].
+	commandCharacter = $b ifTrue: [ position := position - (0@1). ^self ].
+	commandCharacter = $l ifTrue: [ heading := #West. ^self ].
+		
+	self signalInvalidCommand! !
+
+!testRun: #MarsRoverTest #test01EmptyCommandStringDoesNothing stamp: 'TS 5/15/2023 07:15:57'!
+PASSED!
+
+!testRun: #MarsRoverTest #test02SingleForwardCommandWhileHeadingNorthMoves1UnitOnYAxis stamp: 'TS 5/15/2023 07:15:57'!
+PASSED!
+
+!testRun: #MarsRoverTest #test03DoubleForwardCommandWhileHeadingNorthMoves2UnitsOnYAxis stamp: 'TS 5/15/2023 07:15:57'!
+PASSED!
+
+!testRun: #MarsRoverTest #test04MovingForwardWorksWhenStartingInADifferentPosition stamp: 'TS 5/15/2023 07:15:57'!
+PASSED!
+
+!testRun: #MarsRoverTest #test05BackwardCommandsWhileHeadingNorthMoveBackwardOnYAxis stamp: 'TS 5/15/2023 07:15:57'!
+PASSED!
+
+!testRun: #MarsRoverTest #test06MixedMovementCommandsWhileHeadingNorthLeaveRoverInCorrectPosition stamp: 'TS 5/15/2023 07:15:57'!
+PASSED!
+
+!testRun: #MarsRoverTest #test07InvalidCommandRaisesAnError stamp: 'TS 5/15/2023 07:15:57'!
+PASSED!
+
+!testRun: #MarsRoverTest #test08LeftCommandWhileHeadingNorthTurns90DegreesLeft stamp: 'TS 5/15/2023 07:15:57'!
+PASSED!
+!MarsRoverTest methodsFor: 'testing' stamp: 'TS 5/15/2023 07:16:26'!
+test08LeftCommandTurns90DegreesLeft
+	
+	marsRover receiveCommands: 'l'.
+	
+	self assert: marsRover isAt: 0@0 andIsHeadingTo: #West! !
+
+!methodRemoval: MarsRoverTest #test08LeftCommandWhileHeadingNorthTurns90DegreesLeft stamp: 'TS 5/15/2023 07:16:26'!
+test08LeftCommandWhileHeadingNorthTurns90DegreesLeft
+	
+	marsRover receiveCommands: 'l'.
+	
+	self assert: marsRover isAt: 0@0 andIsHeadingTo: #West!
+!MarsRoverTest methodsFor: 'testing' stamp: 'TS 5/15/2023 07:16:41'!
+test09RightCommandTurns90DegreesRight
+	
+	marsRover receiveCommands: 'r'.
+	
+	self assert: marsRover isAt: 0@0 andIsHeadingTo: #East! !
+
+!testRun: #MarsRoverTest #test09RightCommandTurns90DegreesRight stamp: 'TS 5/15/2023 07:16:41'!
+ERROR!
+!MarsRover methodsFor: 'command execution' stamp: 'TS 5/15/2023 07:16:53' prior: 50605111!
+runCommand: commandCharacter 
+
+	commandCharacter = $f ifTrue: [ position := position + (0@1). ^self ].
+	commandCharacter = $b ifTrue: [ position := position - (0@1). ^self ].
+	commandCharacter = $l ifTrue: [ heading := #West. ^self ].
+	commandCharacter = $r ifTrue: [ heading := #East. ^self ].
+		
+	self signalInvalidCommand! !
+
+!testRun: #MarsRoverTest #test01EmptyCommandStringDoesNothing stamp: 'TS 5/15/2023 07:16:55'!
+PASSED!
+
+!testRun: #MarsRoverTest #test02SingleForwardCommandWhileHeadingNorthMoves1UnitOnYAxis stamp: 'TS 5/15/2023 07:16:55'!
+PASSED!
+
+!testRun: #MarsRoverTest #test03DoubleForwardCommandWhileHeadingNorthMoves2UnitsOnYAxis stamp: 'TS 5/15/2023 07:16:55'!
+PASSED!
+
+!testRun: #MarsRoverTest #test04MovingForwardWorksWhenStartingInADifferentPosition stamp: 'TS 5/15/2023 07:16:55'!
+PASSED!
+
+!testRun: #MarsRoverTest #test05BackwardCommandsWhileHeadingNorthMoveBackwardOnYAxis stamp: 'TS 5/15/2023 07:16:55'!
+PASSED!
+
+!testRun: #MarsRoverTest #test06MixedMovementCommandsWhileHeadingNorthLeaveRoverInCorrectPosition stamp: 'TS 5/15/2023 07:16:55'!
+PASSED!
+
+!testRun: #MarsRoverTest #test07InvalidCommandRaisesAnError stamp: 'TS 5/15/2023 07:16:55'!
+PASSED!
+
+!testRun: #MarsRoverTest #test08LeftCommandTurns90DegreesLeft stamp: 'TS 5/15/2023 07:16:55'!
+PASSED!
+
+!testRun: #MarsRoverTest #test09RightCommandTurns90DegreesRight stamp: 'TS 5/15/2023 07:16:55'!
+PASSED!
+!MarsRoverTest methodsFor: 'testing' stamp: 'TS 5/15/2023 07:17:28'!
+test09DoubleLeftCommandTurns180Degrees
+	
+	marsRover receiveCommands: 'll'.
+	
+	self assert: marsRover isAt: 0@0 andIsHeadingTo: #South! !
+
+!testRun: #MarsRoverTest #test09DoubleLeftCommandTurns180Degrees stamp: 'TS 5/15/2023 07:17:31'!
+FAILURE!
+!MarsRover methodsFor: 'command execution' stamp: 'TS 5/15/2023 07:18:33' prior: 50605178!
+runCommand: commandCharacter 
+
+	commandCharacter = $f ifTrue: [ position := position + (0@1). ^self ].
+	commandCharacter = $b ifTrue: [ position := position - (0@1). ^self ].
+	commandCharacter = $l ifTrue: [ 
+		heading = #North ifTrue: [ heading := #West ].
+		heading = #West ifTrue: [heading := #South ].
+		^self
+	].
+	commandCharacter = $r ifTrue: [ heading := #East. ^self ].
+		
+	self signalInvalidCommand! !
+
+!testRun: #MarsRoverTest #test01EmptyCommandStringDoesNothing stamp: 'TS 5/15/2023 07:18:34'!
+PASSED!
+
+!testRun: #MarsRoverTest #test02SingleForwardCommandWhileHeadingNorthMoves1UnitOnYAxis stamp: 'TS 5/15/2023 07:18:34'!
+PASSED!
+
+!testRun: #MarsRoverTest #test03DoubleForwardCommandWhileHeadingNorthMoves2UnitsOnYAxis stamp: 'TS 5/15/2023 07:18:34'!
+PASSED!
+
+!testRun: #MarsRoverTest #test04MovingForwardWorksWhenStartingInADifferentPosition stamp: 'TS 5/15/2023 07:18:34'!
+PASSED!
+
+!testRun: #MarsRoverTest #test05BackwardCommandsWhileHeadingNorthMoveBackwardOnYAxis stamp: 'TS 5/15/2023 07:18:34'!
+PASSED!
+
+!testRun: #MarsRoverTest #test06MixedMovementCommandsWhileHeadingNorthLeaveRoverInCorrectPosition stamp: 'TS 5/15/2023 07:18:34'!
+PASSED!
+
+!testRun: #MarsRoverTest #test07InvalidCommandRaisesAnError stamp: 'TS 5/15/2023 07:18:34'!
+PASSED!
+
+!testRun: #MarsRoverTest #test08LeftCommandTurns90DegreesLeft stamp: 'TS 5/15/2023 07:18:34'!
+FAILURE!
+
+!testRun: #MarsRoverTest #test09DoubleLeftCommandTurns180Degrees stamp: 'TS 5/15/2023 07:18:34'!
+PASSED!
+
+!testRun: #MarsRoverTest #test09RightCommandTurns90DegreesRight stamp: 'TS 5/15/2023 07:18:34'!
+PASSED!
+
+!testRun: #MarsRoverTest #test08LeftCommandTurns90DegreesLeft stamp: 'TS 5/15/2023 07:18:34'!
+FAILURE!
+!MarsRover methodsFor: 'command execution' stamp: 'TS 5/15/2023 07:18:53' prior: 50605235!
+runCommand: commandCharacter 
+
+	commandCharacter = $f ifTrue: [ position := position + (0@1). ^self ].
+	commandCharacter = $b ifTrue: [ position := position - (0@1). ^self ].
+	commandCharacter = $l ifTrue: [ 
+		heading = #North ifTrue: [ heading := #West. ^self ].
+		heading = #West ifTrue: [ heading := #South. ^self ].
+	].
+	commandCharacter = $r ifTrue: [ heading := #East. ^self ].
+		
+	self signalInvalidCommand! !
+
+!testRun: #MarsRoverTest #test01EmptyCommandStringDoesNothing stamp: 'TS 5/15/2023 07:18:54'!
+PASSED!
+
+!testRun: #MarsRoverTest #test02SingleForwardCommandWhileHeadingNorthMoves1UnitOnYAxis stamp: 'TS 5/15/2023 07:18:54'!
+PASSED!
+
+!testRun: #MarsRoverTest #test03DoubleForwardCommandWhileHeadingNorthMoves2UnitsOnYAxis stamp: 'TS 5/15/2023 07:18:54'!
+PASSED!
+
+!testRun: #MarsRoverTest #test04MovingForwardWorksWhenStartingInADifferentPosition stamp: 'TS 5/15/2023 07:18:54'!
+PASSED!
+
+!testRun: #MarsRoverTest #test05BackwardCommandsWhileHeadingNorthMoveBackwardOnYAxis stamp: 'TS 5/15/2023 07:18:54'!
+PASSED!
+
+!testRun: #MarsRoverTest #test06MixedMovementCommandsWhileHeadingNorthLeaveRoverInCorrectPosition stamp: 'TS 5/15/2023 07:18:54'!
+PASSED!
+
+!testRun: #MarsRoverTest #test07InvalidCommandRaisesAnError stamp: 'TS 5/15/2023 07:18:54'!
+PASSED!
+
+!testRun: #MarsRoverTest #test08LeftCommandTurns90DegreesLeft stamp: 'TS 5/15/2023 07:18:54'!
+PASSED!
+
+!testRun: #MarsRoverTest #test09DoubleLeftCommandTurns180Degrees stamp: 'TS 5/15/2023 07:18:54'!
+PASSED!
+
+!testRun: #MarsRoverTest #test09RightCommandTurns90DegreesRight stamp: 'TS 5/15/2023 07:18:54'!
+PASSED!
+!MarsRoverTest methodsFor: 'testing' stamp: 'TS 5/15/2023 07:19:02'!
+test10DoubleLeftCommandTurns180Degrees
+	
+	marsRover receiveCommands: 'll'.
+	
+	self assert: marsRover isAt: 0@0 andIsHeadingTo: #South! !
+
+!methodRemoval: MarsRoverTest #test09DoubleLeftCommandTurns180Degrees stamp: 'TS 5/15/2023 07:19:02'!
+test09DoubleLeftCommandTurns180Degrees
+	
+	marsRover receiveCommands: 'll'.
+	
+	self assert: marsRover isAt: 0@0 andIsHeadingTo: #South!
+!MarsRoverTest methodsFor: 'testing' stamp: 'TS 5/15/2023 07:19:46'!
+test11TripleLeftCommandTurns270Degrees
+	
+	marsRover receiveCommands: 'lll'.
+	
+	self assert: marsRover isAt: 0@0 andIsHeadingTo: #East! !
+!MarsRover methodsFor: 'command execution' stamp: 'TS 5/15/2023 07:19:59' prior: 50605291!
+runCommand: commandCharacter 
+
+	commandCharacter = $f ifTrue: [ position := position + (0@1). ^self ].
+	commandCharacter = $b ifTrue: [ position := position - (0@1). ^self ].
+	commandCharacter = $l ifTrue: [ 
+		heading = #North ifTrue: [ heading := #West. ^self ].
+		heading = #West ifTrue: [ heading := #South. ^self ].
+		heading = #East ifTrue: [ heading := #East. ^self ].
+	].
+	commandCharacter = $r ifTrue: [ heading := #East. ^self ].
+		
+	self signalInvalidCommand! !
+!MarsRover methodsFor: 'command execution' stamp: 'TS 5/15/2023 07:20:05' prior: 50605365!
+runCommand: commandCharacter 
+
+	commandCharacter = $f ifTrue: [ position := position + (0@1). ^self ].
+	commandCharacter = $b ifTrue: [ position := position - (0@1). ^self ].
+	commandCharacter = $l ifTrue: [ 
+		heading = #North ifTrue: [ heading := #West. ^self ].
+		heading = #West ifTrue: [ heading := #South. ^self ].
+		heading = #South ifTrue: [ heading := #East. ^self ].
+	].
+	commandCharacter = $r ifTrue: [ heading := #East. ^self ].
+		
+	self signalInvalidCommand! !
+
+!testRun: #MarsRoverTest #test01EmptyCommandStringDoesNothing stamp: 'TS 5/15/2023 07:20:07'!
+PASSED!
+
+!testRun: #MarsRoverTest #test02SingleForwardCommandWhileHeadingNorthMoves1UnitOnYAxis stamp: 'TS 5/15/2023 07:20:07'!
+PASSED!
+
+!testRun: #MarsRoverTest #test03DoubleForwardCommandWhileHeadingNorthMoves2UnitsOnYAxis stamp: 'TS 5/15/2023 07:20:07'!
+PASSED!
+
+!testRun: #MarsRoverTest #test04MovingForwardWorksWhenStartingInADifferentPosition stamp: 'TS 5/15/2023 07:20:07'!
+PASSED!
+
+!testRun: #MarsRoverTest #test05BackwardCommandsWhileHeadingNorthMoveBackwardOnYAxis stamp: 'TS 5/15/2023 07:20:07'!
+PASSED!
+
+!testRun: #MarsRoverTest #test06MixedMovementCommandsWhileHeadingNorthLeaveRoverInCorrectPosition stamp: 'TS 5/15/2023 07:20:07'!
+PASSED!
+
+!testRun: #MarsRoverTest #test07InvalidCommandRaisesAnError stamp: 'TS 5/15/2023 07:20:07'!
+PASSED!
+
+!testRun: #MarsRoverTest #test08LeftCommandTurns90DegreesLeft stamp: 'TS 5/15/2023 07:20:07'!
+PASSED!
+
+!testRun: #MarsRoverTest #test09RightCommandTurns90DegreesRight stamp: 'TS 5/15/2023 07:20:07'!
+PASSED!
+
+!testRun: #MarsRoverTest #test10DoubleLeftCommandTurns180Degrees stamp: 'TS 5/15/2023 07:20:07'!
+PASSED!
+
+!testRun: #MarsRoverTest #test11TripleLeftCommandTurns270Degrees stamp: 'TS 5/15/2023 07:20:07'!
+PASSED!
+!MarsRoverTest methodsFor: 'testing' stamp: 'TS 5/15/2023 07:20:43'!
+test11LeftCommand4TimesLeavesRoverInTheSameDirection
+	
+	marsRover receiveCommands: 'llll'.
+	
+	self assert: marsRover isAt: 0@0 andIsHeadingTo: #North! !
+!MarsRoverTest methodsFor: 'testing' stamp: 'TS 5/15/2023 07:20:49'!
+test12LeftCommand4TimesLeavesRoverInTheSameDirection
+	
+	marsRover receiveCommands: 'llll'.
+	
+	self assert: marsRover isAt: 0@0 andIsHeadingTo: #North! !
+
+!methodRemoval: MarsRoverTest #test11LeftCommand4TimesLeavesRoverInTheSameDirection stamp: 'TS 5/15/2023 07:20:49'!
+test11LeftCommand4TimesLeavesRoverInTheSameDirection
+	
+	marsRover receiveCommands: 'llll'.
+	
+	self assert: marsRover isAt: 0@0 andIsHeadingTo: #North!
+!MarsRover methodsFor: 'command execution' stamp: 'TS 5/15/2023 07:20:57' prior: 50605383!
+runCommand: commandCharacter 
+
+	commandCharacter = $f ifTrue: [ position := position + (0@1). ^self ].
+	commandCharacter = $b ifTrue: [ position := position - (0@1). ^self ].
+	commandCharacter = $l ifTrue: [ 
+		heading = #North ifTrue: [ heading := #West. ^self ].
+		heading = #West ifTrue: [ heading := #South. ^self ].
+		heading = #South ifTrue: [ heading := #East. ^self ].
+	].
+	commandCharacter = $r ifTrue: [ heading := #East. ^self ].
+
+	self signalInvalidCommand! !
+!MarsRover methodsFor: 'command execution' stamp: 'TS 5/15/2023 07:21:09' prior: 50605463!
+runCommand: commandCharacter 
+
+	commandCharacter = $f ifTrue: [ position := position + (0@1). ^self ].
+	commandCharacter = $b ifTrue: [ position := position - (0@1). ^self ].
+	commandCharacter = $l ifTrue: [ 
+		heading = #North ifTrue: [ heading := #West. ^self ].
+		heading = #West ifTrue: [ heading := #South. ^self ].
+		heading = #South ifTrue: [ heading := #East. ^self ].
+		heading = #East ifTrue: [ heading := #North. ^self ].
+	].
+	commandCharacter = $r ifTrue: [ heading := #East. ^self ].
+
+	self signalInvalidCommand! !
+
+!testRun: #MarsRoverTest #test01EmptyCommandStringDoesNothing stamp: 'TS 5/15/2023 07:21:12'!
+PASSED!
+
+!testRun: #MarsRoverTest #test02SingleForwardCommandWhileHeadingNorthMoves1UnitOnYAxis stamp: 'TS 5/15/2023 07:21:12'!
+PASSED!
+
+!testRun: #MarsRoverTest #test03DoubleForwardCommandWhileHeadingNorthMoves2UnitsOnYAxis stamp: 'TS 5/15/2023 07:21:12'!
+PASSED!
+
+!testRun: #MarsRoverTest #test04MovingForwardWorksWhenStartingInADifferentPosition stamp: 'TS 5/15/2023 07:21:12'!
+PASSED!
+
+!testRun: #MarsRoverTest #test05BackwardCommandsWhileHeadingNorthMoveBackwardOnYAxis stamp: 'TS 5/15/2023 07:21:12'!
+PASSED!
+
+!testRun: #MarsRoverTest #test06MixedMovementCommandsWhileHeadingNorthLeaveRoverInCorrectPosition stamp: 'TS 5/15/2023 07:21:12'!
+PASSED!
+
+!testRun: #MarsRoverTest #test07InvalidCommandRaisesAnError stamp: 'TS 5/15/2023 07:21:12'!
+PASSED!
+
+!testRun: #MarsRoverTest #test08LeftCommandTurns90DegreesLeft stamp: 'TS 5/15/2023 07:21:12'!
+PASSED!
+
+!testRun: #MarsRoverTest #test09RightCommandTurns90DegreesRight stamp: 'TS 5/15/2023 07:21:12'!
+PASSED!
+
+!testRun: #MarsRoverTest #test10DoubleLeftCommandTurns180Degrees stamp: 'TS 5/15/2023 07:21:12'!
+PASSED!
+
+!testRun: #MarsRoverTest #test11TripleLeftCommandTurns270Degrees stamp: 'TS 5/15/2023 07:21:12'!
+PASSED!
+
+!testRun: #MarsRoverTest #test12LeftCommand4TimesLeavesRoverInTheSameDirection stamp: 'TS 5/15/2023 07:21:12'!
+PASSED!
+!MarsRoverTest methodsFor: 'testing' stamp: 'TS 5/15/2023 07:21:51'!
+test12MixedRotationCommandsLeaveRoverHeadingToCorrectDirection
+	
+	marsRover receiveCommands: 'lrrlrllr'.
+	
+	self assert: marsRover isAt: 0@0 andIsHeadingTo: #North! !
+
+!testRun: #MarsRoverTest #test12MixedRotationCommandsLeaveRoverHeadingToCorrectDirection stamp: 'TS 5/15/2023 07:21:57'!
+FAILURE!
+!MarsRoverTest methodsFor: 'testing' stamp: 'TS 5/15/2023 07:22:06'!
+test13MixedRotationCommandsLeaveRoverHeadingToCorrectDirection
+	
+	marsRover receiveCommands: 'lrrlrllr'.
+	
+	self assert: marsRover isAt: 0@0 andIsHeadingTo: #North! !
+
+!methodRemoval: MarsRoverTest #test12MixedRotationCommandsLeaveRoverHeadingToCorrectDirection stamp: 'TS 5/15/2023 07:22:06'!
+test12MixedRotationCommandsLeaveRoverHeadingToCorrectDirection
+	
+	marsRover receiveCommands: 'lrrlrllr'.
+	
+	self assert: marsRover isAt: 0@0 andIsHeadingTo: #North!
+!MarsRover methodsFor: 'command execution' stamp: 'TS 5/15/2023 07:22:48' prior: 50605481!
+runCommand: commandCharacter 
+
+	commandCharacter = $f ifTrue: [ position := position + (0@1). ^self ].
+	commandCharacter = $b ifTrue: [ position := position - (0@1). ^self ].
+	commandCharacter = $l ifTrue: [ 
+		heading = #North ifTrue: [ heading := #West. ^self ].
+		heading = #West ifTrue: [ heading := #South. ^self ].
+		heading = #South ifTrue: [ heading := #East. ^self ].
+		heading = #East ifTrue: [ heading := #North. ^self ].
+	].
+	commandCharacter = $r ifTrue: [ 
+		heading = #North ifTrue: [ heading := #East. ^self ].
+		heading = #West ifTrue: [ heading := #North. ^self ].
+		heading = #South ifTrue: [ heading := #West. ^self ].
+		heading = #East ifTrue: [ heading := #South. ^self ].
+	].
+
+	self signalInvalidCommand! !
+
+!testRun: #MarsRoverTest #test01EmptyCommandStringDoesNothing stamp: 'TS 5/15/2023 07:22:49'!
+PASSED!
+
+!testRun: #MarsRoverTest #test02SingleForwardCommandWhileHeadingNorthMoves1UnitOnYAxis stamp: 'TS 5/15/2023 07:22:49'!
+PASSED!
+
+!testRun: #MarsRoverTest #test03DoubleForwardCommandWhileHeadingNorthMoves2UnitsOnYAxis stamp: 'TS 5/15/2023 07:22:49'!
+PASSED!
+
+!testRun: #MarsRoverTest #test04MovingForwardWorksWhenStartingInADifferentPosition stamp: 'TS 5/15/2023 07:22:49'!
+PASSED!
+
+!testRun: #MarsRoverTest #test05BackwardCommandsWhileHeadingNorthMoveBackwardOnYAxis stamp: 'TS 5/15/2023 07:22:49'!
+PASSED!
+
+!testRun: #MarsRoverTest #test06MixedMovementCommandsWhileHeadingNorthLeaveRoverInCorrectPosition stamp: 'TS 5/15/2023 07:22:49'!
+PASSED!
+
+!testRun: #MarsRoverTest #test07InvalidCommandRaisesAnError stamp: 'TS 5/15/2023 07:22:49'!
+PASSED!
+
+!testRun: #MarsRoverTest #test08LeftCommandTurns90DegreesLeft stamp: 'TS 5/15/2023 07:22:49'!
+PASSED!
+
+!testRun: #MarsRoverTest #test09RightCommandTurns90DegreesRight stamp: 'TS 5/15/2023 07:22:49'!
+PASSED!
+
+!testRun: #MarsRoverTest #test10DoubleLeftCommandTurns180Degrees stamp: 'TS 5/15/2023 07:22:49'!
+PASSED!
+
+!testRun: #MarsRoverTest #test11TripleLeftCommandTurns270Degrees stamp: 'TS 5/15/2023 07:22:49'!
+PASSED!
+
+!testRun: #MarsRoverTest #test12LeftCommand4TimesLeavesRoverInTheSameDirection stamp: 'TS 5/15/2023 07:22:49'!
+PASSED!
+
+!testRun: #MarsRoverTest #test13MixedRotationCommandsLeaveRoverHeadingToCorrectDirection stamp: 'TS 5/15/2023 07:22:49'!
+PASSED!
+
+Object subclass: #Heading
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'MarsRover-Ejercicio'!
+
+!classDefinition: #Heading category: 'MarsRover-Ejercicio' stamp: 'TS 5/15/2023 07:23:08'!
+Object subclass: #Heading
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'MarsRover-Ejercicio'!
+
+Object subclass: #Heading
+	instanceVariableNames: 'marsRover'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'MarsRover-Ejercicio'!
+
+!classDefinition: #Heading category: 'MarsRover-Ejercicio' stamp: 'TS 5/15/2023 07:23:29'!
+Object subclass: #Heading
+	instanceVariableNames: 'marsRover'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'MarsRover-Ejercicio'!
+
+Heading subclass: #North
+	instanceVariableNames: 'marsRover'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'MarsRover-Ejercicio'!
+
+!classRemoval: #Heading stamp: 'TS 5/15/2023 07:23:43'!
+Object subclass: #Heading
+	instanceVariableNames: 'marsRover'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'MarsRover-Ejercicio'!
+!MarsRoverTest methodsFor: 'testing' stamp: 'TS 5/15/2023 07:23:54' prior: 50604772!
+test01EmptyCommandStringDoesNothing
+
+	marsRover receiveCommands: ''.
+	
+	self assert: marsRover isAt: 0@0 andIsHeadingTo: self north! !
+!MarsRoverTest methodsFor: 'testing' stamp: 'TS 5/15/2023 07:24:06' prior: 50605681!
+test01EmptyCommandStringDoesNothing
+
+	marsRover receiveCommands: ''.
+	
+	self assert: marsRover isAt: 0@0 andIsHeadingTo: #North! !
+!MarsRoverTest methodsFor: 'testing' stamp: 'TS 5/15/2023 07:24:11'!
+north
+
+	^ #North! !
+!MarsRoverTest methodsFor: 'testing' stamp: 'TS 5/15/2023 07:24:11' prior: 50604802!
+test05BackwardCommandsWhileHeadingNorthMoveBackwardOnYAxis
+	
+	marsRover receiveCommands: 'bbb'.
+	
+	self assert: marsRover isAt: 0@-3 andIsHeadingTo: self north! !
+!MarsRoverTest methodsFor: 'testing' stamp: 'TS 5/15/2023 07:24:11' prior: 50604764!
+test03DoubleForwardCommandWhileHeadingNorthMoves2UnitsOnYAxis
+	
+	marsRover receiveCommands: 'ff'.
+	
+	self assert: marsRover isAt: 0@2 andIsHeadingTo: self north! !
+!MarsRoverTest methodsFor: 'setUp/tearDown' stamp: 'TS 5/15/2023 07:24:11' prior: 50604654 overrides: 16961394!
+setUp
+
+	marsRover := MarsRover at: 0@0 headingTo: self north.! !
+!MarsRoverTest methodsFor: 'testing' stamp: 'TS 5/15/2023 07:24:11' prior: 50605447!
+test12LeftCommand4TimesLeavesRoverInTheSameDirection
+	
+	marsRover receiveCommands: 'llll'.
+	
+	self assert: marsRover isAt: 0@0 andIsHeadingTo: self north! !
+!MarsRoverTest methodsFor: 'testing' stamp: 'TS 5/15/2023 07:24:11' prior: 50604871!
+test06MixedMovementCommandsWhileHeadingNorthLeaveRoverInCorrectPosition
+	
+	marsRover receiveCommands: 'fbffbbf'.
+	
+	self assert: marsRover isAt: 0@1 andIsHeadingTo: self north! !
+!MarsRoverTest methodsFor: 'testing' stamp: 'TS 5/15/2023 07:24:11' prior: 50605556!
+test13MixedRotationCommandsLeaveRoverHeadingToCorrectDirection
+	
+	marsRover receiveCommands: 'lrrlrllr'.
+	
+	self assert: marsRover isAt: 0@0 andIsHeadingTo: self north! !
+!MarsRoverTest methodsFor: 'testing' stamp: 'TS 5/15/2023 07:24:11' prior: 50604713!
+test02SingleForwardCommandWhileHeadingNorthMoves1UnitOnYAxis
+
+	marsRover receiveCommands: 'f'.
+
+	self assert: marsRover isAt: 0@1 andIsHeadingTo: self north! !
+!MarsRoverTest methodsFor: 'testing' stamp: 'TS 5/15/2023 07:24:11' prior: 50604600!
+test04MovingForwardWorksWhenStartingInADifferentPosition
+	
+	| marsRoverStartingInDifferentPosition |
+
+	marsRoverStartingInDifferentPosition := MarsRover at: 1@1 headingTo: self north.
+	
+	marsRoverStartingInDifferentPosition receiveCommands: 'f'.
+	
+	self assert: marsRoverStartingInDifferentPosition isAt: 1@2 andIsHeadingTo: #North! !
+!MarsRoverTest methodsFor: 'testing' stamp: 'TS 5/15/2023 07:24:11' prior: 50605754!
+test04MovingForwardWorksWhenStartingInADifferentPosition
+	
+	| marsRoverStartingInDifferentPosition |
+
+	marsRoverStartingInDifferentPosition := MarsRover at: 1@1 headingTo: self north.
+	
+	marsRoverStartingInDifferentPosition receiveCommands: 'f'.
+	
+	self assert: marsRoverStartingInDifferentPosition isAt: 1@2 andIsHeadingTo: self north! !
+!MarsRoverTest methodsFor: 'testing' stamp: 'TS 5/15/2023 07:24:11' prior: 50605688!
+test01EmptyCommandStringDoesNothing
+
+	marsRover receiveCommands: ''.
+	
+	self assert: marsRover isAt: 0@0 andIsHeadingTo: self north! !
+!MarsRoverTest methodsFor: 'testing' stamp: 'TS 5/15/2023 07:24:24'!
+west
+
+	^ #West! !
+!MarsRoverTest methodsFor: 'testing' stamp: 'TS 5/15/2023 07:24:24' prior: 50605152!
+test08LeftCommandTurns90DegreesLeft
+	
+	marsRover receiveCommands: 'l'.
+	
+	self assert: marsRover isAt: 0@0 andIsHeadingTo: self west! !
+!MarsRoverTest methodsFor: 'testing' stamp: 'TS 5/15/2023 07:24:30'!
+east
+
+	^ #East! !
+!MarsRoverTest methodsFor: 'testing' stamp: 'TS 5/15/2023 07:24:30' prior: 50605357!
+test11TripleLeftCommandTurns270Degrees
+	
+	marsRover receiveCommands: 'lll'.
+	
+	self assert: marsRover isAt: 0@0 andIsHeadingTo: self east! !
+!MarsRoverTest methodsFor: 'testing' stamp: 'TS 5/15/2023 07:24:30' prior: 50605167!
+test09RightCommandTurns90DegreesRight
+	
+	marsRover receiveCommands: 'r'.
+	
+	self assert: marsRover isAt: 0@0 andIsHeadingTo: self east! !
+!MarsRoverTest methodsFor: 'testing' stamp: 'TS 5/15/2023 07:24:36'!
+south
+
+	^ #South! !
+!MarsRoverTest methodsFor: 'testing' stamp: 'TS 5/15/2023 07:24:36' prior: 50605343!
+test10DoubleLeftCommandTurns180Degrees
+	
+	marsRover receiveCommands: 'll'.
+	
+	self assert: marsRover isAt: 0@0 andIsHeadingTo: self south! !
+
+Object subclass: #Heading
+	instanceVariableNames: 'marsRover'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'MarsRover-Ejercicio'!
+
+!classDefinition: #Heading category: 'MarsRover-Ejercicio' stamp: 'TS 5/15/2023 07:25:34'!
+Object subclass: #Heading
+	instanceVariableNames: 'marsRover'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'MarsRover-Ejercicio'!
+
+Heading subclass: #North
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'MarsRover-Ejercicio'!
+
+!classDefinition: #North category: 'MarsRover-Ejercicio' stamp: 'TS 5/15/2023 07:25:44'!
+Heading subclass: #North
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'MarsRover-Ejercicio'!
+
+Heading subclass: #West
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'MarsRover-Ejercicio'!
+
+!classDefinition: #West category: 'MarsRover-Ejercicio' stamp: 'TS 5/15/2023 07:25:46'!
+Heading subclass: #West
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'MarsRover-Ejercicio'!
+
+Heading subclass: #East
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'MarsRover-Ejercicio'!
+
+!classDefinition: #East category: 'MarsRover-Ejercicio' stamp: 'TS 5/15/2023 07:25:47'!
+Heading subclass: #East
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'MarsRover-Ejercicio'!
+
+Heading subclass: #South
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'MarsRover-Ejercicio'!
+
+!classDefinition: #South category: 'MarsRover-Ejercicio' stamp: 'TS 5/15/2023 07:25:49'!
+Heading subclass: #South
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'MarsRover-Ejercicio'!
+!Heading class methodsFor: 'no messages' stamp: 'TS 5/15/2023 07:25:58'!
+for: aMarsRover! !
+!Heading class methodsFor: 'as yet unclassified' stamp: 'TS 5/15/2023 07:26:10' prior: 50605886!
+for: aMarsRover
+
+	^ self new initializeFor: aMarsRover! !
+!Heading methodsFor: 'no messages' stamp: 'TS 5/15/2023 07:26:26'!
+initializeFor: aMarsRover
+
+	marsRover := aMarsRover! !
+!Heading class methodsFor: 'instance creation' stamp: 'TS 5/15/2023 07:27:03'!
+headingAtLeft
+
+	self subclassResponsibility! !
+!Heading class methodsFor: 'instance creation' stamp: 'TS 5/15/2023 07:27:12' prior: 50605899!
+headingAtLeft
+! !
+!North class methodsFor: 'instance creation' stamp: 'TS 5/15/2023 07:27:16' overrides: 50605904!
+headingAtLeft
+! !
+!West class methodsFor: 'instance creation' stamp: 'TS 5/15/2023 07:27:16' overrides: 50605904!
+headingAtLeft
+! !
+!East class methodsFor: 'instance creation' stamp: 'TS 5/15/2023 07:27:16' overrides: 50605904!
+headingAtLeft
+! !
+!South class methodsFor: 'instance creation' stamp: 'TS 5/15/2023 07:27:16' overrides: 50605904!
+headingAtLeft
+! !
+
+!methodRemoval: Heading class #headingAtLeft stamp: 'TS 5/15/2023 07:27:16'!
+headingAtLeft
+!
+!Heading class methodsFor: 'instance creation' stamp: 'TS 5/15/2023 07:27:19'!
+headingAtLeft
+
+	self subclassResponsibility! !
+!South class methodsFor: 'properties' stamp: 'TS 5/15/2023 07:28:16' prior: 50605920 overrides: 50605926!
+headingAtLeft
+
+	^ East! !
+!West class methodsFor: 'properties' stamp: 'TS 5/15/2023 07:28:23' prior: 50605912 overrides: 50605926!
+headingAtLeft
+
+	^ South! !
+!East class methodsFor: 'properties' stamp: 'TS 5/15/2023 07:28:29' prior: 50605916 overrides: 50605926!
+headingAtLeft
+
+	^ North! !
+!North class methodsFor: 'properties' stamp: 'TS 5/15/2023 07:28:33' prior: 50605908 overrides: 50605926!
+headingAtLeft
+
+	^ West! !
+!Heading class methodsFor: 'properties' stamp: 'TS 5/15/2023 07:28:43'!
+headingAtRioght
+
+	self subclassResponsibility! !
+!Heading class methodsFor: 'properties' stamp: 'TS 5/15/2023 07:28:49'!
+headingAtRight
+
+	self subclassResponsibility! !
+
+!methodRemoval: Heading class #headingAtRioght stamp: 'TS 5/15/2023 07:28:49'!
+headingAtRioght
+
+	self subclassResponsibility!
+!East class methodsFor: 'properties' stamp: 'TS 5/15/2023 07:28:57' overrides: 50605954!
+headingAtRight
+
+	^ South! !
+!North class methodsFor: 'properties' stamp: 'TS 5/15/2023 07:29:07' overrides: 50605954!
+headingAtRight
+
+	^ East! !
+!South class methodsFor: 'properties' stamp: 'TS 5/15/2023 07:29:15' overrides: 50605954!
+headingAtRight
+
+	^ West! !
+!West class methodsFor: 'properties' stamp: 'TS 5/15/2023 07:29:21' overrides: 50605954!
+headingAtRight
+
+	^ North! !
+!Heading methodsFor: 'nil' stamp: 'TS 5/15/2023 07:29:55'!
+rotateLeft
+
+	marsRover changeHeadingTo: self class headingAtLeft ! !
+!Heading methodsFor: 'as yet unclassified' stamp: 'TS 5/15/2023 07:29:59' prior: 50605978!
+rotateLeft
+
+	marsRover changeHeadingTo: self class headingAtLeft! !
+!Heading methodsFor: 'rotation' stamp: 'TS 5/15/2023 07:30:10'!
+rotateRight
+
+	marsRover changeHeadingTo: self class headingAtRight! !
+!MarsRover methodsFor: 'rotation-private' stamp: 'TS 5/15/2023 07:30:54'!
+changeHeadingTo: aHeading
+
+	heading := aHeading for: self! !
+!MarsRover methodsFor: 'command execution' stamp: 'TS 5/15/2023 07:31:13' prior: 50605574!
+runCommand: commandCharacter 
+
+	commandCharacter = $f ifTrue: [ position := position + (0@1). ^self ].
+	commandCharacter = $b ifTrue: [ position := position - (0@1). ^self ].
+	commandCharacter = $l ifTrue: [ heading rotateLeft 	].
+	commandCharacter = $r ifTrue: [ 
+		heading = #North ifTrue: [ heading := #East. ^self ].
+		heading = #West ifTrue: [ heading := #North. ^self ].
+		heading = #South ifTrue: [ heading := #West. ^self ].
+		heading = #East ifTrue: [ heading := #South. ^self ].
+	].
+
+	self signalInvalidCommand! !
+!MarsRover methodsFor: 'command execution' stamp: 'TS 5/15/2023 07:31:24' prior: 50605998!
+runCommand: commandCharacter 
+
+	commandCharacter = $f ifTrue: [ position := position + (0@1). ^self ].
+	commandCharacter = $b ifTrue: [ position := position - (0@1). ^self ].
+	commandCharacter = $l ifTrue: [ heading rotateLeft 	].
+	commandCharacter = $r ifTrue: [ heading rotateRight ].
+
+	self signalInvalidCommand! !
+!MarsRover methodsFor: 'initialization' stamp: 'TS 5/15/2023 07:32:02' prior: 50605085!
+initializeAt: aPosition headingTo: aHeading
+
+	position := aPosition.
+	heading := aHeading for: self! !
+!MarsRoverTest methodsFor: 'setUp/tearDown' stamp: 'TS 5/15/2023 07:32:11' prior: 50605800!
+east
+
+	^ East! !
+!MarsRoverTest methodsFor: 'setUp/tearDown' stamp: 'TS 5/15/2023 07:32:15' prior: 50605695!
+north
+
+	^ North! !
+!MarsRoverTest methodsFor: 'setUp/tearDown' stamp: 'TS 5/15/2023 07:32:18' prior: 50605819!
+south
+
+	^ South! !
+!MarsRoverTest methodsFor: 'setUp/tearDown' stamp: 'TS 5/15/2023 07:32:20' prior: 50605789!
+west
+
+	^ West! !
+
+!testRun: #MarsRoverTest #test01EmptyCommandStringDoesNothing stamp: 'TS 5/15/2023 07:32:22'!
+FAILURE!
+
+!testRun: #MarsRoverTest #test02SingleForwardCommandWhileHeadingNorthMoves1UnitOnYAxis stamp: 'TS 5/15/2023 07:32:22'!
+FAILURE!
+
+!testRun: #MarsRoverTest #test03DoubleForwardCommandWhileHeadingNorthMoves2UnitsOnYAxis stamp: 'TS 5/15/2023 07:32:22'!
+FAILURE!
+
+!testRun: #MarsRoverTest #test04MovingForwardWorksWhenStartingInADifferentPosition stamp: 'TS 5/15/2023 07:32:22'!
+FAILURE!
+
+!testRun: #MarsRoverTest #test05BackwardCommandsWhileHeadingNorthMoveBackwardOnYAxis stamp: 'TS 5/15/2023 07:32:22'!
+FAILURE!
+
+!testRun: #MarsRoverTest #test06MixedMovementCommandsWhileHeadingNorthLeaveRoverInCorrectPosition stamp: 'TS 5/15/2023 07:32:22'!
+FAILURE!
+
+!testRun: #MarsRoverTest #test07InvalidCommandRaisesAnError stamp: 'TS 5/15/2023 07:32:22'!
+PASSED!
+
+!testRun: #MarsRoverTest #test08LeftCommandTurns90DegreesLeft stamp: 'TS 5/15/2023 07:32:22'!
+ERROR!
+
+!testRun: #MarsRoverTest #test09RightCommandTurns90DegreesRight stamp: 'TS 5/15/2023 07:32:22'!
+ERROR!
+
+!testRun: #MarsRoverTest #test10DoubleLeftCommandTurns180Degrees stamp: 'TS 5/15/2023 07:32:22'!
+ERROR!
+
+!testRun: #MarsRoverTest #test11TripleLeftCommandTurns270Degrees stamp: 'TS 5/15/2023 07:32:22'!
+ERROR!
+
+!testRun: #MarsRoverTest #test12LeftCommand4TimesLeavesRoverInTheSameDirection stamp: 'TS 5/15/2023 07:32:22'!
+ERROR!
+
+!testRun: #MarsRoverTest #test13MixedRotationCommandsLeaveRoverHeadingToCorrectDirection stamp: 'TS 5/15/2023 07:32:22'!
+ERROR!
+!MarsRover methodsFor: 'testing' stamp: 'TS 5/15/2023 07:32:55'!
+isHeadingTo: aHeading
+
+	^ heading class = aHeading! !
+!MarsRoverTest methodsFor: 'assertions' stamp: 'TS 5/15/2023 07:33:15' prior: 50604389!
+assert: aMarsRover isAt: aPosition andIsHeadingTo: aHeading
+
+	self assert: aPosition equals: aMarsRover position.
+	self assert: (aMarsRover isHeadingTo: aHeading)! !
+
+!testRun: #MarsRoverTest #test01EmptyCommandStringDoesNothing stamp: 'TS 5/15/2023 07:33:16'!
+PASSED!
+
+!testRun: #MarsRoverTest #test02SingleForwardCommandWhileHeadingNorthMoves1UnitOnYAxis stamp: 'TS 5/15/2023 07:33:16'!
+PASSED!
+
+!testRun: #MarsRoverTest #test03DoubleForwardCommandWhileHeadingNorthMoves2UnitsOnYAxis stamp: 'TS 5/15/2023 07:33:16'!
+PASSED!
+
+!testRun: #MarsRoverTest #test04MovingForwardWorksWhenStartingInADifferentPosition stamp: 'TS 5/15/2023 07:33:16'!
+PASSED!
+
+!testRun: #MarsRoverTest #test05BackwardCommandsWhileHeadingNorthMoveBackwardOnYAxis stamp: 'TS 5/15/2023 07:33:16'!
+PASSED!
+
+!testRun: #MarsRoverTest #test06MixedMovementCommandsWhileHeadingNorthLeaveRoverInCorrectPosition stamp: 'TS 5/15/2023 07:33:16'!
+PASSED!
+
+!testRun: #MarsRoverTest #test07InvalidCommandRaisesAnError stamp: 'TS 5/15/2023 07:33:16'!
+PASSED!
+
+!testRun: #MarsRoverTest #test08LeftCommandTurns90DegreesLeft stamp: 'TS 5/15/2023 07:33:16'!
+ERROR!
+
+!testRun: #MarsRoverTest #test09RightCommandTurns90DegreesRight stamp: 'TS 5/15/2023 07:33:16'!
+ERROR!
+
+!testRun: #MarsRoverTest #test10DoubleLeftCommandTurns180Degrees stamp: 'TS 5/15/2023 07:33:16'!
+ERROR!
+
+!testRun: #MarsRoverTest #test11TripleLeftCommandTurns270Degrees stamp: 'TS 5/15/2023 07:33:16'!
+ERROR!
+
+!testRun: #MarsRoverTest #test12LeftCommand4TimesLeavesRoverInTheSameDirection stamp: 'TS 5/15/2023 07:33:16'!
+ERROR!
+
+!testRun: #MarsRoverTest #test13MixedRotationCommandsLeaveRoverHeadingToCorrectDirection stamp: 'TS 5/15/2023 07:33:16'!
+ERROR!
+
+!testRun: #MarsRoverTest #test08LeftCommandTurns90DegreesLeft stamp: 'TS 5/15/2023 07:33:17'!
+ERROR!
+!MarsRover methodsFor: 'command execution' stamp: 'TS 5/15/2023 07:33:34' prior: 50606018!
+runCommand: commandCharacter 
+
+	commandCharacter = $f ifTrue: [ position := position + (0@1). ^self ].
+	commandCharacter = $b ifTrue: [ position := position - (0@1). ^self ].
+	commandCharacter = $l ifTrue: [ heading rotateLeft. ^self 	].
+	commandCharacter = $r ifTrue: [ heading rotateRight ].
+
+	self signalInvalidCommand! !
+!MarsRover methodsFor: 'command execution' stamp: 'TS 5/15/2023 07:33:37' prior: 50606165!
+runCommand: commandCharacter 
+
+	commandCharacter = $f ifTrue: [ position := position + (0@1). ^self ].
+	commandCharacter = $b ifTrue: [ position := position - (0@1). ^self ].
+	commandCharacter = $l ifTrue: [ heading rotateLeft. ^self 	].
+	commandCharacter = $r ifTrue: [ heading rotateRight. ^self ].
+
+	self signalInvalidCommand! !
+
+!testRun: #MarsRoverTest #test01EmptyCommandStringDoesNothing stamp: 'TS 5/15/2023 07:33:38'!
+PASSED!
+
+!testRun: #MarsRoverTest #test02SingleForwardCommandWhileHeadingNorthMoves1UnitOnYAxis stamp: 'TS 5/15/2023 07:33:38'!
+PASSED!
+
+!testRun: #MarsRoverTest #test03DoubleForwardCommandWhileHeadingNorthMoves2UnitsOnYAxis stamp: 'TS 5/15/2023 07:33:38'!
+PASSED!
+
+!testRun: #MarsRoverTest #test04MovingForwardWorksWhenStartingInADifferentPosition stamp: 'TS 5/15/2023 07:33:38'!
+PASSED!
+
+!testRun: #MarsRoverTest #test05BackwardCommandsWhileHeadingNorthMoveBackwardOnYAxis stamp: 'TS 5/15/2023 07:33:38'!
+PASSED!
+
+!testRun: #MarsRoverTest #test06MixedMovementCommandsWhileHeadingNorthLeaveRoverInCorrectPosition stamp: 'TS 5/15/2023 07:33:38'!
+PASSED!
+
+!testRun: #MarsRoverTest #test07InvalidCommandRaisesAnError stamp: 'TS 5/15/2023 07:33:38'!
+PASSED!
+
+!testRun: #MarsRoverTest #test08LeftCommandTurns90DegreesLeft stamp: 'TS 5/15/2023 07:33:38'!
+PASSED!
+
+!testRun: #MarsRoverTest #test09RightCommandTurns90DegreesRight stamp: 'TS 5/15/2023 07:33:38'!
+PASSED!
+
+!testRun: #MarsRoverTest #test10DoubleLeftCommandTurns180Degrees stamp: 'TS 5/15/2023 07:33:38'!
+PASSED!
+
+!testRun: #MarsRoverTest #test11TripleLeftCommandTurns270Degrees stamp: 'TS 5/15/2023 07:33:38'!
+PASSED!
+
+!testRun: #MarsRoverTest #test12LeftCommand4TimesLeavesRoverInTheSameDirection stamp: 'TS 5/15/2023 07:33:38'!
+PASSED!
+
+!testRun: #MarsRoverTest #test13MixedRotationCommandsLeaveRoverHeadingToCorrectDirection stamp: 'TS 5/15/2023 07:33:38'!
+PASSED!
+!MarsRoverTest methodsFor: 'testing' stamp: 'TS 5/15/2023 07:34:28'!
+test14ForwardCommandAfterRotating90DegreesMovesOnXAxis
+	
+	marsRover receiveCommands: 'lf'.
+	
+	self assert: marsRover isAt: -1@0 andIsHeadingTo: self west! !
+
+!testRun: #MarsRoverTest #test14ForwardCommandAfterRotating90DegreesMovesOnXAxis stamp: 'TS 5/15/2023 07:34:30'!
+FAILURE!
+!MarsRover methodsFor: 'command execution' stamp: 'TS 5/15/2023 07:35:48' prior: 50606178!
+runCommand: commandCharacter 
+
+	commandCharacter = $f ifTrue: [
+		(self isHeadingTo: West) ifTrue: [ position := (1@0). ^self ].
+		position 	
+	].
+	commandCharacter = $b ifTrue: [ position := position - (0@1). ^self ].
+	commandCharacter = $l ifTrue: [ heading rotateLeft. ^self 	].
+	commandCharacter = $r ifTrue: [ heading rotateRight. ^self ].
+
+	self signalInvalidCommand! !
+!MarsRover methodsFor: 'command execution' stamp: 'TS 5/15/2023 07:36:00' prior: 50606251!
+runCommand: commandCharacter 
+
+	commandCharacter = $f ifTrue: [
+		(self isHeadingTo: West) ifTrue: [ position := (1@0). ^self ].
+		position 	:= position + (0@1).
+		^self
+	].
+	commandCharacter = $b ifTrue: [ position := position - (0@1). ^self ].
+	commandCharacter = $l ifTrue: [ heading rotateLeft. ^self 	].
+	commandCharacter = $r ifTrue: [ heading rotateRight. ^self ].
+
+	self signalInvalidCommand! !
+
+!testRun: #MarsRoverTest #test01EmptyCommandStringDoesNothing stamp: 'TS 5/15/2023 07:36:02'!
+PASSED!
+
+!testRun: #MarsRoverTest #test02SingleForwardCommandWhileHeadingNorthMoves1UnitOnYAxis stamp: 'TS 5/15/2023 07:36:02'!
+PASSED!
+
+!testRun: #MarsRoverTest #test03DoubleForwardCommandWhileHeadingNorthMoves2UnitsOnYAxis stamp: 'TS 5/15/2023 07:36:02'!
+PASSED!
+
+!testRun: #MarsRoverTest #test04MovingForwardWorksWhenStartingInADifferentPosition stamp: 'TS 5/15/2023 07:36:02'!
+PASSED!
+
+!testRun: #MarsRoverTest #test05BackwardCommandsWhileHeadingNorthMoveBackwardOnYAxis stamp: 'TS 5/15/2023 07:36:02'!
+PASSED!
+
+!testRun: #MarsRoverTest #test06MixedMovementCommandsWhileHeadingNorthLeaveRoverInCorrectPosition stamp: 'TS 5/15/2023 07:36:02'!
+PASSED!
+
+!testRun: #MarsRoverTest #test07InvalidCommandRaisesAnError stamp: 'TS 5/15/2023 07:36:02'!
+PASSED!
+
+!testRun: #MarsRoverTest #test08LeftCommandTurns90DegreesLeft stamp: 'TS 5/15/2023 07:36:02'!
+PASSED!
+
+!testRun: #MarsRoverTest #test09RightCommandTurns90DegreesRight stamp: 'TS 5/15/2023 07:36:02'!
+PASSED!
+
+!testRun: #MarsRoverTest #test10DoubleLeftCommandTurns180Degrees stamp: 'TS 5/15/2023 07:36:02'!
+PASSED!
+
+!testRun: #MarsRoverTest #test11TripleLeftCommandTurns270Degrees stamp: 'TS 5/15/2023 07:36:02'!
+PASSED!
+
+!testRun: #MarsRoverTest #test12LeftCommand4TimesLeavesRoverInTheSameDirection stamp: 'TS 5/15/2023 07:36:02'!
+PASSED!
+
+!testRun: #MarsRoverTest #test13MixedRotationCommandsLeaveRoverHeadingToCorrectDirection stamp: 'TS 5/15/2023 07:36:02'!
+PASSED!
+
+!testRun: #MarsRoverTest #test14ForwardCommandAfterRotating90DegreesMovesOnXAxis stamp: 'TS 5/15/2023 07:36:02'!
+FAILURE!
+
+!testRun: #MarsRoverTest #test14ForwardCommandAfterRotating90DegreesMovesOnXAxis stamp: 'TS 5/15/2023 07:36:02'!
+FAILURE!
+!MarsRover methodsFor: 'command execution' stamp: 'TS 5/15/2023 07:36:12' prior: 50606266!
+runCommand: commandCharacter 
+
+	commandCharacter = $f ifTrue: [
+		(self isHeadingTo: West) ifTrue: [ position := -1@0. ^self ].
+		position 	:= position + (0@1).
+		^self
+	].
+	commandCharacter = $b ifTrue: [ position := position - (0@1). ^self ].
+	commandCharacter = $l ifTrue: [ heading rotateLeft. ^self 	].
+	commandCharacter = $r ifTrue: [ heading rotateRight. ^self ].
+
+	self signalInvalidCommand! !
+
+!testRun: #MarsRoverTest #test01EmptyCommandStringDoesNothing stamp: 'TS 5/15/2023 07:36:13'!
+PASSED!
+
+!testRun: #MarsRoverTest #test02SingleForwardCommandWhileHeadingNorthMoves1UnitOnYAxis stamp: 'TS 5/15/2023 07:36:13'!
+PASSED!
+
+!testRun: #MarsRoverTest #test03DoubleForwardCommandWhileHeadingNorthMoves2UnitsOnYAxis stamp: 'TS 5/15/2023 07:36:13'!
+PASSED!
+
+!testRun: #MarsRoverTest #test04MovingForwardWorksWhenStartingInADifferentPosition stamp: 'TS 5/15/2023 07:36:13'!
+PASSED!
+
+!testRun: #MarsRoverTest #test05BackwardCommandsWhileHeadingNorthMoveBackwardOnYAxis stamp: 'TS 5/15/2023 07:36:13'!
+PASSED!
+
+!testRun: #MarsRoverTest #test06MixedMovementCommandsWhileHeadingNorthLeaveRoverInCorrectPosition stamp: 'TS 5/15/2023 07:36:13'!
+PASSED!
+
+!testRun: #MarsRoverTest #test07InvalidCommandRaisesAnError stamp: 'TS 5/15/2023 07:36:13'!
+PASSED!
+
+!testRun: #MarsRoverTest #test08LeftCommandTurns90DegreesLeft stamp: 'TS 5/15/2023 07:36:13'!
+PASSED!
+
+!testRun: #MarsRoverTest #test09RightCommandTurns90DegreesRight stamp: 'TS 5/15/2023 07:36:13'!
+PASSED!
+
+!testRun: #MarsRoverTest #test10DoubleLeftCommandTurns180Degrees stamp: 'TS 5/15/2023 07:36:13'!
+PASSED!
+
+!testRun: #MarsRoverTest #test11TripleLeftCommandTurns270Degrees stamp: 'TS 5/15/2023 07:36:13'!
+PASSED!
+
+!testRun: #MarsRoverTest #test12LeftCommand4TimesLeavesRoverInTheSameDirection stamp: 'TS 5/15/2023 07:36:13'!
+PASSED!
+
+!testRun: #MarsRoverTest #test13MixedRotationCommandsLeaveRoverHeadingToCorrectDirection stamp: 'TS 5/15/2023 07:36:13'!
+PASSED!
+
+!testRun: #MarsRoverTest #test14ForwardCommandAfterRotating90DegreesMovesOnXAxis stamp: 'TS 5/15/2023 07:36:13'!
+PASSED!
+!MarsRoverTest methodsFor: 'testing' stamp: 'TS 5/15/2023 07:36:26'!
+test14SingleForwardCommandAfterRotating90DegreesMoves1UnitOnXAxis
+	
+	marsRover receiveCommands: 'lf'.
+	
+	self assert: marsRover isAt: -1@0 andIsHeadingTo: self west! !
+
+!methodRemoval: MarsRoverTest #test14ForwardCommandAfterRotating90DegreesMovesOnXAxis stamp: 'TS 5/15/2023 07:36:26'!
+test14ForwardCommandAfterRotating90DegreesMovesOnXAxis
+	
+	marsRover receiveCommands: 'lf'.
+	
+	self assert: marsRover isAt: -1@0 andIsHeadingTo: self west!
+!MarsRoverTest methodsFor: 'testing' stamp: 'TS 5/15/2023 07:36:47'!
+test15DoubleForwardCommandAfterRotating90DegreesMoves2UnitsOnXAxis
+	
+	marsRover receiveCommands: 'lff'.
+	
+	self assert: marsRover isAt: -2@0 andIsHeadingTo: self west! !
+!MarsRover methodsFor: 'command execution' stamp: 'TS 5/15/2023 07:37:13' prior: 50606337!
+runCommand: commandCharacter 
+
+	commandCharacter = $f ifTrue: [
+		(self isHeadingTo: West) ifTrue: [ position := position + (-1@0). ^self ].
+		position 	:= position + (0@1).
+		^self
+	].
+	commandCharacter = $b ifTrue: [ position := position - (0@1). ^self ].
+	commandCharacter = $l ifTrue: [ heading rotateLeft. ^self 	].
+	commandCharacter = $r ifTrue: [ heading rotateRight. ^self ].
+
+	self signalInvalidCommand! !
+!MarsRover methodsFor: 'command execution' stamp: 'TS 5/15/2023 07:37:19' prior: 50606429!
+runCommand: commandCharacter 
+
+	commandCharacter = $f ifTrue: [
+		(self isHeadingTo: West) ifTrue: [ position := position + (-1@0). ^self ].
+		position 	:= position + (0@1). ^self
+	].
+	commandCharacter = $b ifTrue: [ position := position - (0@1). ^self ].
+	commandCharacter = $l ifTrue: [ heading rotateLeft. ^self 	].
+	commandCharacter = $r ifTrue: [ heading rotateRight. ^self ].
+
+	self signalInvalidCommand! !
+
+!testRun: #MarsRoverTest #test01EmptyCommandStringDoesNothing stamp: 'TS 5/15/2023 07:37:21'!
+PASSED!
+
+!testRun: #MarsRoverTest #test02SingleForwardCommandWhileHeadingNorthMoves1UnitOnYAxis stamp: 'TS 5/15/2023 07:37:21'!
+PASSED!
+
+!testRun: #MarsRoverTest #test03DoubleForwardCommandWhileHeadingNorthMoves2UnitsOnYAxis stamp: 'TS 5/15/2023 07:37:21'!
+PASSED!
+
+!testRun: #MarsRoverTest #test04MovingForwardWorksWhenStartingInADifferentPosition stamp: 'TS 5/15/2023 07:37:21'!
+PASSED!
+
+!testRun: #MarsRoverTest #test05BackwardCommandsWhileHeadingNorthMoveBackwardOnYAxis stamp: 'TS 5/15/2023 07:37:21'!
+PASSED!
+
+!testRun: #MarsRoverTest #test06MixedMovementCommandsWhileHeadingNorthLeaveRoverInCorrectPosition stamp: 'TS 5/15/2023 07:37:21'!
+PASSED!
+
+!testRun: #MarsRoverTest #test07InvalidCommandRaisesAnError stamp: 'TS 5/15/2023 07:37:21'!
+PASSED!
+
+!testRun: #MarsRoverTest #test08LeftCommandTurns90DegreesLeft stamp: 'TS 5/15/2023 07:37:21'!
+PASSED!
+
+!testRun: #MarsRoverTest #test09RightCommandTurns90DegreesRight stamp: 'TS 5/15/2023 07:37:21'!
+PASSED!
+
+!testRun: #MarsRoverTest #test10DoubleLeftCommandTurns180Degrees stamp: 'TS 5/15/2023 07:37:21'!
+PASSED!
+
+!testRun: #MarsRoverTest #test11TripleLeftCommandTurns270Degrees stamp: 'TS 5/15/2023 07:37:21'!
+PASSED!
+
+!testRun: #MarsRoverTest #test12LeftCommand4TimesLeavesRoverInTheSameDirection stamp: 'TS 5/15/2023 07:37:21'!
+PASSED!
+
+!testRun: #MarsRoverTest #test13MixedRotationCommandsLeaveRoverHeadingToCorrectDirection stamp: 'TS 5/15/2023 07:37:21'!
+PASSED!
+
+!testRun: #MarsRoverTest #test14SingleForwardCommandAfterRotating90DegreesMoves1UnitOnXAxis stamp: 'TS 5/15/2023 07:37:21'!
+PASSED!
+
+!testRun: #MarsRoverTest #test15DoubleForwardCommandAfterRotating90DegreesMoves2UnitsOnXAxis stamp: 'TS 5/15/2023 07:37:21'!
+PASSED!
+!MarsRoverTest methodsFor: 'testing' stamp: 'TS 5/15/2023 07:37:47'!
+test16BackwardCommandMovesBackwardOnXAxis
+	
+	marsRover receiveCommands: 'lbb'.
+	
+	self assert: marsRover isAt: 1@0 andIsHeadingTo: self west! !
+!MarsRoverTest methodsFor: 'testing' stamp: 'TS 5/15/2023 07:38:04'!
+test16BackwardCommandAfterRotating90DegreesMovesBackwardOnXAxis
+	
+	marsRover receiveCommands: 'lbb'.
+	
+	self assert: marsRover isAt: 1@0 andIsHeadingTo: self west! !
+
+!methodRemoval: MarsRoverTest #test16BackwardCommandMovesBackwardOnXAxis stamp: 'TS 5/15/2023 07:38:04'!
+test16BackwardCommandMovesBackwardOnXAxis
+	
+	marsRover receiveCommands: 'lbb'.
+	
+	self assert: marsRover isAt: 1@0 andIsHeadingTo: self west!
+!MarsRoverTest methodsFor: 'testing' stamp: 'TS 5/15/2023 07:38:12'!
+test14SingleForwardCommandAfterTurning90DegreesMoves1UnitOnXAxis
+	
+	marsRover receiveCommands: 'lf'.
+	
+	self assert: marsRover isAt: -1@0 andIsHeadingTo: self west! !
+
+!methodRemoval: MarsRoverTest #test14SingleForwardCommandAfterRotating90DegreesMoves1UnitOnXAxis stamp: 'TS 5/15/2023 07:38:12'!
+test14SingleForwardCommandAfterRotating90DegreesMoves1UnitOnXAxis
+	
+	marsRover receiveCommands: 'lf'.
+	
+	self assert: marsRover isAt: -1@0 andIsHeadingTo: self west!
+!MarsRoverTest methodsFor: 'testing' stamp: 'TS 5/15/2023 07:38:18'!
+test15DoubleForwardCommandAfterTurning90DegreesMoves2UnitsOnXAxis
+	
+	marsRover receiveCommands: 'lff'.
+	
+	self assert: marsRover isAt: -2@0 andIsHeadingTo: self west! !
+
+!methodRemoval: MarsRoverTest #test15DoubleForwardCommandAfterRotating90DegreesMoves2UnitsOnXAxis stamp: 'TS 5/15/2023 07:38:18'!
+test15DoubleForwardCommandAfterRotating90DegreesMoves2UnitsOnXAxis
+	
+	marsRover receiveCommands: 'lff'.
+	
+	self assert: marsRover isAt: -2@0 andIsHeadingTo: self west!
+!MarsRoverTest methodsFor: 'testing' stamp: 'TS 5/15/2023 07:38:24'!
+test16BackwardCommandAfterTurning90DegreesMovesBackwardOnXAxis
+	
+	marsRover receiveCommands: 'lbb'.
+	
+	self assert: marsRover isAt: 1@0 andIsHeadingTo: self west! !
+
+!methodRemoval: MarsRoverTest #test16BackwardCommandAfterRotating90DegreesMovesBackwardOnXAxis stamp: 'TS 5/15/2023 07:38:24'!
+test16BackwardCommandAfterRotating90DegreesMovesBackwardOnXAxis
+	
+	marsRover receiveCommands: 'lbb'.
+	
+	self assert: marsRover isAt: 1@0 andIsHeadingTo: self west!
+!MarsRover methodsFor: 'command execution' stamp: 'TS 5/15/2023 07:39:33' prior: 50606445!
+runCommand: commandCharacter 
+
+	commandCharacter = $f ifTrue: [
+		(self isHeadingTo: West) ifTrue: [ position := position - (1@0). ^self ].
+		position 	:= position + (0@1). ^self
+	].
+	commandCharacter = $b ifTrue: [ 
+		(self isHeadingTo: West) ifTrue: [ position := position + (1@0). ^self ].
+		position 	:= position - (0@1). ^self
+	].
+	commandCharacter = $l ifTrue: [ heading rotateLeft. ^self 	].
+	commandCharacter = $r ifTrue: [ heading rotateRight. ^self ].
+
+	self signalInvalidCommand! !
+
+!testRun: #MarsRoverTest #test01EmptyCommandStringDoesNothing stamp: 'TS 5/15/2023 07:39:35'!
+PASSED!
+
+!testRun: #MarsRoverTest #test02SingleForwardCommandWhileHeadingNorthMoves1UnitOnYAxis stamp: 'TS 5/15/2023 07:39:35'!
+PASSED!
+
+!testRun: #MarsRoverTest #test03DoubleForwardCommandWhileHeadingNorthMoves2UnitsOnYAxis stamp: 'TS 5/15/2023 07:39:35'!
+PASSED!
+
+!testRun: #MarsRoverTest #test04MovingForwardWorksWhenStartingInADifferentPosition stamp: 'TS 5/15/2023 07:39:35'!
+PASSED!
+
+!testRun: #MarsRoverTest #test05BackwardCommandsWhileHeadingNorthMoveBackwardOnYAxis stamp: 'TS 5/15/2023 07:39:35'!
+PASSED!
+
+!testRun: #MarsRoverTest #test06MixedMovementCommandsWhileHeadingNorthLeaveRoverInCorrectPosition stamp: 'TS 5/15/2023 07:39:35'!
+PASSED!
+
+!testRun: #MarsRoverTest #test07InvalidCommandRaisesAnError stamp: 'TS 5/15/2023 07:39:35'!
+PASSED!
+
+!testRun: #MarsRoverTest #test08LeftCommandTurns90DegreesLeft stamp: 'TS 5/15/2023 07:39:35'!
+PASSED!
+
+!testRun: #MarsRoverTest #test09RightCommandTurns90DegreesRight stamp: 'TS 5/15/2023 07:39:35'!
+PASSED!
+
+!testRun: #MarsRoverTest #test10DoubleLeftCommandTurns180Degrees stamp: 'TS 5/15/2023 07:39:35'!
+PASSED!
+
+!testRun: #MarsRoverTest #test11TripleLeftCommandTurns270Degrees stamp: 'TS 5/15/2023 07:39:35'!
+PASSED!
+
+!testRun: #MarsRoverTest #test12LeftCommand4TimesLeavesRoverInTheSameDirection stamp: 'TS 5/15/2023 07:39:35'!
+PASSED!
+
+!testRun: #MarsRoverTest #test13MixedRotationCommandsLeaveRoverHeadingToCorrectDirection stamp: 'TS 5/15/2023 07:39:35'!
+PASSED!
+
+!testRun: #MarsRoverTest #test14SingleForwardCommandAfterTurning90DegreesMoves1UnitOnXAxis stamp: 'TS 5/15/2023 07:39:35'!
+PASSED!
+
+!testRun: #MarsRoverTest #test15DoubleForwardCommandAfterTurning90DegreesMoves2UnitsOnXAxis stamp: 'TS 5/15/2023 07:39:35'!
+PASSED!
+
+!testRun: #MarsRoverTest #test16BackwardCommandAfterTurning90DegreesMovesBackwardOnXAxis stamp: 'TS 5/15/2023 07:39:35'!
+FAILURE!
+
+!testRun: #MarsRoverTest #test16BackwardCommandAfterTurning90DegreesMovesBackwardOnXAxis stamp: 'TS 5/15/2023 07:39:35'!
+FAILURE!
+!MarsRoverTest methodsFor: 'testing' stamp: 'TS 5/15/2023 07:39:42' prior: 50606573!
+test16BackwardCommandAfterTurning90DegreesMovesBackwardOnXAxis
+	
+	marsRover receiveCommands: 'lbb'.
+	
+	self assert: marsRover isAt: 2@0 andIsHeadingTo: self west! !
+
+!testRun: #MarsRoverTest #test16BackwardCommandAfterTurning90DegreesMovesBackwardOnXAxis stamp: 'TS 5/15/2023 07:39:43'!
+PASSED!
+
+!testRun: #MarsRoverTest #test01EmptyCommandStringDoesNothing stamp: 'TS 5/15/2023 07:39:43'!
+PASSED!
+
+!testRun: #MarsRoverTest #test02SingleForwardCommandWhileHeadingNorthMoves1UnitOnYAxis stamp: 'TS 5/15/2023 07:39:43'!
+PASSED!
+
+!testRun: #MarsRoverTest #test03DoubleForwardCommandWhileHeadingNorthMoves2UnitsOnYAxis stamp: 'TS 5/15/2023 07:39:43'!
+PASSED!
+
+!testRun: #MarsRoverTest #test04MovingForwardWorksWhenStartingInADifferentPosition stamp: 'TS 5/15/2023 07:39:43'!
+PASSED!
+
+!testRun: #MarsRoverTest #test05BackwardCommandsWhileHeadingNorthMoveBackwardOnYAxis stamp: 'TS 5/15/2023 07:39:43'!
+PASSED!
+
+!testRun: #MarsRoverTest #test06MixedMovementCommandsWhileHeadingNorthLeaveRoverInCorrectPosition stamp: 'TS 5/15/2023 07:39:43'!
+PASSED!
+
+!testRun: #MarsRoverTest #test07InvalidCommandRaisesAnError stamp: 'TS 5/15/2023 07:39:43'!
+PASSED!
+
+!testRun: #MarsRoverTest #test08LeftCommandTurns90DegreesLeft stamp: 'TS 5/15/2023 07:39:43'!
+PASSED!
+
+!testRun: #MarsRoverTest #test09RightCommandTurns90DegreesRight stamp: 'TS 5/15/2023 07:39:43'!
+PASSED!
+
+!testRun: #MarsRoverTest #test10DoubleLeftCommandTurns180Degrees stamp: 'TS 5/15/2023 07:39:43'!
+PASSED!
+
+!testRun: #MarsRoverTest #test11TripleLeftCommandTurns270Degrees stamp: 'TS 5/15/2023 07:39:43'!
+PASSED!
+
+!testRun: #MarsRoverTest #test12LeftCommand4TimesLeavesRoverInTheSameDirection stamp: 'TS 5/15/2023 07:39:43'!
+PASSED!
+
+!testRun: #MarsRoverTest #test13MixedRotationCommandsLeaveRoverHeadingToCorrectDirection stamp: 'TS 5/15/2023 07:39:43'!
+PASSED!
+
+!testRun: #MarsRoverTest #test14SingleForwardCommandAfterTurning90DegreesMoves1UnitOnXAxis stamp: 'TS 5/15/2023 07:39:43'!
+PASSED!
+
+!testRun: #MarsRoverTest #test15DoubleForwardCommandAfterTurning90DegreesMoves2UnitsOnXAxis stamp: 'TS 5/15/2023 07:39:43'!
+PASSED!
+
+!testRun: #MarsRoverTest #test16BackwardCommandAfterTurning90DegreesMovesBackwardOnXAxis stamp: 'TS 5/15/2023 07:39:43'!
+PASSED!
+!MarsRoverTest methodsFor: 'testing' stamp: 'TS 5/15/2023 07:41:16'!
+test17MovementCommandsAfterTurning180DegreesMoveOnYAxisInAnInvertedDirection
+	
+	marsRover receiveCommands: 'llfbf'.
+	
+	self assert: marsRover isAt: -1@0 andIsHeadingTo: self west! !
+
+!testRun: #MarsRoverTest #test17MovementCommandsAfterTurning180DegreesMoveOnYAxisInAnInvertedDirection stamp: 'TS 5/15/2023 07:41:17'!
+FAILURE!
+!MarsRover methodsFor: 'command execution' stamp: 'TS 5/15/2023 07:42:32' prior: 50606591!
+runCommand: commandCharacter 
+
+	commandCharacter = $f ifTrue: [
+		(self isHeadingTo: West) ifTrue: [ position := position - (1@0). ^self ].
+		(self isHeadingTo: South) ifTrue: [ position := position - (0@1). ^self ].
+		position 	:= position + (0@1). ^self
+	].
+	commandCharacter = $b ifTrue: [ 
+		(self isHeadingTo: West) ifTrue: [ position := position + (1@0). ^self ].
+		(self isHeadingTo: South) ifTrue: [ position := position + (1@0). ^self ].
+		position 	:= position - (0@1). ^self
+	].
+	commandCharacter = $l ifTrue: [ heading rotateLeft. ^self 	].
+	commandCharacter = $r ifTrue: [ heading rotateRight. ^self ].
+
+	self signalInvalidCommand! !
+!MarsRover methodsFor: 'command execution' stamp: 'TS 5/15/2023 07:42:39' prior: 50606760!
+runCommand: commandCharacter 
+
+	commandCharacter = $f ifTrue: [
+		(self isHeadingTo: West) ifTrue: [ position := position - (1@0). ^self ].
+		(self isHeadingTo: South) ifTrue: [ position := position - (0@1). ^self ].
+		position 	:= position + (0@1). ^self
+	].
+	commandCharacter = $b ifTrue: [ 
+		(self isHeadingTo: West) ifTrue: [ position := position + (1@0). ^self ].
+		(self isHeadingTo: South) ifTrue: [ position := position + (0@1). ^self ].
+		position 	:= position - (0@1). ^self
+	].
+	commandCharacter = $l ifTrue: [ heading rotateLeft. ^self 	].
+	commandCharacter = $r ifTrue: [ heading rotateRight. ^self ].
+
+	self signalInvalidCommand! !
+
+!testRun: #MarsRoverTest #test01EmptyCommandStringDoesNothing stamp: 'TS 5/15/2023 07:42:41'!
+PASSED!
+
+!testRun: #MarsRoverTest #test02SingleForwardCommandWhileHeadingNorthMoves1UnitOnYAxis stamp: 'TS 5/15/2023 07:42:41'!
+PASSED!
+
+!testRun: #MarsRoverTest #test03DoubleForwardCommandWhileHeadingNorthMoves2UnitsOnYAxis stamp: 'TS 5/15/2023 07:42:41'!
+PASSED!
+
+!testRun: #MarsRoverTest #test04MovingForwardWorksWhenStartingInADifferentPosition stamp: 'TS 5/15/2023 07:42:41'!
+PASSED!
+
+!testRun: #MarsRoverTest #test05BackwardCommandsWhileHeadingNorthMoveBackwardOnYAxis stamp: 'TS 5/15/2023 07:42:41'!
+PASSED!
+
+!testRun: #MarsRoverTest #test06MixedMovementCommandsWhileHeadingNorthLeaveRoverInCorrectPosition stamp: 'TS 5/15/2023 07:42:41'!
+PASSED!
+
+!testRun: #MarsRoverTest #test07InvalidCommandRaisesAnError stamp: 'TS 5/15/2023 07:42:41'!
+PASSED!
+
+!testRun: #MarsRoverTest #test08LeftCommandTurns90DegreesLeft stamp: 'TS 5/15/2023 07:42:41'!
+PASSED!
+
+!testRun: #MarsRoverTest #test09RightCommandTurns90DegreesRight stamp: 'TS 5/15/2023 07:42:41'!
+PASSED!
+
+!testRun: #MarsRoverTest #test10DoubleLeftCommandTurns180Degrees stamp: 'TS 5/15/2023 07:42:41'!
+PASSED!
+
+!testRun: #MarsRoverTest #test11TripleLeftCommandTurns270Degrees stamp: 'TS 5/15/2023 07:42:41'!
+PASSED!
+
+!testRun: #MarsRoverTest #test12LeftCommand4TimesLeavesRoverInTheSameDirection stamp: 'TS 5/15/2023 07:42:41'!
+PASSED!
+
+!testRun: #MarsRoverTest #test13MixedRotationCommandsLeaveRoverHeadingToCorrectDirection stamp: 'TS 5/15/2023 07:42:41'!
+PASSED!
+
+!testRun: #MarsRoverTest #test14SingleForwardCommandAfterTurning90DegreesMoves1UnitOnXAxis stamp: 'TS 5/15/2023 07:42:41'!
+PASSED!
+
+!testRun: #MarsRoverTest #test15DoubleForwardCommandAfterTurning90DegreesMoves2UnitsOnXAxis stamp: 'TS 5/15/2023 07:42:41'!
+PASSED!
+
+!testRun: #MarsRoverTest #test16BackwardCommandAfterTurning90DegreesMovesBackwardOnXAxis stamp: 'TS 5/15/2023 07:42:41'!
+PASSED!
+
+!testRun: #MarsRoverTest #test17MovementCommandsAfterTurning180DegreesMoveOnYAxisInAnInvertedDirection stamp: 'TS 5/15/2023 07:42:41'!
+FAILURE!
+
+!testRun: #MarsRoverTest #test17MovementCommandsAfterTurning180DegreesMoveOnYAxisInAnInvertedDirection stamp: 'TS 5/15/2023 07:42:41'!
+FAILURE!
+!MarsRoverTest methodsFor: 'testing' stamp: 'TS 5/15/2023 07:42:52' prior: 50606746!
+test17MovementCommandsAfterTurning180DegreesMoveOnYAxisInAnInvertedDirection
+	
+	marsRover receiveCommands: 'llfbf'.
+	
+	self assert: marsRover isAt: 0@-1 andIsHeadingTo: self west! !
+
+!testRun: #MarsRoverTest #test17MovementCommandsAfterTurning180DegreesMoveOnYAxisInAnInvertedDirection stamp: 'TS 5/15/2023 07:42:52'!
+FAILURE!
+!MarsRoverTest methodsFor: 'testing' stamp: 'TS 5/15/2023 07:42:57' prior: 50606876!
+test17MovementCommandsAfterTurning180DegreesMoveOnYAxisInAnInvertedDirection
+	
+	marsRover receiveCommands: 'llfbf'.
+	
+	self assert: marsRover isAt: 0@-1 andIsHeadingTo: self south! !
+
+!testRun: #MarsRoverTest #test17MovementCommandsAfterTurning180DegreesMoveOnYAxisInAnInvertedDirection stamp: 'TS 5/15/2023 07:42:58'!
+PASSED!
+
+!testRun: #MarsRoverTest #test01EmptyCommandStringDoesNothing stamp: 'TS 5/15/2023 07:42:58'!
+PASSED!
+
+!testRun: #MarsRoverTest #test02SingleForwardCommandWhileHeadingNorthMoves1UnitOnYAxis stamp: 'TS 5/15/2023 07:42:58'!
+PASSED!
+
+!testRun: #MarsRoverTest #test03DoubleForwardCommandWhileHeadingNorthMoves2UnitsOnYAxis stamp: 'TS 5/15/2023 07:42:58'!
+PASSED!
+
+!testRun: #MarsRoverTest #test04MovingForwardWorksWhenStartingInADifferentPosition stamp: 'TS 5/15/2023 07:42:58'!
+PASSED!
+
+!testRun: #MarsRoverTest #test05BackwardCommandsWhileHeadingNorthMoveBackwardOnYAxis stamp: 'TS 5/15/2023 07:42:58'!
+PASSED!
+
+!testRun: #MarsRoverTest #test06MixedMovementCommandsWhileHeadingNorthLeaveRoverInCorrectPosition stamp: 'TS 5/15/2023 07:42:58'!
+PASSED!
+
+!testRun: #MarsRoverTest #test07InvalidCommandRaisesAnError stamp: 'TS 5/15/2023 07:42:58'!
+PASSED!
+
+!testRun: #MarsRoverTest #test08LeftCommandTurns90DegreesLeft stamp: 'TS 5/15/2023 07:42:58'!
+PASSED!
+
+!testRun: #MarsRoverTest #test09RightCommandTurns90DegreesRight stamp: 'TS 5/15/2023 07:42:58'!
+PASSED!
+
+!testRun: #MarsRoverTest #test10DoubleLeftCommandTurns180Degrees stamp: 'TS 5/15/2023 07:42:58'!
+PASSED!
+
+!testRun: #MarsRoverTest #test11TripleLeftCommandTurns270Degrees stamp: 'TS 5/15/2023 07:42:58'!
+PASSED!
+
+!testRun: #MarsRoverTest #test12LeftCommand4TimesLeavesRoverInTheSameDirection stamp: 'TS 5/15/2023 07:42:58'!
+PASSED!
+
+!testRun: #MarsRoverTest #test13MixedRotationCommandsLeaveRoverHeadingToCorrectDirection stamp: 'TS 5/15/2023 07:42:58'!
+PASSED!
+
+!testRun: #MarsRoverTest #test14SingleForwardCommandAfterTurning90DegreesMoves1UnitOnXAxis stamp: 'TS 5/15/2023 07:42:58'!
+PASSED!
+
+!testRun: #MarsRoverTest #test15DoubleForwardCommandAfterTurning90DegreesMoves2UnitsOnXAxis stamp: 'TS 5/15/2023 07:42:58'!
+PASSED!
+
+!testRun: #MarsRoverTest #test16BackwardCommandAfterTurning90DegreesMovesBackwardOnXAxis stamp: 'TS 5/15/2023 07:42:58'!
+PASSED!
+
+!testRun: #MarsRoverTest #test17MovementCommandsAfterTurning180DegreesMoveOnYAxisInAnInvertedDirection stamp: 'TS 5/15/2023 07:42:58'!
+PASSED!
+!MarsRoverTest methodsFor: 'testing' stamp: 'TS 5/15/2023 07:44:09'!
+test18MixedMovementAndRotationCommandsWorkCorrectly
+	
+	marsRover receiveCommands: 'llblffrblf'.
+	
+	self assert: marsRover isAt: 3@0 andIsHeadingTo: self east! !
+
+!testRun: #MarsRoverTest #test18MixedMovementAndRotationCommandsWorkCorrectly stamp: 'TS 5/15/2023 07:44:11'!
+FAILURE!
+!MarsRover methodsFor: 'command execution' stamp: 'TS 5/15/2023 07:45:01' prior: 50606784!
+runCommand: commandCharacter 
+
+	commandCharacter = $f ifTrue: [
+		(self isHeadingTo: West) ifTrue: [ position := position - (1@0). ^self ].
+		(self isHeadingTo: South) ifTrue: [ position := position - (0@1). ^self ].
+		(self isHeadingTo: East) ifTrue: [ position := position + (1@0). ^self ].
+		(self isHeadingTo: North) ifTrue: [ position := position + (0@1). ^self ].
+	].
+	commandCharacter = $b ifTrue: [ 
+		(self isHeadingTo: West) ifTrue: [ position := position + (1@0). ^self ].
+		(self isHeadingTo: South) ifTrue: [ position := position + (0@1). ^self ].
+		(self isHeadingTo: East) ifTrue: [ position := position - (1@0). ^self ].
+		(self isHeadingTo: North) ifTrue: [ position := position - (0@1). ^self ].
+	].
+	commandCharacter = $l ifTrue: [ heading rotateLeft. ^self 	].
+	commandCharacter = $r ifTrue: [ heading rotateRight. ^self ].
+
+	self signalInvalidCommand! !
+
+!testRun: #MarsRoverTest #test01EmptyCommandStringDoesNothing stamp: 'TS 5/15/2023 07:45:02'!
+PASSED!
+
+!testRun: #MarsRoverTest #test02SingleForwardCommandWhileHeadingNorthMoves1UnitOnYAxis stamp: 'TS 5/15/2023 07:45:02'!
+PASSED!
+
+!testRun: #MarsRoverTest #test03DoubleForwardCommandWhileHeadingNorthMoves2UnitsOnYAxis stamp: 'TS 5/15/2023 07:45:02'!
+PASSED!
+
+!testRun: #MarsRoverTest #test04MovingForwardWorksWhenStartingInADifferentPosition stamp: 'TS 5/15/2023 07:45:02'!
+PASSED!
+
+!testRun: #MarsRoverTest #test05BackwardCommandsWhileHeadingNorthMoveBackwardOnYAxis stamp: 'TS 5/15/2023 07:45:02'!
+PASSED!
+
+!testRun: #MarsRoverTest #test06MixedMovementCommandsWhileHeadingNorthLeaveRoverInCorrectPosition stamp: 'TS 5/15/2023 07:45:02'!
+PASSED!
+
+!testRun: #MarsRoverTest #test07InvalidCommandRaisesAnError stamp: 'TS 5/15/2023 07:45:02'!
+PASSED!
+
+!testRun: #MarsRoverTest #test08LeftCommandTurns90DegreesLeft stamp: 'TS 5/15/2023 07:45:02'!
+PASSED!
+
+!testRun: #MarsRoverTest #test09RightCommandTurns90DegreesRight stamp: 'TS 5/15/2023 07:45:02'!
+PASSED!
+
+!testRun: #MarsRoverTest #test10DoubleLeftCommandTurns180Degrees stamp: 'TS 5/15/2023 07:45:02'!
+PASSED!
+
+!testRun: #MarsRoverTest #test11TripleLeftCommandTurns270Degrees stamp: 'TS 5/15/2023 07:45:02'!
+PASSED!
+
+!testRun: #MarsRoverTest #test12LeftCommand4TimesLeavesRoverInTheSameDirection stamp: 'TS 5/15/2023 07:45:02'!
+PASSED!
+
+!testRun: #MarsRoverTest #test13MixedRotationCommandsLeaveRoverHeadingToCorrectDirection stamp: 'TS 5/15/2023 07:45:02'!
+PASSED!
+
+!testRun: #MarsRoverTest #test14SingleForwardCommandAfterTurning90DegreesMoves1UnitOnXAxis stamp: 'TS 5/15/2023 07:45:02'!
+PASSED!
+
+!testRun: #MarsRoverTest #test15DoubleForwardCommandAfterTurning90DegreesMoves2UnitsOnXAxis stamp: 'TS 5/15/2023 07:45:02'!
+PASSED!
+
+!testRun: #MarsRoverTest #test16BackwardCommandAfterTurning90DegreesMovesBackwardOnXAxis stamp: 'TS 5/15/2023 07:45:02'!
+PASSED!
+
+!testRun: #MarsRoverTest #test17MovementCommandsAfterTurning180DegreesMoveOnYAxisInAnInvertedDirection stamp: 'TS 5/15/2023 07:45:02'!
+PASSED!
+
+!testRun: #MarsRoverTest #test18MixedMovementAndRotationCommandsWorkCorrectly stamp: 'TS 5/15/2023 07:45:02'!
+FAILURE!
+
+!testRun: #MarsRoverTest #test18MixedMovementAndRotationCommandsWorkCorrectly stamp: 'TS 5/15/2023 07:45:02'!
+FAILURE!
+!MarsRoverTest methodsFor: 'testing' stamp: 'TS 5/15/2023 07:45:27' prior: 50606966!
+test18MixedMovementAndRotationCommandsWorkCorrectly
+	
+	marsRover receiveCommands: 'llblffrblf'.
+	
+	self assert: marsRover isAt: 3@2 andIsHeadingTo: self east! !
+
+!testRun: #MarsRoverTest #test18MixedMovementAndRotationCommandsWorkCorrectly stamp: 'TS 5/15/2023 07:45:28'!
+PASSED!
+
+!testRun: #MarsRoverTest #test01EmptyCommandStringDoesNothing stamp: 'TS 5/15/2023 07:45:28'!
+PASSED!
+
+!testRun: #MarsRoverTest #test02SingleForwardCommandWhileHeadingNorthMoves1UnitOnYAxis stamp: 'TS 5/15/2023 07:45:28'!
+PASSED!
+
+!testRun: #MarsRoverTest #test03DoubleForwardCommandWhileHeadingNorthMoves2UnitsOnYAxis stamp: 'TS 5/15/2023 07:45:28'!
+PASSED!
+
+!testRun: #MarsRoverTest #test04MovingForwardWorksWhenStartingInADifferentPosition stamp: 'TS 5/15/2023 07:45:28'!
+PASSED!
+
+!testRun: #MarsRoverTest #test05BackwardCommandsWhileHeadingNorthMoveBackwardOnYAxis stamp: 'TS 5/15/2023 07:45:28'!
+PASSED!
+
+!testRun: #MarsRoverTest #test06MixedMovementCommandsWhileHeadingNorthLeaveRoverInCorrectPosition stamp: 'TS 5/15/2023 07:45:28'!
+PASSED!
+
+!testRun: #MarsRoverTest #test07InvalidCommandRaisesAnError stamp: 'TS 5/15/2023 07:45:28'!
+PASSED!
+
+!testRun: #MarsRoverTest #test08LeftCommandTurns90DegreesLeft stamp: 'TS 5/15/2023 07:45:28'!
+PASSED!
+
+!testRun: #MarsRoverTest #test09RightCommandTurns90DegreesRight stamp: 'TS 5/15/2023 07:45:28'!
+PASSED!
+
+!testRun: #MarsRoverTest #test10DoubleLeftCommandTurns180Degrees stamp: 'TS 5/15/2023 07:45:28'!
+PASSED!
+
+!testRun: #MarsRoverTest #test11TripleLeftCommandTurns270Degrees stamp: 'TS 5/15/2023 07:45:28'!
+PASSED!
+
+!testRun: #MarsRoverTest #test12LeftCommand4TimesLeavesRoverInTheSameDirection stamp: 'TS 5/15/2023 07:45:28'!
+PASSED!
+
+!testRun: #MarsRoverTest #test13MixedRotationCommandsLeaveRoverHeadingToCorrectDirection stamp: 'TS 5/15/2023 07:45:28'!
+PASSED!
+
+!testRun: #MarsRoverTest #test14SingleForwardCommandAfterTurning90DegreesMoves1UnitOnXAxis stamp: 'TS 5/15/2023 07:45:28'!
+PASSED!
+
+!testRun: #MarsRoverTest #test15DoubleForwardCommandAfterTurning90DegreesMoves2UnitsOnXAxis stamp: 'TS 5/15/2023 07:45:28'!
+PASSED!
+
+!testRun: #MarsRoverTest #test16BackwardCommandAfterTurning90DegreesMovesBackwardOnXAxis stamp: 'TS 5/15/2023 07:45:28'!
+PASSED!
+
+!testRun: #MarsRoverTest #test17MovementCommandsAfterTurning180DegreesMoveOnYAxisInAnInvertedDirection stamp: 'TS 5/15/2023 07:45:28'!
+PASSED!
+
+!testRun: #MarsRoverTest #test18MixedMovementAndRotationCommandsWorkCorrectly stamp: 'TS 5/15/2023 07:45:28'!
+PASSED!
+!Heading class methodsFor: 'properties' stamp: 'TS 5/15/2023 07:46:02'!
+forwardDirection
+
+	self subclassResponsibility! !
+!Heading class methodsFor: 'properties' stamp: 'TS 5/15/2023 07:46:08'!
+backwardDirection
+
+	self subclassResponsibility! !
+!North class methodsFor: 'properties' stamp: 'TS 5/15/2023 07:46:13' overrides: 50607164!
+backwardDirection
+
+	self subclassResponsibility! !
+!West class methodsFor: 'properties' stamp: 'TS 5/15/2023 07:46:13' overrides: 50607164!
+backwardDirection
+
+	self subclassResponsibility! !
+!East class methodsFor: 'properties' stamp: 'TS 5/15/2023 07:46:13' overrides: 50607164!
+backwardDirection
+
+	self subclassResponsibility! !
+!South class methodsFor: 'properties' stamp: 'TS 5/15/2023 07:46:13' overrides: 50607164!
+backwardDirection
+
+	self subclassResponsibility! !
+
+!methodRemoval: Heading class #backwardDirection stamp: 'TS 5/15/2023 07:46:13'!
+backwardDirection
+
+	self subclassResponsibility!
+!Heading class methodsFor: 'properties' stamp: 'TS 5/15/2023 07:46:15'!
+backwardDirection
+
+	self subclassResponsibility! !
+!North class methodsFor: 'properties' stamp: 'TS 5/15/2023 07:46:20' overrides: 50607160!
+forwardDirection
+
+	self subclassResponsibility! !
+!West class methodsFor: 'properties' stamp: 'TS 5/15/2023 07:46:20' overrides: 50607160!
+forwardDirection
+
+	self subclassResponsibility! !
+!East class methodsFor: 'properties' stamp: 'TS 5/15/2023 07:46:20' overrides: 50607160!
+forwardDirection
+
+	self subclassResponsibility! !
+!South class methodsFor: 'properties' stamp: 'TS 5/15/2023 07:46:20' overrides: 50607160!
+forwardDirection
+
+	self subclassResponsibility! !
+
+!methodRemoval: Heading class #forwardDirection stamp: 'TS 5/15/2023 07:46:20'!
+forwardDirection
+
+	self subclassResponsibility!
+!Heading class methodsFor: 'properties' stamp: 'TS 5/15/2023 07:46:21'!
+forwardDirection
+
+	self subclassResponsibility! !
+!Heading class methodsFor: 'properties' stamp: 'TS 5/15/2023 07:46:40'!
+backwardUnitVector
+
+	self subclassResponsibility! !
+!East class methodsFor: 'properties' stamp: 'TS 5/15/2023 07:46:40' overrides: 50607224!
+backwardUnitVector
+
+	self subclassResponsibility! !
+!North class methodsFor: 'properties' stamp: 'TS 5/15/2023 07:46:40' overrides: 50607224!
+backwardUnitVector
+
+	self subclassResponsibility! !
+!South class methodsFor: 'properties' stamp: 'TS 5/15/2023 07:46:40' overrides: 50607224!
+backwardUnitVector
+
+	self subclassResponsibility! !
+!West class methodsFor: 'properties' stamp: 'TS 5/15/2023 07:46:40' overrides: 50607224!
+backwardUnitVector
+
+	self subclassResponsibility! !
+
+!methodRemoval: Heading class #backwardDirection stamp: 'TS 5/15/2023 07:46:40'!
+backwardDirection
+
+	self subclassResponsibility!
+
+!methodRemoval: East class #backwardDirection stamp: 'TS 5/15/2023 07:46:40'!
+backwardDirection
+
+	self subclassResponsibility!
+
+!methodRemoval: North class #backwardDirection stamp: 'TS 5/15/2023 07:46:40'!
+backwardDirection
+
+	self subclassResponsibility!
+
+!methodRemoval: South class #backwardDirection stamp: 'TS 5/15/2023 07:46:40'!
+backwardDirection
+
+	self subclassResponsibility!
+
+!methodRemoval: West class #backwardDirection stamp: 'TS 5/15/2023 07:46:40'!
+backwardDirection
+
+	self subclassResponsibility!
+!Heading class methodsFor: 'properties' stamp: 'TS 5/15/2023 07:46:49'!
+forwardUnitVector
+
+	self subclassResponsibility! !
+!East class methodsFor: 'properties' stamp: 'TS 5/15/2023 07:46:49' overrides: 50607269!
+forwardUnitVector
+
+	self subclassResponsibility! !
+!North class methodsFor: 'properties' stamp: 'TS 5/15/2023 07:46:49' overrides: 50607269!
+forwardUnitVector
+
+	self subclassResponsibility! !
+!South class methodsFor: 'properties' stamp: 'TS 5/15/2023 07:46:49' overrides: 50607269!
+forwardUnitVector
+
+	self subclassResponsibility! !
+!West class methodsFor: 'properties' stamp: 'TS 5/15/2023 07:46:49' overrides: 50607269!
+forwardUnitVector
+
+	self subclassResponsibility! !
+
+!methodRemoval: Heading class #forwardDirection stamp: 'TS 5/15/2023 07:46:49'!
+forwardDirection
+
+	self subclassResponsibility!
+
+!methodRemoval: East class #forwardDirection stamp: 'TS 5/15/2023 07:46:49'!
+forwardDirection
+
+	self subclassResponsibility!
+
+!methodRemoval: North class #forwardDirection stamp: 'TS 5/15/2023 07:46:49'!
+forwardDirection
+
+	self subclassResponsibility!
+
+!methodRemoval: South class #forwardDirection stamp: 'TS 5/15/2023 07:46:49'!
+forwardDirection
+
+	self subclassResponsibility!
+
+!methodRemoval: West class #forwardDirection stamp: 'TS 5/15/2023 07:46:49'!
+forwardDirection
+
+	self subclassResponsibility!
+!East class methodsFor: 'properties' stamp: 'TS 5/15/2023 07:47:03' prior: 50607229 overrides: 50607224!
+backwardUnitVector
+
+	^ 0@-1! !
+!East class methodsFor: 'properties' stamp: 'TS 5/15/2023 07:47:14' prior: 50607274 overrides: 50607269!
+forwardUnitVector
+
+	^ 0@1! !
+!North class methodsFor: 'properties' stamp: 'TS 5/15/2023 07:47:25' prior: 50607234 overrides: 50607224!
+backwardUnitVector
+
+	^ 0@-1! !
+!East class methodsFor: 'properties' stamp: 'TS 5/15/2023 07:47:30' prior: 50607319 overrides: 50607269!
+forwardUnitVector
+
+	^ 1@0! !
+!East class methodsFor: 'properties' stamp: 'TS 5/15/2023 07:47:34' prior: 50607314 overrides: 50607224!
+backwardUnitVector
+
+	^ -1@0! !
+!North class methodsFor: 'properties' stamp: 'TS 5/15/2023 07:47:50' prior: 50607279 overrides: 50607269!
+forwardUnitVector
+
+	^ 0@1! !
+!South class methodsFor: 'properties' stamp: 'TS 5/15/2023 07:47:59' prior: 50607284 overrides: 50607269!
+forwardUnitVector
+
+	^ 0@-1! !
+!South class methodsFor: 'properties' stamp: 'TS 5/15/2023 07:48:04' prior: 50607239 overrides: 50607224!
+backwardUnitVector
+
+	^ 0@1! !
+!West class methodsFor: 'properties' stamp: 'TS 5/15/2023 07:48:19' prior: 50607244 overrides: 50607224!
+backwardUnitVector
+
+	^ 1@0! !
+!West class methodsFor: 'properties' stamp: 'TS 5/15/2023 07:48:27' prior: 50607289 overrides: 50607269!
+forwardUnitVector
+
+	^ -1@0! !
+!Heading methodsFor: 'rotation' stamp: 'TS 5/15/2023 07:49:11'!
+moveForward
+
+	marsRover modalSelection: self class forwardUnitVector ! !
+!Heading methodsFor: 'rotation' stamp: 'TS 5/15/2023 07:49:14' prior: 50607362!
+moveForward
+
+	marsRover moveInDirection: self class forwardUnitVector ! !
+!Heading methodsFor: 'rotation' stamp: 'TS 5/15/2023 07:49:16' prior: 50607367!
+moveForward
+
+	marsRover moveInDirection: self class forwardUnitVector! !
+!Heading methodsFor: 'rotation' stamp: 'TS 5/15/2023 07:49:21'!
+moveBackward
+
+	marsRover moveInDirection: self class forwardUnitVector! !
+!Heading methodsFor: 'rotation' stamp: 'TS 5/15/2023 07:49:28' prior: 50607377!
+moveBackward
+
+	marsRover moveInDirection: self class backwardUnitVector! !
+!MarsRover methodsFor: 'movement-private' stamp: 'TS 5/15/2023 07:50:08'!
+moveInDirection: aUnitVector
+
+	position := position + aUnitVector! !
+!MarsRover methodsFor: 'command execution' stamp: 'TS 5/15/2023 07:50:27' prior: 50606978!
+runCommand: commandCharacter 
+
+	commandCharacter = $f ifTrue: [
+		heading moveForward. ^self
+	].
+	commandCharacter = $b ifTrue: [ 
+		(self isHeadingTo: West) ifTrue: [ position := position + (1@0). ^self ].
+		(self isHeadingTo: South) ifTrue: [ position := position + (0@1). ^self ].
+		(self isHeadingTo: East) ifTrue: [ position := position - (1@0). ^self ].
+		(self isHeadingTo: North) ifTrue: [ position := position - (0@1). ^self ].
+	].
+	commandCharacter = $l ifTrue: [ heading rotateLeft. ^self 	].
+	commandCharacter = $r ifTrue: [ heading rotateRight. ^self ].
+
+	self signalInvalidCommand! !
+!MarsRover methodsFor: 'command execution' stamp: 'TS 5/15/2023 07:50:40' prior: 50607392!
+runCommand: commandCharacter 
+
+	commandCharacter = $f ifTrue: [
+		heading moveForward. ^self
+	].
+	commandCharacter = $b ifTrue: [ 
+		heading moveBackward. ^self
+	].
+	commandCharacter = $l ifTrue: [ heading rotateLeft. ^self 	].
+	commandCharacter = $r ifTrue: [ heading rotateRight. ^self ].
+
+	self signalInvalidCommand! !
+!MarsRover methodsFor: 'command execution' stamp: 'TS 5/15/2023 07:50:48' prior: 50607414!
+runCommand: commandCharacter 
+
+	commandCharacter = $f ifTrue: [
+		heading moveForward. ^self
+	].
+	commandCharacter = $b ifTrue: [ heading moveBackward. ^self ].
+	commandCharacter = $l ifTrue: [ heading rotateLeft. ^self 	].
+	commandCharacter = $r ifTrue: [ heading rotateRight. ^self ].
+
+	self signalInvalidCommand! !
+!MarsRover methodsFor: 'command execution' stamp: 'TS 5/15/2023 07:50:53' prior: 50607427!
+runCommand: commandCharacter 
+
+	commandCharacter = $f ifTrue: [ heading moveForward. ^self ].
+	commandCharacter = $b ifTrue: [ heading moveBackward. ^self ].
+	commandCharacter = $l ifTrue: [ heading rotateLeft. ^self 	].
+	commandCharacter = $r ifTrue: [ heading rotateRight. ^self ].
+
+	self signalInvalidCommand! !
+
+!testRun: #MarsRoverTest #test01EmptyCommandStringDoesNothing stamp: 'TS 5/15/2023 07:50:54'!
+PASSED!
+
+!testRun: #MarsRoverTest #test02SingleForwardCommandWhileHeadingNorthMoves1UnitOnYAxis stamp: 'TS 5/15/2023 07:50:54'!
+PASSED!
+
+!testRun: #MarsRoverTest #test03DoubleForwardCommandWhileHeadingNorthMoves2UnitsOnYAxis stamp: 'TS 5/15/2023 07:50:54'!
+PASSED!
+
+!testRun: #MarsRoverTest #test04MovingForwardWorksWhenStartingInADifferentPosition stamp: 'TS 5/15/2023 07:50:54'!
+PASSED!
+
+!testRun: #MarsRoverTest #test05BackwardCommandsWhileHeadingNorthMoveBackwardOnYAxis stamp: 'TS 5/15/2023 07:50:54'!
+PASSED!
+
+!testRun: #MarsRoverTest #test06MixedMovementCommandsWhileHeadingNorthLeaveRoverInCorrectPosition stamp: 'TS 5/15/2023 07:50:54'!
+PASSED!
+
+!testRun: #MarsRoverTest #test07InvalidCommandRaisesAnError stamp: 'TS 5/15/2023 07:50:54'!
+PASSED!
+
+!testRun: #MarsRoverTest #test08LeftCommandTurns90DegreesLeft stamp: 'TS 5/15/2023 07:50:54'!
+PASSED!
+
+!testRun: #MarsRoverTest #test09RightCommandTurns90DegreesRight stamp: 'TS 5/15/2023 07:50:54'!
+PASSED!
+
+!testRun: #MarsRoverTest #test10DoubleLeftCommandTurns180Degrees stamp: 'TS 5/15/2023 07:50:54'!
+PASSED!
+
+!testRun: #MarsRoverTest #test11TripleLeftCommandTurns270Degrees stamp: 'TS 5/15/2023 07:50:54'!
+PASSED!
+
+!testRun: #MarsRoverTest #test12LeftCommand4TimesLeavesRoverInTheSameDirection stamp: 'TS 5/15/2023 07:50:54'!
+PASSED!
+
+!testRun: #MarsRoverTest #test13MixedRotationCommandsLeaveRoverHeadingToCorrectDirection stamp: 'TS 5/15/2023 07:50:54'!
+PASSED!
+
+!testRun: #MarsRoverTest #test14SingleForwardCommandAfterTurning90DegreesMoves1UnitOnXAxis stamp: 'TS 5/15/2023 07:50:54'!
+PASSED!
+
+!testRun: #MarsRoverTest #test15DoubleForwardCommandAfterTurning90DegreesMoves2UnitsOnXAxis stamp: 'TS 5/15/2023 07:50:54'!
+PASSED!
+
+!testRun: #MarsRoverTest #test16BackwardCommandAfterTurning90DegreesMovesBackwardOnXAxis stamp: 'TS 5/15/2023 07:50:54'!
+PASSED!
+
+!testRun: #MarsRoverTest #test17MovementCommandsAfterTurning180DegreesMoveOnYAxisInAnInvertedDirection stamp: 'TS 5/15/2023 07:50:54'!
+PASSED!
+
+!testRun: #MarsRoverTest #test18MixedMovementAndRotationCommandsWorkCorrectly stamp: 'TS 5/15/2023 07:50:54'!
+PASSED!
+
+Object subclass: #Command
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'MarsRover-Ejercicio'!
+
+!classDefinition: #Command category: 'MarsRover-Ejercicio' stamp: 'TS 5/15/2023 07:51:10'!
+Object subclass: #Command
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'MarsRover-Ejercicio'!
+
+Command subclass: #MoveForward
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'MarsRover-Ejercicio'!
+
+!classDefinition: #MoveForward category: 'MarsRover-Ejercicio' stamp: 'TS 5/15/2023 07:51:21'!
+Command subclass: #MoveForward
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'MarsRover-Ejercicio'!
+
+Command subclass: #MoveBackward
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'MarsRover-Ejercicio'!
+
+!classDefinition: #MoveBackward category: 'MarsRover-Ejercicio' stamp: 'TS 5/15/2023 07:51:43'!
+Command subclass: #MoveBackward
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'MarsRover-Ejercicio'!
+
+Object subclass: #RotateLeft
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'MarsRover-Ejercicio'!
+
+!classDefinition: #RotateLeft category: 'MarsRover-Ejercicio' stamp: 'TS 5/15/2023 07:51:48'!
+Object subclass: #RotateLeft
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'MarsRover-Ejercicio'!
+
+Command subclass: #RotateLeft
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'MarsRover-Ejercicio'!
+
+!classDefinition: #RotateLeft category: 'MarsRover-Ejercicio' stamp: 'TS 5/15/2023 07:51:55'!
+Command subclass: #RotateLeft
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'MarsRover-Ejercicio'!
+
+Command subclass: #RotateRight
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'MarsRover-Ejercicio'!
+
+!classDefinition: #RotateRight category: 'MarsRover-Ejercicio' stamp: 'TS 5/15/2023 07:51:57'!
+Command subclass: #RotateRight
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'MarsRover-Ejercicio'!
+!Command class methodsFor: 'instance creation' stamp: 'TS 5/15/2023 07:52:18'!
+for: aCharacter! !
+!Command class methodsFor: 'instance creation' stamp: 'TS 5/15/2023 07:52:19' prior: 50607590!
+for: aCharacter
+
+! !
+!Command class methodsFor: 'instance creation' stamp: 'TS 5/15/2023 07:52:20' prior: 50607594!
+for: aCharacter
+
+	! !
+!Command class methodsFor: 'instance creation' stamp: 'TS 5/15/2023 07:53:06' prior: 50607598!
+for: aCharacter
+
+	| handlingSubclass |
+	handlingSubclass := self subclasses detect: [ :aCommandSubclass | aCommandSubclass character = aCharacter ].
+	
+	^ handlingSubclass! !
+!Command class methodsFor: 'instance creation' stamp: 'TS 5/15/2023 07:53:10' prior: 50607602!
+for: aCharacter
+
+	| handlingSubclass |
+
+	handlingSubclass := self subclasses detect: [ :aCommandSubclass | aCommandSubclass character = aCharacter ].
+	
+	^ handlingSubclass! !
+!Command class methodsFor: 'nil' stamp: 'TS 5/15/2023 07:53:22'!
+character! !
+!Command class methodsFor: 'as yet unclassified' stamp: 'TS 5/15/2023 07:53:30' prior: 50607619!
+character
+
+	self subclassResponsibility! !
+!MoveForward class methodsFor: 'properties' stamp: 'TS 5/15/2023 07:53:46' overrides: 50607623!
+character
+
+	self subclassResponsibility! !
+!MoveBackward class methodsFor: 'properties' stamp: 'TS 5/15/2023 07:53:46' overrides: 50607623!
+character
+
+	self subclassResponsibility! !
+!RotateLeft class methodsFor: 'properties' stamp: 'TS 5/15/2023 07:53:46' overrides: 50607623!
+character
+
+	self subclassResponsibility! !
+!RotateRight class methodsFor: 'properties' stamp: 'TS 5/15/2023 07:53:46' overrides: 50607623!
+character
+
+	self subclassResponsibility! !
+
+!methodRemoval: Command class #character stamp: 'TS 5/15/2023 07:53:46'!
+character
+
+	self subclassResponsibility!
+!Command class methodsFor: 'properties' stamp: 'TS 5/15/2023 07:53:48'!
+character
+
+	self subclassResponsibility! !
+!MoveBackward class methodsFor: 'properties' stamp: 'TS 5/15/2023 07:53:53' prior: 50607633 overrides: 50607651!
+character
+
+	^ $f! !
+!MoveBackward class methodsFor: 'properties' stamp: 'TS 5/15/2023 07:53:55' prior: 50607656 overrides: 50607651!
+character
+
+	^ $b! !
+!MoveForward class methodsFor: 'properties' stamp: 'TS 5/15/2023 07:54:02' prior: 50607628 overrides: 50607651!
+character
+
+	^ $f! !
+!RotateLeft class methodsFor: 'properties' stamp: 'TS 5/15/2023 07:54:08' prior: 50607638 overrides: 50607651!
+character
+
+	^ $l! !
+!RotateRight class methodsFor: 'properties' stamp: 'TS 5/15/2023 07:54:12' prior: 50607643 overrides: 50607651!
+character
+
+	^ $r! !
+!MoveBackward methodsFor: 'no messages' stamp: 'TS 5/15/2023 07:54:26'!
+executeOn: aMarsRover! !
+!MoveBackward methodsFor: 'as yet unclassified' stamp: 'TS 5/15/2023 07:54:27' prior: 50607679!
+executeOn: aMarsRover
+
+	! !
+!Command methodsFor: 'as yet unclassified' stamp: 'TS 5/15/2023 07:54:31'!
+executeOn: aMarsRover
+
+	! !
+
+!methodRemoval: MoveBackward #executeOn: stamp: 'TS 5/15/2023 07:54:31'!
+executeOn: aMarsRover
+
+	!
+!Command methodsFor: 'execution' stamp: 'TS 5/15/2023 07:54:46' prior: 50607687!
+executeOn: aMarsRover
+
+	self subclassResponsbility! !
+!Command methodsFor: 'execution' stamp: 'TS 5/15/2023 07:54:52' prior: 50607694!
+executeOn: aMarsRover
+
+	self subclassResponsibility ! !
+!MoveForward methodsFor: 'execution' stamp: 'TS 5/15/2023 07:54:56' overrides: 50607699!
+executeOn: aMarsRover
+
+	self subclassResponsibility ! !
+!MoveBackward methodsFor: 'execution' stamp: 'TS 5/15/2023 07:54:56' overrides: 50607699!
+executeOn: aMarsRover
+
+	self subclassResponsibility ! !
+!RotateLeft methodsFor: 'execution' stamp: 'TS 5/15/2023 07:54:56' overrides: 50607699!
+executeOn: aMarsRover
+
+	self subclassResponsibility ! !
+!RotateRight methodsFor: 'execution' stamp: 'TS 5/15/2023 07:54:56' overrides: 50607699!
+executeOn: aMarsRover
+
+	self subclassResponsibility ! !
+
+!methodRemoval: Command #executeOn: stamp: 'TS 5/15/2023 07:54:56'!
+executeOn: aMarsRover
+
+	self subclassResponsibility !
+!Command methodsFor: 'execution' stamp: 'TS 5/15/2023 07:54:58'!
+executeOn: aMarsRover
+
+	self subclassResponsibility ! !
+!Command methodsFor: 'execution' stamp: 'TS 5/15/2023 07:54:59' prior: 50607727!
+executeOn: aMarsRover
+
+	self subclassResponsibility! !
+!MoveBackward methodsFor: 'execution' stamp: 'TS 5/15/2023 07:55:16' prior: 50607709 overrides: 50607732!
+executeOn: aMarsRover
+
+	aMarsRover moveBackward! !
+!MoveForward methodsFor: 'execution' stamp: 'TS 5/15/2023 07:55:28' prior: 50607704 overrides: 50607732!
+executeOn: aMarsRover
+
+	aMarsRover moveForward! !
+!RotateLeft methodsFor: 'execution' stamp: 'TS 5/15/2023 07:55:34' prior: 50607714 overrides: 50607732!
+executeOn: aMarsRover
+
+	aMarsRover rotateLeft! !
+!RotateRight methodsFor: 'execution' stamp: 'TS 5/15/2023 07:55:41' prior: 50607719 overrides: 50607732!
+executeOn: aMarsRover
+
+	aMarsRover rotateRight! !
+!MarsRover methodsFor: 'command execution' stamp: 'TS 5/15/2023 07:56:23' prior: 50604972!
+receiveCommands: aCommandString 
+
+	aCommandString do: [ :commandCharacter |
+		(Command for: commandCharacter) executeOn: self
+	]! !
+
+!testRun: #MarsRoverTest #test01EmptyCommandStringDoesNothing stamp: 'TS 5/15/2023 07:56:23'!
+PASSED!
+
+!testRun: #MarsRoverTest #test02SingleForwardCommandWhileHeadingNorthMoves1UnitOnYAxis stamp: 'TS 5/15/2023 07:56:23'!
+ERROR!
+
+!testRun: #MarsRoverTest #test03DoubleForwardCommandWhileHeadingNorthMoves2UnitsOnYAxis stamp: 'TS 5/15/2023 07:56:23'!
+ERROR!
+
+!testRun: #MarsRoverTest #test04MovingForwardWorksWhenStartingInADifferentPosition stamp: 'TS 5/15/2023 07:56:23'!
+ERROR!
+
+!testRun: #MarsRoverTest #test05BackwardCommandsWhileHeadingNorthMoveBackwardOnYAxis stamp: 'TS 5/15/2023 07:56:23'!
+ERROR!
+
+!testRun: #MarsRoverTest #test06MixedMovementCommandsWhileHeadingNorthLeaveRoverInCorrectPosition stamp: 'TS 5/15/2023 07:56:23'!
+ERROR!
+
+!testRun: #MarsRoverTest #test07InvalidCommandRaisesAnError stamp: 'TS 5/15/2023 07:56:23'!
+PASSED!
+
+!testRun: #MarsRoverTest #test08LeftCommandTurns90DegreesLeft stamp: 'TS 5/15/2023 07:56:23'!
+ERROR!
+
+!testRun: #MarsRoverTest #test09RightCommandTurns90DegreesRight stamp: 'TS 5/15/2023 07:56:23'!
+ERROR!
+
+!testRun: #MarsRoverTest #test10DoubleLeftCommandTurns180Degrees stamp: 'TS 5/15/2023 07:56:23'!
+ERROR!
+
+!testRun: #MarsRoverTest #test11TripleLeftCommandTurns270Degrees stamp: 'TS 5/15/2023 07:56:23'!
+ERROR!
+
+!testRun: #MarsRoverTest #test12LeftCommand4TimesLeavesRoverInTheSameDirection stamp: 'TS 5/15/2023 07:56:23'!
+ERROR!
+
+!testRun: #MarsRoverTest #test13MixedRotationCommandsLeaveRoverHeadingToCorrectDirection stamp: 'TS 5/15/2023 07:56:23'!
+ERROR!
+
+!testRun: #MarsRoverTest #test14SingleForwardCommandAfterTurning90DegreesMoves1UnitOnXAxis stamp: 'TS 5/15/2023 07:56:23'!
+ERROR!
+
+!testRun: #MarsRoverTest #test15DoubleForwardCommandAfterTurning90DegreesMoves2UnitsOnXAxis stamp: 'TS 5/15/2023 07:56:23'!
+ERROR!
+
+!testRun: #MarsRoverTest #test16BackwardCommandAfterTurning90DegreesMovesBackwardOnXAxis stamp: 'TS 5/15/2023 07:56:23'!
+ERROR!
+
+!testRun: #MarsRoverTest #test17MovementCommandsAfterTurning180DegreesMoveOnYAxisInAnInvertedDirection stamp: 'TS 5/15/2023 07:56:23'!
+ERROR!
+
+!testRun: #MarsRoverTest #test18MixedMovementAndRotationCommandsWorkCorrectly stamp: 'TS 5/15/2023 07:56:23'!
+ERROR!
+
+!testRun: #MarsRoverTest #test02SingleForwardCommandWhileHeadingNorthMoves1UnitOnYAxis stamp: 'TS 5/15/2023 07:56:25'!
+ERROR!
+!Command class methodsFor: 'instance creation' stamp: 'TS 5/15/2023 07:56:43' prior: 50607611!
+for: aCharacter
+
+	| handlingSubclass |
+
+	handlingSubclass := self subclasses detect: [ :aCommandSubclass | aCommandSubclass character = aCharacter ].
+	
+	^ handlingSubclass new! !
+
+!testRun: #MarsRoverTest #test01EmptyCommandStringDoesNothing stamp: 'TS 5/15/2023 07:56:44'!
+PASSED!
+
+!testRun: #MarsRoverTest #test02SingleForwardCommandWhileHeadingNorthMoves1UnitOnYAxis stamp: 'TS 5/15/2023 07:56:44'!
+ERROR!
+
+!testRun: #MarsRoverTest #test03DoubleForwardCommandWhileHeadingNorthMoves2UnitsOnYAxis stamp: 'TS 5/15/2023 07:56:44'!
+ERROR!
+
+!testRun: #MarsRoverTest #test04MovingForwardWorksWhenStartingInADifferentPosition stamp: 'TS 5/15/2023 07:56:44'!
+ERROR!
+
+!testRun: #MarsRoverTest #test05BackwardCommandsWhileHeadingNorthMoveBackwardOnYAxis stamp: 'TS 5/15/2023 07:56:44'!
+ERROR!
+
+!testRun: #MarsRoverTest #test06MixedMovementCommandsWhileHeadingNorthLeaveRoverInCorrectPosition stamp: 'TS 5/15/2023 07:56:44'!
+ERROR!
+
+!testRun: #MarsRoverTest #test07InvalidCommandRaisesAnError stamp: 'TS 5/15/2023 07:56:44'!
+PASSED!
+
+!testRun: #MarsRoverTest #test08LeftCommandTurns90DegreesLeft stamp: 'TS 5/15/2023 07:56:44'!
+ERROR!
+
+!testRun: #MarsRoverTest #test09RightCommandTurns90DegreesRight stamp: 'TS 5/15/2023 07:56:44'!
+ERROR!
+
+!testRun: #MarsRoverTest #test10DoubleLeftCommandTurns180Degrees stamp: 'TS 5/15/2023 07:56:44'!
+ERROR!
+
+!testRun: #MarsRoverTest #test11TripleLeftCommandTurns270Degrees stamp: 'TS 5/15/2023 07:56:44'!
+ERROR!
+
+!testRun: #MarsRoverTest #test12LeftCommand4TimesLeavesRoverInTheSameDirection stamp: 'TS 5/15/2023 07:56:44'!
+ERROR!
+
+!testRun: #MarsRoverTest #test13MixedRotationCommandsLeaveRoverHeadingToCorrectDirection stamp: 'TS 5/15/2023 07:56:44'!
+ERROR!
+
+!testRun: #MarsRoverTest #test14SingleForwardCommandAfterTurning90DegreesMoves1UnitOnXAxis stamp: 'TS 5/15/2023 07:56:44'!
+ERROR!
+
+!testRun: #MarsRoverTest #test15DoubleForwardCommandAfterTurning90DegreesMoves2UnitsOnXAxis stamp: 'TS 5/15/2023 07:56:44'!
+ERROR!
+
+!testRun: #MarsRoverTest #test16BackwardCommandAfterTurning90DegreesMovesBackwardOnXAxis stamp: 'TS 5/15/2023 07:56:44'!
+ERROR!
+
+!testRun: #MarsRoverTest #test17MovementCommandsAfterTurning180DegreesMoveOnYAxisInAnInvertedDirection stamp: 'TS 5/15/2023 07:56:44'!
+ERROR!
+
+!testRun: #MarsRoverTest #test18MixedMovementAndRotationCommandsWorkCorrectly stamp: 'TS 5/15/2023 07:56:44'!
+ERROR!
+
+!testRun: #MarsRoverTest #test02SingleForwardCommandWhileHeadingNorthMoves1UnitOnYAxis stamp: 'TS 5/15/2023 07:56:46'!
+ERROR!
+!MarsRover methodsFor: 'movement' stamp: 'TS 5/15/2023 07:56:58'!
+moveForward
+	self shouldBeImplemented.! !
+!MarsRover methodsFor: 'movement' stamp: 'TS 5/15/2023 07:57:01' prior: 50607917!
+moveForward
+	
+	! !
+!MarsRover methodsFor: 'movement' stamp: 'TS 5/15/2023 07:57:16' prior: 50607921!
+moveForward
+	
+	heading moveForward ! !
+!MarsRover methodsFor: 'movement' stamp: 'TS 5/15/2023 07:57:17' prior: 50607925!
+moveForward
+	
+	heading moveForward! !
+!MarsRover methodsFor: 'command execution' stamp: 'TS 5/15/2023 07:57:32' prior: 50607440!
+runCommand: commandCharacter 
+
+	commandCharacter = $b ifTrue: [ heading moveBackward. ^self ].
+	commandCharacter = $l ifTrue: [ heading rotateLeft. ^self 	].
+	commandCharacter = $r ifTrue: [ heading rotateRight. ^self ].
+
+	self signalInvalidCommand! !
+!MarsRover methodsFor: 'command execution' stamp: 'TS 5/15/2023 07:57:37'!
+moveBackward
+
+	^ heading moveBackward! !
+!MarsRover methodsFor: 'command execution' stamp: 'TS 5/15/2023 07:57:37' prior: 50607934!
+runCommand: commandCharacter 
+
+	commandCharacter = $b ifTrue: [ self moveBackward. ^self ].
+	commandCharacter = $l ifTrue: [ heading rotateLeft. ^self 	].
+	commandCharacter = $r ifTrue: [ heading rotateRight. ^self ].
+
+	self signalInvalidCommand! !
+!MarsRover methodsFor: 'command execution' stamp: 'TS 5/15/2023 07:57:40' prior: 50607950!
+runCommand: commandCharacter 
+
+	commandCharacter = $l ifTrue: [ heading rotateLeft. ^self 	].
+	commandCharacter = $r ifTrue: [ heading rotateRight. ^self ].
+
+	self signalInvalidCommand! !
+!MarsRover methodsFor: 'command execution' stamp: 'TS 5/15/2023 07:57:45'!
+rotateLeft
+
+	^ heading rotateLeft! !
+!MarsRover methodsFor: 'command execution' stamp: 'TS 5/15/2023 07:57:45' prior: 50607961!
+runCommand: commandCharacter 
+
+	commandCharacter = $l ifTrue: [ self rotateLeft. ^self 	].
+	commandCharacter = $r ifTrue: [ heading rotateRight. ^self ].
+
+	self signalInvalidCommand! !
+!MarsRover methodsFor: 'command execution' stamp: 'TS 5/15/2023 07:57:48' prior: 50607974!
+runCommand: commandCharacter 
+
+	commandCharacter = $r ifTrue: [ heading rotateRight. ^self ].
+
+	self signalInvalidCommand! !
+!MarsRover methodsFor: 'command execution' stamp: 'TS 5/15/2023 07:57:53'!
+rotateRight
+
+	^ heading rotateRight! !
+!MarsRover methodsFor: 'command execution' stamp: 'TS 5/15/2023 07:57:53' prior: 50607983!
+runCommand: commandCharacter 
+
+	commandCharacter = $r ifTrue: [ self rotateRight. ^self ].
+
+	self signalInvalidCommand! !
+!MarsRover methodsFor: 'command execution' stamp: 'TS 5/15/2023 07:57:54' prior: 50607995!
+runCommand: commandCharacter 
+
+	self signalInvalidCommand! !
+
+!testRun: #MarsRoverTest #test01EmptyCommandStringDoesNothing stamp: 'TS 5/15/2023 07:58:02'!
+PASSED!
+
+!testRun: #MarsRoverTest #test02SingleForwardCommandWhileHeadingNorthMoves1UnitOnYAxis stamp: 'TS 5/15/2023 07:58:02'!
+PASSED!
+
+!testRun: #MarsRoverTest #test03DoubleForwardCommandWhileHeadingNorthMoves2UnitsOnYAxis stamp: 'TS 5/15/2023 07:58:02'!
+PASSED!
+
+!testRun: #MarsRoverTest #test04MovingForwardWorksWhenStartingInADifferentPosition stamp: 'TS 5/15/2023 07:58:02'!
+PASSED!
+
+!testRun: #MarsRoverTest #test05BackwardCommandsWhileHeadingNorthMoveBackwardOnYAxis stamp: 'TS 5/15/2023 07:58:02'!
+PASSED!
+
+!testRun: #MarsRoverTest #test06MixedMovementCommandsWhileHeadingNorthLeaveRoverInCorrectPosition stamp: 'TS 5/15/2023 07:58:02'!
+PASSED!
+
+!testRun: #MarsRoverTest #test07InvalidCommandRaisesAnError stamp: 'TS 5/15/2023 07:58:02'!
+PASSED!
+
+!testRun: #MarsRoverTest #test08LeftCommandTurns90DegreesLeft stamp: 'TS 5/15/2023 07:58:02'!
+PASSED!
+
+!testRun: #MarsRoverTest #test09RightCommandTurns90DegreesRight stamp: 'TS 5/15/2023 07:58:02'!
+PASSED!
+
+!testRun: #MarsRoverTest #test10DoubleLeftCommandTurns180Degrees stamp: 'TS 5/15/2023 07:58:02'!
+PASSED!
+
+!testRun: #MarsRoverTest #test11TripleLeftCommandTurns270Degrees stamp: 'TS 5/15/2023 07:58:02'!
+PASSED!
+
+!testRun: #MarsRoverTest #test12LeftCommand4TimesLeavesRoverInTheSameDirection stamp: 'TS 5/15/2023 07:58:02'!
+PASSED!
+
+!testRun: #MarsRoverTest #test13MixedRotationCommandsLeaveRoverHeadingToCorrectDirection stamp: 'TS 5/15/2023 07:58:02'!
+PASSED!
+
+!testRun: #MarsRoverTest #test14SingleForwardCommandAfterTurning90DegreesMoves1UnitOnXAxis stamp: 'TS 5/15/2023 07:58:02'!
+PASSED!
+
+!testRun: #MarsRoverTest #test15DoubleForwardCommandAfterTurning90DegreesMoves2UnitsOnXAxis stamp: 'TS 5/15/2023 07:58:02'!
+PASSED!
+
+!testRun: #MarsRoverTest #test16BackwardCommandAfterTurning90DegreesMovesBackwardOnXAxis stamp: 'TS 5/15/2023 07:58:02'!
+PASSED!
+
+!testRun: #MarsRoverTest #test17MovementCommandsAfterTurning180DegreesMoveOnYAxisInAnInvertedDirection stamp: 'TS 5/15/2023 07:58:02'!
+PASSED!
+
+!testRun: #MarsRoverTest #test18MixedMovementAndRotationCommandsWorkCorrectly stamp: 'TS 5/15/2023 07:58:02'!
+PASSED!
+!Command class methodsFor: 'instance creation' stamp: 'TS 5/15/2023 07:59:33' prior: 50607837!
+for: aCharacter
+
+	| handlingSubclass |
+
+	handlingSubclass := self subclasses
+		detect: [ :aCommandSubclass | aCommandSubclass character = aCharacter ]
+		ifNone: (self error: self invalidCommandDescription).
+	
+	^ handlingSubclass new! !
+
+!methodRemoval: MarsRover class #invalidCommandErrorDescription stamp: 'TS 5/15/2023 07:59:46'!
+invalidCommandErrorDescription
+	
+	^ 'Comando inválido'!
+!Command class methodsFor: 'error descriptions' stamp: 'TS 5/15/2023 07:59:55'!
+invalidCommandErrorDescription
+	
+	^ 'Comando inválido'! !
+!Command class methodsFor: 'instance creation' stamp: 'TS 5/15/2023 08:00:09' prior: 50608075!
+for: aCharacter
+
+	| handlingSubclass |
+
+	handlingSubclass := self subclasses
+		detect: [ :aCommandSubclass | aCommandSubclass character = aCharacter ]
+		ifNone: (self error: self invalidCommandErrorDescription
+	
+	^ 'Comando inválido').
+	
+	^ handlingSubclass new! !
+!Command class methodsFor: 'instance creation' stamp: 'TS 5/15/2023 08:00:13' prior: 50608095!
+for: aCharacter
+
+	| handlingSubclass |
+
+	handlingSubclass := self subclasses
+		detect: [ :aCommandSubclass | aCommandSubclass character = aCharacter ]
+		ifNone: (self error: self invalidCommandErrorDescription).
+	
+	^ handlingSubclass new! !
+
+!testRun: #MarsRoverTest #test01EmptyCommandStringDoesNothing stamp: 'TS 5/15/2023 08:00:21'!
+PASSED!
+
+!testRun: #MarsRoverTest #test02SingleForwardCommandWhileHeadingNorthMoves1UnitOnYAxis stamp: 'TS 5/15/2023 08:00:21'!
+ERROR!
+
+!testRun: #MarsRoverTest #test03DoubleForwardCommandWhileHeadingNorthMoves2UnitsOnYAxis stamp: 'TS 5/15/2023 08:00:21'!
+ERROR!
+
+!testRun: #MarsRoverTest #test04MovingForwardWorksWhenStartingInADifferentPosition stamp: 'TS 5/15/2023 08:00:21'!
+ERROR!
+
+!testRun: #MarsRoverTest #test05BackwardCommandsWhileHeadingNorthMoveBackwardOnYAxis stamp: 'TS 5/15/2023 08:00:21'!
+ERROR!
+
+!testRun: #MarsRoverTest #test06MixedMovementCommandsWhileHeadingNorthLeaveRoverInCorrectPosition stamp: 'TS 5/15/2023 08:00:21'!
+ERROR!
+
+!testRun: #MarsRoverTest #test07InvalidCommandRaisesAnError stamp: 'TS 5/15/2023 08:00:21'!
+ERROR!
+
+!testRun: #MarsRoverTest #test08LeftCommandTurns90DegreesLeft stamp: 'TS 5/15/2023 08:00:21'!
+ERROR!
+
+!testRun: #MarsRoverTest #test09RightCommandTurns90DegreesRight stamp: 'TS 5/15/2023 08:00:21'!
+ERROR!
+
+!testRun: #MarsRoverTest #test10DoubleLeftCommandTurns180Degrees stamp: 'TS 5/15/2023 08:00:21'!
+ERROR!
+
+!testRun: #MarsRoverTest #test11TripleLeftCommandTurns270Degrees stamp: 'TS 5/15/2023 08:00:21'!
+ERROR!
+
+!testRun: #MarsRoverTest #test12LeftCommand4TimesLeavesRoverInTheSameDirection stamp: 'TS 5/15/2023 08:00:21'!
+ERROR!
+
+!testRun: #MarsRoverTest #test13MixedRotationCommandsLeaveRoverHeadingToCorrectDirection stamp: 'TS 5/15/2023 08:00:21'!
+ERROR!
+
+!testRun: #MarsRoverTest #test14SingleForwardCommandAfterTurning90DegreesMoves1UnitOnXAxis stamp: 'TS 5/15/2023 08:00:21'!
+ERROR!
+
+!testRun: #MarsRoverTest #test15DoubleForwardCommandAfterTurning90DegreesMoves2UnitsOnXAxis stamp: 'TS 5/15/2023 08:00:21'!
+ERROR!
+
+!testRun: #MarsRoverTest #test16BackwardCommandAfterTurning90DegreesMovesBackwardOnXAxis stamp: 'TS 5/15/2023 08:00:21'!
+ERROR!
+
+!testRun: #MarsRoverTest #test17MovementCommandsAfterTurning180DegreesMoveOnYAxisInAnInvertedDirection stamp: 'TS 5/15/2023 08:00:21'!
+ERROR!
+
+!testRun: #MarsRoverTest #test18MixedMovementAndRotationCommandsWorkCorrectly stamp: 'TS 5/15/2023 08:00:21'!
+ERROR!
+
+!testRun: #MarsRoverTest #test02SingleForwardCommandWhileHeadingNorthMoves1UnitOnYAxis stamp: 'TS 5/15/2023 08:00:25'!
+ERROR!
+
+!testRun: #MarsRoverTest #test01EmptyCommandStringDoesNothing stamp: 'TS 5/15/2023 08:00:44'!
+PASSED!
+
+!testRun: #MarsRoverTest #test02SingleForwardCommandWhileHeadingNorthMoves1UnitOnYAxis stamp: 'TS 5/15/2023 08:00:44'!
+ERROR!
+
+!testRun: #MarsRoverTest #test03DoubleForwardCommandWhileHeadingNorthMoves2UnitsOnYAxis stamp: 'TS 5/15/2023 08:00:44'!
+ERROR!
+
+!testRun: #MarsRoverTest #test04MovingForwardWorksWhenStartingInADifferentPosition stamp: 'TS 5/15/2023 08:00:44'!
+ERROR!
+
+!testRun: #MarsRoverTest #test05BackwardCommandsWhileHeadingNorthMoveBackwardOnYAxis stamp: 'TS 5/15/2023 08:00:44'!
+ERROR!
+
+!testRun: #MarsRoverTest #test06MixedMovementCommandsWhileHeadingNorthLeaveRoverInCorrectPosition stamp: 'TS 5/15/2023 08:00:44'!
+ERROR!
+
+!testRun: #MarsRoverTest #test07InvalidCommandRaisesAnError stamp: 'TS 5/15/2023 08:00:44'!
+ERROR!
+
+!testRun: #MarsRoverTest #test08LeftCommandTurns90DegreesLeft stamp: 'TS 5/15/2023 08:00:44'!
+ERROR!
+
+!testRun: #MarsRoverTest #test09RightCommandTurns90DegreesRight stamp: 'TS 5/15/2023 08:00:44'!
+ERROR!
+
+!testRun: #MarsRoverTest #test10DoubleLeftCommandTurns180Degrees stamp: 'TS 5/15/2023 08:00:44'!
+ERROR!
+
+!testRun: #MarsRoverTest #test11TripleLeftCommandTurns270Degrees stamp: 'TS 5/15/2023 08:00:44'!
+ERROR!
+
+!testRun: #MarsRoverTest #test12LeftCommand4TimesLeavesRoverInTheSameDirection stamp: 'TS 5/15/2023 08:00:44'!
+ERROR!
+
+!testRun: #MarsRoverTest #test13MixedRotationCommandsLeaveRoverHeadingToCorrectDirection stamp: 'TS 5/15/2023 08:00:44'!
+ERROR!
+
+!testRun: #MarsRoverTest #test14SingleForwardCommandAfterTurning90DegreesMoves1UnitOnXAxis stamp: 'TS 5/15/2023 08:00:44'!
+ERROR!
+
+!testRun: #MarsRoverTest #test15DoubleForwardCommandAfterTurning90DegreesMoves2UnitsOnXAxis stamp: 'TS 5/15/2023 08:00:44'!
+ERROR!
+
+!testRun: #MarsRoverTest #test16BackwardCommandAfterTurning90DegreesMovesBackwardOnXAxis stamp: 'TS 5/15/2023 08:00:44'!
+ERROR!
+
+!testRun: #MarsRoverTest #test17MovementCommandsAfterTurning180DegreesMoveOnYAxisInAnInvertedDirection stamp: 'TS 5/15/2023 08:00:44'!
+ERROR!
+
+!testRun: #MarsRoverTest #test18MixedMovementAndRotationCommandsWorkCorrectly stamp: 'TS 5/15/2023 08:00:44'!
+ERROR!
+
+!testRun: #MarsRoverTest #test02SingleForwardCommandWhileHeadingNorthMoves1UnitOnYAxis stamp: 'TS 5/15/2023 08:00:46'!
+ERROR!
+!Command class methodsFor: 'instance creation' stamp: 'TS 5/15/2023 08:01:08' prior: 50608107!
+for: aCharacter
+
+	| handlingSubclass |
+
+	handlingSubclass := self subclasses
+		detect: [ :aCommandSubclass | aCommandSubclass character = aCharacter ]
+		ifNone: [ self error: self invalidCommandErrorDescription ].
+	
+	^ handlingSubclass new! !
+
+!testRun: #MarsRoverTest #test01EmptyCommandStringDoesNothing stamp: 'TS 5/15/2023 08:01:09'!
+PASSED!
+
+!testRun: #MarsRoverTest #test02SingleForwardCommandWhileHeadingNorthMoves1UnitOnYAxis stamp: 'TS 5/15/2023 08:01:09'!
+PASSED!
+
+!testRun: #MarsRoverTest #test03DoubleForwardCommandWhileHeadingNorthMoves2UnitsOnYAxis stamp: 'TS 5/15/2023 08:01:09'!
+PASSED!
+
+!testRun: #MarsRoverTest #test04MovingForwardWorksWhenStartingInADifferentPosition stamp: 'TS 5/15/2023 08:01:09'!
+PASSED!
+
+!testRun: #MarsRoverTest #test05BackwardCommandsWhileHeadingNorthMoveBackwardOnYAxis stamp: 'TS 5/15/2023 08:01:09'!
+PASSED!
+
+!testRun: #MarsRoverTest #test06MixedMovementCommandsWhileHeadingNorthLeaveRoverInCorrectPosition stamp: 'TS 5/15/2023 08:01:09'!
+PASSED!
+
+!testRun: #MarsRoverTest #test07InvalidCommandRaisesAnError stamp: 'TS 5/15/2023 08:01:09'!
+ERROR!
+
+!testRun: #MarsRoverTest #test08LeftCommandTurns90DegreesLeft stamp: 'TS 5/15/2023 08:01:09'!
+PASSED!
+
+!testRun: #MarsRoverTest #test09RightCommandTurns90DegreesRight stamp: 'TS 5/15/2023 08:01:09'!
+PASSED!
+
+!testRun: #MarsRoverTest #test10DoubleLeftCommandTurns180Degrees stamp: 'TS 5/15/2023 08:01:09'!
+PASSED!
+
+!testRun: #MarsRoverTest #test11TripleLeftCommandTurns270Degrees stamp: 'TS 5/15/2023 08:01:09'!
+PASSED!
+
+!testRun: #MarsRoverTest #test12LeftCommand4TimesLeavesRoverInTheSameDirection stamp: 'TS 5/15/2023 08:01:09'!
+PASSED!
+
+!testRun: #MarsRoverTest #test13MixedRotationCommandsLeaveRoverHeadingToCorrectDirection stamp: 'TS 5/15/2023 08:01:09'!
+PASSED!
+
+!testRun: #MarsRoverTest #test14SingleForwardCommandAfterTurning90DegreesMoves1UnitOnXAxis stamp: 'TS 5/15/2023 08:01:09'!
+PASSED!
+
+!testRun: #MarsRoverTest #test15DoubleForwardCommandAfterTurning90DegreesMoves2UnitsOnXAxis stamp: 'TS 5/15/2023 08:01:09'!
+PASSED!
+
+!testRun: #MarsRoverTest #test16BackwardCommandAfterTurning90DegreesMovesBackwardOnXAxis stamp: 'TS 5/15/2023 08:01:09'!
+PASSED!
+
+!testRun: #MarsRoverTest #test17MovementCommandsAfterTurning180DegreesMoveOnYAxisInAnInvertedDirection stamp: 'TS 5/15/2023 08:01:09'!
+PASSED!
+
+!testRun: #MarsRoverTest #test18MixedMovementAndRotationCommandsWorkCorrectly stamp: 'TS 5/15/2023 08:01:09'!
+PASSED!
+
+!testRun: #MarsRoverTest #test07InvalidCommandRaisesAnError stamp: 'TS 5/15/2023 08:01:09'!
+ERROR!
+!MarsRoverTest methodsFor: 'testing' stamp: 'TS 5/15/2023 08:01:21' prior: 50605022!
+test07InvalidCommandRaisesAnError
+
+	self
+		should: [ marsRover receiveCommands: 'hola' ]
+		raise: Error - MessageNotUnderstood 
+		description: Command invalidCommandErrorDescription! !
+
+!methodRemoval: MarsRover #signalInvalidCommand stamp: 'TS 5/15/2023 08:01:28'!
+signalInvalidCommand
+	
+	self error: self class invalidCommandErrorDescription !
+
+!methodRemoval: MarsRover #runCommand: stamp: 'TS 5/15/2023 08:01:32'!
+runCommand: commandCharacter 
+
+	self signalInvalidCommand!
+!MarsRover methodsFor: 'testing' stamp: 'TS 5/15/2023 08:02:16'!
+isAt: aPosition
+
+	^ position = aPosition! !
+!MarsRoverTest methodsFor: 'assertions' stamp: 'TS 5/15/2023 08:02:30' prior: 50606106!
+assert: aMarsRover isAt: aPosition andIsHeadingTo: aHeading
+
+	self assert: (aMarsRover isAt: aPosition).
+	self assert: (aMarsRover isHeadingTo: aHeading)! !
+
+!testRun: #MarsRoverTest #test01EmptyCommandStringDoesNothing stamp: 'TS 5/15/2023 08:02:30'!
+PASSED!
+
+!testRun: #MarsRoverTest #test02SingleForwardCommandWhileHeadingNorthMoves1UnitOnYAxis stamp: 'TS 5/15/2023 08:02:30'!
+PASSED!
+
+!testRun: #MarsRoverTest #test03DoubleForwardCommandWhileHeadingNorthMoves2UnitsOnYAxis stamp: 'TS 5/15/2023 08:02:30'!
+PASSED!
+
+!testRun: #MarsRoverTest #test04MovingForwardWorksWhenStartingInADifferentPosition stamp: 'TS 5/15/2023 08:02:30'!
+PASSED!
+
+!testRun: #MarsRoverTest #test05BackwardCommandsWhileHeadingNorthMoveBackwardOnYAxis stamp: 'TS 5/15/2023 08:02:30'!
+PASSED!
+
+!testRun: #MarsRoverTest #test06MixedMovementCommandsWhileHeadingNorthLeaveRoverInCorrectPosition stamp: 'TS 5/15/2023 08:02:30'!
+PASSED!
+
+!testRun: #MarsRoverTest #test07InvalidCommandRaisesAnError stamp: 'TS 5/15/2023 08:02:30'!
+PASSED!
+
+!testRun: #MarsRoverTest #test08LeftCommandTurns90DegreesLeft stamp: 'TS 5/15/2023 08:02:30'!
+PASSED!
+
+!testRun: #MarsRoverTest #test09RightCommandTurns90DegreesRight stamp: 'TS 5/15/2023 08:02:30'!
+PASSED!
+
+!testRun: #MarsRoverTest #test10DoubleLeftCommandTurns180Degrees stamp: 'TS 5/15/2023 08:02:31'!
+PASSED!
+
+!testRun: #MarsRoverTest #test11TripleLeftCommandTurns270Degrees stamp: 'TS 5/15/2023 08:02:31'!
+PASSED!
+
+!testRun: #MarsRoverTest #test12LeftCommand4TimesLeavesRoverInTheSameDirection stamp: 'TS 5/15/2023 08:02:31'!
+PASSED!
+
+!testRun: #MarsRoverTest #test13MixedRotationCommandsLeaveRoverHeadingToCorrectDirection stamp: 'TS 5/15/2023 08:02:31'!
+PASSED!
+
+!testRun: #MarsRoverTest #test14SingleForwardCommandAfterTurning90DegreesMoves1UnitOnXAxis stamp: 'TS 5/15/2023 08:02:31'!
+PASSED!
+
+!testRun: #MarsRoverTest #test15DoubleForwardCommandAfterTurning90DegreesMoves2UnitsOnXAxis stamp: 'TS 5/15/2023 08:02:31'!
+PASSED!
+
+!testRun: #MarsRoverTest #test16BackwardCommandAfterTurning90DegreesMovesBackwardOnXAxis stamp: 'TS 5/15/2023 08:02:31'!
+PASSED!
+
+!testRun: #MarsRoverTest #test17MovementCommandsAfterTurning180DegreesMoveOnYAxisInAnInvertedDirection stamp: 'TS 5/15/2023 08:02:31'!
+PASSED!
+
+!testRun: #MarsRoverTest #test18MixedMovementAndRotationCommandsWorkCorrectly stamp: 'TS 5/15/2023 08:02:31'!
+PASSED!
+
+----SNAPSHOT----(15 May 2023 08:03:22) CuisUniversity-5706.image priorSource: 8713220!
+
+!methodRemoval: MarsRover #heading stamp: 'TS 5/15/2023 08:03:33'!
+heading
+
+	^ heading!
+
+!methodRemoval: MarsRover #position stamp: 'TS 5/15/2023 08:03:35'!
+position
+	
+	^ position!
+
+!testRun: #MarsRoverTest #test01EmptyCommandStringDoesNothing stamp: 'TS 5/15/2023 08:03:39'!
+PASSED!
+
+!testRun: #MarsRoverTest #test02SingleForwardCommandWhileHeadingNorthMoves1UnitOnYAxis stamp: 'TS 5/15/2023 08:03:39'!
+PASSED!
+
+!testRun: #MarsRoverTest #test03DoubleForwardCommandWhileHeadingNorthMoves2UnitsOnYAxis stamp: 'TS 5/15/2023 08:03:39'!
+PASSED!
+
+!testRun: #MarsRoverTest #test04MovingForwardWorksWhenStartingInADifferentPosition stamp: 'TS 5/15/2023 08:03:39'!
+PASSED!
+
+!testRun: #MarsRoverTest #test05BackwardCommandsWhileHeadingNorthMoveBackwardOnYAxis stamp: 'TS 5/15/2023 08:03:39'!
+PASSED!
+
+!testRun: #MarsRoverTest #test06MixedMovementCommandsWhileHeadingNorthLeaveRoverInCorrectPosition stamp: 'TS 5/15/2023 08:03:39'!
+PASSED!
+
+!testRun: #MarsRoverTest #test07InvalidCommandRaisesAnError stamp: 'TS 5/15/2023 08:03:39'!
+PASSED!
+
+!testRun: #MarsRoverTest #test08LeftCommandTurns90DegreesLeft stamp: 'TS 5/15/2023 08:03:39'!
+PASSED!
+
+!testRun: #MarsRoverTest #test09RightCommandTurns90DegreesRight stamp: 'TS 5/15/2023 08:03:39'!
+PASSED!
+
+!testRun: #MarsRoverTest #test10DoubleLeftCommandTurns180Degrees stamp: 'TS 5/15/2023 08:03:39'!
+PASSED!
+
+!testRun: #MarsRoverTest #test11TripleLeftCommandTurns270Degrees stamp: 'TS 5/15/2023 08:03:39'!
+PASSED!
+
+!testRun: #MarsRoverTest #test12LeftCommand4TimesLeavesRoverInTheSameDirection stamp: 'TS 5/15/2023 08:03:39'!
+PASSED!
+
+!testRun: #MarsRoverTest #test13MixedRotationCommandsLeaveRoverHeadingToCorrectDirection stamp: 'TS 5/15/2023 08:03:39'!
+PASSED!
+
+!testRun: #MarsRoverTest #test14SingleForwardCommandAfterTurning90DegreesMoves1UnitOnXAxis stamp: 'TS 5/15/2023 08:03:39'!
+PASSED!
+
+!testRun: #MarsRoverTest #test15DoubleForwardCommandAfterTurning90DegreesMoves2UnitsOnXAxis stamp: 'TS 5/15/2023 08:03:39'!
+PASSED!
+
+!testRun: #MarsRoverTest #test16BackwardCommandAfterTurning90DegreesMovesBackwardOnXAxis stamp: 'TS 5/15/2023 08:03:39'!
+PASSED!
+
+!testRun: #MarsRoverTest #test17MovementCommandsAfterTurning180DegreesMoveOnYAxisInAnInvertedDirection stamp: 'TS 5/15/2023 08:03:39'!
+PASSED!
+
+!testRun: #MarsRoverTest #test18MixedMovementAndRotationCommandsWorkCorrectly stamp: 'TS 5/15/2023 08:03:39'!
+PASSED!
+
+----QUIT----(15 May 2023 08:03:59) CuisUniversity-5706.image priorSource: 8857278!
