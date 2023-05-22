@@ -1,0 +1,1505 @@
+
+
+----QUIT----(20 March 2023 11:15:29) CuisUniversity-5706.image priorSource: 4313282!
+
+----STARTUP---- (20 March 2023 11:15:29) as /Users/hernan/Documents/Cuis/5.0-64Bits/Cuis-University-Installer/CuisUniversity-5706.image!
+
+
+----QUIT----(20 March 2023 11:15:30) CuisUniversity-5706.image priorSource: 8712809!
+
+----STARTUP---- (15 May 2023 17:09:48) as /home/clinux01/Descargas/linux64(1)/linux64/CuisUniversity-5706.image!
+
+
+----End fileIn of /home/clinux01/Descargas/linux64(1)/linux64/Portfolio-Ejercicio.st----!
+
+!testRun: #ReceptiveAccountTest #test01ReceptiveAccountHaveZeroAsBalanceWhenCreated stamp: 'SG 5/15/2023 19:24:17'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test02DepositIncreasesBalanceOnTransactionValue stamp: 'SG 5/15/2023 19:24:17'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test03WithdrawDecreasesBalanceOnTransactionValue stamp: 'SG 5/15/2023 19:24:17'!
+FAILURE!
+
+!testRun: #ReceptiveAccountTest #test04WithdrawValueMustBePositive stamp: 'SG 5/15/2023 19:24:17'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test05ReceptiveAccountKnowsRegisteredTransactions stamp: 'SG 5/15/2023 19:24:17'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test06ReceptiveAccountDoNotKnowNotRegisteredTransactions stamp: 'SG 5/15/2023 19:24:17'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test07AccountKnowsItsTransactions stamp: 'SG 5/15/2023 19:24:17'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test03WithdrawDecreasesBalanceOnTransactionValue stamp: 'SG 5/15/2023 19:24:17'!
+FAILURE!
+!ReceptiveAccount methodsFor: 'balance' stamp: 'SG 5/15/2023 19:32:05' prior: 50604152!
+balance
+
+	^transactions sum: [ :aTransaction | 
+		(aTransaction isKindOf: Deposit) 
+			ifTrue: [aTransaction value]
+			ifFalse: [aTransaction value negated].
+	 ] ifEmpty: [ 0 ]! !
+
+!testRun: #ReceptiveAccountTest #test01ReceptiveAccountHaveZeroAsBalanceWhenCreated stamp: 'SG 5/15/2023 19:32:06'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test02DepositIncreasesBalanceOnTransactionValue stamp: 'SG 5/15/2023 19:32:06'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test03WithdrawDecreasesBalanceOnTransactionValue stamp: 'SG 5/15/2023 19:32:06'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test04WithdrawValueMustBePositive stamp: 'SG 5/15/2023 19:32:06'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test05ReceptiveAccountKnowsRegisteredTransactions stamp: 'SG 5/15/2023 19:32:06'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test06ReceptiveAccountDoNotKnowNotRegisteredTransactions stamp: 'SG 5/15/2023 19:32:06'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test07AccountKnowsItsTransactions stamp: 'SG 5/15/2023 19:32:06'!
+PASSED!
+!ReceptiveAccount methodsFor: 'balance' stamp: 'SG 5/15/2023 19:39:35' prior: 50604196!
+balance
+
+	^transactions sum: [ :aTransaction | 
+		aTransaction addToTotalBalance
+	 ] ifEmpty: [ 0 ]! !
+!ReceptiveAccount methodsFor: 'balance' stamp: 'SG 5/15/2023 19:42:24' prior: 50604231!
+balance
+
+	^transactions inject: 0 into: [:previousBalance :aTransaction | 
+		aTransaction addToTotalBalance: previousBalance
+	 ] ifEmpty: [ 0 ]! !
+!ReceptiveAccount methodsFor: 'balance' stamp: 'SG 5/15/2023 19:42:41' prior: 50604237!
+balance
+
+	^transactions inject: 0 into: [:previousBalance :aTransaction | 
+		aTransaction addToTotalBalance: previousBalance
+	 ]! !
+!AccountTransaction methodsFor: 'nil' stamp: 'SG 5/15/2023 19:42:56'!
+addToTotalBalance: previousBalance! !
+!Deposit methodsFor: 'as yet unclassified' stamp: 'SG 5/15/2023 19:43:05' overrides: 50604252!
+addToTotalBalance: previousBalance! !
+!Withdraw methodsFor: 'as yet unclassified' stamp: 'SG 5/15/2023 19:43:05' overrides: 50604252!
+addToTotalBalance: previousBalance! !
+
+!methodRemoval: AccountTransaction #addToTotalBalance: stamp: 'SG 5/15/2023 19:43:05'!
+addToTotalBalance: previousBalance!
+!AccountTransaction methodsFor: 'nil' stamp: 'SG 5/15/2023 19:43:15'!
+addToTotalBalance: previousBalance
+
+	self subclassResponsibility ! !
+!Deposit methodsFor: 'as yet unclassified' stamp: 'SG 5/15/2023 19:44:17' prior: 50604257 overrides: 50604270!
+addToTotalBalance: previousBalance
+
+	^ previousBalance + self value! !
+!Withdraw methodsFor: 'as yet unclassified' stamp: 'SG 5/15/2023 19:44:38' prior: 50604262 overrides: 50604270!
+addToTotalBalance: previousBalance
+
+	^ previousBalance - self value! !
+
+!testRun: #ReceptiveAccountTest #test01ReceptiveAccountHaveZeroAsBalanceWhenCreated stamp: 'SG 5/15/2023 19:44:39'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test02DepositIncreasesBalanceOnTransactionValue stamp: 'SG 5/15/2023 19:44:39'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test03WithdrawDecreasesBalanceOnTransactionValue stamp: 'SG 5/15/2023 19:44:39'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test04WithdrawValueMustBePositive stamp: 'SG 5/15/2023 19:44:39'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test05ReceptiveAccountKnowsRegisteredTransactions stamp: 'SG 5/15/2023 19:44:39'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test06ReceptiveAccountDoNotKnowNotRegisteredTransactions stamp: 'SG 5/15/2023 19:44:39'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test07AccountKnowsItsTransactions stamp: 'SG 5/15/2023 19:44:39'!
+PASSED!
+!Deposit methodsFor: 'as yet unclassified' stamp: 'SG 5/15/2023 19:45:35' prior: 50604276 overrides: 50604270!
+addToTotalBalance: aBalance
+
+	^ aBalance + self value! !
+!Withdraw methodsFor: 'as yet unclassified' stamp: 'SG 5/15/2023 19:45:44' prior: 50604282 overrides: 50604270!
+addToTotalBalance: aBalance
+
+	^ aBalance - self value! !
+!ReceptiveAccountTest methodsFor: 'nil' stamp: 'SG 5/15/2023 19:55:30'!
+withTransactions: aTransactionCollection do: aBlock
+
+	| account |
+	account := ReceptiveAccount new.! !
+
+!methodRemoval: ReceptiveAccountTest #withTransactions:do: stamp: 'SG 5/15/2023 19:56:27'!
+withTransactions: aTransactionCollection do: aBlock
+
+	| account |
+	account := ReceptiveAccount new.!
+
+!classDefinition: #Portfolio category: 'Portfolio-Ejercicio' stamp: 'SG 5/15/2023 20:06:23'!
+Object subclass: #Portfolio
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Portfolio-Ejercicio'!
+!ReceptiveAccountTest methodsFor: 'tests' stamp: 'SG 5/15/2023 20:06:08'!
+test08PortfolioWithEmptyBalance
+
+	| portfolio |
+	portfolio := Portfolio new.
+	
+	self assert: 0 equals: portfolio balance.! !
+
+!testRun: #ReceptiveAccountTest #test08PortfolioWithEmptyBalance stamp: 'SG 5/15/2023 20:06:29'!
+ERROR!
+!Portfolio methodsFor: 'no messages' stamp: 'SG 5/15/2023 20:06:48'!
+balance 
+	^0! !
+
+!testRun: #ReceptiveAccountTest #test01ReceptiveAccountHaveZeroAsBalanceWhenCreated stamp: 'SG 5/15/2023 20:06:50'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test02DepositIncreasesBalanceOnTransactionValue stamp: 'SG 5/15/2023 20:06:50'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test03WithdrawDecreasesBalanceOnTransactionValue stamp: 'SG 5/15/2023 20:06:50'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test04WithdrawValueMustBePositive stamp: 'SG 5/15/2023 20:06:50'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test05ReceptiveAccountKnowsRegisteredTransactions stamp: 'SG 5/15/2023 20:06:50'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test06ReceptiveAccountDoNotKnowNotRegisteredTransactions stamp: 'SG 5/15/2023 20:06:50'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test07AccountKnowsItsTransactions stamp: 'SG 5/15/2023 20:06:50'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test08PortfolioWithEmptyBalance stamp: 'SG 5/15/2023 20:06:50'!
+PASSED!
+
+TestCase subclass: #PortfolioTest
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Portfolio-Ejercicio'!
+
+!classDefinition: #PortfolioTest category: 'Portfolio-Ejercicio' stamp: 'SG 5/15/2023 20:12:46'!
+TestCase subclass: #PortfolioTest
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Portfolio-Ejercicio'!
+
+!methodRemoval: ReceptiveAccountTest #test08PortfolioWithEmptyBalance stamp: 'SG 5/15/2023 20:12:52'!
+test08PortfolioWithEmptyBalance
+
+	| portfolio |
+	portfolio := Portfolio new.
+	
+	self assert: 0 equals: portfolio balance.!
+!PortfolioTest methodsFor: 'testing' stamp: 'SG 5/15/2023 20:14:32'!
+test01PortfolioWithNoAccountsHasZeroBalance
+
+	| portfolio |
+	
+	portfolio := Portfolio new.
+	
+	self assert: 0 equals: portfolio balance! !
+
+!testRun: #PortfolioTest #test01PortfolioWithNoAccountsHasZeroBalance stamp: 'SG 5/15/2023 20:14:34'!
+PASSED!
+
+!testRun: #PortfolioTest #test01PortfolioWithNoAccountsHasZeroBalance stamp: 'SG 5/15/2023 20:14:34'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test01ReceptiveAccountHaveZeroAsBalanceWhenCreated stamp: 'SG 5/15/2023 20:14:34'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test02DepositIncreasesBalanceOnTransactionValue stamp: 'SG 5/15/2023 20:14:34'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test03WithdrawDecreasesBalanceOnTransactionValue stamp: 'SG 5/15/2023 20:14:34'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test04WithdrawValueMustBePositive stamp: 'SG 5/15/2023 20:14:34'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test05ReceptiveAccountKnowsRegisteredTransactions stamp: 'SG 5/15/2023 20:14:34'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test06ReceptiveAccountDoNotKnowNotRegisteredTransactions stamp: 'SG 5/15/2023 20:14:34'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test07AccountKnowsItsTransactions stamp: 'SG 5/15/2023 20:14:34'!
+PASSED!
+!PortfolioTest methodsFor: 'testing' stamp: 'SG 5/15/2023 20:21:37'!
+test02PortfolioWithSingleAccountHasSameBalanceAsTheAccount
+
+	| portfolio account |
+	
+	portfolio := Portfolio new.
+	account := ReceptiveAccount new.
+	
+	self assert: 0 equals: portfolio balance! !
+!PortfolioTest methodsFor: 'testing' stamp: 'SG 5/15/2023 20:25:46' prior: 50604446!
+test02PortfolioWithSingleAccountHasSameBalanceAsTheAccount
+
+	| portfolio account |
+	
+	portfolio := Portfolio new.
+	account := ReceptiveAccount new.
+	portfolio addAccount: account.
+	
+	self assert: account balance equals: portfolio balance! !
+!PortfolioTest methodsFor: 'testing' stamp: 'SG 5/15/2023 20:26:22' prior: 50604455!
+test02PortfolioWithSingleAccountHasSameBalanceAsTheAccount
+
+	| portfolio account |
+	
+	portfolio := Portfolio new.
+	account := ReceptiveAccount new.
+	
+	Deposit register: 50 on: account.
+	portfolio addAccount: account.
+	
+	self assert: account balance equals: portfolio balance! !
+
+!testRun: #PortfolioTest #test02PortfolioWithSingleAccountHasSameBalanceAsTheAccount stamp: 'SG 5/15/2023 20:26:23'!
+ERROR!
+!Portfolio methodsFor: 'as yet unclassified' stamp: 'SG 5/15/2023 20:26:40'!
+addAccount: account 
+	self shouldBeImplemented.! !
+
+!classDefinition: #Portfolio category: 'Portfolio-Ejercicio' stamp: 'SG 5/15/2023 20:27:10'!
+Object subclass: #Portfolio
+	instanceVariableNames: 'account'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Portfolio-Ejercicio'!
+!Portfolio methodsFor: 'as yet unclassified' stamp: 'SG 5/15/2023 20:27:07' prior: 50604481!
+addAccount: anAccount 
+	
+	account := anAccount! !
+
+!testRun: #PortfolioTest #test01PortfolioWithNoAccountsHasZeroBalance stamp: 'SG 5/15/2023 20:27:31'!
+PASSED!
+
+!testRun: #PortfolioTest #test02PortfolioWithSingleAccountHasSameBalanceAsTheAccount stamp: 'SG 5/15/2023 20:27:31'!
+FAILURE!
+
+!testRun: #PortfolioTest #test02PortfolioWithSingleAccountHasSameBalanceAsTheAccount stamp: 'SG 5/15/2023 20:27:31'!
+FAILURE!
+!Portfolio methodsFor: 'as yet unclassified' stamp: 'SG 5/15/2023 20:27:58' prior: 50604354!
+balance 
+	^account balance! !
+
+!testRun: #PortfolioTest #test01PortfolioWithNoAccountsHasZeroBalance stamp: 'SG 5/15/2023 20:27:59'!
+ERROR!
+
+!testRun: #PortfolioTest #test02PortfolioWithSingleAccountHasSameBalanceAsTheAccount stamp: 'SG 5/15/2023 20:27:59'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test01ReceptiveAccountHaveZeroAsBalanceWhenCreated stamp: 'SG 5/15/2023 20:27:59'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test02DepositIncreasesBalanceOnTransactionValue stamp: 'SG 5/15/2023 20:27:59'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test03WithdrawDecreasesBalanceOnTransactionValue stamp: 'SG 5/15/2023 20:27:59'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test04WithdrawValueMustBePositive stamp: 'SG 5/15/2023 20:27:59'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test05ReceptiveAccountKnowsRegisteredTransactions stamp: 'SG 5/15/2023 20:27:59'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test06ReceptiveAccountDoNotKnowNotRegisteredTransactions stamp: 'SG 5/15/2023 20:27:59'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test07AccountKnowsItsTransactions stamp: 'SG 5/15/2023 20:27:59'!
+PASSED!
+
+!testRun: #PortfolioTest #test01PortfolioWithNoAccountsHasZeroBalance stamp: 'SG 5/15/2023 20:27:59'!
+ERROR!
+!Portfolio methodsFor: 'as yet unclassified' stamp: 'SG 5/15/2023 20:28:07' prior: 50604509!
+balance 
+	
+	^ account balance! !
+!Portfolio methodsFor: 'as yet unclassified' stamp: 'SG 5/15/2023 20:28:34' prior: 50604550!
+balance 
+	
+	account ifNil: [^0].
+	^ account balance! !
+
+!testRun: #PortfolioTest #test01PortfolioWithNoAccountsHasZeroBalance stamp: 'SG 5/15/2023 20:28:36'!
+PASSED!
+
+!testRun: #PortfolioTest #test02PortfolioWithSingleAccountHasSameBalanceAsTheAccount stamp: 'SG 5/15/2023 20:28:36'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test01ReceptiveAccountHaveZeroAsBalanceWhenCreated stamp: 'SG 5/15/2023 20:28:36'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test02DepositIncreasesBalanceOnTransactionValue stamp: 'SG 5/15/2023 20:28:36'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test03WithdrawDecreasesBalanceOnTransactionValue stamp: 'SG 5/15/2023 20:28:36'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test04WithdrawValueMustBePositive stamp: 'SG 5/15/2023 20:28:36'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test05ReceptiveAccountKnowsRegisteredTransactions stamp: 'SG 5/15/2023 20:28:36'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test06ReceptiveAccountDoNotKnowNotRegisteredTransactions stamp: 'SG 5/15/2023 20:28:36'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test07AccountKnowsItsTransactions stamp: 'SG 5/15/2023 20:28:36'!
+PASSED!
+!PortfolioTest methodsFor: 'testing' stamp: 'SG 5/15/2023 20:30:27'!
+test03PortfolioWithMultipleAccountsHasBalanceEqualToTheSumOfTheAccountBalances
+
+	| portfolio account |
+	
+	portfolio := Portfolio new.
+	account := ReceptiveAccount new.
+	
+	Deposit register: 50 on: account.
+	portfolio addAccount: account.
+	
+	self assert: account balance equals: portfolio balance! !
+!PortfolioTest methodsFor: 'testing' stamp: 'SG 5/15/2023 20:30:29'!
+test03PortfolioWithMultipleAccountsHasBalanceEqualToTheSumOfTheAccountBalancess
+
+	| portfolio account |
+	
+	portfolio := Portfolio new.
+	account := ReceptiveAccount new.
+	
+	Deposit register: 50 on: account.
+	portfolio addAccount: account.
+	
+	self assert: account balance equals: portfolio balance! !
+
+!methodRemoval: PortfolioTest #test03PortfolioWithMultipleAccountsHasBalanceEqualToTheSumOfTheAccountBalancess stamp: 'SG 5/15/2023 20:30:35'!
+test03PortfolioWithMultipleAccountsHasBalanceEqualToTheSumOfTheAccountBalancess
+
+	| portfolio account |
+	
+	portfolio := Portfolio new.
+	account := ReceptiveAccount new.
+	
+	Deposit register: 50 on: account.
+	portfolio addAccount: account.
+	
+	self assert: account balance equals: portfolio balance!
+!PortfolioTest methodsFor: 'testing' stamp: 'SG 5/15/2023 20:31:56' prior: 50604592!
+test03PortfolioWithMultipleAccountsHasBalanceEqualToTheSumOfTheAccountBalances
+
+	| portfolio account1 account2 |
+	
+	portfolio := Portfolio new.
+	account1 := ReceptiveAccount new.
+	account2 := ReceptiveAccount new.
+	
+	Deposit register: 50 on: account1.
+	Deposit register: 100 on: account2.
+	portfolio addAccount: account1; addAccount: account2.
+	
+	self assert: 150 equals: portfolio balance! !
+
+!testRun: #PortfolioTest #test03PortfolioWithMultipleAccountsHasBalanceEqualToTheSumOfTheAccountBalances stamp: 'SG 5/15/2023 20:31:57'!
+FAILURE!
+!Portfolio methodsFor: 'as yet unclassified' stamp: 'SG 5/15/2023 20:32:34' prior: 50604493!
+addAccount: aCollectionOfAccounts 
+	
+	account := aCollectionOfAccounts! !
+!Portfolio methodsFor: 'as yet unclassified' stamp: 'SG 5/15/2023 20:32:44' prior: 50604650!
+addAccount: anAccount 
+	
+	account := anAccount! !
+
+!classDefinition: #Portfolio category: 'Portfolio-Ejercicio' stamp: 'SG 5/15/2023 20:33:14'!
+Object subclass: #Portfolio
+	instanceVariableNames: 'account accounts'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Portfolio-Ejercicio'!
+!Portfolio methodsFor: 'as yet unclassified' stamp: 'SG 5/15/2023 20:33:12' prior: 50604656!
+addAccount: anAccount 
+	
+	accounts add: anAccount! !
+
+Object subclass: #Portfolio
+	instanceVariableNames: 'accounts'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Portfolio-Ejercicio'!
+
+!classDefinition: #Portfolio category: 'Portfolio-Ejercicio' stamp: 'SG 5/15/2023 20:33:22'!
+Object subclass: #Portfolio
+	instanceVariableNames: 'accounts'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Portfolio-Ejercicio'!
+!Portfolio methodsFor: 'as yet unclassified' stamp: 'SG 5/15/2023 20:33:54' prior: 50604554!
+balance 
+	
+	accounts ifNil: [^0].
+	^ accounts sum: [:anAccount | anAccount balance].! !
+
+!testRun: #PortfolioTest #test01PortfolioWithNoAccountsHasZeroBalance stamp: 'SG 5/15/2023 20:33:55'!
+PASSED!
+
+!testRun: #PortfolioTest #test02PortfolioWithSingleAccountHasSameBalanceAsTheAccount stamp: 'SG 5/15/2023 20:33:55'!
+ERROR!
+
+!testRun: #PortfolioTest #test03PortfolioWithMultipleAccountsHasBalanceEqualToTheSumOfTheAccountBalances stamp: 'SG 5/15/2023 20:33:55'!
+ERROR!
+
+!testRun: #ReceptiveAccountTest #test01ReceptiveAccountHaveZeroAsBalanceWhenCreated stamp: 'SG 5/15/2023 20:33:55'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test02DepositIncreasesBalanceOnTransactionValue stamp: 'SG 5/15/2023 20:33:55'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test03WithdrawDecreasesBalanceOnTransactionValue stamp: 'SG 5/15/2023 20:33:55'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test04WithdrawValueMustBePositive stamp: 'SG 5/15/2023 20:33:55'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test05ReceptiveAccountKnowsRegisteredTransactions stamp: 'SG 5/15/2023 20:33:55'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test06ReceptiveAccountDoNotKnowNotRegisteredTransactions stamp: 'SG 5/15/2023 20:33:55'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test07AccountKnowsItsTransactions stamp: 'SG 5/15/2023 20:33:55'!
+PASSED!
+
+!testRun: #PortfolioTest #test02PortfolioWithSingleAccountHasSameBalanceAsTheAccount stamp: 'SG 5/15/2023 20:33:57'!
+ERROR!
+!Portfolio methodsFor: 'as yet unclassified' stamp: 'SG 5/15/2023 20:34:36' overrides: 16920235!
+initialize
+	
+	accounts := Set new! !
+
+!testRun: #PortfolioTest #test01PortfolioWithNoAccountsHasZeroBalance stamp: 'SG 5/15/2023 20:34:37'!
+ERROR!
+
+!testRun: #PortfolioTest #test02PortfolioWithSingleAccountHasSameBalanceAsTheAccount stamp: 'SG 5/15/2023 20:34:37'!
+PASSED!
+
+!testRun: #PortfolioTest #test03PortfolioWithMultipleAccountsHasBalanceEqualToTheSumOfTheAccountBalances stamp: 'SG 5/15/2023 20:34:37'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test01ReceptiveAccountHaveZeroAsBalanceWhenCreated stamp: 'SG 5/15/2023 20:34:37'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test02DepositIncreasesBalanceOnTransactionValue stamp: 'SG 5/15/2023 20:34:37'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test03WithdrawDecreasesBalanceOnTransactionValue stamp: 'SG 5/15/2023 20:34:37'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test04WithdrawValueMustBePositive stamp: 'SG 5/15/2023 20:34:37'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test05ReceptiveAccountKnowsRegisteredTransactions stamp: 'SG 5/15/2023 20:34:37'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test06ReceptiveAccountDoNotKnowNotRegisteredTransactions stamp: 'SG 5/15/2023 20:34:37'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test07AccountKnowsItsTransactions stamp: 'SG 5/15/2023 20:34:37'!
+PASSED!
+
+!testRun: #PortfolioTest #test01PortfolioWithNoAccountsHasZeroBalance stamp: 'SG 5/15/2023 20:34:37'!
+ERROR!
+!Portfolio methodsFor: 'as yet unclassified' stamp: 'SG 5/15/2023 20:34:59' prior: 50604686!
+balance 
+	
+	accounts ifEmpty: [^0].
+	^ accounts sum: [:anAccount | anAccount balance].! !
+
+!testRun: #PortfolioTest #test01PortfolioWithNoAccountsHasZeroBalance stamp: 'SG 5/15/2023 20:35:00'!
+PASSED!
+
+!testRun: #PortfolioTest #test02PortfolioWithSingleAccountHasSameBalanceAsTheAccount stamp: 'SG 5/15/2023 20:35:00'!
+PASSED!
+
+!testRun: #PortfolioTest #test03PortfolioWithMultipleAccountsHasBalanceEqualToTheSumOfTheAccountBalances stamp: 'SG 5/15/2023 20:35:00'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test01ReceptiveAccountHaveZeroAsBalanceWhenCreated stamp: 'SG 5/15/2023 20:35:00'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test02DepositIncreasesBalanceOnTransactionValue stamp: 'SG 5/15/2023 20:35:00'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test03WithdrawDecreasesBalanceOnTransactionValue stamp: 'SG 5/15/2023 20:35:00'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test04WithdrawValueMustBePositive stamp: 'SG 5/15/2023 20:35:00'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test05ReceptiveAccountKnowsRegisteredTransactions stamp: 'SG 5/15/2023 20:35:00'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test06ReceptiveAccountDoNotKnowNotRegisteredTransactions stamp: 'SG 5/15/2023 20:35:00'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test07AccountKnowsItsTransactions stamp: 'SG 5/15/2023 20:35:00'!
+PASSED!
+!Portfolio methodsFor: 'as yet unclassified' stamp: 'SG 5/15/2023 20:35:47' prior: 50604780!
+balance 
+	
+	^ accounts sum: [:anAccount | anAccount balance] ifEmpty: [^0].! !
+
+!testRun: #PortfolioTest #test01PortfolioWithNoAccountsHasZeroBalance stamp: 'SG 5/15/2023 20:35:51'!
+PASSED!
+
+!testRun: #PortfolioTest #test02PortfolioWithSingleAccountHasSameBalanceAsTheAccount stamp: 'SG 5/15/2023 20:35:51'!
+PASSED!
+
+!testRun: #PortfolioTest #test03PortfolioWithMultipleAccountsHasBalanceEqualToTheSumOfTheAccountBalances stamp: 'SG 5/15/2023 20:35:51'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test01ReceptiveAccountHaveZeroAsBalanceWhenCreated stamp: 'SG 5/15/2023 20:35:51'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test02DepositIncreasesBalanceOnTransactionValue stamp: 'SG 5/15/2023 20:35:51'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test03WithdrawDecreasesBalanceOnTransactionValue stamp: 'SG 5/15/2023 20:35:51'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test04WithdrawValueMustBePositive stamp: 'SG 5/15/2023 20:35:51'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test05ReceptiveAccountKnowsRegisteredTransactions stamp: 'SG 5/15/2023 20:35:51'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test06ReceptiveAccountDoNotKnowNotRegisteredTransactions stamp: 'SG 5/15/2023 20:35:51'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test07AccountKnowsItsTransactions stamp: 'SG 5/15/2023 20:35:51'!
+PASSED!
+
+----SNAPSHOT----(15 May 2023 20:40:58) CuisUniversity-5706.image priorSource: 8713034!
+!PortfolioTest methodsFor: 'testing' stamp: 'SG 5/15/2023 20:41:17'!
+test03PortfolioWithASinglePortfolioHasTheSameBalance
+
+	| parentPortfolio childPorfolio account1 account2 |
+	
+	parentPortfolio := Portfolio new.
+	
+	childPorfolio := Portfolio new.
+	account1 := ReceptiveAccount new.
+	account2 := ReceptiveAccount new.
+	
+	Deposit register: 50 on: account1.
+	Deposit register: 100 on: account2.
+	childPorfolio addAccount: account1; addAccount: account2.
+	
+	parentPortfolio addPortfolio: childPorfolio.
+	
+	self assert: childPorfolio balance equals: parentPortfolio balance.! !
+
+!testRun: #PortfolioTest #test03PortfolioWithASinglePortfolioHasTheSameBalance stamp: 'SG 5/15/2023 20:41:25'!
+ERROR!
+!PortfolioTest methodsFor: 'testing' stamp: 'SG 5/15/2023 20:41:34'!
+test04PortfolioWithASinglePortfolioHasTheSameBalance
+
+	| parentPortfolio childPorfolio account1 account2 |
+	
+	parentPortfolio := Portfolio new.
+	
+	childPorfolio := Portfolio new.
+	account1 := ReceptiveAccount new.
+	account2 := ReceptiveAccount new.
+	
+	Deposit register: 50 on: account1.
+	Deposit register: 100 on: account2.
+	childPorfolio addAccount: account1; addAccount: account2.
+	
+	parentPortfolio addPortfolio: childPorfolio.
+	
+	self assert: childPorfolio balance equals: parentPortfolio balance.! !
+
+!methodRemoval: PortfolioTest #test03PortfolioWithASinglePortfolioHasTheSameBalance stamp: 'SG 5/15/2023 20:41:34'!
+test03PortfolioWithASinglePortfolioHasTheSameBalance
+
+	| parentPortfolio childPorfolio account1 account2 |
+	
+	parentPortfolio := Portfolio new.
+	
+	childPorfolio := Portfolio new.
+	account1 := ReceptiveAccount new.
+	account2 := ReceptiveAccount new.
+	
+	Deposit register: 50 on: account1.
+	Deposit register: 100 on: account2.
+	childPorfolio addAccount: account1; addAccount: account2.
+	
+	parentPortfolio addPortfolio: childPorfolio.
+	
+	self assert: childPorfolio balance equals: parentPortfolio balance.!
+
+!testRun: #PortfolioTest #test04PortfolioWithASinglePortfolioHasTheSameBalance stamp: 'SG 5/15/2023 20:41:38'!
+ERROR!
+
+!classDefinition: #Portfolio category: 'Portfolio-Ejercicio' stamp: 'SG 5/15/2023 20:42:40'!
+Object subclass: #Portfolio
+	instanceVariableNames: 'accounts portfolios'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Portfolio-Ejercicio'!
+!Portfolio methodsFor: 'modification' stamp: 'SG 5/15/2023 20:42:39'!
+addPortfolio: aPortfolio 
+	
+	portfolios add: aPortfolio ! !
+!Portfolio methodsFor: 'initialization' stamp: 'SG 5/15/2023 20:43:04' prior: 50604734 overrides: 16920235!
+initialize
+	
+	accounts := Set new.
+	portfolios := Set new! !
+
+!testRun: #PortfolioTest #test01PortfolioWithNoAccountsHasZeroBalance stamp: 'SG 5/15/2023 20:43:05'!
+PASSED!
+
+!testRun: #PortfolioTest #test02PortfolioWithSingleAccountHasSameBalanceAsTheAccount stamp: 'SG 5/15/2023 20:43:05'!
+PASSED!
+
+!testRun: #PortfolioTest #test03PortfolioWithMultipleAccountsHasBalanceEqualToTheSumOfTheAccountBalances stamp: 'SG 5/15/2023 20:43:05'!
+PASSED!
+
+!testRun: #PortfolioTest #test04PortfolioWithASinglePortfolioHasTheSameBalance stamp: 'SG 5/15/2023 20:43:05'!
+FAILURE!
+
+!testRun: #ReceptiveAccountTest #test01ReceptiveAccountHaveZeroAsBalanceWhenCreated stamp: 'SG 5/15/2023 20:43:05'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test02DepositIncreasesBalanceOnTransactionValue stamp: 'SG 5/15/2023 20:43:05'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test03WithdrawDecreasesBalanceOnTransactionValue stamp: 'SG 5/15/2023 20:43:05'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test04WithdrawValueMustBePositive stamp: 'SG 5/15/2023 20:43:05'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test05ReceptiveAccountKnowsRegisteredTransactions stamp: 'SG 5/15/2023 20:43:05'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test06ReceptiveAccountDoNotKnowNotRegisteredTransactions stamp: 'SG 5/15/2023 20:43:05'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test07AccountKnowsItsTransactions stamp: 'SG 5/15/2023 20:43:05'!
+PASSED!
+
+!testRun: #PortfolioTest #test04PortfolioWithASinglePortfolioHasTheSameBalance stamp: 'SG 5/15/2023 20:43:05'!
+FAILURE!
+!Portfolio methodsFor: 'balance' stamp: 'SG 5/15/2023 20:45:38' prior: 50604824!
+balance 
+	
+	^ accounts sum: [:anAccount | anAccount balance] ifEmpty: [^0] + (portfolios sum: [:anAccount | anAccount balance] ifEmpty: [^0]).! !
+
+!testRun: #PortfolioTest #test01PortfolioWithNoAccountsHasZeroBalance stamp: 'SG 5/15/2023 20:45:39'!
+PASSED!
+
+!testRun: #PortfolioTest #test02PortfolioWithSingleAccountHasSameBalanceAsTheAccount stamp: 'SG 5/15/2023 20:45:39'!
+FAILURE!
+
+!testRun: #PortfolioTest #test03PortfolioWithMultipleAccountsHasBalanceEqualToTheSumOfTheAccountBalances stamp: 'SG 5/15/2023 20:45:39'!
+FAILURE!
+
+!testRun: #PortfolioTest #test04PortfolioWithASinglePortfolioHasTheSameBalance stamp: 'SG 5/15/2023 20:45:39'!
+ERROR!
+
+!testRun: #ReceptiveAccountTest #test01ReceptiveAccountHaveZeroAsBalanceWhenCreated stamp: 'SG 5/15/2023 20:45:39'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test02DepositIncreasesBalanceOnTransactionValue stamp: 'SG 5/15/2023 20:45:39'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test03WithdrawDecreasesBalanceOnTransactionValue stamp: 'SG 5/15/2023 20:45:39'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test04WithdrawValueMustBePositive stamp: 'SG 5/15/2023 20:45:39'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test05ReceptiveAccountKnowsRegisteredTransactions stamp: 'SG 5/15/2023 20:45:39'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test06ReceptiveAccountDoNotKnowNotRegisteredTransactions stamp: 'SG 5/15/2023 20:45:39'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test07AccountKnowsItsTransactions stamp: 'SG 5/15/2023 20:45:39'!
+PASSED!
+
+!testRun: #PortfolioTest #test02PortfolioWithSingleAccountHasSameBalanceAsTheAccount stamp: 'SG 5/15/2023 20:45:41'!
+FAILURE!
+!Portfolio methodsFor: 'balance' stamp: 'SG 5/15/2023 20:46:09' prior: 50604998!
+balance 
+	
+	^ accounts sum: [:anAccount | anAccount balance] ifEmpty: [ 0 ] + (portfolios sum: [:anAccount | anAccount balance] ifEmpty: [ 0 ]).! !
+
+!testRun: #PortfolioTest #test01PortfolioWithNoAccountsHasZeroBalance stamp: 'SG 5/15/2023 20:46:10'!
+ERROR!
+
+!testRun: #PortfolioTest #test02PortfolioWithSingleAccountHasSameBalanceAsTheAccount stamp: 'SG 5/15/2023 20:46:10'!
+ERROR!
+
+!testRun: #PortfolioTest #test03PortfolioWithMultipleAccountsHasBalanceEqualToTheSumOfTheAccountBalances stamp: 'SG 5/15/2023 20:46:10'!
+ERROR!
+
+!testRun: #PortfolioTest #test04PortfolioWithASinglePortfolioHasTheSameBalance stamp: 'SG 5/15/2023 20:46:10'!
+ERROR!
+
+!testRun: #PortfolioTest #test01PortfolioWithNoAccountsHasZeroBalance stamp: 'SG 5/15/2023 20:46:13'!
+ERROR!
+!Portfolio methodsFor: 'balance' stamp: 'SG 5/15/2023 20:46:22' prior: 50605052!
+balance 
+	
+	^ (accounts sum: [:anAccount | anAccount balance] ifEmpty: [ 0 ]) + (portfolios sum: [:anAccount | anAccount balance] ifEmpty: [ 0 ]).! !
+
+!testRun: #PortfolioTest #test01PortfolioWithNoAccountsHasZeroBalance stamp: 'SG 5/15/2023 20:46:22'!
+PASSED!
+
+!testRun: #PortfolioTest #test02PortfolioWithSingleAccountHasSameBalanceAsTheAccount stamp: 'SG 5/15/2023 20:46:22'!
+PASSED!
+
+!testRun: #PortfolioTest #test03PortfolioWithMultipleAccountsHasBalanceEqualToTheSumOfTheAccountBalances stamp: 'SG 5/15/2023 20:46:22'!
+PASSED!
+
+!testRun: #PortfolioTest #test04PortfolioWithASinglePortfolioHasTheSameBalance stamp: 'SG 5/15/2023 20:46:22'!
+PASSED!
+!PortfolioTest methodsFor: 'testing' stamp: 'SG 5/15/2023 20:48:10'!
+test04PortfolioWithChildrenPortfoliosHasTheSumOfTheirBalancesAsItsBalance
+
+	| parentPortfolio childPorfolio account1 account2 |
+	
+	parentPortfolio := Portfolio new.
+	
+	childPorfolio := Portfolio new.
+	account1 := ReceptiveAccount new.
+	account2 := ReceptiveAccount new.
+	
+	Deposit register: 50 on: account1.
+	Deposit register: 100 on: account2.
+	childPorfolio addAccount: account1; addAccount: account2.
+	
+	parentPortfolio addPortfolio: childPorfolio.
+	
+	self assert: childPorfolio balance equals: parentPortfolio balance.! !
+
+!methodRemoval: PortfolioTest #test04PortfolioWithASinglePortfolioHasTheSameBalance stamp: 'SG 5/15/2023 20:48:10'!
+test04PortfolioWithASinglePortfolioHasTheSameBalance
+
+	| parentPortfolio childPorfolio account1 account2 |
+	
+	parentPortfolio := Portfolio new.
+	
+	childPorfolio := Portfolio new.
+	account1 := ReceptiveAccount new.
+	account2 := ReceptiveAccount new.
+	
+	Deposit register: 50 on: account1.
+	Deposit register: 100 on: account2.
+	childPorfolio addAccount: account1; addAccount: account2.
+	
+	parentPortfolio addPortfolio: childPorfolio.
+	
+	self assert: childPorfolio balance equals: parentPortfolio balance.!
+!PortfolioTest methodsFor: 'testing' stamp: 'SG 5/15/2023 20:50:34'!
+portfolioWithAccounts: aCollectionOfAccounts
+
+	| portfolio |
+	portfolio := Portfolio new.
+	
+	aCollectionOfAccounts do: [:anAccount | portfolio addAccount: anAccount].
+	
+	^portfolio.
+	! !
+!PortfolioTest methodsFor: 'testing' stamp: 'SG 5/15/2023 20:51:34'!
+accountWithSingleDepositOf: anAmount
+
+	
+	| account1 |
+	account1 := ReceptiveAccount new.
+	Deposit register: anAmount on: account1.
+
+! !
+!PortfolioTest methodsFor: 'testing' stamp: 'SG 5/15/2023 20:51:52' prior: 50605148!
+accountWithSingleDepositOf: anAmount
+
+	
+	| account |
+	account := ReceptiveAccount new.
+	Deposit register: anAmount on: account.
+	^ account 
+
+! !
+
+!testRun: #PortfolioTest #test01PortfolioWithNoAccountsHasZeroBalance stamp: 'SG 5/15/2023 20:51:54'!
+PASSED!
+
+!testRun: #PortfolioTest #test02PortfolioWithSingleAccountHasSameBalanceAsTheAccount stamp: 'SG 5/15/2023 20:51:54'!
+PASSED!
+
+!testRun: #PortfolioTest #test03PortfolioWithMultipleAccountsHasBalanceEqualToTheSumOfTheAccountBalances stamp: 'SG 5/15/2023 20:51:54'!
+PASSED!
+
+!testRun: #PortfolioTest #test04PortfolioWithChildrenPortfoliosHasTheSumOfTheirBalancesAsItsBalance stamp: 'SG 5/15/2023 20:51:54'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test01ReceptiveAccountHaveZeroAsBalanceWhenCreated stamp: 'SG 5/15/2023 20:51:54'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test02DepositIncreasesBalanceOnTransactionValue stamp: 'SG 5/15/2023 20:51:54'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test03WithdrawDecreasesBalanceOnTransactionValue stamp: 'SG 5/15/2023 20:51:54'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test04WithdrawValueMustBePositive stamp: 'SG 5/15/2023 20:51:54'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test05ReceptiveAccountKnowsRegisteredTransactions stamp: 'SG 5/15/2023 20:51:54'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test06ReceptiveAccountDoNotKnowNotRegisteredTransactions stamp: 'SG 5/15/2023 20:51:54'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test07AccountKnowsItsTransactions stamp: 'SG 5/15/2023 20:51:54'!
+PASSED!
+!PortfolioTest methodsFor: 'testing' stamp: 'SG 5/15/2023 20:54:26' prior: 50604466!
+test02PortfolioWithSingleAccountHasSameBalanceAsTheAccount
+
+	| portfolio |
+	
+	portfolio := self portfolioWithAccounts: {self accountWithSingleDepositOf: 50}.
+	self assert: 50 equals: portfolio balance! !
+
+!testRun: #PortfolioTest #test02PortfolioWithSingleAccountHasSameBalanceAsTheAccount stamp: 'SG 5/15/2023 20:54:27'!
+PASSED!
+
+!testRun: #PortfolioTest #test01PortfolioWithNoAccountsHasZeroBalance stamp: 'SG 5/15/2023 20:54:27'!
+PASSED!
+
+!testRun: #PortfolioTest #test02PortfolioWithSingleAccountHasSameBalanceAsTheAccount stamp: 'SG 5/15/2023 20:54:27'!
+PASSED!
+
+!testRun: #PortfolioTest #test03PortfolioWithMultipleAccountsHasBalanceEqualToTheSumOfTheAccountBalances stamp: 'SG 5/15/2023 20:54:27'!
+PASSED!
+
+!testRun: #PortfolioTest #test04PortfolioWithChildrenPortfoliosHasTheSumOfTheirBalancesAsItsBalance stamp: 'SG 5/15/2023 20:54:27'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test01ReceptiveAccountHaveZeroAsBalanceWhenCreated stamp: 'SG 5/15/2023 20:54:27'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test02DepositIncreasesBalanceOnTransactionValue stamp: 'SG 5/15/2023 20:54:27'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test03WithdrawDecreasesBalanceOnTransactionValue stamp: 'SG 5/15/2023 20:54:27'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test04WithdrawValueMustBePositive stamp: 'SG 5/15/2023 20:54:27'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test05ReceptiveAccountKnowsRegisteredTransactions stamp: 'SG 5/15/2023 20:54:27'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test06ReceptiveAccountDoNotKnowNotRegisteredTransactions stamp: 'SG 5/15/2023 20:54:27'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test07AccountKnowsItsTransactions stamp: 'SG 5/15/2023 20:54:27'!
+PASSED!
+!PortfolioTest methodsFor: 'testing' stamp: 'SG 5/15/2023 20:55:19' prior: 50604630!
+test03PortfolioWithMultipleAccountsHasBalanceEqualToTheSumOfTheAccountBalances
+
+	| portfolio |
+	
+	portfolio := self portfolioWithAccounts: {
+	
+		self accountWithSingleDepositOf: 50.
+		self accountWithSingleDepositOf: 100
+		
+		}.
+	
+	self assert: 150 equals: portfolio balance! !
+
+!testRun: #PortfolioTest #test03PortfolioWithMultipleAccountsHasBalanceEqualToTheSumOfTheAccountBalances stamp: 'SG 5/15/2023 20:55:24'!
+PASSED!
+
+!testRun: #PortfolioTest #test01PortfolioWithNoAccountsHasZeroBalance stamp: 'SG 5/15/2023 20:55:24'!
+PASSED!
+
+!testRun: #PortfolioTest #test02PortfolioWithSingleAccountHasSameBalanceAsTheAccount stamp: 'SG 5/15/2023 20:55:24'!
+PASSED!
+
+!testRun: #PortfolioTest #test03PortfolioWithMultipleAccountsHasBalanceEqualToTheSumOfTheAccountBalances stamp: 'SG 5/15/2023 20:55:24'!
+PASSED!
+
+!testRun: #PortfolioTest #test04PortfolioWithChildrenPortfoliosHasTheSumOfTheirBalancesAsItsBalance stamp: 'SG 5/15/2023 20:55:24'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test01ReceptiveAccountHaveZeroAsBalanceWhenCreated stamp: 'SG 5/15/2023 20:55:24'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test02DepositIncreasesBalanceOnTransactionValue stamp: 'SG 5/15/2023 20:55:24'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test03WithdrawDecreasesBalanceOnTransactionValue stamp: 'SG 5/15/2023 20:55:24'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test04WithdrawValueMustBePositive stamp: 'SG 5/15/2023 20:55:24'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test05ReceptiveAccountKnowsRegisteredTransactions stamp: 'SG 5/15/2023 20:55:24'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test06ReceptiveAccountDoNotKnowNotRegisteredTransactions stamp: 'SG 5/15/2023 20:55:24'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test07AccountKnowsItsTransactions stamp: 'SG 5/15/2023 20:55:24'!
+PASSED!
+!PortfolioTest methodsFor: 'testing' stamp: 'SG 5/15/2023 21:11:21' prior: 50605102!
+test04PortfolioWithChildrenPortfoliosHasTheSumOfTheirBalancesAsItsBalance
+
+	| parentPortfolio childPorfolio |
+	
+	childPorfolio := self portfolioWithAccounts: {
+	
+		self accountWithSingleDepositOf: 50.
+		self accountWithSingleDepositOf: 100
+		
+		}.
+	
+	parentPortfolio := Portfolio new.
+	parentPortfolio addPortfolio: childPorfolio.
+	
+	self assert: childPorfolio balance equals: parentPortfolio balance.! !
+
+!testRun: #PortfolioTest #test04PortfolioWithChildrenPortfoliosHasTheSumOfTheirBalancesAsItsBalance stamp: 'SG 5/15/2023 21:11:24'!
+PASSED!
+
+!testRun: #PortfolioTest #test01PortfolioWithNoAccountsHasZeroBalance stamp: 'SG 5/15/2023 21:11:24'!
+PASSED!
+
+!testRun: #PortfolioTest #test02PortfolioWithSingleAccountHasSameBalanceAsTheAccount stamp: 'SG 5/15/2023 21:11:24'!
+PASSED!
+
+!testRun: #PortfolioTest #test03PortfolioWithMultipleAccountsHasBalanceEqualToTheSumOfTheAccountBalances stamp: 'SG 5/15/2023 21:11:24'!
+PASSED!
+
+!testRun: #PortfolioTest #test04PortfolioWithChildrenPortfoliosHasTheSumOfTheirBalancesAsItsBalance stamp: 'SG 5/15/2023 21:11:24'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test01ReceptiveAccountHaveZeroAsBalanceWhenCreated stamp: 'SG 5/15/2023 21:11:24'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test02DepositIncreasesBalanceOnTransactionValue stamp: 'SG 5/15/2023 21:11:24'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test03WithdrawDecreasesBalanceOnTransactionValue stamp: 'SG 5/15/2023 21:11:24'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test04WithdrawValueMustBePositive stamp: 'SG 5/15/2023 21:11:24'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test05ReceptiveAccountKnowsRegisteredTransactions stamp: 'SG 5/15/2023 21:11:24'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test06ReceptiveAccountDoNotKnowNotRegisteredTransactions stamp: 'SG 5/15/2023 21:11:24'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test07AccountKnowsItsTransactions stamp: 'SG 5/15/2023 21:11:24'!
+PASSED!
+!PortfolioTest methodsFor: 'testing' stamp: 'SG 5/15/2023 21:14:28'!
+test05PortfolioWithNoAccountsHasNoTransactions
+
+	| portfolio |
+	
+	portfolio := Portfolio new.
+	
+	self assert: portfolio transactions isEmpty.! !
+
+!testRun: #PortfolioTest #test05PortfolioWithNoAccountsHasNoTransactions stamp: 'SG 5/15/2023 21:14:33'!
+ERROR!
+!Portfolio methodsFor: 'transactions' stamp: 'SG 5/15/2023 21:14:52'!
+transactions
+	self shouldBeImplemented.! !
+!Portfolio methodsFor: 'transactions' stamp: 'SG 5/15/2023 21:15:11' prior: 50605393!
+transactions
+	
+	^ #()! !
+
+!testRun: #PortfolioTest #test05PortfolioWithNoAccountsHasNoTransactions stamp: 'SG 5/15/2023 21:15:13'!
+PASSED!
+
+!testRun: #PortfolioTest #test01PortfolioWithNoAccountsHasZeroBalance stamp: 'SG 5/15/2023 21:15:13'!
+PASSED!
+
+!testRun: #PortfolioTest #test02PortfolioWithSingleAccountHasSameBalanceAsTheAccount stamp: 'SG 5/15/2023 21:15:13'!
+PASSED!
+
+!testRun: #PortfolioTest #test03PortfolioWithMultipleAccountsHasBalanceEqualToTheSumOfTheAccountBalances stamp: 'SG 5/15/2023 21:15:13'!
+PASSED!
+
+!testRun: #PortfolioTest #test04PortfolioWithChildrenPortfoliosHasTheSumOfTheirBalancesAsItsBalance stamp: 'SG 5/15/2023 21:15:13'!
+PASSED!
+
+!testRun: #PortfolioTest #test05PortfolioWithNoAccountsHasNoTransactions stamp: 'SG 5/15/2023 21:15:13'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test01ReceptiveAccountHaveZeroAsBalanceWhenCreated stamp: 'SG 5/15/2023 21:15:13'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test02DepositIncreasesBalanceOnTransactionValue stamp: 'SG 5/15/2023 21:15:13'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test03WithdrawDecreasesBalanceOnTransactionValue stamp: 'SG 5/15/2023 21:15:13'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test04WithdrawValueMustBePositive stamp: 'SG 5/15/2023 21:15:13'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test05ReceptiveAccountKnowsRegisteredTransactions stamp: 'SG 5/15/2023 21:15:13'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test06ReceptiveAccountDoNotKnowNotRegisteredTransactions stamp: 'SG 5/15/2023 21:15:13'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test07AccountKnowsItsTransactions stamp: 'SG 5/15/2023 21:15:13'!
+PASSED!
+!PortfolioTest methodsFor: 'testing' stamp: 'SG 5/15/2023 21:15:51'!
+test06PortfolioWithAccountsKnowsTheirTransactions
+
+	| portfolio |
+	
+	portfolio := Portfolio new.
+	
+	self assert: portfolio transactions isEmpty.! !
+!PortfolioTest methodsFor: 'testing' stamp: 'SG 5/15/2023 21:18:28' prior: 50605451!
+test06PortfolioWithAccountsKnowsTheirTransactions
+
+	| portfolio |
+	
+	portfolio := Portfolio new.
+	
+	
+	
+	self assert: portfolio transactions isEmpty.! !
+!AccountTransaction class methodsFor: 'nil' stamp: 'SG 5/15/2023 21:21:45'!
+for: aValue
+	
+	self subclassResponsibility ! !
+!PortfolioTest methodsFor: 'testing' stamp: 'SG 5/15/2023 21:23:46'!
+accountWithTransactions: aCollectionOfTransactions
+
+	| account |
+	account := ReceptiveAccount new.
+	
+	aCollectionOfTransactions do: [:anTransaction | account register: anTransaction].
+	
+	^account.
+	! !
+
+!testRun: #PortfolioTest #test01PortfolioWithNoAccountsHasZeroBalance stamp: 'SG 5/15/2023 21:23:47'!
+PASSED!
+
+!testRun: #PortfolioTest #test02PortfolioWithSingleAccountHasSameBalanceAsTheAccount stamp: 'SG 5/15/2023 21:23:47'!
+PASSED!
+
+!testRun: #PortfolioTest #test03PortfolioWithMultipleAccountsHasBalanceEqualToTheSumOfTheAccountBalances stamp: 'SG 5/15/2023 21:23:47'!
+PASSED!
+
+!testRun: #PortfolioTest #test04PortfolioWithChildrenPortfoliosHasTheSumOfTheirBalancesAsItsBalance stamp: 'SG 5/15/2023 21:23:47'!
+PASSED!
+
+!testRun: #PortfolioTest #test05PortfolioWithNoAccountsHasNoTransactions stamp: 'SG 5/15/2023 21:23:47'!
+PASSED!
+
+!testRun: #PortfolioTest #test06PortfolioWithAccountsKnowsTheirTransactions stamp: 'SG 5/15/2023 21:23:47'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test01ReceptiveAccountHaveZeroAsBalanceWhenCreated stamp: 'SG 5/15/2023 21:23:47'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test02DepositIncreasesBalanceOnTransactionValue stamp: 'SG 5/15/2023 21:23:47'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test03WithdrawDecreasesBalanceOnTransactionValue stamp: 'SG 5/15/2023 21:23:47'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test04WithdrawValueMustBePositive stamp: 'SG 5/15/2023 21:23:47'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test05ReceptiveAccountKnowsRegisteredTransactions stamp: 'SG 5/15/2023 21:23:47'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test06ReceptiveAccountDoNotKnowNotRegisteredTransactions stamp: 'SG 5/15/2023 21:23:47'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test07AccountKnowsItsTransactions stamp: 'SG 5/15/2023 21:23:47'!
+PASSED!
+!PortfolioTest methodsFor: 'testing' stamp: 'SG 5/15/2023 21:24:49' prior: 50605155!
+accountWithSingleDepositOf: anAmount
+
+	^ self accountWithTransactions: {Deposit for: anAmount }! !
+
+!testRun: #PortfolioTest #test01PortfolioWithNoAccountsHasZeroBalance stamp: 'SG 5/15/2023 21:24:50'!
+PASSED!
+
+!testRun: #PortfolioTest #test02PortfolioWithSingleAccountHasSameBalanceAsTheAccount stamp: 'SG 5/15/2023 21:24:50'!
+PASSED!
+
+!testRun: #PortfolioTest #test03PortfolioWithMultipleAccountsHasBalanceEqualToTheSumOfTheAccountBalances stamp: 'SG 5/15/2023 21:24:50'!
+PASSED!
+
+!testRun: #PortfolioTest #test04PortfolioWithChildrenPortfoliosHasTheSumOfTheirBalancesAsItsBalance stamp: 'SG 5/15/2023 21:24:50'!
+PASSED!
+
+!testRun: #PortfolioTest #test05PortfolioWithNoAccountsHasNoTransactions stamp: 'SG 5/15/2023 21:24:50'!
+PASSED!
+
+!testRun: #PortfolioTest #test06PortfolioWithAccountsKnowsTheirTransactions stamp: 'SG 5/15/2023 21:24:50'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test01ReceptiveAccountHaveZeroAsBalanceWhenCreated stamp: 'SG 5/15/2023 21:24:50'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test02DepositIncreasesBalanceOnTransactionValue stamp: 'SG 5/15/2023 21:24:50'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test03WithdrawDecreasesBalanceOnTransactionValue stamp: 'SG 5/15/2023 21:24:50'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test04WithdrawValueMustBePositive stamp: 'SG 5/15/2023 21:24:50'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test05ReceptiveAccountKnowsRegisteredTransactions stamp: 'SG 5/15/2023 21:24:50'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test06ReceptiveAccountDoNotKnowNotRegisteredTransactions stamp: 'SG 5/15/2023 21:24:50'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test07AccountKnowsItsTransactions stamp: 'SG 5/15/2023 21:24:50'!
+PASSED!
+!PortfolioTest methodsFor: 'testing' stamp: 'SG 5/15/2023 21:27:17' prior: 50605459!
+test06PortfolioWithAccountsKnowsTheirTransactions
+
+	| portfolio account1 account1Transactions account2 account2Transactions |
+	
+	account1Transactions := { Deposit for: 50. Withdraw for: 20}.
+	account1 := self accountWithTransactions: account1Transactions.
+	
+	account2Transactions := { Deposit for: 40. Withdraw for: 10}.
+	account2 := self accountWithTransactions: account2Transactions.
+	
+	portfolio := self portfolioWithAccounts: {account1. account2}.
+	
+	self assert: portfolio transactions isEmpty.! !
+
+!testRun: #PortfolioTest #test06PortfolioWithAccountsKnowsTheirTransactions stamp: 'SG 5/15/2023 21:27:25'!
+PASSED!
+
+!testRun: #PortfolioTest #test01PortfolioWithNoAccountsHasZeroBalance stamp: 'SG 5/15/2023 21:27:25'!
+PASSED!
+
+!testRun: #PortfolioTest #test02PortfolioWithSingleAccountHasSameBalanceAsTheAccount stamp: 'SG 5/15/2023 21:27:25'!
+PASSED!
+
+!testRun: #PortfolioTest #test03PortfolioWithMultipleAccountsHasBalanceEqualToTheSumOfTheAccountBalances stamp: 'SG 5/15/2023 21:27:25'!
+PASSED!
+
+!testRun: #PortfolioTest #test04PortfolioWithChildrenPortfoliosHasTheSumOfTheirBalancesAsItsBalance stamp: 'SG 5/15/2023 21:27:25'!
+PASSED!
+
+!testRun: #PortfolioTest #test05PortfolioWithNoAccountsHasNoTransactions stamp: 'SG 5/15/2023 21:27:25'!
+PASSED!
+
+!testRun: #PortfolioTest #test06PortfolioWithAccountsKnowsTheirTransactions stamp: 'SG 5/15/2023 21:27:25'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test01ReceptiveAccountHaveZeroAsBalanceWhenCreated stamp: 'SG 5/15/2023 21:27:25'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test02DepositIncreasesBalanceOnTransactionValue stamp: 'SG 5/15/2023 21:27:25'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test03WithdrawDecreasesBalanceOnTransactionValue stamp: 'SG 5/15/2023 21:27:25'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test04WithdrawValueMustBePositive stamp: 'SG 5/15/2023 21:27:25'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test05ReceptiveAccountKnowsRegisteredTransactions stamp: 'SG 5/15/2023 21:27:25'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test06ReceptiveAccountDoNotKnowNotRegisteredTransactions stamp: 'SG 5/15/2023 21:27:25'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test07AccountKnowsItsTransactions stamp: 'SG 5/15/2023 21:27:25'!
+PASSED!
+!PortfolioTest methodsFor: 'testing' stamp: 'SG 5/15/2023 21:30:52' prior: 50605586!
+test06PortfolioWithAccountsKnowsTheirTransactions
+
+	| portfolio account1 account1Transactions account2 |
+	
+	account1Transactions := { Deposit for: 50. Withdraw for: 20}.
+	account1 := self accountWithTransactions: account1Transactions.
+	
+	account2 := self accountWithTransactions: { Deposit for: 40. Withdraw for: 10}.
+	
+	portfolio := self portfolioWithAccounts: {account1. account2}.
+	
+	self assert: portfolio transactions isEmpty.! !
+!PortfolioTest methodsFor: 'testing' stamp: 'SG 5/15/2023 21:30:54' prior: 50605658!
+test06PortfolioWithAccountsKnowsTheirTransactions
+
+	| portfolio account1 account1Transactions account2 |
+	
+	account1Transactions := { Deposit for: 50. Withdraw for: 20}.
+	account1 := self accountWithTransactions: account1Transactions.
+	
+	account2 := self accountWithTransactions: { Deposit for: 40. Withdraw for: 10}.
+	
+	portfolio := self portfolioWithAccounts: {account1. account2}.
+	
+	self assert: portfolio transactions isEmpty.! !
+!PortfolioTest methodsFor: 'testing' stamp: 'SG 5/15/2023 21:30:55' prior: 50605675!
+test06PortfolioWithAccountsKnowsTheirTransactions
+
+	| portfolio account1 account1Transactions account2 |
+	
+	account1Transactions := { Deposit for: 50. Withdraw for: 20}.
+	account1 := self accountWithTransactions: account1Transactions.
+	
+	account2 := self accountWithTransactions: { Deposit for: 40. Withdraw for: 10}.
+	
+	portfolio := self portfolioWithAccounts: {account1. account2}.
+	
+	self assert: portfolio transactions isEmpty.! !
+!PortfolioTest methodsFor: 'testing' stamp: 'SG 5/15/2023 21:30:56' prior: 50605692!
+test06PortfolioWithAccountsKnowsTheirTransactions
+
+	| portfolio account1 account1Transactions account2 |
+	
+	account1Transactions := { Deposit for: 50. Withdraw for: 20}.
+	account1 := self accountWithTransactions: account1Transactions.
+	
+	account2 := self accountWithTransactions: { Deposit for: 40. Withdraw for: 10}.
+	
+	portfolio := self portfolioWithAccounts: {account1. account2}.
+	
+	self assert: portfolio transactions isEmpty.! !
+!PortfolioTest methodsFor: 'testing' stamp: 'SG 5/15/2023 21:30:56' prior: 50605709!
+test06PortfolioWithAccountsKnowsTheirTransactions
+
+	| portfolio account1 account1Transactions account2 |
+	
+	account1Transactions := { Deposit for: 50. Withdraw for: 20}.
+	account1 := self accountWithTransactions: account1Transactions.
+	
+	account2 := self accountWithTransactions: { Deposit for: 40. Withdraw for: 10}.
+	
+	portfolio := self portfolioWithAccounts: {account1. account2}.
+	
+	self assert: portfolio transactions isEmpty.! !
+!PortfolioTest methodsFor: 'testing' stamp: 'SG 5/15/2023 21:31:07' prior: 50605726!
+test06PortfolioWithAccountsKnowsTheirTransactions
+
+	| portfolio account1 account2 |
+	
+	account1 := self accountWithTransactions: { Deposit for: 50. Withdraw for: 20}.
+	
+	account2 := self accountWithTransactions: { Deposit for: 40. Withdraw for: 10}.
+	
+	portfolio := self portfolioWithAccounts: {account1. account2}.
+	
+	self assert: portfolio transactions isEmpty.! !
+!PortfolioTest methodsFor: 'testing' stamp: 'SG 5/15/2023 21:31:11' prior: 50605743!
+test06PortfolioWithAccountsKnowsTheirTransactions
+
+	| portfolio account1 account2 |
+	
+	account1 := self accountWithTransactions: { Deposit for: 50. Withdraw for: 20}.	
+	account2 := self accountWithTransactions: { Deposit for: 40. Withdraw for: 10}.
+	
+	portfolio := self portfolioWithAccounts: {account1. account2}.
+	
+	self assert: portfolio transactions isEmpty.! !
+
+!testRun: #PortfolioTest #test06PortfolioWithAccountsKnowsTheirTransactions stamp: 'SG 5/15/2023 21:31:16'!
+PASSED!
+
+!testRun: #PortfolioTest #test01PortfolioWithNoAccountsHasZeroBalance stamp: 'SG 5/15/2023 21:31:16'!
+PASSED!
+
+!testRun: #PortfolioTest #test02PortfolioWithSingleAccountHasSameBalanceAsTheAccount stamp: 'SG 5/15/2023 21:31:16'!
+PASSED!
+
+!testRun: #PortfolioTest #test03PortfolioWithMultipleAccountsHasBalanceEqualToTheSumOfTheAccountBalances stamp: 'SG 5/15/2023 21:31:16'!
+PASSED!
+
+!testRun: #PortfolioTest #test04PortfolioWithChildrenPortfoliosHasTheSumOfTheirBalancesAsItsBalance stamp: 'SG 5/15/2023 21:31:16'!
+PASSED!
+
+!testRun: #PortfolioTest #test05PortfolioWithNoAccountsHasNoTransactions stamp: 'SG 5/15/2023 21:31:16'!
+PASSED!
+
+!testRun: #PortfolioTest #test06PortfolioWithAccountsKnowsTheirTransactions stamp: 'SG 5/15/2023 21:31:16'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test01ReceptiveAccountHaveZeroAsBalanceWhenCreated stamp: 'SG 5/15/2023 21:31:16'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test02DepositIncreasesBalanceOnTransactionValue stamp: 'SG 5/15/2023 21:31:16'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test03WithdrawDecreasesBalanceOnTransactionValue stamp: 'SG 5/15/2023 21:31:16'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test04WithdrawValueMustBePositive stamp: 'SG 5/15/2023 21:31:16'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test05ReceptiveAccountKnowsRegisteredTransactions stamp: 'SG 5/15/2023 21:31:16'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test06ReceptiveAccountDoNotKnowNotRegisteredTransactions stamp: 'SG 5/15/2023 21:31:16'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test07AccountKnowsItsTransactions stamp: 'SG 5/15/2023 21:31:16'!
+PASSED!
+!PortfolioTest methodsFor: 'testing' stamp: 'SG 5/15/2023 21:32:00' prior: 50605758!
+test06PortfolioWithAccountsKnowsTheirTransactions
+
+	| portfolio account1 account2 |
+	
+	account1 := self accountWithTransactions: { Deposit for: 50. Withdraw for: 20}.	
+	account2 := self accountWithTransactions: { Deposit for: 40. Withdraw for: 10}.
+	
+	portfolio := self portfolioWithAccounts: {account1. account2}.
+	
+	self assert: (account1 transactions, account2 transactions) asSet transactions isEmpty.! !
+!PortfolioTest methodsFor: 'testing' stamp: 'SG 5/15/2023 21:32:25' prior: 50605826!
+test06PortfolioWithAccountsKnowsTheirTransactions
+
+	| portfolio account1 account2 |
+	
+	account1 := self accountWithTransactions: { Deposit for: 50. Withdraw for: 20}.	
+	account2 := self accountWithTransactions: { Deposit for: 40. Withdraw for: 10}.
+	
+	portfolio := self portfolioWithAccounts: {account1. account2}.
+	
+	self assert: (account1 transactions, account2 transactions) asSet transactions equals: portfolio transactions.! !
+
+!testRun: #PortfolioTest #test06PortfolioWithAccountsKnowsTheirTransactions stamp: 'SG 5/15/2023 21:32:27'!
+ERROR!
+!PortfolioTest methodsFor: 'testing' stamp: 'SG 5/15/2023 21:32:52' prior: 50605842!
+test06PortfolioWithAccountsKnowsTheirTransactions
+
+	| portfolio account1 account2 |
+	
+	account1 := self accountWithTransactions: { Deposit for: 50. Withdraw for: 20}.	
+	account2 := self accountWithTransactions: { Deposit for: 40. Withdraw for: 10}.
+	
+	portfolio := self portfolioWithAccounts: {account1. account2}.
+	
+	self assert: (account1 transactions, account2 transactions) asSet equals: portfolio transactions.! !
+
+!testRun: #PortfolioTest #test06PortfolioWithAccountsKnowsTheirTransactions stamp: 'SG 5/15/2023 21:32:56'!
+FAILURE!
+!PortfolioTest methodsFor: 'testing' stamp: 'SG 5/15/2023 21:36:17' prior: 50605862!
+test06PortfolioWithAccountsKnowsTheirTransactions
+
+	| portfolio account1 account2 |
+	
+	account1 := self accountWithTransactions: { Deposit for: 50. Withdraw for: 20}.	
+	account2 := self accountWithTransactions: { Deposit for: 40. Withdraw for: 10}.
+	
+	portfolio := self portfolioWithAccounts: {account1. account2}.
+	
+	self assert: (account1 transactions, account2 transactions) equals: portfolio transactions.! !
+
+!testRun: #PortfolioTest #test06PortfolioWithAccountsKnowsTheirTransactions stamp: 'SG 5/15/2023 21:36:18'!
+FAILURE!
+!Portfolio methodsFor: 'transactions' stamp: 'SG 5/15/2023 21:38:44' prior: 50605398!
+transactions
+	
+	^ accounts inject: (Set new) into: [:transactions :anAccount | 
+			transactions union: anAccount transactions.
+		]! !
+!PortfolioTest methodsFor: 'testing' stamp: 'SG 5/15/2023 21:39:05' prior: 50605882!
+test06PortfolioWithAccountsKnowsTheirTransactions
+
+	| portfolio account1 account2 |
+	
+	account1 := self accountWithTransactions: { Deposit for: 50. Withdraw for: 20}.	
+	account2 := self accountWithTransactions: { Deposit for: 40. Withdraw for: 10}.
+	
+	portfolio := self portfolioWithAccounts: {account1. account2}.
+	
+	self assert: (account1 transactions, account2 transactions) asSet equals: portfolio transactions.! !
+
+!testRun: #PortfolioTest #test06PortfolioWithAccountsKnowsTheirTransactions stamp: 'SG 5/15/2023 21:39:06'!
+PASSED!
+
+!testRun: #PortfolioTest #test01PortfolioWithNoAccountsHasZeroBalance stamp: 'SG 5/15/2023 21:39:06'!
+PASSED!
+
+!testRun: #PortfolioTest #test02PortfolioWithSingleAccountHasSameBalanceAsTheAccount stamp: 'SG 5/15/2023 21:39:06'!
+PASSED!
+
+!testRun: #PortfolioTest #test03PortfolioWithMultipleAccountsHasBalanceEqualToTheSumOfTheAccountBalances stamp: 'SG 5/15/2023 21:39:06'!
+PASSED!
+
+!testRun: #PortfolioTest #test04PortfolioWithChildrenPortfoliosHasTheSumOfTheirBalancesAsItsBalance stamp: 'SG 5/15/2023 21:39:06'!
+PASSED!
+
+!testRun: #PortfolioTest #test05PortfolioWithNoAccountsHasNoTransactions stamp: 'SG 5/15/2023 21:39:06'!
+PASSED!
+
+!testRun: #PortfolioTest #test06PortfolioWithAccountsKnowsTheirTransactions stamp: 'SG 5/15/2023 21:39:06'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test01ReceptiveAccountHaveZeroAsBalanceWhenCreated stamp: 'SG 5/15/2023 21:39:06'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test02DepositIncreasesBalanceOnTransactionValue stamp: 'SG 5/15/2023 21:39:06'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test03WithdrawDecreasesBalanceOnTransactionValue stamp: 'SG 5/15/2023 21:39:06'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test04WithdrawValueMustBePositive stamp: 'SG 5/15/2023 21:39:06'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test05ReceptiveAccountKnowsRegisteredTransactions stamp: 'SG 5/15/2023 21:39:06'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test06ReceptiveAccountDoNotKnowNotRegisteredTransactions stamp: 'SG 5/15/2023 21:39:06'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test07AccountKnowsItsTransactions stamp: 'SG 5/15/2023 21:39:06'!
+PASSED!
+
+----SNAPSHOT----(15 May 2023 21:46:05) CuisUniversity-5706.image priorSource: 8742934!

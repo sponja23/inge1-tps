@@ -1,0 +1,3779 @@
+
+
+----QUIT----(12 May 2023 17:49:00) CuisUniversity-5799.image priorSource: 4801971!
+
+----STARTUP---- (12 May 2023 17:49:01) as /Users/hernan/Documents/Cuis/5.0-64Bits/Cuis-University-Installer/CuisUniversity-5799.image!
+
+
+----QUIT----(12 May 2023 17:49:01) CuisUniversity-5799.image priorSource: 9222569!
+
+----STARTUP---- (21 May 2023 19:35:21) as /home/sponja/Temp/Cuises/cursada2/CuisUniversity-5799.image!
+
+
+----End fileIn of /home/sponja/Temp/Cuises/cursada2/Portfolio-Ejercicio.st----!
+!PortfolioTest methodsFor: 'testing' stamp: 'TS 5/21/2023 19:39:23'!
+test07PortfolioWithChildrenPortfoliosKnowsTheirTransactions
+
+	| portfolio account1 account2 |
+	
+	account1 := self accountWithTransactions: { Deposit for: 50. Withdraw for: 20}.	
+	account2 := self accountWithTransactions: { Deposit for: 40. Withdraw for: 10}.
+	
+	portfolio := self portfolioWithAccounts: {account1. account2}.
+	
+	self assert: (account1 transactions, account2 transactions) asSet equals: portfolio transactions.! !
+!PortfolioTest methodsFor: 'testing' stamp: 'TS 5/21/2023 19:39:53' prior: 50620257!
+test07PortfolioWithChildrenPortfoliosKnowsTheirTransactions
+
+	| portfolio account1 account2 |
+	
+	account1 := self accountWithTransactions: { Deposit for: 50. Withdraw for: 20}.	
+	account2 := self accountWithTransactions: { Deposit for: 40. Withdraw for: 10}.
+
+	portfolio := self portfolioWithAccounts: {
+		account1.
+		account2
+	}.
+	
+	self assert: (account1 transactions, account2 transactions) asSet equals: portfolio transactions.! !
+!PortfolioTest methodsFor: 'testing' stamp: 'TS 5/21/2023 19:40:07' prior: 50620274!
+test07PortfolioWithChildrenPortfoliosKnowsTheirTransactions
+
+	| portfolio account2 |
+	
+	account2 := self accountWithTransactions: { Deposit for: 40. Withdraw for: 10}.
+
+	portfolio := self portfolioWithAccounts: {
+		self accountWithTransactions: { Deposit for: 50. Withdraw for: 20}.
+		account2
+	}.
+	
+	self assert: ((self accountWithTransactions: { Deposit for: 50. Withdraw for: 20}) transactions, account2 transactions) asSet equals: portfolio transactions.! !
+!PortfolioTest methodsFor: 'testing' stamp: 'TS 5/21/2023 19:40:16' prior: 50620291!
+test07PortfolioWithChildrenPortfoliosKnowsTheirTransactions
+
+	| portfolio |
+	
+	portfolio := self portfolioWithAccounts: {
+		self accountWithTransactions: { Deposit for: 50. Withdraw for: 20}.
+		self accountWithTransactions: { Deposit for: 40. Withdraw for: 10}
+	}.
+	
+	self assert: ((self accountWithTransactions: { Deposit for: 50. Withdraw for: 20}) transactions, (self accountWithTransactions: { Deposit for: 40. Withdraw for: 10}) transactions) asSet equals: portfolio transactions.! !
+!PortfolioTest methodsFor: 'testing' stamp: 'TS 5/21/2023 19:41:26' prior: 50620309!
+test07PortfolioWithChildrenPortfoliosKnowsTheirTransactions
+
+	| childPortfolio |
+	
+	childPortfolio := self portfolioWithAccounts: {
+		self accountWithTransactions: { Deposit for: 50. Withdraw for: 20}.
+		self accountWithTransactions: { Deposit for: 40. Withdraw for: 10}
+	}.
+	
+	self assert: ((self accountWithTransactions: { Deposit for: 50. Withdraw for: 20}) transactions, (self accountWithTransactions: { Deposit for: 40. Withdraw for: 10}) transactions) asSet equals: childPortfolio transactions.! !
+!PortfolioTest methodsFor: 'testing' stamp: 'TS 5/21/2023 19:41:30' prior: 50620327!
+test07PortfolioWithChildrenPortfoliosKnowsTheirTransactions
+
+	| childPortfolio1 |
+	
+	childPortfolio1 := self portfolioWithAccounts: {
+		self accountWithTransactions: { Deposit for: 50. Withdraw for: 20}.
+		self accountWithTransactions: { Deposit for: 40. Withdraw for: 10}
+	}.
+	
+	self assert: ((self accountWithTransactions: { Deposit for: 50. Withdraw for: 20}) transactions, (self accountWithTransactions: { Deposit for: 40. Withdraw for: 10}) transactions) asSet equals: childPortfolio1 transactions.! !
+!PortfolioTest methodsFor: 'testing' stamp: 'TS 5/21/2023 19:42:37' prior: 50620346!
+test07PortfolioWithChildrenPortfoliosKnowsTheirTransactions
+
+	| childPortfolio1 childPortfolio2 |
+	
+	childPortfolio1 := self portfolioWithAccounts: {
+		self accountWithTransactions: { Deposit for: 50. Withdraw for: 20}.
+		self accountWithTransactions: { Deposit for: 40. Withdraw for: 10}
+	}.
+
+	childPortfolio2 := self portfolioWithAccounts: {
+		self accountWithTransactions: { Deposit for: 10. Withdraw for: 5}.
+		self accountWithTransactions: { Deposit for: 80. Withdraw for: 20}
+	}.
+
+	self assert: (childPortfolio1 transactions union: childPortfolio2 transactions) equals: childPortfolio1 transactions.! !
+!PortfolioTest methodsFor: 'testing' stamp: 'TS 5/21/2023 19:43:43' prior: 50620365!
+test07PortfolioWithChildrenPortfoliosKnowsTheirTransactions
+
+	| childPortfolio1 childPortfolio2 parentPortfolio |
+	
+	childPortfolio1 := self portfolioWithAccounts: {
+		self accountWithTransactions: { Deposit for: 50. Withdraw for: 20}.
+		self accountWithTransactions: { Deposit for: 40. Withdraw for: 10}
+	}.
+
+	childPortfolio2 := self portfolioWithAccounts: {
+		self accountWithTransactions: { Deposit for: 10. Withdraw for: 5}.
+		self accountWithTransactions: { Deposit for: 80. Withdraw for: 20}
+	}.
+	
+	parentPortfolio := self portfolioWithPortfolios: { childPortfolio1. childPortfolio2 }.
+
+	self assert: (childPortfolio1 transactions union: childPortfolio2 transactions) equals: parentPortfolio transactions.! !
+!PortfolioTest methodsFor: 'testing' stamp: 'TS 5/21/2023 19:44:22' prior: 50620387!
+test07PortfolioWithChildrenPortfoliosKnowsTheirTransactions
+
+	| childPortfolio1 childPortfolio2 parentPortfolio |
+	
+	childPortfolio1 := self portfolioWithAccounts: {
+		self accountWithTransactions: { Deposit for: 50. Withdraw for: 20}.
+		self accountWithTransactions: { Deposit for: 40. Withdraw for: 10}
+	}.
+
+	childPortfolio2 := self portfolioWithAccounts: {
+		self accountWithTransactions: { Deposit for: 10. Withdraw for: 5}.
+		self accountWithTransactions: { Deposit for: 80. Withdraw for: 20}
+	}.
+	
+	parentPortfolio := self portfolioWithChildrenPortfolios: { childPortfolio1. childPortfolio2 }.
+
+	self assert: (childPortfolio1 transactions union: childPortfolio2 transactions) equals: parentPortfolio transactions.! !
+!PortfolioTest methodsFor: 'testing' stamp: 'TS 5/21/2023 19:47:45'!
+portfolioWithChildrenPortfolios: aCollectionOfPortfolios
+
+! !
+!PortfolioTest methodsFor: 'testing' stamp: 'TS 5/21/2023 19:48:00' prior: 50620437!
+portfolioWithChildrenPortfolios: aCollectionOfPortfolios
+! !
+!PortfolioTest methodsFor: 'testing' stamp: 'TS 5/21/2023 19:48:18' prior: 50620442!
+portfolioWithChildrenPortfolios: aCollectionOfPortfolios
+! !
+!PortfolioTest methodsFor: 'testing' stamp: 'TS 5/21/2023 19:48:50' prior: 50620447!
+portfolioWithChildrenPortfolios: aCollectionOfPortfolios
+
+	| portfolio |
+	portfolio := Portfolio new.
+	
+	aCollectionOfPortfolios do: [:aPortfolio | portfolio addPortfolio: aPortfolio].
+	
+	^portfolio.! !
+!PortfolioTest methodsFor: 'testing' stamp: 'TS 5/21/2023 19:50:44' prior: 50619931!
+test04PortfolioWithChildrenPortfoliosHasTheSumOfTheirBalancesAsItsBalance
+
+	| parentPortfolio childPorfolio |
+	
+	childPorfolio := self portfolioWithAccounts: {
+	
+		self accountWithSingleDepositOf: 50.
+		self accountWithSingleDepositOf: 100
+		
+		}.
+	
+	parentPortfolio := self portfolioWithChildrenPortfolios: { childPorfolio }.
+	
+	self assert: childPorfolio balance equals: parentPortfolio balance.! !
+!PortfolioTest methodsFor: 'testing' stamp: 'TS 5/21/2023 19:51:09' prior: 50620461!
+test04PortfolioWithChildrenPortfoliosHasTheSumOfTheirBalancesAsItsBalance
+
+	| parentPortfolio childPorfolio |
+	
+	childPorfolio := self portfolioWithAccounts: {
+		self accountWithSingleDepositOf: 50.
+		self accountWithSingleDepositOf: 100
+	}.
+	
+	parentPortfolio := self portfolioWithChildrenPortfolios: { childPorfolio }.
+	
+	self assert: childPorfolio balance equals: parentPortfolio balance.! !
+
+!testRun: #PortfolioTest #test07PortfolioWithChildrenPortfoliosKnowsTheirTransactions stamp: 'TS 5/21/2023 19:51:11'!
+FAILURE!
+!Portfolio methodsFor: 'transactions' stamp: 'TS 5/21/2023 19:52:12' prior: 50620208!
+transactions
+	
+	^ (
+	accounts inject: (Set new) into: [:transactions :anAccount | 
+			transactions union: anAccount transactions.
+	]
+	) union: (
+	portfolios inject: (Set new) into: [:transactions :anAccount | 
+			transactions union: anAccount transactions.
+	]
+	)! !
+!Portfolio methodsFor: 'transactions' stamp: 'TS 5/21/2023 19:53:07' prior: 50620497!
+transactions
+	
+	^ (
+		accounts inject: (Set new) into: [:transactions :anAccount | 
+				transactions union: anAccount transactions.
+		]
+	) union: (
+		portfolios inject: (Set new) into: [:transactions :anAccount | 
+				transactions union: anAccount transactions.
+		]
+	)! !
+
+!testRun: #PortfolioTest #test01PortfolioWithNoAccountsHasZeroBalance stamp: 'TS 5/21/2023 19:53:08'!
+PASSED!
+
+!testRun: #PortfolioTest #test02PortfolioWithSingleAccountHasSameBalanceAsTheAccount stamp: 'TS 5/21/2023 19:53:08'!
+PASSED!
+
+!testRun: #PortfolioTest #test03PortfolioWithMultipleAccountsHasBalanceEqualToTheSumOfTheAccountBalances stamp: 'TS 5/21/2023 19:53:08'!
+PASSED!
+
+!testRun: #PortfolioTest #test04PortfolioWithChildrenPortfoliosHasTheSumOfTheirBalancesAsItsBalance stamp: 'TS 5/21/2023 19:53:08'!
+PASSED!
+
+!testRun: #PortfolioTest #test05PortfolioWithNoAccountsHasNoTransactions stamp: 'TS 5/21/2023 19:53:08'!
+PASSED!
+
+!testRun: #PortfolioTest #test06PortfolioWithAccountsKnowsTheirTransactions stamp: 'TS 5/21/2023 19:53:08'!
+PASSED!
+
+!testRun: #PortfolioTest #test07PortfolioWithChildrenPortfoliosKnowsTheirTransactions stamp: 'TS 5/21/2023 19:53:08'!
+PASSED!
+
+!classDefinition: #Asset category: 'Portfolio-Ejercicio' stamp: 'TS 5/21/2023 19:56:41'!
+Object subclass: #Asset
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Portfolio-Ejercicio'!
+
+!classDefinition: #Portfolio category: 'Portfolio-Ejercicio' stamp: 'TS 5/21/2023 19:56:41'!
+Asset subclass: #Portfolio
+	instanceVariableNames: 'accounts portfolios'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Portfolio-Ejercicio'!
+
+Asset subclass: #ReceptiveAccount
+	instanceVariableNames: 'transactions'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Portfolio-Ejercicio'!
+
+!classDefinition: #ReceptiveAccount category: 'Portfolio-Ejercicio' stamp: 'TS 5/21/2023 19:56:46'!
+Asset subclass: #ReceptiveAccount
+	instanceVariableNames: 'transactions'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Portfolio-Ejercicio'!
+!Portfolio methodsFor: 'balance' stamp: 'TS 5/21/2023 19:57:23' prior: 50620187!
+balance 
+	
+	self subclassResponsibility ! !
+!Asset methodsFor: 'balance' stamp: 'TS 5/21/2023 19:57:27'!
+balance 
+	
+	self subclassResponsibility ! !
+
+!methodRemoval: Portfolio #balance stamp: 'TS 5/21/2023 19:57:27'!
+balance 
+	
+	self subclassResponsibility !
+!Portfolio methodsFor: 'balance' stamp: 'TS 5/21/2023 19:57:31' overrides: 50620578!
+balance 
+	
+	^ (accounts sum: [:anAccount | anAccount balance] ifEmpty: [ 0 ]) + (portfolios sum: [:anAccount | anAccount balance] ifEmpty: [ 0 ]).! !
+!Portfolio methodsFor: 'transactions' stamp: 'TS 5/21/2023 19:57:55' prior: 50620508!
+transactions
+	
+	self subclassResponsibility ! !
+!Portfolio methodsFor: 'transactions' stamp: 'TS 5/21/2023 19:57:56' prior: 50620594!
+transactions
+	
+	self subclassResponsibility! !
+!Asset methodsFor: 'transactions' stamp: 'TS 5/21/2023 19:57:59'!
+transactions
+	
+	self subclassResponsibility! !
+
+!methodRemoval: Portfolio #transactions stamp: 'TS 5/21/2023 19:57:59'!
+transactions
+	
+	self subclassResponsibility!
+!Portfolio methodsFor: 'transactions' stamp: 'TS 5/21/2023 19:58:00' overrides: 50620603!
+transactions
+	
+	^ (
+		accounts inject: (Set new) into: [:transactions :anAccount | 
+				transactions union: anAccount transactions.
+		]
+	) union: (
+		portfolios inject: (Set new) into: [:transactions :anAccount | 
+				transactions union: anAccount transactions.
+		]
+	)! !
+!Portfolio methodsFor: 'balance' stamp: 'TS 5/21/2023 19:58:14' prior: 50620586 overrides: 50620578!
+balance 
+	
+	^ (accounts sum: [:anAccount | anAccount balance] ifEmpty: [ 0 ]) +
+	  (portfolios sum: [:anAccount | anAccount balance] ifEmpty: [ 0 ]).! !
+
+!testRun: #PortfolioTest #test01PortfolioWithNoAccountsHasZeroBalance stamp: 'TS 5/21/2023 19:58:19'!
+PASSED!
+
+!testRun: #PortfolioTest #test02PortfolioWithSingleAccountHasSameBalanceAsTheAccount stamp: 'TS 5/21/2023 19:58:19'!
+PASSED!
+
+!testRun: #PortfolioTest #test03PortfolioWithMultipleAccountsHasBalanceEqualToTheSumOfTheAccountBalances stamp: 'TS 5/21/2023 19:58:19'!
+PASSED!
+
+!testRun: #PortfolioTest #test04PortfolioWithChildrenPortfoliosHasTheSumOfTheirBalancesAsItsBalance stamp: 'TS 5/21/2023 19:58:19'!
+PASSED!
+
+!testRun: #PortfolioTest #test05PortfolioWithNoAccountsHasNoTransactions stamp: 'TS 5/21/2023 19:58:19'!
+PASSED!
+
+!testRun: #PortfolioTest #test06PortfolioWithAccountsKnowsTheirTransactions stamp: 'TS 5/21/2023 19:58:19'!
+PASSED!
+
+!testRun: #PortfolioTest #test07PortfolioWithChildrenPortfoliosKnowsTheirTransactions stamp: 'TS 5/21/2023 19:58:19'!
+PASSED!
+
+!testRun: #PortfolioTest #test01PortfolioWithNoAccountsHasZeroBalance stamp: 'TS 5/21/2023 19:58:53'!
+PASSED!
+
+!testRun: #PortfolioTest #test02PortfolioWithSingleAccountHasSameBalanceAsTheAccount stamp: 'TS 5/21/2023 19:58:53'!
+PASSED!
+
+!testRun: #PortfolioTest #test03PortfolioWithMultipleAccountsHasBalanceEqualToTheSumOfTheAccountBalances stamp: 'TS 5/21/2023 19:58:53'!
+PASSED!
+
+!testRun: #PortfolioTest #test04PortfolioWithChildrenPortfoliosHasTheSumOfTheirBalancesAsItsBalance stamp: 'TS 5/21/2023 19:58:53'!
+PASSED!
+
+!testRun: #PortfolioTest #test05PortfolioWithNoAccountsHasNoTransactions stamp: 'TS 5/21/2023 19:58:53'!
+PASSED!
+
+!testRun: #PortfolioTest #test06PortfolioWithAccountsKnowsTheirTransactions stamp: 'TS 5/21/2023 19:58:53'!
+PASSED!
+
+!testRun: #PortfolioTest #test07PortfolioWithChildrenPortfoliosKnowsTheirTransactions stamp: 'TS 5/21/2023 19:58:53'!
+PASSED!
+
+!testRun: #PortfolioTest #test01PortfolioWithNoAccountsHasZeroBalance stamp: 'TS 5/21/2023 19:58:55'!
+PASSED!
+
+!testRun: #PortfolioTest #test02PortfolioWithSingleAccountHasSameBalanceAsTheAccount stamp: 'TS 5/21/2023 19:58:55'!
+PASSED!
+
+!testRun: #PortfolioTest #test03PortfolioWithMultipleAccountsHasBalanceEqualToTheSumOfTheAccountBalances stamp: 'TS 5/21/2023 19:58:55'!
+PASSED!
+
+!testRun: #PortfolioTest #test04PortfolioWithChildrenPortfoliosHasTheSumOfTheirBalancesAsItsBalance stamp: 'TS 5/21/2023 19:58:55'!
+PASSED!
+
+!testRun: #PortfolioTest #test05PortfolioWithNoAccountsHasNoTransactions stamp: 'TS 5/21/2023 19:58:55'!
+PASSED!
+
+!testRun: #PortfolioTest #test06PortfolioWithAccountsKnowsTheirTransactions stamp: 'TS 5/21/2023 19:58:55'!
+PASSED!
+
+!testRun: #PortfolioTest #test07PortfolioWithChildrenPortfoliosKnowsTheirTransactions stamp: 'TS 5/21/2023 19:58:55'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test01ReceptiveAccountHaveZeroAsBalanceWhenCreated stamp: 'TS 5/21/2023 19:58:55'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test02DepositIncreasesBalanceOnTransactionValue stamp: 'TS 5/21/2023 19:58:55'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test03WithdrawDecreasesBalanceOnTransactionValue stamp: 'TS 5/21/2023 19:58:55'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test04WithdrawValueMustBePositive stamp: 'TS 5/21/2023 19:58:55'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test05ReceptiveAccountKnowsRegisteredTransactions stamp: 'TS 5/21/2023 19:58:55'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test06ReceptiveAccountDoNotKnowNotRegisteredTransactions stamp: 'TS 5/21/2023 19:58:55'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test07AccountKnowsItsTransactions stamp: 'TS 5/21/2023 19:58:55'!
+PASSED!
+
+!testRun: #PortfolioTest #test01PortfolioWithNoAccountsHasZeroBalance stamp: 'TS 5/21/2023 19:59:08'!
+PASSED!
+
+!testRun: #PortfolioTest #test01PortfolioWithNoAccountsHasZeroBalance stamp: 'TS 5/21/2023 19:59:08'!
+PASSED!
+
+!testRun: #PortfolioTest #test02PortfolioWithSingleAccountHasSameBalanceAsTheAccount stamp: 'TS 5/21/2023 19:59:08'!
+PASSED!
+
+!testRun: #PortfolioTest #test03PortfolioWithMultipleAccountsHasBalanceEqualToTheSumOfTheAccountBalances stamp: 'TS 5/21/2023 19:59:08'!
+PASSED!
+
+!testRun: #PortfolioTest #test04PortfolioWithChildrenPortfoliosHasTheSumOfTheirBalancesAsItsBalance stamp: 'TS 5/21/2023 19:59:08'!
+PASSED!
+
+!testRun: #PortfolioTest #test05PortfolioWithNoAccountsHasNoTransactions stamp: 'TS 5/21/2023 19:59:08'!
+PASSED!
+
+!testRun: #PortfolioTest #test06PortfolioWithAccountsKnowsTheirTransactions stamp: 'TS 5/21/2023 19:59:08'!
+PASSED!
+
+!testRun: #PortfolioTest #test07PortfolioWithChildrenPortfoliosKnowsTheirTransactions stamp: 'TS 5/21/2023 19:59:08'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test01ReceptiveAccountHaveZeroAsBalanceWhenCreated stamp: 'TS 5/21/2023 19:59:08'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test02DepositIncreasesBalanceOnTransactionValue stamp: 'TS 5/21/2023 19:59:08'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test03WithdrawDecreasesBalanceOnTransactionValue stamp: 'TS 5/21/2023 19:59:08'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test04WithdrawValueMustBePositive stamp: 'TS 5/21/2023 19:59:08'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test05ReceptiveAccountKnowsRegisteredTransactions stamp: 'TS 5/21/2023 19:59:08'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test06ReceptiveAccountDoNotKnowNotRegisteredTransactions stamp: 'TS 5/21/2023 19:59:08'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test07AccountKnowsItsTransactions stamp: 'TS 5/21/2023 19:59:08'!
+PASSED!
+
+!classDefinition: #Portfolio category: 'Portfolio-Ejercicio' stamp: 'TS 5/21/2023 19:59:55'!
+Asset subclass: #Portfolio
+	instanceVariableNames: 'accounts portfolios assets'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Portfolio-Ejercicio'!
+!Portfolio methodsFor: 'modification' stamp: 'TS 5/21/2023 19:59:53'!
+addAsset: anAsset 
+	
+	assets add: anAsset! !
+!Portfolio methodsFor: 'initialization' stamp: 'TS 5/21/2023 20:00:08' prior: 50620203 overrides: 16920235!
+initialize
+	
+	accounts := Set new.
+	portfolios := Set new.
+	assets := Set new.! !
+!Portfolio methodsFor: 'initialization' stamp: 'TS 5/21/2023 20:00:09' prior: 50620810 overrides: 16920235!
+initialize
+	
+	accounts := Set new.
+	portfolios := Set new.
+	assets := Set new! !
+!Portfolio methodsFor: 'modification' stamp: 'TS 5/21/2023 20:01:39' prior: 50620198!
+addPortfolio: aPortfolio 
+	
+	self addAsset: aPortfolio ! !
+!Portfolio methodsFor: 'modification' stamp: 'TS 5/21/2023 20:01:47' prior: 50620194!
+addAccount: anAccount 
+	
+	self addAsset: anAccount! !
+
+!testRun: #PortfolioTest #test01PortfolioWithNoAccountsHasZeroBalance stamp: 'TS 5/21/2023 20:02:26'!
+PASSED!
+
+!testRun: #PortfolioTest #test02PortfolioWithSingleAccountHasSameBalanceAsTheAccount stamp: 'TS 5/21/2023 20:02:26'!
+FAILURE!
+
+!testRun: #PortfolioTest #test03PortfolioWithMultipleAccountsHasBalanceEqualToTheSumOfTheAccountBalances stamp: 'TS 5/21/2023 20:02:26'!
+FAILURE!
+
+!testRun: #PortfolioTest #test04PortfolioWithChildrenPortfoliosHasTheSumOfTheirBalancesAsItsBalance stamp: 'TS 5/21/2023 20:02:26'!
+PASSED!
+
+!testRun: #PortfolioTest #test05PortfolioWithNoAccountsHasNoTransactions stamp: 'TS 5/21/2023 20:02:26'!
+PASSED!
+
+!testRun: #PortfolioTest #test06PortfolioWithAccountsKnowsTheirTransactions stamp: 'TS 5/21/2023 20:02:26'!
+FAILURE!
+
+!testRun: #PortfolioTest #test07PortfolioWithChildrenPortfoliosKnowsTheirTransactions stamp: 'TS 5/21/2023 20:02:26'!
+PASSED!
+!Portfolio methodsFor: 'balance' stamp: 'TS 5/21/2023 20:02:43' prior: 50620623 overrides: 50620578!
+balance 
+	
+	^ (assets sum: [:anAccount | anAccount balance] ifEmpty: [ 0 ])! !
+
+!testRun: #PortfolioTest #test01PortfolioWithNoAccountsHasZeroBalance stamp: 'TS 5/21/2023 20:02:45'!
+PASSED!
+
+!testRun: #PortfolioTest #test02PortfolioWithSingleAccountHasSameBalanceAsTheAccount stamp: 'TS 5/21/2023 20:02:45'!
+PASSED!
+
+!testRun: #PortfolioTest #test03PortfolioWithMultipleAccountsHasBalanceEqualToTheSumOfTheAccountBalances stamp: 'TS 5/21/2023 20:02:45'!
+PASSED!
+
+!testRun: #PortfolioTest #test04PortfolioWithChildrenPortfoliosHasTheSumOfTheirBalancesAsItsBalance stamp: 'TS 5/21/2023 20:02:45'!
+PASSED!
+
+!testRun: #PortfolioTest #test05PortfolioWithNoAccountsHasNoTransactions stamp: 'TS 5/21/2023 20:02:45'!
+PASSED!
+
+!testRun: #PortfolioTest #test06PortfolioWithAccountsKnowsTheirTransactions stamp: 'TS 5/21/2023 20:02:45'!
+FAILURE!
+
+!testRun: #PortfolioTest #test07PortfolioWithChildrenPortfoliosKnowsTheirTransactions stamp: 'TS 5/21/2023 20:02:45'!
+PASSED!
+
+!testRun: #PortfolioTest #test06PortfolioWithAccountsKnowsTheirTransactions stamp: 'TS 5/21/2023 20:02:45'!
+FAILURE!
+
+!testRun: #PortfolioTest #test01PortfolioWithNoAccountsHasZeroBalance stamp: 'TS 5/21/2023 20:02:45'!
+PASSED!
+
+!testRun: #PortfolioTest #test02PortfolioWithSingleAccountHasSameBalanceAsTheAccount stamp: 'TS 5/21/2023 20:02:45'!
+PASSED!
+
+!testRun: #PortfolioTest #test03PortfolioWithMultipleAccountsHasBalanceEqualToTheSumOfTheAccountBalances stamp: 'TS 5/21/2023 20:02:45'!
+PASSED!
+
+!testRun: #PortfolioTest #test04PortfolioWithChildrenPortfoliosHasTheSumOfTheirBalancesAsItsBalance stamp: 'TS 5/21/2023 20:02:45'!
+PASSED!
+
+!testRun: #PortfolioTest #test05PortfolioWithNoAccountsHasNoTransactions stamp: 'TS 5/21/2023 20:02:45'!
+PASSED!
+
+!testRun: #PortfolioTest #test06PortfolioWithAccountsKnowsTheirTransactions stamp: 'TS 5/21/2023 20:02:45'!
+FAILURE!
+
+!testRun: #PortfolioTest #test07PortfolioWithChildrenPortfoliosKnowsTheirTransactions stamp: 'TS 5/21/2023 20:02:45'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test01ReceptiveAccountHaveZeroAsBalanceWhenCreated stamp: 'TS 5/21/2023 20:02:45'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test02DepositIncreasesBalanceOnTransactionValue stamp: 'TS 5/21/2023 20:02:45'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test03WithdrawDecreasesBalanceOnTransactionValue stamp: 'TS 5/21/2023 20:02:45'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test04WithdrawValueMustBePositive stamp: 'TS 5/21/2023 20:02:45'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test05ReceptiveAccountKnowsRegisteredTransactions stamp: 'TS 5/21/2023 20:02:45'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test06ReceptiveAccountDoNotKnowNotRegisteredTransactions stamp: 'TS 5/21/2023 20:02:45'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test07AccountKnowsItsTransactions stamp: 'TS 5/21/2023 20:02:45'!
+PASSED!
+
+!testRun: #PortfolioTest #test06PortfolioWithAccountsKnowsTheirTransactions stamp: 'TS 5/21/2023 20:02:45'!
+FAILURE!
+!Portfolio methodsFor: 'balance' stamp: 'TS 5/21/2023 20:02:55' prior: 50620860 overrides: 50620578!
+balance 
+	
+	^ (assets sum: [:anAsset | anAsset balance] ifEmpty: [ 0 ])! !
+!Portfolio methodsFor: 'transactions' stamp: 'TS 5/21/2023 20:03:17' prior: 50620611 overrides: 50620603!
+transactions
+	
+	^ (
+		assets inject: (Set new) into: [:transactions :anAccount | 
+				transactions union: anAccount transactions.
+		]
+	)! !
+!Portfolio methodsFor: 'transactions' stamp: 'TS 5/21/2023 20:03:33' prior: 50620961 overrides: 50620603!
+transactions
+	
+	^ assets inject: (Set new) into: [:transactions :anAsset | 
+				transactions union: anAsset transactions.
+		]! !
+
+!testRun: #PortfolioTest #test01PortfolioWithNoAccountsHasZeroBalance stamp: 'TS 5/21/2023 20:03:41'!
+PASSED!
+
+!testRun: #PortfolioTest #test02PortfolioWithSingleAccountHasSameBalanceAsTheAccount stamp: 'TS 5/21/2023 20:03:41'!
+PASSED!
+
+!testRun: #PortfolioTest #test03PortfolioWithMultipleAccountsHasBalanceEqualToTheSumOfTheAccountBalances stamp: 'TS 5/21/2023 20:03:41'!
+PASSED!
+
+!testRun: #PortfolioTest #test04PortfolioWithChildrenPortfoliosHasTheSumOfTheirBalancesAsItsBalance stamp: 'TS 5/21/2023 20:03:41'!
+PASSED!
+
+!testRun: #PortfolioTest #test05PortfolioWithNoAccountsHasNoTransactions stamp: 'TS 5/21/2023 20:03:41'!
+PASSED!
+
+!testRun: #PortfolioTest #test06PortfolioWithAccountsKnowsTheirTransactions stamp: 'TS 5/21/2023 20:03:41'!
+PASSED!
+
+!testRun: #PortfolioTest #test07PortfolioWithChildrenPortfoliosKnowsTheirTransactions stamp: 'TS 5/21/2023 20:03:41'!
+PASSED!
+!Portfolio methodsFor: 'transactions' stamp: 'TS 5/21/2023 20:04:35' prior: 50620969 overrides: 50620603!
+transactions
+	
+	^ assets inject: (Set new) into: [:transactions :anAsset | 
+				transactions union: anAsset transactions.
+		]! !
+!Portfolio methodsFor: 'transactions' stamp: 'TS 5/21/2023 20:04:40' prior: 50621004 overrides: 50620603!
+transactions
+	
+	^ assets inject: (Set new) into: [:transactions :anAsset | 
+		transactions union: anAsset transactions.
+		]! !
+!Portfolio methodsFor: 'transactions' stamp: 'TS 5/21/2023 20:04:41' prior: 50621012 overrides: 50620603!
+transactions
+	
+	^ assets inject: (Set new) into: [:transactions :anAsset | 
+		transactions union: anAsset transactions.
+	]! !
+!Portfolio methodsFor: 'initialization' stamp: 'TS 5/21/2023 20:05:02' prior: 50620816 overrides: 16920235!
+initialize
+
+	assets := Set new! !
+
+!classDefinition: #Portfolio category: 'Portfolio-Ejercicio' stamp: 'TS 5/21/2023 20:05:09'!
+Asset subclass: #Portfolio
+	instanceVariableNames: 'portfolios assets'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Portfolio-Ejercicio'!
+
+!classDefinition: #Portfolio category: 'Portfolio-Ejercicio' stamp: 'TS 5/21/2023 20:05:09'!
+Asset subclass: #Portfolio
+	instanceVariableNames: 'assets'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Portfolio-Ejercicio'!
+
+!testRun: #PortfolioTest #test01PortfolioWithNoAccountsHasZeroBalance stamp: 'TS 5/21/2023 20:05:19'!
+PASSED!
+
+!testRun: #PortfolioTest #test02PortfolioWithSingleAccountHasSameBalanceAsTheAccount stamp: 'TS 5/21/2023 20:05:19'!
+PASSED!
+
+!testRun: #PortfolioTest #test03PortfolioWithMultipleAccountsHasBalanceEqualToTheSumOfTheAccountBalances stamp: 'TS 5/21/2023 20:05:19'!
+PASSED!
+
+!testRun: #PortfolioTest #test04PortfolioWithChildrenPortfoliosHasTheSumOfTheirBalancesAsItsBalance stamp: 'TS 5/21/2023 20:05:19'!
+PASSED!
+
+!testRun: #PortfolioTest #test05PortfolioWithNoAccountsHasNoTransactions stamp: 'TS 5/21/2023 20:05:19'!
+PASSED!
+
+!testRun: #PortfolioTest #test06PortfolioWithAccountsKnowsTheirTransactions stamp: 'TS 5/21/2023 20:05:19'!
+PASSED!
+
+!testRun: #PortfolioTest #test07PortfolioWithChildrenPortfoliosKnowsTheirTransactions stamp: 'TS 5/21/2023 20:05:19'!
+PASSED!
+
+!methodRemoval: Portfolio #addPortfolio: stamp: 'TS 5/21/2023 20:05:54'!
+addPortfolio: aPortfolio 
+	
+	self addAsset: aPortfolio !
+!PortfolioTest methodsFor: 'testing' stamp: 'TS 5/21/2023 20:05:54' prior: 50620452!
+portfolioWithChildrenPortfolios: aCollectionOfPortfolios
+
+	| portfolio |
+	portfolio := Portfolio new.
+	
+	aCollectionOfPortfolios do: [:aPortfolio | portfolio addAsset: aPortfolio ].
+	
+	^portfolio.! !
+
+!methodRemoval: Portfolio #addAccount: stamp: 'TS 5/21/2023 20:06:16'!
+addAccount: anAccount 
+	
+	self addAsset: anAccount!
+!PortfolioTest methodsFor: 'testing' stamp: 'TS 5/21/2023 20:06:16' prior: 50619896!
+portfolioWithAccounts: aCollectionOfAccounts
+
+	| portfolio |
+	portfolio := Portfolio new.
+	
+	aCollectionOfAccounts do: [:anAccount | portfolio addAsset: anAccount].
+	
+	^portfolio.
+	! !
+!PortfolioTest methodsFor: 'testing' stamp: 'TS 5/21/2023 20:06:59'!
+portfolioWithAssets: aCollectionOfAccounts
+
+	| portfolio |
+	portfolio := Portfolio new.
+	
+	aCollectionOfAccounts do: [:anAccount | portfolio addAsset: anAccount].
+	
+	^portfolio.
+	! !
+!PortfolioTest methodsFor: 'as yet unclassified' stamp: 'TS 5/21/2023 20:06:59' prior: 50620412!
+test07PortfolioWithChildrenPortfoliosKnowsTheirTransactions
+
+	| childPortfolio1 childPortfolio2 parentPortfolio |
+	
+	childPortfolio1 := self portfolioWithAssets: {
+		self accountWithTransactions: { Deposit for: 50. Withdraw for: 20}.
+		self accountWithTransactions: { Deposit for: 40. Withdraw for: 10}
+	}.
+
+	childPortfolio2 := self portfolioWithAssets: {
+		self accountWithTransactions: { Deposit for: 10. Withdraw for: 5}.
+		self accountWithTransactions: { Deposit for: 80. Withdraw for: 20}
+	}.
+	
+	parentPortfolio := self portfolioWithChildrenPortfolios: { childPortfolio1. childPortfolio2 }.
+
+	self assert: (childPortfolio1 transactions union: childPortfolio2 transactions) equals: parentPortfolio transactions.! !
+!PortfolioTest methodsFor: 'as yet unclassified' stamp: 'TS 5/21/2023 20:06:59' prior: 50619911!
+test02PortfolioWithSingleAccountHasSameBalanceAsTheAccount
+
+	| portfolio |
+	
+	portfolio := self portfolioWithAssets: {self accountWithSingleDepositOf: 50}.
+	self assert: 50 equals: portfolio balance! !
+!PortfolioTest methodsFor: 'as yet unclassified' stamp: 'TS 5/21/2023 20:06:59' prior: 50620477!
+test04PortfolioWithChildrenPortfoliosHasTheSumOfTheirBalancesAsItsBalance
+
+	| parentPortfolio childPorfolio |
+	
+	childPorfolio := self portfolioWithAssets: {
+		self accountWithSingleDepositOf: 50.
+		self accountWithSingleDepositOf: 100
+	}.
+	
+	parentPortfolio := self portfolioWithChildrenPortfolios: { childPorfolio }.
+	
+	self assert: childPorfolio balance equals: parentPortfolio balance.! !
+!PortfolioTest methodsFor: 'as yet unclassified' stamp: 'TS 5/21/2023 20:06:59' prior: 50619953!
+test06PortfolioWithAccountsKnowsTheirTransactions
+
+	| portfolio account1 account2 |
+	
+	account1 := self accountWithTransactions: { Deposit for: 50. Withdraw for: 20}.	
+	account2 := self accountWithTransactions: { Deposit for: 40. Withdraw for: 10}.
+	
+	portfolio := self portfolioWithAssets: {account1. account2}.
+	
+	self assert: (account1 transactions, account2 transactions) asSet equals: portfolio transactions.! !
+!PortfolioTest methodsFor: 'as yet unclassified' stamp: 'TS 5/21/2023 20:06:59' prior: 50619920!
+test03PortfolioWithMultipleAccountsHasBalanceEqualToTheSumOfTheAccountBalances
+
+	| portfolio |
+	
+	portfolio := self portfolioWithAssets: {
+	
+		self accountWithSingleDepositOf: 50.
+		self accountWithSingleDepositOf: 100
+		
+		}.
+	
+	self assert: 150 equals: portfolio balance! !
+
+!methodRemoval: PortfolioTest #portfolioWithAccounts: stamp: 'TS 5/21/2023 20:06:59'!
+portfolioWithAccounts: aCollectionOfAccounts
+
+	| portfolio |
+	portfolio := Portfolio new.
+	
+	aCollectionOfAccounts do: [:anAccount | portfolio addAsset: anAccount].
+	
+	^portfolio.
+	!
+!PortfolioTest methodsFor: 'testing' stamp: 'TS 5/21/2023 20:07:05' prior: 50621100!
+portfolioWithAssets: aCollectionOfAssets
+
+	| portfolio |
+	portfolio := Portfolio new.
+	
+	aCollectionOfAssets do: [:anAccount | portfolio addAsset: anAccount].
+	
+	^portfolio.
+	! !
+!PortfolioTest methodsFor: 'testing' stamp: 'TS 5/21/2023 20:07:10' prior: 50621198!
+portfolioWithAssets: aCollectionOfAssets
+
+	| portfolio |
+	portfolio := Portfolio new.
+	
+	aCollectionOfAssets do: [:anAsset | portfolio addAsset: anAsset].
+	
+	^portfolio.
+	! !
+!PortfolioTest methodsFor: 'testing' stamp: 'TS 5/21/2023 20:07:38' prior: 50621079!
+portfolioWithChildrenPortfolios: aCollectionOfPortfolios
+
+	^ self portfolioWithAssets: aCollectionOfPortfolios! !
+
+!methodRemoval: PortfolioTest #portfolioWithChildrenPortfolios: stamp: 'TS 5/21/2023 20:07:53'!
+portfolioWithChildrenPortfolios: aCollectionOfPortfolios
+
+	^ self portfolioWithAssets: aCollectionOfPortfolios!
+!PortfolioTest methodsFor: 'testing' stamp: 'TS 5/21/2023 20:08:20' prior: 50621109!
+test07PortfolioWithChildrenPortfoliosKnowsTheirTransactions
+
+	| childPortfolio1 childPortfolio2 parentPortfolio |
+	
+	childPortfolio1 := self portfolioWithAssets: {
+		self accountWithTransactions: { Deposit for: 50. Withdraw for: 20}.
+		self accountWithTransactions: { Deposit for: 40. Withdraw for: 10}
+	}.
+
+	childPortfolio2 := self portfolioWithAssets: {
+		self accountWithTransactions: { Deposit for: 10. Withdraw for: 5}.
+		self accountWithTransactions: { Deposit for: 80. Withdraw for: 20}
+	}.
+	
+	parentPortfolio := self portfolioWithAssets: { childPortfolio1. childPortfolio2 }.
+
+	self assert: (childPortfolio1 transactions union: childPortfolio2 transactions) equals: parentPortfolio transactions.! !
+
+!testRun: #PortfolioTest #test01PortfolioWithNoAccountsHasZeroBalance stamp: 'TS 5/21/2023 20:08:23'!
+PASSED!
+
+!testRun: #PortfolioTest #test02PortfolioWithSingleAccountHasSameBalanceAsTheAccount stamp: 'TS 5/21/2023 20:08:23'!
+PASSED!
+
+!testRun: #PortfolioTest #test03PortfolioWithMultipleAccountsHasBalanceEqualToTheSumOfTheAccountBalances stamp: 'TS 5/21/2023 20:08:23'!
+PASSED!
+
+!testRun: #PortfolioTest #test04PortfolioWithChildrenPortfoliosHasTheSumOfTheirBalancesAsItsBalance stamp: 'TS 5/21/2023 20:08:23'!
+ERROR!
+
+!testRun: #PortfolioTest #test05PortfolioWithNoAccountsHasNoTransactions stamp: 'TS 5/21/2023 20:08:23'!
+PASSED!
+
+!testRun: #PortfolioTest #test06PortfolioWithAccountsKnowsTheirTransactions stamp: 'TS 5/21/2023 20:08:23'!
+PASSED!
+
+!testRun: #PortfolioTest #test07PortfolioWithChildrenPortfoliosKnowsTheirTransactions stamp: 'TS 5/21/2023 20:08:23'!
+PASSED!
+
+!testRun: #PortfolioTest #test04PortfolioWithChildrenPortfoliosHasTheSumOfTheirBalancesAsItsBalance stamp: 'TS 5/21/2023 20:08:23'!
+ERROR!
+!PortfolioTest methodsFor: 'testing' stamp: 'TS 5/21/2023 20:08:40' prior: 50621145!
+test04PortfolioWithChildrenPortfoliosHasTheSumOfTheirBalancesAsItsBalance
+
+	| parentPortfolio childPorfolio |
+	
+	childPorfolio := self portfolioWithAssets: {
+		self accountWithSingleDepositOf: 50.
+		self accountWithSingleDepositOf: 100
+	}.
+	
+	parentPortfolio := self portfolioWithAssets: { childPorfolio }.
+	
+	self assert: childPorfolio balance equals: parentPortfolio balance.! !
+!PortfolioTest methodsFor: 'testing' stamp: 'TS 5/21/2023 20:08:41' prior: 50621286!
+test04PortfolioWithChildrenPortfoliosHasTheSumOfTheirBalancesAsItsBalance
+
+	| parentPortfolio childPorfolio |
+	
+	childPorfolio := self portfolioWithAssets: {
+		self accountWithSingleDepositOf: 50.
+		self accountWithSingleDepositOf: 100
+	}.
+	
+	parentPortfolio := self portfolioWithAssets: { childPorfolio }.
+	
+	self assert: childPorfolio balance equals: parentPortfolio balance.! !
+
+!testRun: #PortfolioTest #test01PortfolioWithNoAccountsHasZeroBalance stamp: 'TS 5/21/2023 20:08:42'!
+PASSED!
+
+!testRun: #PortfolioTest #test02PortfolioWithSingleAccountHasSameBalanceAsTheAccount stamp: 'TS 5/21/2023 20:08:42'!
+PASSED!
+
+!testRun: #PortfolioTest #test03PortfolioWithMultipleAccountsHasBalanceEqualToTheSumOfTheAccountBalances stamp: 'TS 5/21/2023 20:08:42'!
+PASSED!
+
+!testRun: #PortfolioTest #test04PortfolioWithChildrenPortfoliosHasTheSumOfTheirBalancesAsItsBalance stamp: 'TS 5/21/2023 20:08:42'!
+PASSED!
+
+!testRun: #PortfolioTest #test05PortfolioWithNoAccountsHasNoTransactions stamp: 'TS 5/21/2023 20:08:42'!
+PASSED!
+
+!testRun: #PortfolioTest #test06PortfolioWithAccountsKnowsTheirTransactions stamp: 'TS 5/21/2023 20:08:42'!
+PASSED!
+
+!testRun: #PortfolioTest #test07PortfolioWithChildrenPortfoliosKnowsTheirTransactions stamp: 'TS 5/21/2023 20:08:42'!
+PASSED!
+!PortfolioTest methodsFor: 'testing' stamp: 'TS 5/21/2023 20:11:34'!
+test08PortfolioWithNoAssetsHasNoTransactionsRegistered
+
+	| portfolio transaction |
+
+	portfolio := Portfolio new.
+	transaction := Deposit for: 20.
+
+	self deny: (portfolio hasRegistered: transaction)! !
+
+!testRun: #PortfolioTest #test08PortfolioWithNoAssetsHasNoTransactionsRegistered stamp: 'TS 5/21/2023 20:12:51'!
+ERROR!
+!Portfolio methodsFor: 'transactions' stamp: 'TS 5/21/2023 20:13:00'!
+hasRegistered: transaction 
+	self shouldBeImplemented.! !
+!Portfolio methodsFor: 'transactions' stamp: 'TS 5/21/2023 20:13:09' prior: 50621356!
+hasRegistered: transaction 
+	
+	^ false! !
+!Portfolio methodsFor: 'transactions' stamp: 'TS 5/21/2023 20:13:12' prior: 50621361!
+hasRegistered: aTransaction 
+	
+	^ false! !
+
+!testRun: #PortfolioTest #test08PortfolioWithNoAssetsHasNoTransactionsRegistered stamp: 'TS 5/21/2023 20:13:13'!
+PASSED!
+
+!testRun: #PortfolioTest #test01PortfolioWithNoAccountsHasZeroBalance stamp: 'TS 5/21/2023 20:13:13'!
+PASSED!
+
+!testRun: #PortfolioTest #test02PortfolioWithSingleAccountHasSameBalanceAsTheAccount stamp: 'TS 5/21/2023 20:13:13'!
+PASSED!
+
+!testRun: #PortfolioTest #test03PortfolioWithMultipleAccountsHasBalanceEqualToTheSumOfTheAccountBalances stamp: 'TS 5/21/2023 20:13:13'!
+PASSED!
+
+!testRun: #PortfolioTest #test04PortfolioWithChildrenPortfoliosHasTheSumOfTheirBalancesAsItsBalance stamp: 'TS 5/21/2023 20:13:13'!
+PASSED!
+
+!testRun: #PortfolioTest #test05PortfolioWithNoAccountsHasNoTransactions stamp: 'TS 5/21/2023 20:13:13'!
+PASSED!
+
+!testRun: #PortfolioTest #test06PortfolioWithAccountsKnowsTheirTransactions stamp: 'TS 5/21/2023 20:13:13'!
+PASSED!
+
+!testRun: #PortfolioTest #test07PortfolioWithChildrenPortfoliosKnowsTheirTransactions stamp: 'TS 5/21/2023 20:13:13'!
+PASSED!
+
+!testRun: #PortfolioTest #test08PortfolioWithNoAssetsHasNoTransactionsRegistered stamp: 'TS 5/21/2023 20:13:13'!
+PASSED!
+!ReceptiveAccount methodsFor: 'transactions' stamp: 'TS 5/21/2023 20:13:55' prior: 50620250!
+hasRegistered: aTransaction
+
+	self subclassResponsibility
+! !
+!Asset methodsFor: 'transactions' stamp: 'TS 5/21/2023 20:13:58'!
+hasRegistered: aTransaction
+
+	self subclassResponsibility
+! !
+
+!methodRemoval: ReceptiveAccount #hasRegistered: stamp: 'TS 5/21/2023 20:13:58'!
+hasRegistered: aTransaction
+
+	self subclassResponsibility
+!
+!ReceptiveAccount methodsFor: 'transactions' stamp: 'TS 5/21/2023 20:14:00' overrides: 50621409!
+hasRegistered: aTransaction
+
+	^ transactions includes: aTransaction 
+! !
+!PortfolioTest methodsFor: 'testing' stamp: 'TS 5/21/2023 20:15:55'!
+test09PortfolioWithAccountHasItsTransactionRegistered
+
+	| portfolio transaction transaction1 transaction2 |
+
+	transaction1 := Deposit for: 20.
+	transaction2 := Withdraw for: 10.
+	
+	portfolio := self portfolioWithAssets: {
+		self accountWithTransactions: { transaction1. transaction2 }
+	}.
+
+	self deny: (portfolio hasRegistered: transaction)! !
+!PortfolioTest methodsFor: 'testing' stamp: 'TS 5/21/2023 20:16:21' prior: 50621424!
+test09PortfolioWithAccountHasItsTransactionRegistered
+
+	| portfolio transaction1 transaction2 |
+
+	transaction1 := Deposit for: 20.
+	transaction2 := Withdraw for: 10.
+	
+	portfolio := self portfolioWithAssets: {
+		self accountWithTransactions: { transaction1. transaction2 }
+	}.
+
+	self assert: (portfolio hasRegistered: transaction1).
+	self assert: (portfolio hasRegistered: transaction2)! !
+
+!testRun: #PortfolioTest #test09PortfolioWithAccountHasItsTransactionRegistered stamp: 'TS 5/21/2023 20:17:10'!
+FAILURE!
+!Portfolio methodsFor: 'transactions' stamp: 'TS 5/21/2023 20:17:35' prior: 50621365 overrides: 50621409!
+hasRegistered: aTransaction 
+	
+	^ self transactions includes: aTransaction! !
+
+!testRun: #PortfolioTest #test01PortfolioWithNoAccountsHasZeroBalance stamp: 'TS 5/21/2023 20:17:37'!
+PASSED!
+
+!testRun: #PortfolioTest #test02PortfolioWithSingleAccountHasSameBalanceAsTheAccount stamp: 'TS 5/21/2023 20:17:37'!
+PASSED!
+
+!testRun: #PortfolioTest #test03PortfolioWithMultipleAccountsHasBalanceEqualToTheSumOfTheAccountBalances stamp: 'TS 5/21/2023 20:17:37'!
+PASSED!
+
+!testRun: #PortfolioTest #test04PortfolioWithChildrenPortfoliosHasTheSumOfTheirBalancesAsItsBalance stamp: 'TS 5/21/2023 20:17:37'!
+PASSED!
+
+!testRun: #PortfolioTest #test05PortfolioWithNoAccountsHasNoTransactions stamp: 'TS 5/21/2023 20:17:37'!
+PASSED!
+
+!testRun: #PortfolioTest #test06PortfolioWithAccountsKnowsTheirTransactions stamp: 'TS 5/21/2023 20:17:37'!
+PASSED!
+
+!testRun: #PortfolioTest #test07PortfolioWithChildrenPortfoliosKnowsTheirTransactions stamp: 'TS 5/21/2023 20:17:37'!
+PASSED!
+
+!testRun: #PortfolioTest #test08PortfolioWithNoAssetsHasNoTransactionsRegistered stamp: 'TS 5/21/2023 20:17:37'!
+PASSED!
+
+!testRun: #PortfolioTest #test09PortfolioWithAccountHasItsTransactionRegistered stamp: 'TS 5/21/2023 20:17:37'!
+PASSED!
+!Portfolio methodsFor: 'transactions' stamp: 'TS 5/21/2023 20:18:11' prior: 50621020 overrides: 50620603!
+transactions
+	
+	^ assets inject: (Set new) into: [:transactions :anAsset | 
+		transactions addAll: anAsset transactions.
+	]! !
+
+!testRun: #PortfolioTest #test01PortfolioWithNoAccountsHasZeroBalance stamp: 'TS 5/21/2023 20:18:12'!
+PASSED!
+
+!testRun: #PortfolioTest #test02PortfolioWithSingleAccountHasSameBalanceAsTheAccount stamp: 'TS 5/21/2023 20:18:12'!
+PASSED!
+
+!testRun: #PortfolioTest #test03PortfolioWithMultipleAccountsHasBalanceEqualToTheSumOfTheAccountBalances stamp: 'TS 5/21/2023 20:18:12'!
+PASSED!
+
+!testRun: #PortfolioTest #test04PortfolioWithChildrenPortfoliosHasTheSumOfTheirBalancesAsItsBalance stamp: 'TS 5/21/2023 20:18:12'!
+PASSED!
+
+!testRun: #PortfolioTest #test05PortfolioWithNoAccountsHasNoTransactions stamp: 'TS 5/21/2023 20:18:12'!
+PASSED!
+
+!testRun: #PortfolioTest #test06PortfolioWithAccountsKnowsTheirTransactions stamp: 'TS 5/21/2023 20:18:12'!
+FAILURE!
+
+!testRun: #PortfolioTest #test07PortfolioWithChildrenPortfoliosKnowsTheirTransactions stamp: 'TS 5/21/2023 20:18:12'!
+FAILURE!
+
+!testRun: #PortfolioTest #test08PortfolioWithNoAssetsHasNoTransactionsRegistered stamp: 'TS 5/21/2023 20:18:12'!
+PASSED!
+
+!testRun: #PortfolioTest #test09PortfolioWithAccountHasItsTransactionRegistered stamp: 'TS 5/21/2023 20:18:12'!
+PASSED!
+!Portfolio methodsFor: 'transactions' stamp: 'TS 5/21/2023 20:18:27' prior: 50621499 overrides: 50620603!
+transactions
+	
+	^ assets inject: (Set new) into: [:transactions :anAsset | 
+		transactions addAll: anAsset transactions; yourself
+	]! !
+
+!testRun: #PortfolioTest #test01PortfolioWithNoAccountsHasZeroBalance stamp: 'TS 5/21/2023 20:18:28'!
+PASSED!
+
+!testRun: #PortfolioTest #test02PortfolioWithSingleAccountHasSameBalanceAsTheAccount stamp: 'TS 5/21/2023 20:18:28'!
+PASSED!
+
+!testRun: #PortfolioTest #test03PortfolioWithMultipleAccountsHasBalanceEqualToTheSumOfTheAccountBalances stamp: 'TS 5/21/2023 20:18:28'!
+PASSED!
+
+!testRun: #PortfolioTest #test04PortfolioWithChildrenPortfoliosHasTheSumOfTheirBalancesAsItsBalance stamp: 'TS 5/21/2023 20:18:28'!
+PASSED!
+
+!testRun: #PortfolioTest #test05PortfolioWithNoAccountsHasNoTransactions stamp: 'TS 5/21/2023 20:18:28'!
+PASSED!
+
+!testRun: #PortfolioTest #test06PortfolioWithAccountsKnowsTheirTransactions stamp: 'TS 5/21/2023 20:18:28'!
+PASSED!
+
+!testRun: #PortfolioTest #test07PortfolioWithChildrenPortfoliosKnowsTheirTransactions stamp: 'TS 5/21/2023 20:18:28'!
+PASSED!
+
+!testRun: #PortfolioTest #test08PortfolioWithNoAssetsHasNoTransactionsRegistered stamp: 'TS 5/21/2023 20:18:28'!
+PASSED!
+
+!testRun: #PortfolioTest #test09PortfolioWithAccountHasItsTransactionRegistered stamp: 'TS 5/21/2023 20:18:28'!
+PASSED!
+!PortfolioTest methodsFor: 'testing' stamp: 'TS 5/21/2023 20:18:52'!
+test09PortfolioWithAssetsHasTheirTransactionRegistered
+
+	| portfolio transaction1 transaction2 |
+
+	transaction1 := Deposit for: 20.
+	transaction2 := Withdraw for: 10.
+	
+	portfolio := self portfolioWithAssets: {
+		self accountWithTransactions: { transaction1. transaction2 }
+	}.
+
+	self assert: (portfolio hasRegistered: transaction1).
+	self assert: (portfolio hasRegistered: transaction2)! !
+
+!methodRemoval: PortfolioTest #test09PortfolioWithAccountHasItsTransactionRegistered stamp: 'TS 5/21/2023 20:18:52'!
+test09PortfolioWithAccountHasItsTransactionRegistered
+
+	| portfolio transaction1 transaction2 |
+
+	transaction1 := Deposit for: 20.
+	transaction2 := Withdraw for: 10.
+	
+	portfolio := self portfolioWithAssets: {
+		self accountWithTransactions: { transaction1. transaction2 }
+	}.
+
+	self assert: (portfolio hasRegistered: transaction1).
+	self assert: (portfolio hasRegistered: transaction2)!
+
+!testRun: #PortfolioTest #test01PortfolioWithNoAccountsHasZeroBalance stamp: 'TS 5/21/2023 20:19:01'!
+PASSED!
+
+!testRun: #PortfolioTest #test02PortfolioWithSingleAccountHasSameBalanceAsTheAccount stamp: 'TS 5/21/2023 20:19:01'!
+PASSED!
+
+!testRun: #PortfolioTest #test03PortfolioWithMultipleAccountsHasBalanceEqualToTheSumOfTheAccountBalances stamp: 'TS 5/21/2023 20:19:01'!
+PASSED!
+
+!testRun: #PortfolioTest #test04PortfolioWithChildrenPortfoliosHasTheSumOfTheirBalancesAsItsBalance stamp: 'TS 5/21/2023 20:19:01'!
+PASSED!
+
+!testRun: #PortfolioTest #test05PortfolioWithNoAccountsHasNoTransactions stamp: 'TS 5/21/2023 20:19:01'!
+PASSED!
+
+!testRun: #PortfolioTest #test06PortfolioWithAccountsKnowsTheirTransactions stamp: 'TS 5/21/2023 20:19:01'!
+PASSED!
+
+!testRun: #PortfolioTest #test07PortfolioWithChildrenPortfoliosKnowsTheirTransactions stamp: 'TS 5/21/2023 20:19:01'!
+PASSED!
+
+!testRun: #PortfolioTest #test08PortfolioWithNoAssetsHasNoTransactionsRegistered stamp: 'TS 5/21/2023 20:19:01'!
+PASSED!
+
+!testRun: #PortfolioTest #test09PortfolioWithAssetsHasTheirTransactionRegistered stamp: 'TS 5/21/2023 20:19:01'!
+PASSED!
+!PortfolioTest methodsFor: 'testing' stamp: 'TS 5/21/2023 20:26:46'!
+test10PortfolioCantHaveItselfAsAnAsset
+
+	| portfolio |
+
+	portfolio := Portfolio new.
+	
+	self
+		should: [ portfolio addAsset: portfolio ]
+		raise: Error - MessageNotUnderstood
+		withMessageText: Portfolio cantHaveRepeatedAssets! !
+
+!testRun: #PortfolioTest #test10PortfolioCantHaveItselfAsAnAsset stamp: 'TS 5/21/2023 20:27:03'!
+ERROR!
+!Portfolio class methodsFor: 'error descriptions' stamp: 'TS 5/21/2023 20:27:23'!
+cantHaveRepeatedAssets
+	self shouldBeImplemented.! !
+!Portfolio class methodsFor: 'error descriptions' stamp: 'TS 5/21/2023 20:28:46' prior: 50621664!
+cantHaveRepeatedAssets
+
+	^ 'No se debe agregar un asset preexistente en el portfolio'! !
+
+!testRun: #PortfolioTest #test10PortfolioCantHaveItselfAsAnAsset stamp: 'TS 5/21/2023 20:28:52'!
+FAILURE!
+!Portfolio methodsFor: 'modification' stamp: 'TS 5/21/2023 20:30:11' prior: 50620805!
+addAsset: anAsset 
+	
+	anAsset = self ifTrue: [ self error: self class cantHaveRepeatedAssets ].
+	
+	assets add: anAsset! !
+
+!testRun: #PortfolioTest #test01PortfolioWithNoAccountsHasZeroBalance stamp: 'TS 5/21/2023 20:30:13'!
+PASSED!
+
+!testRun: #PortfolioTest #test02PortfolioWithSingleAccountHasSameBalanceAsTheAccount stamp: 'TS 5/21/2023 20:30:13'!
+PASSED!
+
+!testRun: #PortfolioTest #test03PortfolioWithMultipleAccountsHasBalanceEqualToTheSumOfTheAccountBalances stamp: 'TS 5/21/2023 20:30:13'!
+PASSED!
+
+!testRun: #PortfolioTest #test04PortfolioWithChildrenPortfoliosHasTheSumOfTheirBalancesAsItsBalance stamp: 'TS 5/21/2023 20:30:13'!
+PASSED!
+
+!testRun: #PortfolioTest #test05PortfolioWithNoAccountsHasNoTransactions stamp: 'TS 5/21/2023 20:30:13'!
+PASSED!
+
+!testRun: #PortfolioTest #test06PortfolioWithAccountsKnowsTheirTransactions stamp: 'TS 5/21/2023 20:30:13'!
+PASSED!
+
+!testRun: #PortfolioTest #test07PortfolioWithChildrenPortfoliosKnowsTheirTransactions stamp: 'TS 5/21/2023 20:30:13'!
+PASSED!
+
+!testRun: #PortfolioTest #test08PortfolioWithNoAssetsHasNoTransactionsRegistered stamp: 'TS 5/21/2023 20:30:13'!
+PASSED!
+
+!testRun: #PortfolioTest #test09PortfolioWithAssetsHasTheirTransactionRegistered stamp: 'TS 5/21/2023 20:30:13'!
+PASSED!
+
+!testRun: #PortfolioTest #test10PortfolioCantHaveItselfAsAnAsset stamp: 'TS 5/21/2023 20:30:13'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test01ReceptiveAccountHaveZeroAsBalanceWhenCreated stamp: 'TS 5/21/2023 20:30:17'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test02DepositIncreasesBalanceOnTransactionValue stamp: 'TS 5/21/2023 20:30:17'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test03WithdrawDecreasesBalanceOnTransactionValue stamp: 'TS 5/21/2023 20:30:17'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test04WithdrawValueMustBePositive stamp: 'TS 5/21/2023 20:30:17'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test05ReceptiveAccountKnowsRegisteredTransactions stamp: 'TS 5/21/2023 20:30:17'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test06ReceptiveAccountDoNotKnowNotRegisteredTransactions stamp: 'TS 5/21/2023 20:30:17'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test07AccountKnowsItsTransactions stamp: 'TS 5/21/2023 20:30:17'!
+PASSED!
+!PortfolioTest methodsFor: 'testing' stamp: 'TS 5/21/2023 20:32:32'!
+test11PortfolioCantHaveRepeatedAccounts
+
+	| portfolio account |
+
+	account := ReceptiveAccount new.
+	portfolio := self portfolioWithAssets: { account }.
+	
+	self
+		should: [ portfolio addAsset: account ]
+		raise: Error - MessageNotUnderstood
+		withMessageText: Portfolio cantHaveRepeatedAssets! !
+
+!testRun: #PortfolioTest #test11PortfolioCantHaveRepeatedAccounts stamp: 'TS 5/21/2023 20:33:11'!
+FAILURE!
+!Portfolio methodsFor: 'modification' stamp: 'TS 5/21/2023 20:33:58' prior: 50621678!
+addAsset: anAsset 
+	
+	anAsset = self ifTrue: [ self error: self class cantHaveRepeatedAssets ].
+	(assets includes: anAsset) ifTrue: [ self error: self class cantHaveRepeatedAssets ].
+	
+	assets add: anAsset! !
+
+!testRun: #PortfolioTest #test01PortfolioWithNoAccountsHasZeroBalance stamp: 'TS 5/21/2023 20:33:58'!
+PASSED!
+
+!testRun: #PortfolioTest #test02PortfolioWithSingleAccountHasSameBalanceAsTheAccount stamp: 'TS 5/21/2023 20:33:58'!
+PASSED!
+
+!testRun: #PortfolioTest #test03PortfolioWithMultipleAccountsHasBalanceEqualToTheSumOfTheAccountBalances stamp: 'TS 5/21/2023 20:33:58'!
+PASSED!
+
+!testRun: #PortfolioTest #test04PortfolioWithChildrenPortfoliosHasTheSumOfTheirBalancesAsItsBalance stamp: 'TS 5/21/2023 20:33:58'!
+PASSED!
+
+!testRun: #PortfolioTest #test05PortfolioWithNoAccountsHasNoTransactions stamp: 'TS 5/21/2023 20:33:58'!
+PASSED!
+
+!testRun: #PortfolioTest #test06PortfolioWithAccountsKnowsTheirTransactions stamp: 'TS 5/21/2023 20:33:58'!
+PASSED!
+
+!testRun: #PortfolioTest #test07PortfolioWithChildrenPortfoliosKnowsTheirTransactions stamp: 'TS 5/21/2023 20:33:58'!
+PASSED!
+
+!testRun: #PortfolioTest #test08PortfolioWithNoAssetsHasNoTransactionsRegistered stamp: 'TS 5/21/2023 20:33:58'!
+PASSED!
+
+!testRun: #PortfolioTest #test09PortfolioWithAssetsHasTheirTransactionRegistered stamp: 'TS 5/21/2023 20:33:58'!
+PASSED!
+
+!testRun: #PortfolioTest #test10PortfolioCantHaveItselfAsAnAsset stamp: 'TS 5/21/2023 20:33:58'!
+PASSED!
+
+!testRun: #PortfolioTest #test11PortfolioCantHaveRepeatedAccounts stamp: 'TS 5/21/2023 20:33:58'!
+PASSED!
+!Portfolio methodsFor: 'modification' stamp: 'TS 5/21/2023 20:34:46' prior: 50621765!
+addAsset: anAsset 
+	
+	((anAsset = self) or: [ assets includes: anAsset ]) ifTrue: [ self error: self class cantHaveRepeatedAssets ].
+	
+	assets add: anAsset! !
+
+!testRun: #PortfolioTest #test01PortfolioWithNoAccountsHasZeroBalance stamp: 'TS 5/21/2023 20:34:47'!
+PASSED!
+
+!testRun: #PortfolioTest #test02PortfolioWithSingleAccountHasSameBalanceAsTheAccount stamp: 'TS 5/21/2023 20:34:47'!
+PASSED!
+
+!testRun: #PortfolioTest #test03PortfolioWithMultipleAccountsHasBalanceEqualToTheSumOfTheAccountBalances stamp: 'TS 5/21/2023 20:34:47'!
+PASSED!
+
+!testRun: #PortfolioTest #test04PortfolioWithChildrenPortfoliosHasTheSumOfTheirBalancesAsItsBalance stamp: 'TS 5/21/2023 20:34:47'!
+PASSED!
+
+!testRun: #PortfolioTest #test05PortfolioWithNoAccountsHasNoTransactions stamp: 'TS 5/21/2023 20:34:47'!
+PASSED!
+
+!testRun: #PortfolioTest #test06PortfolioWithAccountsKnowsTheirTransactions stamp: 'TS 5/21/2023 20:34:47'!
+PASSED!
+
+!testRun: #PortfolioTest #test07PortfolioWithChildrenPortfoliosKnowsTheirTransactions stamp: 'TS 5/21/2023 20:34:47'!
+PASSED!
+
+!testRun: #PortfolioTest #test08PortfolioWithNoAssetsHasNoTransactionsRegistered stamp: 'TS 5/21/2023 20:34:47'!
+PASSED!
+
+!testRun: #PortfolioTest #test09PortfolioWithAssetsHasTheirTransactionRegistered stamp: 'TS 5/21/2023 20:34:47'!
+PASSED!
+
+!testRun: #PortfolioTest #test10PortfolioCantHaveItselfAsAnAsset stamp: 'TS 5/21/2023 20:34:47'!
+PASSED!
+
+!testRun: #PortfolioTest #test11PortfolioCantHaveRepeatedAccounts stamp: 'TS 5/21/2023 20:34:47'!
+PASSED!
+!PortfolioTest methodsFor: 'testing' stamp: 'TS 5/21/2023 20:39:58'!
+test11PortfolioCantHaveAssetsThatAreAlreadyItsDirectChildren
+
+	| portfolio account |
+
+	account := ReceptiveAccount new.
+	portfolio := self portfolioWithAssets: { account }.
+	
+	self
+		should: [ portfolio addAsset: account ]
+		raise: Error - MessageNotUnderstood
+		withMessageText: Portfolio cantHaveRepeatedAssets! !
+
+!methodRemoval: PortfolioTest #test11PortfolioCantHaveRepeatedAccounts stamp: 'TS 5/21/2023 20:39:58'!
+test11PortfolioCantHaveRepeatedAccounts
+
+	| portfolio account |
+
+	account := ReceptiveAccount new.
+	portfolio := self portfolioWithAssets: { account }.
+	
+	self
+		should: [ portfolio addAsset: account ]
+		raise: Error - MessageNotUnderstood
+		withMessageText: Portfolio cantHaveRepeatedAssets!
+!PortfolioTest methodsFor: 'testing' stamp: 'TS 5/21/2023 20:42:32'!
+test12PortfolioCantHaveAssetsThatAreAlreadyInItsDescendantAssets
+
+	| account childPortfolio parentPortfolio |
+
+	account := ReceptiveAccount new.
+	childPortfolio := self portfolioWithAssets: { account }.
+	parentPortfolio := self portfolioWithAssets: { childPortfolio }.
+	
+	self
+		should: [ parentPortfolio addAsset: account ]
+		raise: Error - MessageNotUnderstood
+		withMessageText: Portfolio cantHaveRepeatedAssets! !
+
+!testRun: #PortfolioTest #test12PortfolioCantHaveAssetsThatAreAlreadyInItsDescendantAssets stamp: 'TS 5/21/2023 20:42:35'!
+FAILURE!
+!Portfolio methodsFor: 'modification' stamp: 'TS 5/21/2023 20:46:49' prior: 50621817!
+addAsset: anAsset 
+	
+	((anAsset = self)
+	or: [ assets includes: anAsset ]
+	) ifTrue: [ self error: self class cantHaveRepeatedAssets ].
+	
+	assets add: anAsset! !
+!PortfolioTest methodsFor: 'testing' stamp: 'TS 5/21/2023 20:47:28'!
+test12PortfolioCantHaveAssetsThatAreAlreadyInItsDirectChildren
+
+	| account childPortfolio parentPortfolio |
+
+	account := ReceptiveAccount new.
+	childPortfolio := self portfolioWithAssets: { account }.
+	parentPortfolio := self portfolioWithAssets: { childPortfolio }.
+	
+	self
+		should: [ parentPortfolio addAsset: account ]
+		raise: Error - MessageNotUnderstood
+		withMessageText: Portfolio cantHaveRepeatedAssets! !
+
+!methodRemoval: PortfolioTest #test12PortfolioCantHaveAssetsThatAreAlreadyInItsDescendantAssets stamp: 'TS 5/21/2023 20:47:28'!
+test12PortfolioCantHaveAssetsThatAreAlreadyInItsDescendantAssets
+
+	| account childPortfolio parentPortfolio |
+
+	account := ReceptiveAccount new.
+	childPortfolio := self portfolioWithAssets: { account }.
+	parentPortfolio := self portfolioWithAssets: { childPortfolio }.
+	
+	self
+		should: [ parentPortfolio addAsset: account ]
+		raise: Error - MessageNotUnderstood
+		withMessageText: Portfolio cantHaveRepeatedAssets!
+!PortfolioTest methodsFor: 'testing' stamp: 'TS 5/21/2023 20:47:40'!
+test11PortfolioCantHaveAssetsThatAreAlreadyItsDirectChildrenAssets
+
+	| portfolio account |
+
+	account := ReceptiveAccount new.
+	portfolio := self portfolioWithAssets: { account }.
+	
+	self
+		should: [ portfolio addAsset: account ]
+		raise: Error - MessageNotUnderstood
+		withMessageText: Portfolio cantHaveRepeatedAssets! !
+
+!methodRemoval: PortfolioTest #test11PortfolioCantHaveAssetsThatAreAlreadyItsDirectChildren stamp: 'TS 5/21/2023 20:47:40'!
+test11PortfolioCantHaveAssetsThatAreAlreadyItsDirectChildren
+
+	| portfolio account |
+
+	account := ReceptiveAccount new.
+	portfolio := self portfolioWithAssets: { account }.
+	
+	self
+		should: [ portfolio addAsset: account ]
+		raise: Error - MessageNotUnderstood
+		withMessageText: Portfolio cantHaveRepeatedAssets!
+!PortfolioTest methodsFor: 'testing' stamp: 'TS 5/21/2023 20:47:57'!
+test12PortfolioCantHaveAssetsThatAreAlreadyInItsDirectChildrenAssets
+
+	| account childPortfolio parentPortfolio |
+
+	account := ReceptiveAccount new.
+	childPortfolio := self portfolioWithAssets: { account }.
+	parentPortfolio := self portfolioWithAssets: { childPortfolio }.
+	
+	self
+		should: [ parentPortfolio addAsset: account ]
+		raise: Error - MessageNotUnderstood
+		withMessageText: Portfolio cantHaveRepeatedAssets! !
+
+!methodRemoval: PortfolioTest #test12PortfolioCantHaveAssetsThatAreAlreadyInItsDirectChildren stamp: 'TS 5/21/2023 20:47:57'!
+test12PortfolioCantHaveAssetsThatAreAlreadyInItsDirectChildren
+
+	| account childPortfolio parentPortfolio |
+
+	account := ReceptiveAccount new.
+	childPortfolio := self portfolioWithAssets: { account }.
+	parentPortfolio := self portfolioWithAssets: { childPortfolio }.
+	
+	self
+		should: [ parentPortfolio addAsset: account ]
+		raise: Error - MessageNotUnderstood
+		withMessageText: Portfolio cantHaveRepeatedAssets!
+!PortfolioTest methodsFor: 'testing' stamp: 'TS 5/21/2023 20:48:17'!
+test11PortfolioCantHaveAssetsThatAreAlreadyItsDirectChildren
+
+	| portfolio account |
+
+	account := ReceptiveAccount new.
+	portfolio := self portfolioWithAssets: { account }.
+	
+	self
+		should: [ portfolio addAsset: account ]
+		raise: Error - MessageNotUnderstood
+		withMessageText: Portfolio cantHaveRepeatedAssets! !
+
+!methodRemoval: PortfolioTest #test11PortfolioCantHaveAssetsThatAreAlreadyItsDirectChildrenAssets stamp: 'TS 5/21/2023 20:48:17'!
+test11PortfolioCantHaveAssetsThatAreAlreadyItsDirectChildrenAssets
+
+	| portfolio account |
+
+	account := ReceptiveAccount new.
+	portfolio := self portfolioWithAssets: { account }.
+	
+	self
+		should: [ portfolio addAsset: account ]
+		raise: Error - MessageNotUnderstood
+		withMessageText: Portfolio cantHaveRepeatedAssets!
+!PortfolioTest methodsFor: 'testing' stamp: 'TS 5/21/2023 20:48:47'!
+test11PortfolioCantHaveAssetsThatItAlreadyHasAsDirectChildren
+
+	| portfolio account |
+
+	account := ReceptiveAccount new.
+	portfolio := self portfolioWithAssets: { account }.
+	
+	self
+		should: [ portfolio addAsset: account ]
+		raise: Error - MessageNotUnderstood
+		withMessageText: Portfolio cantHaveRepeatedAssets! !
+
+!methodRemoval: PortfolioTest #test11PortfolioCantHaveAssetsThatAreAlreadyItsDirectChildren stamp: 'TS 5/21/2023 20:48:47'!
+test11PortfolioCantHaveAssetsThatAreAlreadyItsDirectChildren
+
+	| portfolio account |
+
+	account := ReceptiveAccount new.
+	portfolio := self portfolioWithAssets: { account }.
+	
+	self
+		should: [ portfolio addAsset: account ]
+		raise: Error - MessageNotUnderstood
+		withMessageText: Portfolio cantHaveRepeatedAssets!
+
+!testRun: #PortfolioTest #test01PortfolioWithNoAccountsHasZeroBalance stamp: 'TS 5/21/2023 20:49:12'!
+PASSED!
+
+!testRun: #PortfolioTest #test02PortfolioWithSingleAccountHasSameBalanceAsTheAccount stamp: 'TS 5/21/2023 20:49:12'!
+PASSED!
+
+!testRun: #PortfolioTest #test03PortfolioWithMultipleAccountsHasBalanceEqualToTheSumOfTheAccountBalances stamp: 'TS 5/21/2023 20:49:12'!
+PASSED!
+
+!testRun: #PortfolioTest #test04PortfolioWithChildrenPortfoliosHasTheSumOfTheirBalancesAsItsBalance stamp: 'TS 5/21/2023 20:49:12'!
+PASSED!
+
+!testRun: #PortfolioTest #test05PortfolioWithNoAccountsHasNoTransactions stamp: 'TS 5/21/2023 20:49:12'!
+PASSED!
+
+!testRun: #PortfolioTest #test06PortfolioWithAccountsKnowsTheirTransactions stamp: 'TS 5/21/2023 20:49:12'!
+PASSED!
+
+!testRun: #PortfolioTest #test07PortfolioWithChildrenPortfoliosKnowsTheirTransactions stamp: 'TS 5/21/2023 20:49:12'!
+PASSED!
+
+!testRun: #PortfolioTest #test08PortfolioWithNoAssetsHasNoTransactionsRegistered stamp: 'TS 5/21/2023 20:49:12'!
+PASSED!
+
+!testRun: #PortfolioTest #test09PortfolioWithAssetsHasTheirTransactionRegistered stamp: 'TS 5/21/2023 20:49:12'!
+PASSED!
+
+!testRun: #PortfolioTest #test10PortfolioCantHaveItselfAsAnAsset stamp: 'TS 5/21/2023 20:49:12'!
+PASSED!
+
+!testRun: #PortfolioTest #test11PortfolioCantHaveAssetsThatItAlreadyHasAsDirectChildren stamp: 'TS 5/21/2023 20:49:12'!
+PASSED!
+
+!testRun: #PortfolioTest #test12PortfolioCantHaveAssetsThatAreAlreadyInItsDirectChildrenAssets stamp: 'TS 5/21/2023 20:49:12'!
+FAILURE!
+
+!testRun: #PortfolioTest #test12PortfolioCantHaveAssetsThatAreAlreadyInItsDirectChildrenAssets stamp: 'TS 5/21/2023 20:49:12'!
+FAILURE!
+!Portfolio methodsFor: 'modification' stamp: 'TS 5/21/2023 20:50:04' prior: 50621911!
+addAsset: anAsset 
+	
+	((anAsset = self)
+	or: [ assets includes: anAsset ]
+	or: [ assets anySatisfy: [ :aChildAsset | aChildAsset hasAsset: anAsset ] ]
+	) ifTrue: [ self error: self class cantHaveRepeatedAssets ].
+	
+	assets add: anAsset! !
+!Portfolio methodsFor: 'nil' stamp: 'TS 5/21/2023 20:51:12'!
+hasAsset: anAsset
+
+	^ assets includes: anAsset ! !
+!Portfolio methodsFor: 'as yet unclassified' stamp: 'TS 5/21/2023 20:51:12' prior: 50622126!
+hasAsset: anAsset
+
+	^ assets includes: anAsset! !
+!ReceptiveAccount methodsFor: 'nil' stamp: 'TS 5/21/2023 20:51:21'!
+hasAsset: anAsset
+
+	^ false! !
+
+!testRun: #PortfolioTest #test01PortfolioWithNoAccountsHasZeroBalance stamp: 'TS 5/21/2023 20:52:52'!
+PASSED!
+
+!testRun: #PortfolioTest #test02PortfolioWithSingleAccountHasSameBalanceAsTheAccount stamp: 'TS 5/21/2023 20:52:52'!
+PASSED!
+
+!testRun: #PortfolioTest #test03PortfolioWithMultipleAccountsHasBalanceEqualToTheSumOfTheAccountBalances stamp: 'TS 5/21/2023 20:52:52'!
+PASSED!
+
+!testRun: #PortfolioTest #test04PortfolioWithChildrenPortfoliosHasTheSumOfTheirBalancesAsItsBalance stamp: 'TS 5/21/2023 20:52:52'!
+PASSED!
+
+!testRun: #PortfolioTest #test05PortfolioWithNoAccountsHasNoTransactions stamp: 'TS 5/21/2023 20:52:52'!
+PASSED!
+
+!testRun: #PortfolioTest #test06PortfolioWithAccountsKnowsTheirTransactions stamp: 'TS 5/21/2023 20:52:52'!
+PASSED!
+
+!testRun: #PortfolioTest #test07PortfolioWithChildrenPortfoliosKnowsTheirTransactions stamp: 'TS 5/21/2023 20:52:52'!
+PASSED!
+
+!testRun: #PortfolioTest #test08PortfolioWithNoAssetsHasNoTransactionsRegistered stamp: 'TS 5/21/2023 20:52:52'!
+PASSED!
+
+!testRun: #PortfolioTest #test09PortfolioWithAssetsHasTheirTransactionRegistered stamp: 'TS 5/21/2023 20:52:52'!
+PASSED!
+
+!testRun: #PortfolioTest #test10PortfolioCantHaveItselfAsAnAsset stamp: 'TS 5/21/2023 20:52:52'!
+PASSED!
+
+!testRun: #PortfolioTest #test11PortfolioCantHaveAssetsThatItAlreadyHasAsDirectChildren stamp: 'TS 5/21/2023 20:52:52'!
+PASSED!
+
+!testRun: #PortfolioTest #test12PortfolioCantHaveAssetsThatAreAlreadyInItsDirectChildrenAssets stamp: 'TS 5/21/2023 20:52:52'!
+PASSED!
+!PortfolioTest methodsFor: 'testing' stamp: 'TS 5/21/2023 20:55:04'!
+test13PortfolioCantHaveAssetsThatAreAlreadyInItsDescendantAssets
+
+	| account childPortfolio parentPortfolio grandchildPortfolio |
+
+	account := ReceptiveAccount new.
+	grandchildPortfolio := self portfolioWithAssets: { account }.
+	childPortfolio := self portfolioWithAssets: { grandchildPortfolio }.
+	parentPortfolio := self portfolioWithAssets: { childPortfolio }.
+	
+	self
+		should: [ parentPortfolio addAsset: account ]
+		raise: Error - MessageNotUnderstood
+		withMessageText: Portfolio cantHaveRepeatedAssets! !
+
+!testRun: #PortfolioTest #test01PortfolioWithNoAccountsHasZeroBalance stamp: 'TS 5/21/2023 20:55:18'!
+PASSED!
+
+!testRun: #PortfolioTest #test02PortfolioWithSingleAccountHasSameBalanceAsTheAccount stamp: 'TS 5/21/2023 20:55:18'!
+PASSED!
+
+!testRun: #PortfolioTest #test03PortfolioWithMultipleAccountsHasBalanceEqualToTheSumOfTheAccountBalances stamp: 'TS 5/21/2023 20:55:18'!
+PASSED!
+
+!testRun: #PortfolioTest #test04PortfolioWithChildrenPortfoliosHasTheSumOfTheirBalancesAsItsBalance stamp: 'TS 5/21/2023 20:55:18'!
+PASSED!
+
+!testRun: #PortfolioTest #test05PortfolioWithNoAccountsHasNoTransactions stamp: 'TS 5/21/2023 20:55:18'!
+PASSED!
+
+!testRun: #PortfolioTest #test06PortfolioWithAccountsKnowsTheirTransactions stamp: 'TS 5/21/2023 20:55:18'!
+PASSED!
+
+!testRun: #PortfolioTest #test07PortfolioWithChildrenPortfoliosKnowsTheirTransactions stamp: 'TS 5/21/2023 20:55:18'!
+PASSED!
+
+!testRun: #PortfolioTest #test08PortfolioWithNoAssetsHasNoTransactionsRegistered stamp: 'TS 5/21/2023 20:55:18'!
+PASSED!
+
+!testRun: #PortfolioTest #test09PortfolioWithAssetsHasTheirTransactionRegistered stamp: 'TS 5/21/2023 20:55:18'!
+PASSED!
+
+!testRun: #PortfolioTest #test10PortfolioCantHaveItselfAsAnAsset stamp: 'TS 5/21/2023 20:55:18'!
+PASSED!
+
+!testRun: #PortfolioTest #test11PortfolioCantHaveAssetsThatItAlreadyHasAsDirectChildren stamp: 'TS 5/21/2023 20:55:18'!
+PASSED!
+
+!testRun: #PortfolioTest #test12PortfolioCantHaveAssetsThatAreAlreadyInItsDirectChildrenAssets stamp: 'TS 5/21/2023 20:55:18'!
+PASSED!
+
+!testRun: #PortfolioTest #test13PortfolioCantHaveAssetsThatAreAlreadyInItsDescendantAssets stamp: 'TS 5/21/2023 20:55:18'!
+FAILURE!
+
+!testRun: #PortfolioTest #test13PortfolioCantHaveAssetsThatAreAlreadyInItsDescendantAssets stamp: 'TS 5/21/2023 20:55:18'!
+FAILURE!
+!Portfolio methodsFor: 'as yet unclassified' stamp: 'TS 5/21/2023 20:56:11' prior: 50622131!
+hasAsset: anAsset
+
+	^ (assets includes: anAsset) or: [ assets anySatisfy: [:aChildAsset | aChildAsset hasAsset: anAsset ] ]! !
+
+!testRun: #PortfolioTest #test01PortfolioWithNoAccountsHasZeroBalance stamp: 'TS 5/21/2023 20:56:13'!
+PASSED!
+
+!testRun: #PortfolioTest #test02PortfolioWithSingleAccountHasSameBalanceAsTheAccount stamp: 'TS 5/21/2023 20:56:13'!
+PASSED!
+
+!testRun: #PortfolioTest #test03PortfolioWithMultipleAccountsHasBalanceEqualToTheSumOfTheAccountBalances stamp: 'TS 5/21/2023 20:56:13'!
+PASSED!
+
+!testRun: #PortfolioTest #test04PortfolioWithChildrenPortfoliosHasTheSumOfTheirBalancesAsItsBalance stamp: 'TS 5/21/2023 20:56:13'!
+PASSED!
+
+!testRun: #PortfolioTest #test05PortfolioWithNoAccountsHasNoTransactions stamp: 'TS 5/21/2023 20:56:13'!
+PASSED!
+
+!testRun: #PortfolioTest #test06PortfolioWithAccountsKnowsTheirTransactions stamp: 'TS 5/21/2023 20:56:13'!
+PASSED!
+
+!testRun: #PortfolioTest #test07PortfolioWithChildrenPortfoliosKnowsTheirTransactions stamp: 'TS 5/21/2023 20:56:13'!
+PASSED!
+
+!testRun: #PortfolioTest #test08PortfolioWithNoAssetsHasNoTransactionsRegistered stamp: 'TS 5/21/2023 20:56:13'!
+PASSED!
+
+!testRun: #PortfolioTest #test09PortfolioWithAssetsHasTheirTransactionRegistered stamp: 'TS 5/21/2023 20:56:13'!
+PASSED!
+
+!testRun: #PortfolioTest #test10PortfolioCantHaveItselfAsAnAsset stamp: 'TS 5/21/2023 20:56:13'!
+PASSED!
+
+!testRun: #PortfolioTest #test11PortfolioCantHaveAssetsThatItAlreadyHasAsDirectChildren stamp: 'TS 5/21/2023 20:56:13'!
+PASSED!
+
+!testRun: #PortfolioTest #test12PortfolioCantHaveAssetsThatAreAlreadyInItsDirectChildrenAssets stamp: 'TS 5/21/2023 20:56:13'!
+PASSED!
+
+!testRun: #PortfolioTest #test13PortfolioCantHaveAssetsThatAreAlreadyInItsDescendantAssets stamp: 'TS 5/21/2023 20:56:13'!
+PASSED!
+!Portfolio methodsFor: 'modification' stamp: 'TS 5/21/2023 20:56:56' prior: 50622116!
+addAsset: anAsset 
+	
+	((anAsset = self)
+	or: [ self hasAsset: anAsset ]
+	) ifTrue: [ self error: self class cantHaveRepeatedAssets ].
+	
+	assets add: anAsset! !
+
+!testRun: #PortfolioTest #test01PortfolioWithNoAccountsHasZeroBalance stamp: 'TS 5/21/2023 20:56:57'!
+PASSED!
+
+!testRun: #PortfolioTest #test02PortfolioWithSingleAccountHasSameBalanceAsTheAccount stamp: 'TS 5/21/2023 20:56:57'!
+PASSED!
+
+!testRun: #PortfolioTest #test03PortfolioWithMultipleAccountsHasBalanceEqualToTheSumOfTheAccountBalances stamp: 'TS 5/21/2023 20:56:57'!
+PASSED!
+
+!testRun: #PortfolioTest #test04PortfolioWithChildrenPortfoliosHasTheSumOfTheirBalancesAsItsBalance stamp: 'TS 5/21/2023 20:56:57'!
+PASSED!
+
+!testRun: #PortfolioTest #test05PortfolioWithNoAccountsHasNoTransactions stamp: 'TS 5/21/2023 20:56:57'!
+PASSED!
+
+!testRun: #PortfolioTest #test06PortfolioWithAccountsKnowsTheirTransactions stamp: 'TS 5/21/2023 20:56:57'!
+PASSED!
+
+!testRun: #PortfolioTest #test07PortfolioWithChildrenPortfoliosKnowsTheirTransactions stamp: 'TS 5/21/2023 20:56:57'!
+PASSED!
+
+!testRun: #PortfolioTest #test08PortfolioWithNoAssetsHasNoTransactionsRegistered stamp: 'TS 5/21/2023 20:56:57'!
+PASSED!
+
+!testRun: #PortfolioTest #test09PortfolioWithAssetsHasTheirTransactionRegistered stamp: 'TS 5/21/2023 20:56:57'!
+PASSED!
+
+!testRun: #PortfolioTest #test10PortfolioCantHaveItselfAsAnAsset stamp: 'TS 5/21/2023 20:56:57'!
+PASSED!
+
+!testRun: #PortfolioTest #test11PortfolioCantHaveAssetsThatItAlreadyHasAsDirectChildren stamp: 'TS 5/21/2023 20:56:57'!
+PASSED!
+
+!testRun: #PortfolioTest #test12PortfolioCantHaveAssetsThatAreAlreadyInItsDirectChildrenAssets stamp: 'TS 5/21/2023 20:56:57'!
+PASSED!
+
+!testRun: #PortfolioTest #test13PortfolioCantHaveAssetsThatAreAlreadyInItsDescendantAssets stamp: 'TS 5/21/2023 20:56:57'!
+PASSED!
+!Portfolio methodsFor: 'modification' stamp: 'TS 5/21/2023 20:57:02' prior: 50622318!
+addAsset: anAsset 
+	
+	((anAsset = self) or: [ self hasAsset: anAsset ]) ifTrue: [ self error: self class cantHaveRepeatedAssets ].
+	
+	assets add: anAsset! !
+
+!testRun: #PortfolioTest #test01PortfolioWithNoAccountsHasZeroBalance stamp: 'TS 5/21/2023 20:57:03'!
+PASSED!
+
+!testRun: #PortfolioTest #test02PortfolioWithSingleAccountHasSameBalanceAsTheAccount stamp: 'TS 5/21/2023 20:57:03'!
+PASSED!
+
+!testRun: #PortfolioTest #test03PortfolioWithMultipleAccountsHasBalanceEqualToTheSumOfTheAccountBalances stamp: 'TS 5/21/2023 20:57:03'!
+PASSED!
+
+!testRun: #PortfolioTest #test04PortfolioWithChildrenPortfoliosHasTheSumOfTheirBalancesAsItsBalance stamp: 'TS 5/21/2023 20:57:03'!
+PASSED!
+
+!testRun: #PortfolioTest #test05PortfolioWithNoAccountsHasNoTransactions stamp: 'TS 5/21/2023 20:57:03'!
+PASSED!
+
+!testRun: #PortfolioTest #test06PortfolioWithAccountsKnowsTheirTransactions stamp: 'TS 5/21/2023 20:57:03'!
+PASSED!
+
+!testRun: #PortfolioTest #test07PortfolioWithChildrenPortfoliosKnowsTheirTransactions stamp: 'TS 5/21/2023 20:57:03'!
+PASSED!
+
+!testRun: #PortfolioTest #test08PortfolioWithNoAssetsHasNoTransactionsRegistered stamp: 'TS 5/21/2023 20:57:03'!
+PASSED!
+
+!testRun: #PortfolioTest #test09PortfolioWithAssetsHasTheirTransactionRegistered stamp: 'TS 5/21/2023 20:57:03'!
+PASSED!
+
+!testRun: #PortfolioTest #test10PortfolioCantHaveItselfAsAnAsset stamp: 'TS 5/21/2023 20:57:03'!
+PASSED!
+
+!testRun: #PortfolioTest #test11PortfolioCantHaveAssetsThatItAlreadyHasAsDirectChildren stamp: 'TS 5/21/2023 20:57:03'!
+PASSED!
+
+!testRun: #PortfolioTest #test12PortfolioCantHaveAssetsThatAreAlreadyInItsDirectChildrenAssets stamp: 'TS 5/21/2023 20:57:03'!
+PASSED!
+
+!testRun: #PortfolioTest #test13PortfolioCantHaveAssetsThatAreAlreadyInItsDescendantAssets stamp: 'TS 5/21/2023 20:57:03'!
+PASSED!
+
+!testRun: #PortfolioTest #test01PortfolioWithNoAccountsHasZeroBalance stamp: 'TS 5/21/2023 20:57:32'!
+PASSED!
+
+!testRun: #PortfolioTest #test02PortfolioWithSingleAccountHasSameBalanceAsTheAccount stamp: 'TS 5/21/2023 20:57:32'!
+PASSED!
+
+!testRun: #PortfolioTest #test03PortfolioWithMultipleAccountsHasBalanceEqualToTheSumOfTheAccountBalances stamp: 'TS 5/21/2023 20:57:32'!
+PASSED!
+
+!testRun: #PortfolioTest #test04PortfolioWithChildrenPortfoliosHasTheSumOfTheirBalancesAsItsBalance stamp: 'TS 5/21/2023 20:57:32'!
+PASSED!
+
+!testRun: #PortfolioTest #test05PortfolioWithNoAccountsHasNoTransactions stamp: 'TS 5/21/2023 20:57:32'!
+PASSED!
+
+!testRun: #PortfolioTest #test06PortfolioWithAccountsKnowsTheirTransactions stamp: 'TS 5/21/2023 20:57:32'!
+PASSED!
+
+!testRun: #PortfolioTest #test07PortfolioWithChildrenPortfoliosKnowsTheirTransactions stamp: 'TS 5/21/2023 20:57:32'!
+PASSED!
+
+!testRun: #PortfolioTest #test08PortfolioWithNoAssetsHasNoTransactionsRegistered stamp: 'TS 5/21/2023 20:57:32'!
+PASSED!
+
+!testRun: #PortfolioTest #test09PortfolioWithAssetsHasTheirTransactionRegistered stamp: 'TS 5/21/2023 20:57:32'!
+PASSED!
+
+!testRun: #PortfolioTest #test10PortfolioCantHaveItselfAsAnAsset stamp: 'TS 5/21/2023 20:57:32'!
+PASSED!
+
+!testRun: #PortfolioTest #test11PortfolioCantHaveAssetsThatItAlreadyHasAsDirectChildren stamp: 'TS 5/21/2023 20:57:32'!
+PASSED!
+
+!testRun: #PortfolioTest #test12PortfolioCantHaveAssetsThatAreAlreadyInItsDirectChildrenAssets stamp: 'TS 5/21/2023 20:57:32'!
+PASSED!
+
+!testRun: #PortfolioTest #test13PortfolioCantHaveAssetsThatAreAlreadyInItsDescendantAssets stamp: 'TS 5/21/2023 20:57:32'!
+PASSED!
+!PortfolioTest methodsFor: 'testing' stamp: 'TS 5/21/2023 22:50:38'!
+test14PortfolioCantHaveItsParentAsAnAsset
+
+	| childPortfolio parentPortfolio |
+
+	childPortfolio := Portfolio new.
+	parentPortfolio := self portfolioWithAssets: { childPortfolio }.
+	
+	self
+		should: [ childPortfolio addAsset: parentPortfolio ]
+		raise: Error - MessageNotUnderstood
+		withMessageText: Portfolio cantHaveRepeatedAssets! !
+!Portfolio methodsFor: 'modification' stamp: 'TS 5/21/2023 22:55:36' prior: 50622377!
+addAsset: anAsset 
+	
+	(
+	(anAsset = self)
+	or: [ self hasAsset: anAsset ]
+	or: [ anAsset hasAsset: self ]
+	) ifTrue: [ self error: self class cantHaveRepeatedAssets ].
+	
+	assets add: anAsset! !
+!PortfolioTest methodsFor: 'testing' stamp: 'TS 5/21/2023 22:56:27'!
+test14PortfolioCantHaveAnAncestorAsAnAsset
+
+	| childPortfolio parentPortfolio |
+
+	childPortfolio := Portfolio new.
+	parentPortfolio := self portfolioWithAssets: { childPortfolio }.
+	
+	self
+		should: [ childPortfolio addAsset: parentPortfolio ]
+		raise: Error - MessageNotUnderstood
+		withMessageText: Portfolio cantHaveRepeatedAssets! !
+
+!methodRemoval: PortfolioTest #test14PortfolioCantHaveItsParentAsAnAsset stamp: 'TS 5/21/2023 22:56:27'!
+test14PortfolioCantHaveItsParentAsAnAsset
+
+	| childPortfolio parentPortfolio |
+
+	childPortfolio := Portfolio new.
+	parentPortfolio := self portfolioWithAssets: { childPortfolio }.
+	
+	self
+		should: [ childPortfolio addAsset: parentPortfolio ]
+		raise: Error - MessageNotUnderstood
+		withMessageText: Portfolio cantHaveRepeatedAssets!
+
+!testRun: #PortfolioTest #test01PortfolioWithNoAccountsHasZeroBalance stamp: 'TS 5/21/2023 22:56:48'!
+PASSED!
+
+!testRun: #PortfolioTest #test02PortfolioWithSingleAccountHasSameBalanceAsTheAccount stamp: 'TS 5/21/2023 22:56:48'!
+PASSED!
+
+!testRun: #PortfolioTest #test03PortfolioWithMultipleAccountsHasBalanceEqualToTheSumOfTheAccountBalances stamp: 'TS 5/21/2023 22:56:48'!
+PASSED!
+
+!testRun: #PortfolioTest #test04PortfolioWithChildrenPortfoliosHasTheSumOfTheirBalancesAsItsBalance stamp: 'TS 5/21/2023 22:56:48'!
+PASSED!
+
+!testRun: #PortfolioTest #test05PortfolioWithNoAccountsHasNoTransactions stamp: 'TS 5/21/2023 22:56:48'!
+PASSED!
+
+!testRun: #PortfolioTest #test06PortfolioWithAccountsKnowsTheirTransactions stamp: 'TS 5/21/2023 22:56:48'!
+PASSED!
+
+!testRun: #PortfolioTest #test07PortfolioWithChildrenPortfoliosKnowsTheirTransactions stamp: 'TS 5/21/2023 22:56:48'!
+PASSED!
+
+!testRun: #PortfolioTest #test08PortfolioWithNoAssetsHasNoTransactionsRegistered stamp: 'TS 5/21/2023 22:56:48'!
+PASSED!
+
+!testRun: #PortfolioTest #test09PortfolioWithAssetsHasTheirTransactionRegistered stamp: 'TS 5/21/2023 22:56:48'!
+PASSED!
+
+!testRun: #PortfolioTest #test10PortfolioCantHaveItselfAsAnAsset stamp: 'TS 5/21/2023 22:56:48'!
+PASSED!
+
+!testRun: #PortfolioTest #test11PortfolioCantHaveAssetsThatItAlreadyHasAsDirectChildren stamp: 'TS 5/21/2023 22:56:48'!
+PASSED!
+
+!testRun: #PortfolioTest #test12PortfolioCantHaveAssetsThatAreAlreadyInItsDirectChildrenAssets stamp: 'TS 5/21/2023 22:56:48'!
+PASSED!
+
+!testRun: #PortfolioTest #test13PortfolioCantHaveAssetsThatAreAlreadyInItsDescendantAssets stamp: 'TS 5/21/2023 22:56:48'!
+PASSED!
+
+!testRun: #PortfolioTest #test14PortfolioCantHaveAnAncestorAsAnAsset stamp: 'TS 5/21/2023 22:56:48'!
+PASSED!
+!PortfolioTest methodsFor: 'testing' stamp: 'TS 5/21/2023 23:03:12'!
+test15PortfolioWithSingleParentCantHaveASiblingAsAnAsset
+
+	| parentPortfolio portfolio siblingPortfolio |
+
+	portfolio := Portfolio new.
+	siblingPortfolio := Portfolio new.
+	parentPortfolio := self portfolioWithAssets: { portfolio. siblingPortfolio }.
+	
+	self
+		should: [ portfolio addAsset: siblingPortfolio ]
+		raise: Error - MessageNotUnderstood
+		withMessageText: Portfolio cantHaveRepeatedAssets! !
+
+!testRun: #PortfolioTest #test15PortfolioWithSingleParentCantHaveASiblingAsAnAsset stamp: 'TS 5/21/2023 23:03:41'!
+FAILURE!
+!PortfolioTest methodsFor: 'testing' stamp: 'TS 5/21/2023 23:04:01'!
+test15PortfolioWithSingleParentCantHaveAChildOfItsParentAsAnAsset
+
+	| parentPortfolio portfolio siblingPortfolio |
+
+	portfolio := Portfolio new.
+	siblingPortfolio := Portfolio new.
+	parentPortfolio := self portfolioWithAssets: { portfolio. siblingPortfolio }.
+	
+	self
+		should: [ portfolio addAsset: siblingPortfolio ]
+		raise: Error - MessageNotUnderstood
+		withMessageText: Portfolio cantHaveRepeatedAssets! !
+
+!methodRemoval: PortfolioTest #test15PortfolioWithSingleParentCantHaveASiblingAsAnAsset stamp: 'TS 5/21/2023 23:04:01'!
+test15PortfolioWithSingleParentCantHaveASiblingAsAnAsset
+
+	| parentPortfolio portfolio siblingPortfolio |
+
+	portfolio := Portfolio new.
+	siblingPortfolio := Portfolio new.
+	parentPortfolio := self portfolioWithAssets: { portfolio. siblingPortfolio }.
+	
+	self
+		should: [ portfolio addAsset: siblingPortfolio ]
+		raise: Error - MessageNotUnderstood
+		withMessageText: Portfolio cantHaveRepeatedAssets!
+!Portfolio methodsFor: 'modification' stamp: 'TS 5/21/2023 23:06:16' prior: 50622500!
+addAsset: anAsset 
+	
+	(
+	(anAsset = self)
+	or: [ self hasAsset: anAsset ]
+	or: [ anAsset hasAsset: self ]
+	) ifTrue: [ self error: self class cantHaveRepeatedAssets ].
+	
+	(anAsset isKindOf: self class) ifTrue: [ anAsset addParentPortfolio: self ] .
+	
+	assets add: anAsset! !
+!Portfolio methodsFor: 'modification' stamp: 'TS 5/21/2023 23:06:18' prior: 50622641!
+addAsset: anAsset 
+	
+	(
+	(anAsset = self)
+	or: [ self hasAsset: anAsset ]
+	or: [ anAsset hasAsset: self ]
+	) ifTrue: [ self error: self class cantHaveRepeatedAssets ].
+	
+	(anAsset isKindOf: self class) ifTrue: [ anAsset addParentPortfolio: self ].
+	
+	assets add: anAsset! !
+
+!classDefinition: #Portfolio category: 'Portfolio-Ejercicio' stamp: 'TS 5/21/2023 23:07:27'!
+Asset subclass: #Portfolio
+	instanceVariableNames: 'assets parentPortfolio'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Portfolio-Ejercicio'!
+!Portfolio methodsFor: 'modification' stamp: 'TS 5/21/2023 23:07:25'!
+addParentPortfolio: aParentPortfolio
+
+	parentPortfolio := aParentPortfolio! !
+!Portfolio methodsFor: 'modification' stamp: 'TS 5/21/2023 23:09:20' prior: 50622653!
+addAsset: anAsset 
+	
+	(
+	(anAsset = self)
+	or: [ self hasAsset: anAsset ]
+	or: [ anAsset hasAsset: self ]
+	or: [ parentPortfolio hasAsset: anAsset ]
+	) ifTrue: [ self error: self class cantHaveRepeatedAssets ].
+	
+	(anAsset isKindOf: self class) ifTrue: [ anAsset addParentPortfolio: self ].
+	
+	assets add: anAsset! !
+!Portfolio methodsFor: 'initialization' stamp: 'TS 5/21/2023 23:09:39' prior: 50621028 overrides: 16920235!
+initialize
+
+	assets := Set new! !
+!Portfolio methodsFor: 'modification' stamp: 'TS 5/21/2023 23:11:11' prior: 50622678!
+addAsset: anAsset 
+	
+	(
+	(anAsset = self)
+	or: [ self hasAsset: anAsset ]
+	or: [ anAsset hasAsset: self ]
+	or: [ parentPortfolio isNotNil and: [parentPortfolio hasAsset: anAsset] ]
+	) ifTrue: [ self error: self class cantHaveRepeatedAssets ].
+	
+	(anAsset isKindOf: self class) ifTrue: [ anAsset addParentPortfolio: self ].
+	
+	assets add: anAsset! !
+
+!testRun: #PortfolioTest #test01PortfolioWithNoAccountsHasZeroBalance stamp: 'TS 5/21/2023 23:12:19'!
+PASSED!
+
+!testRun: #PortfolioTest #test02PortfolioWithSingleAccountHasSameBalanceAsTheAccount stamp: 'TS 5/21/2023 23:12:19'!
+ERROR!
+
+!testRun: #PortfolioTest #test03PortfolioWithMultipleAccountsHasBalanceEqualToTheSumOfTheAccountBalances stamp: 'TS 5/21/2023 23:12:19'!
+ERROR!
+
+!testRun: #PortfolioTest #test04PortfolioWithChildrenPortfoliosHasTheSumOfTheirBalancesAsItsBalance stamp: 'TS 5/21/2023 23:12:19'!
+ERROR!
+
+!testRun: #PortfolioTest #test05PortfolioWithNoAccountsHasNoTransactions stamp: 'TS 5/21/2023 23:12:19'!
+PASSED!
+
+!testRun: #PortfolioTest #test06PortfolioWithAccountsKnowsTheirTransactions stamp: 'TS 5/21/2023 23:12:19'!
+ERROR!
+
+!testRun: #PortfolioTest #test07PortfolioWithChildrenPortfoliosKnowsTheirTransactions stamp: 'TS 5/21/2023 23:12:19'!
+ERROR!
+
+!testRun: #PortfolioTest #test08PortfolioWithNoAssetsHasNoTransactionsRegistered stamp: 'TS 5/21/2023 23:12:19'!
+PASSED!
+
+!testRun: #PortfolioTest #test09PortfolioWithAssetsHasTheirTransactionRegistered stamp: 'TS 5/21/2023 23:12:19'!
+ERROR!
+
+!testRun: #PortfolioTest #test10PortfolioCantHaveItselfAsAnAsset stamp: 'TS 5/21/2023 23:12:19'!
+PASSED!
+
+!testRun: #PortfolioTest #test11PortfolioCantHaveAssetsThatItAlreadyHasAsDirectChildren stamp: 'TS 5/21/2023 23:12:19'!
+ERROR!
+
+!testRun: #PortfolioTest #test12PortfolioCantHaveAssetsThatAreAlreadyInItsDirectChildrenAssets stamp: 'TS 5/21/2023 23:12:19'!
+ERROR!
+
+!testRun: #PortfolioTest #test13PortfolioCantHaveAssetsThatAreAlreadyInItsDescendantAssets stamp: 'TS 5/21/2023 23:12:19'!
+ERROR!
+
+!testRun: #PortfolioTest #test14PortfolioCantHaveAnAncestorAsAnAsset stamp: 'TS 5/21/2023 23:12:19'!
+ERROR!
+
+!testRun: #PortfolioTest #test15PortfolioWithSingleParentCantHaveAChildOfItsParentAsAnAsset stamp: 'TS 5/21/2023 23:12:19'!
+ERROR!
+
+!testRun: #PortfolioTest #test02PortfolioWithSingleAccountHasSameBalanceAsTheAccount stamp: 'TS 5/21/2023 23:12:21'!
+ERROR!
+!Portfolio methodsFor: 'modification' stamp: 'TS 5/21/2023 23:13:16' prior: 50622696!
+addAsset: anAsset 
+	
+	(
+	(anAsset = self)
+	or: [ self hasAsset: anAsset ]
+	or: [ anAsset hasAsset: self ]
+	or: [ parentPortfolio isNil not and: [parentPortfolio hasAsset: anAsset] ]
+	) ifTrue: [ self error: self class cantHaveRepeatedAssets ].
+	
+	(anAsset isKindOf: self class) ifTrue: [ anAsset addParentPortfolio: self ].
+	
+	assets add: anAsset! !
+!Portfolio methodsFor: 'modification' stamp: 'TS 5/21/2023 23:13:34' prior: 50622772!
+addAsset: anAsset 
+	
+	(
+	(anAsset = self)
+		or: [ self hasAsset: anAsset ]
+		or: [ anAsset hasAsset: self ]
+		or: [ parentPortfolio isNil not and: [parentPortfolio hasAsset: anAsset] ]
+	) ifTrue: [ self error: self class cantHaveRepeatedAssets ].
+	
+	(anAsset isKindOf: self class) ifTrue: [ anAsset addParentPortfolio: self ].
+	
+	assets add: anAsset! !
+
+!testRun: #PortfolioTest #test01PortfolioWithNoAccountsHasZeroBalance stamp: 'TS 5/21/2023 23:13:35'!
+PASSED!
+
+!testRun: #PortfolioTest #test02PortfolioWithSingleAccountHasSameBalanceAsTheAccount stamp: 'TS 5/21/2023 23:13:35'!
+PASSED!
+
+!testRun: #PortfolioTest #test03PortfolioWithMultipleAccountsHasBalanceEqualToTheSumOfTheAccountBalances stamp: 'TS 5/21/2023 23:13:35'!
+PASSED!
+
+!testRun: #PortfolioTest #test04PortfolioWithChildrenPortfoliosHasTheSumOfTheirBalancesAsItsBalance stamp: 'TS 5/21/2023 23:13:35'!
+PASSED!
+
+!testRun: #PortfolioTest #test05PortfolioWithNoAccountsHasNoTransactions stamp: 'TS 5/21/2023 23:13:35'!
+PASSED!
+
+!testRun: #PortfolioTest #test06PortfolioWithAccountsKnowsTheirTransactions stamp: 'TS 5/21/2023 23:13:35'!
+PASSED!
+
+!testRun: #PortfolioTest #test07PortfolioWithChildrenPortfoliosKnowsTheirTransactions stamp: 'TS 5/21/2023 23:13:35'!
+PASSED!
+
+!testRun: #PortfolioTest #test08PortfolioWithNoAssetsHasNoTransactionsRegistered stamp: 'TS 5/21/2023 23:13:35'!
+PASSED!
+
+!testRun: #PortfolioTest #test09PortfolioWithAssetsHasTheirTransactionRegistered stamp: 'TS 5/21/2023 23:13:35'!
+PASSED!
+
+!testRun: #PortfolioTest #test10PortfolioCantHaveItselfAsAnAsset stamp: 'TS 5/21/2023 23:13:35'!
+PASSED!
+
+!testRun: #PortfolioTest #test11PortfolioCantHaveAssetsThatItAlreadyHasAsDirectChildren stamp: 'TS 5/21/2023 23:13:35'!
+PASSED!
+
+!testRun: #PortfolioTest #test12PortfolioCantHaveAssetsThatAreAlreadyInItsDirectChildrenAssets stamp: 'TS 5/21/2023 23:13:35'!
+PASSED!
+
+!testRun: #PortfolioTest #test13PortfolioCantHaveAssetsThatAreAlreadyInItsDescendantAssets stamp: 'TS 5/21/2023 23:13:35'!
+PASSED!
+
+!testRun: #PortfolioTest #test14PortfolioCantHaveAnAncestorAsAnAsset stamp: 'TS 5/21/2023 23:13:35'!
+PASSED!
+
+!testRun: #PortfolioTest #test15PortfolioWithSingleParentCantHaveAChildOfItsParentAsAnAsset stamp: 'TS 5/21/2023 23:13:35'!
+PASSED!
+!PortfolioTest methodsFor: 'testing' stamp: 'TS 5/21/2023 23:14:14'!
+test16PortfolioWithMultipleParentsCantHaveAChildOfOneOfItsParentsAsAnAsset
+
+	| parentPortfolio portfolio siblingPortfolio |
+
+	portfolio := Portfolio new.
+	siblingPortfolio := Portfolio new.
+	parentPortfolio := self portfolioWithAssets: { portfolio. siblingPortfolio }.
+	
+	self
+		should: [ portfolio addAsset: siblingPortfolio ]
+		raise: Error - MessageNotUnderstood
+		withMessageText: Portfolio cantHaveRepeatedAssets! !
+!PortfolioTest methodsFor: 'testing' stamp: 'TS 5/21/2023 23:14:42' prior: 50622858!
+test16PortfolioWithMultipleParentsCantHaveAChildOfOneOfItsParentsAsAnAsset
+
+	| portfolio siblingPortfolio parentPortfolio1 parentPortfolio2 |
+
+	portfolio := Portfolio new.
+	siblingPortfolio := Portfolio new.
+	parentPortfolio1 := self portfolioWithAssets: { portfolio. siblingPortfolio }.
+	parentPortfolio2 := self portfolioWithAssets: { portfolio }.
+	
+	self
+		should: [ portfolio addAsset: siblingPortfolio ]
+		raise: Error - MessageNotUnderstood
+		withMessageText: Portfolio cantHaveRepeatedAssets! !
+
+!testRun: #PortfolioTest #test16PortfolioWithMultipleParentsCantHaveAChildOfOneOfItsParentsAsAnAsset stamp: 'TS 5/21/2023 23:15:10'!
+FAILURE!
+
+!testRun: #PortfolioTest #test16PortfolioWithMultipleParentsCantHaveAChildOfOneOfItsParentsAsAnAsset stamp: 'TS 5/21/2023 23:15:25'!
+FAILURE!
+!PortfolioTest methodsFor: 'testing' stamp: 'TS 5/21/2023 23:21:30'!
+test15PortfolioWithSingleParentCantHaveASiblingAsAnAsset
+
+	| parentPortfolio portfolio siblingPortfolio |
+
+	portfolio := Portfolio new.
+	siblingPortfolio := Portfolio new.
+	parentPortfolio := self portfolioWithAssets: { portfolio. siblingPortfolio }.
+	
+	self
+		should: [ portfolio addAsset: siblingPortfolio ]
+		raise: Error - MessageNotUnderstood
+		withMessageText: Portfolio cantHaveRepeatedAssets! !
+
+!methodRemoval: PortfolioTest #test15PortfolioWithSingleParentCantHaveAChildOfItsParentAsAnAsset stamp: 'TS 5/21/2023 23:21:30'!
+test15PortfolioWithSingleParentCantHaveAChildOfItsParentAsAnAsset
+
+	| parentPortfolio portfolio siblingPortfolio |
+
+	portfolio := Portfolio new.
+	siblingPortfolio := Portfolio new.
+	parentPortfolio := self portfolioWithAssets: { portfolio. siblingPortfolio }.
+	
+	self
+		should: [ portfolio addAsset: siblingPortfolio ]
+		raise: Error - MessageNotUnderstood
+		withMessageText: Portfolio cantHaveRepeatedAssets!
+!PortfolioTest methodsFor: 'testing' stamp: 'TS 5/21/2023 23:21:39'!
+test16PortfolioWithMultipleParentsCantHaveASiblingAsAnAsset
+
+	| portfolio siblingPortfolio parentPortfolio1 parentPortfolio2 |
+
+	portfolio := Portfolio new.
+	siblingPortfolio := Portfolio new.
+	parentPortfolio1 := self portfolioWithAssets: { portfolio. siblingPortfolio }.
+	parentPortfolio2 := self portfolioWithAssets: { portfolio }.
+	
+	self
+		should: [ portfolio addAsset: siblingPortfolio ]
+		raise: Error - MessageNotUnderstood
+		withMessageText: Portfolio cantHaveRepeatedAssets! !
+
+!methodRemoval: PortfolioTest #test16PortfolioWithMultipleParentsCantHaveAChildOfOneOfItsParentsAsAnAsset stamp: 'TS 5/21/2023 23:21:39'!
+test16PortfolioWithMultipleParentsCantHaveAChildOfOneOfItsParentsAsAnAsset
+
+	| portfolio siblingPortfolio parentPortfolio1 parentPortfolio2 |
+
+	portfolio := Portfolio new.
+	siblingPortfolio := Portfolio new.
+	parentPortfolio1 := self portfolioWithAssets: { portfolio. siblingPortfolio }.
+	parentPortfolio2 := self portfolioWithAssets: { portfolio }.
+	
+	self
+		should: [ portfolio addAsset: siblingPortfolio ]
+		raise: Error - MessageNotUnderstood
+		withMessageText: Portfolio cantHaveRepeatedAssets!
+
+!testRun: #PortfolioTest #test16PortfolioWithMultipleParentsCantHaveASiblingAsAnAsset stamp: 'TS 5/21/2023 23:21:44'!
+FAILURE!
+!Portfolio methodsFor: 'modification' stamp: 'TS 5/21/2023 23:22:39' prior: 50622672!
+addParentPortfolio: aParentPortfolio
+
+	parentPortfolio add: aParentPortfolio! !
+!Portfolio methodsFor: 'initialization' stamp: 'TS 5/21/2023 23:22:56' prior: 50622692 overrides: 16920235!
+initialize
+
+	assets := Set new.
+	parentPortfolio := Set new! !
+
+!classDefinition: #Portfolio category: 'Portfolio-Ejercicio' stamp: 'TS 5/21/2023 23:22:59'!
+Asset subclass: #Portfolio
+	instanceVariableNames: 'assets parentPortfolios'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Portfolio-Ejercicio'!
+!Portfolio methodsFor: 'as yet unclassified' stamp: 'TS 5/21/2023 23:22:59' prior: 50622786!
+addAsset: anAsset 
+	
+	(
+	(anAsset = self)
+		or: [ self hasAsset: anAsset ]
+		or: [ anAsset hasAsset: self ]
+		or: [ parentPortfolios isNil not and: [parentPortfolios hasAsset: anAsset] ]
+	) ifTrue: [ self error: self class cantHaveRepeatedAssets ].
+	
+	(anAsset isKindOf: self class) ifTrue: [ anAsset addParentPortfolio: self ].
+	
+	assets add: anAsset! !
+!Portfolio methodsFor: 'as yet unclassified' stamp: 'TS 5/21/2023 23:22:59' prior: 50622975!
+addParentPortfolio: aParentPortfolio
+
+	parentPortfolios add: aParentPortfolio! !
+!Portfolio methodsFor: 'as yet unclassified' stamp: 'TS 5/21/2023 23:22:59' prior: 50622981 overrides: 16920235!
+initialize
+
+	assets := Set new.
+	parentPortfolios := Set new! !
+!Portfolio methodsFor: 'modification' stamp: 'TS 5/21/2023 23:23:54' prior: 50622994!
+addAsset: anAsset 
+	
+	(
+	(anAsset = self)
+		or: [ self hasAsset: anAsset ]
+		or: [ anAsset hasAsset: self ]
+		or: [ parentPortfolios anySatisfy: [:aParentPortfolio | aParentPortfolio hasAsset: anAsset ] ]
+	) ifTrue: [ self error: self class cantHaveRepeatedAssets ].
+	
+	(anAsset isKindOf: self class) ifTrue: [ anAsset addParentPortfolio: self ].
+	
+	assets add: anAsset! !
+
+!testRun: #PortfolioTest #test01PortfolioWithNoAccountsHasZeroBalance stamp: 'TS 5/21/2023 23:24:22'!
+PASSED!
+
+!testRun: #PortfolioTest #test02PortfolioWithSingleAccountHasSameBalanceAsTheAccount stamp: 'TS 5/21/2023 23:24:22'!
+PASSED!
+
+!testRun: #PortfolioTest #test03PortfolioWithMultipleAccountsHasBalanceEqualToTheSumOfTheAccountBalances stamp: 'TS 5/21/2023 23:24:22'!
+PASSED!
+
+!testRun: #PortfolioTest #test04PortfolioWithChildrenPortfoliosHasTheSumOfTheirBalancesAsItsBalance stamp: 'TS 5/21/2023 23:24:22'!
+PASSED!
+
+!testRun: #PortfolioTest #test05PortfolioWithNoAccountsHasNoTransactions stamp: 'TS 5/21/2023 23:24:22'!
+PASSED!
+
+!testRun: #PortfolioTest #test06PortfolioWithAccountsKnowsTheirTransactions stamp: 'TS 5/21/2023 23:24:22'!
+PASSED!
+
+!testRun: #PortfolioTest #test07PortfolioWithChildrenPortfoliosKnowsTheirTransactions stamp: 'TS 5/21/2023 23:24:22'!
+PASSED!
+
+!testRun: #PortfolioTest #test08PortfolioWithNoAssetsHasNoTransactionsRegistered stamp: 'TS 5/21/2023 23:24:22'!
+PASSED!
+
+!testRun: #PortfolioTest #test09PortfolioWithAssetsHasTheirTransactionRegistered stamp: 'TS 5/21/2023 23:24:22'!
+PASSED!
+
+!testRun: #PortfolioTest #test10PortfolioCantHaveItselfAsAnAsset stamp: 'TS 5/21/2023 23:24:22'!
+PASSED!
+
+!testRun: #PortfolioTest #test11PortfolioCantHaveAssetsThatItAlreadyHasAsDirectChildren stamp: 'TS 5/21/2023 23:24:22'!
+PASSED!
+
+!testRun: #PortfolioTest #test12PortfolioCantHaveAssetsThatAreAlreadyInItsDirectChildrenAssets stamp: 'TS 5/21/2023 23:24:22'!
+PASSED!
+
+!testRun: #PortfolioTest #test13PortfolioCantHaveAssetsThatAreAlreadyInItsDescendantAssets stamp: 'TS 5/21/2023 23:24:22'!
+PASSED!
+
+!testRun: #PortfolioTest #test14PortfolioCantHaveAnAncestorAsAnAsset stamp: 'TS 5/21/2023 23:24:22'!
+PASSED!
+
+!testRun: #PortfolioTest #test15PortfolioWithSingleParentCantHaveASiblingAsAnAsset stamp: 'TS 5/21/2023 23:24:22'!
+PASSED!
+
+!testRun: #PortfolioTest #test16PortfolioWithMultipleParentsCantHaveASiblingAsAnAsset stamp: 'TS 5/21/2023 23:24:22'!
+PASSED!
+!PortfolioTest methodsFor: 'testing' stamp: 'TS 5/21/2023 23:29:40'!
+test17PortfolioCantHaveDescendantOfAnAncestorAsAnAsset
+
+	| portfolio cousinPortfolio grandparentPortfolio parentPortfolio unclePortfolio |
+
+	portfolio := Portfolio new.
+	parentPortfolio := self portfolioWithAssets: { portfolio }.
+	cousinPortfolio := Portfolio new.
+	unclePortfolio := self portfolioWithAssets: { cousinPortfolio }.
+	grandparentPortfolio := self portfolioWithAssets: { parentPortfolio. unclePortfolio }.
+	
+	self
+		should: [ portfolio addAsset: cousinPortfolio ]
+		raise: Error - MessageNotUnderstood
+		withMessageText: Portfolio cantHaveRepeatedAssets! !
+
+!testRun: #PortfolioTest #test17PortfolioCantHaveDescendantOfAnAncestorAsAnAsset stamp: 'TS 5/21/2023 23:29:53'!
+FAILURE!
+
+!testRun: #PortfolioTest #test17PortfolioCantHaveDescendantOfAnAncestorAsAnAsset stamp: 'TS 5/21/2023 23:31:29'!
+FAILURE!
+
+!methodRemoval: PortfolioTest #test17PortfolioCantHaveDescendantOfAnAncestorAsAnAsset stamp: 'TS 5/21/2023 23:33:28'!
+test17PortfolioCantHaveDescendantOfAnAncestorAsAnAsset
+
+	| portfolio cousinPortfolio grandparentPortfolio parentPortfolio unclePortfolio |
+
+	portfolio := Portfolio new.
+	parentPortfolio := self portfolioWithAssets: { portfolio }.
+	cousinPortfolio := Portfolio new.
+	unclePortfolio := self portfolioWithAssets: { cousinPortfolio }.
+	grandparentPortfolio := self portfolioWithAssets: { parentPortfolio. unclePortfolio }.
+	
+	self
+		should: [ portfolio addAsset: cousinPortfolio ]
+		raise: Error - MessageNotUnderstood
+		withMessageText: Portfolio cantHaveRepeatedAssets!
+!Portfolio methodsFor: 'modification' stamp: 'TS 5/21/2023 23:34:18'!
+parentPortfoliosHaveAsset: anAsset
+
+	^ parentPortfolios anySatisfy: [:aParentPortfolio | aParentPortfolio hasAsset: anAsset ]! !
+!Portfolio methodsFor: 'modification' stamp: 'TS 5/21/2023 23:34:18' prior: 50623020!
+addAsset: anAsset 
+	
+	(
+	(anAsset = self)
+		or: [ self hasAsset: anAsset ]
+		or: [ anAsset hasAsset: self ]
+		or: [ self parentPortfoliosHaveAsset: anAsset ]
+	) ifTrue: [ self error: self class cantHaveRepeatedAssets ].
+	
+	(anAsset isKindOf: self class) ifTrue: [ anAsset addParentPortfolio: self ].
+	
+	assets add: anAsset! !
+!PortfolioTest methodsFor: 'testing' stamp: 'TS 5/21/2023 23:35:08'!
+test17PortfolioCantHaveDescendantOfAnAncestorAsAnAsset
+
+	| portfolio cousinPortfolio grandparentPortfolio parentPortfolio unclePortfolio |
+
+	portfolio := Portfolio new.
+	parentPortfolio := self portfolioWithAssets: { portfolio }.
+	cousinPortfolio := Portfolio new.
+	unclePortfolio := self portfolioWithAssets: { cousinPortfolio }.
+	grandparentPortfolio := self portfolioWithAssets: { parentPortfolio. unclePortfolio }.
+	
+	self
+		should: [ portfolio addAsset: cousinPortfolio ]
+		raise: Error - MessageNotUnderstood
+		withMessageText: Portfolio cantHaveRepeatedAssets! !
+
+!testRun: #PortfolioTest #test17PortfolioCantHaveDescendantOfAnAncestorAsAnAsset stamp: 'TS 5/21/2023 23:35:13'!
+FAILURE!
+!Portfolio methodsFor: 'as yet unclassified' stamp: 'TS 5/21/2023 23:37:02' prior: 50623146!
+parentPortfoliosHaveAsset: anAsset
+
+	^ parentPortfolios anySatisfy: [:aParentPortfolio |
+		(aParentPortfolio hasAsset: anAsset) or: [ aParentPortfolio parentPortfoliosHaveAsset: anAsset ]
+	]! !
+
+!testRun: #PortfolioTest #test01PortfolioWithNoAccountsHasZeroBalance stamp: 'TS 5/21/2023 23:37:02'!
+PASSED!
+
+!testRun: #PortfolioTest #test02PortfolioWithSingleAccountHasSameBalanceAsTheAccount stamp: 'TS 5/21/2023 23:37:02'!
+PASSED!
+
+!testRun: #PortfolioTest #test03PortfolioWithMultipleAccountsHasBalanceEqualToTheSumOfTheAccountBalances stamp: 'TS 5/21/2023 23:37:02'!
+PASSED!
+
+!testRun: #PortfolioTest #test04PortfolioWithChildrenPortfoliosHasTheSumOfTheirBalancesAsItsBalance stamp: 'TS 5/21/2023 23:37:02'!
+PASSED!
+
+!testRun: #PortfolioTest #test05PortfolioWithNoAccountsHasNoTransactions stamp: 'TS 5/21/2023 23:37:02'!
+PASSED!
+
+!testRun: #PortfolioTest #test06PortfolioWithAccountsKnowsTheirTransactions stamp: 'TS 5/21/2023 23:37:02'!
+PASSED!
+
+!testRun: #PortfolioTest #test07PortfolioWithChildrenPortfoliosKnowsTheirTransactions stamp: 'TS 5/21/2023 23:37:02'!
+PASSED!
+
+!testRun: #PortfolioTest #test08PortfolioWithNoAssetsHasNoTransactionsRegistered stamp: 'TS 5/21/2023 23:37:02'!
+PASSED!
+
+!testRun: #PortfolioTest #test09PortfolioWithAssetsHasTheirTransactionRegistered stamp: 'TS 5/21/2023 23:37:02'!
+PASSED!
+
+!testRun: #PortfolioTest #test10PortfolioCantHaveItselfAsAnAsset stamp: 'TS 5/21/2023 23:37:02'!
+PASSED!
+
+!testRun: #PortfolioTest #test11PortfolioCantHaveAssetsThatItAlreadyHasAsDirectChildren stamp: 'TS 5/21/2023 23:37:02'!
+PASSED!
+
+!testRun: #PortfolioTest #test12PortfolioCantHaveAssetsThatAreAlreadyInItsDirectChildrenAssets stamp: 'TS 5/21/2023 23:37:02'!
+PASSED!
+
+!testRun: #PortfolioTest #test13PortfolioCantHaveAssetsThatAreAlreadyInItsDescendantAssets stamp: 'TS 5/21/2023 23:37:02'!
+PASSED!
+
+!testRun: #PortfolioTest #test14PortfolioCantHaveAnAncestorAsAnAsset stamp: 'TS 5/21/2023 23:37:02'!
+PASSED!
+
+!testRun: #PortfolioTest #test15PortfolioWithSingleParentCantHaveASiblingAsAnAsset stamp: 'TS 5/21/2023 23:37:02'!
+PASSED!
+
+!testRun: #PortfolioTest #test16PortfolioWithMultipleParentsCantHaveASiblingAsAnAsset stamp: 'TS 5/21/2023 23:37:02'!
+PASSED!
+
+!testRun: #PortfolioTest #test17PortfolioCantHaveDescendantOfAnAncestorAsAnAsset stamp: 'TS 5/21/2023 23:37:02'!
+PASSED!
+!Portfolio methodsFor: 'as yet unclassified' stamp: 'TS 5/21/2023 23:42:05' prior: 50623191!
+parentPortfoliosHaveAsset: anAsset
+
+	^ parentPortfolios anySatisfy: [:aParentPortfolio |
+		(aParentPortfolio hasAsset: anAsset) or: [ aParentPortfolio parentPortfoliosHaveAsset: anAsset ]
+	]! !
+!PortfolioTest methodsFor: 'testing' stamp: 'TS 5/21/2023 23:45:43'!
+test18PortfolioCantAddPortfolioThatContainsAccountsItAlreadyHas
+
+	| portfolio account childPortfolio |
+
+	account := ReceptiveAccount new.
+	portfolio := self portfolioWithAssets: { account }.
+	childPortfolio := self portfolioWithAssets: { account }.
+	
+	self
+		should: [ portfolio addAsset: childPortfolio ]
+		raise: Error - MessageNotUnderstood
+		withMessageText: Portfolio cantHaveRepeatedAssets! !
+
+!testRun: #PortfolioTest #test18PortfolioCantAddPortfolioThatContainsAccountsItAlreadyHas stamp: 'TS 5/21/2023 23:45:48'!
+FAILURE!
+!Portfolio methodsFor: 'modification' stamp: 'TS 5/21/2023 23:51:34' prior: 50623153!
+addAsset: anAsset 
+	
+	(
+	(anAsset = self)
+		or: [ self hasAsset: anAsset ]
+		or: [ anAsset hasAsset: self ]
+		or: [ self parentPortfoliosHaveAsset: anAsset ]
+		or: [ assets anySatisfy: [ :aChildAsset | anAsset hasAsset: aChildAsset ] ]
+	) ifTrue: [ self error: self class cantHaveRepeatedAssets ].
+	
+	(anAsset isKindOf: self class) ifTrue: [ anAsset addParentPortfolio: self ].
+	
+	assets add: anAsset! !
+
+!testRun: #PortfolioTest #test01PortfolioWithNoAccountsHasZeroBalance stamp: 'TS 5/21/2023 23:51:50'!
+PASSED!
+
+!testRun: #PortfolioTest #test02PortfolioWithSingleAccountHasSameBalanceAsTheAccount stamp: 'TS 5/21/2023 23:51:50'!
+PASSED!
+
+!testRun: #PortfolioTest #test03PortfolioWithMultipleAccountsHasBalanceEqualToTheSumOfTheAccountBalances stamp: 'TS 5/21/2023 23:51:50'!
+PASSED!
+
+!testRun: #PortfolioTest #test04PortfolioWithChildrenPortfoliosHasTheSumOfTheirBalancesAsItsBalance stamp: 'TS 5/21/2023 23:51:50'!
+PASSED!
+
+!testRun: #PortfolioTest #test05PortfolioWithNoAccountsHasNoTransactions stamp: 'TS 5/21/2023 23:51:50'!
+PASSED!
+
+!testRun: #PortfolioTest #test06PortfolioWithAccountsKnowsTheirTransactions stamp: 'TS 5/21/2023 23:51:50'!
+PASSED!
+
+!testRun: #PortfolioTest #test07PortfolioWithChildrenPortfoliosKnowsTheirTransactions stamp: 'TS 5/21/2023 23:51:50'!
+PASSED!
+
+!testRun: #PortfolioTest #test08PortfolioWithNoAssetsHasNoTransactionsRegistered stamp: 'TS 5/21/2023 23:51:50'!
+PASSED!
+
+!testRun: #PortfolioTest #test09PortfolioWithAssetsHasTheirTransactionRegistered stamp: 'TS 5/21/2023 23:51:50'!
+PASSED!
+
+!testRun: #PortfolioTest #test10PortfolioCantHaveItselfAsAnAsset stamp: 'TS 5/21/2023 23:51:50'!
+PASSED!
+
+!testRun: #PortfolioTest #test11PortfolioCantHaveAssetsThatItAlreadyHasAsDirectChildren stamp: 'TS 5/21/2023 23:51:50'!
+PASSED!
+
+!testRun: #PortfolioTest #test12PortfolioCantHaveAssetsThatAreAlreadyInItsDirectChildrenAssets stamp: 'TS 5/21/2023 23:51:50'!
+PASSED!
+
+!testRun: #PortfolioTest #test13PortfolioCantHaveAssetsThatAreAlreadyInItsDescendantAssets stamp: 'TS 5/21/2023 23:51:50'!
+PASSED!
+
+!testRun: #PortfolioTest #test14PortfolioCantHaveAnAncestorAsAnAsset stamp: 'TS 5/21/2023 23:51:50'!
+PASSED!
+
+!testRun: #PortfolioTest #test15PortfolioWithSingleParentCantHaveASiblingAsAnAsset stamp: 'TS 5/21/2023 23:51:50'!
+PASSED!
+
+!testRun: #PortfolioTest #test16PortfolioWithMultipleParentsCantHaveASiblingAsAnAsset stamp: 'TS 5/21/2023 23:51:50'!
+PASSED!
+
+!testRun: #PortfolioTest #test17PortfolioCantHaveDescendantOfAnAncestorAsAnAsset stamp: 'TS 5/21/2023 23:51:50'!
+PASSED!
+
+!testRun: #PortfolioTest #test18PortfolioCantAddPortfolioThatContainsAccountsItAlreadyHas stamp: 'TS 5/21/2023 23:51:50'!
+PASSED!
+!PortfolioTest methodsFor: 'testing' stamp: 'TS 5/21/2023 23:52:32'!
+test18PortfolioCantAddPortfolioThatContainsOneOfItsChildren
+
+	| portfolio account childPortfolio |
+
+	account := ReceptiveAccount new.
+	portfolio := self portfolioWithAssets: { account }.
+	childPortfolio := self portfolioWithAssets: { account }.
+	
+	self
+		should: [ portfolio addAsset: childPortfolio ]
+		raise: Error - MessageNotUnderstood
+		withMessageText: Portfolio cantHaveRepeatedAssets! !
+
+!methodRemoval: PortfolioTest #test18PortfolioCantAddPortfolioThatContainsAccountsItAlreadyHas stamp: 'TS 5/21/2023 23:52:32'!
+test18PortfolioCantAddPortfolioThatContainsAccountsItAlreadyHas
+
+	| portfolio account childPortfolio |
+
+	account := ReceptiveAccount new.
+	portfolio := self portfolioWithAssets: { account }.
+	childPortfolio := self portfolioWithAssets: { account }.
+	
+	self
+		should: [ portfolio addAsset: childPortfolio ]
+		raise: Error - MessageNotUnderstood
+		withMessageText: Portfolio cantHaveRepeatedAssets!
+!PortfolioTest methodsFor: 'testing' stamp: 'TS 5/21/2023 23:55:28'!
+test19PortfolioCantAddPortfolioThatContainsOneOfItsDescendants
+
+	| portfolio account childPortfolio1 childPortfolio2 |
+
+	account := ReceptiveAccount new.
+	childPortfolio1 := self portfolioWithAssets: { account }.
+	portfolio := self portfolioWithAssets: { childPortfolio1 }.
+	
+	childPortfolio2 := self portfolioWithAssets: { account }.
+	
+	self
+		should: [ portfolio addAsset: childPortfolio2 ]
+		raise: Error - MessageNotUnderstood
+		withMessageText: Portfolio cantHaveRepeatedAssets! !
+
+!testRun: #PortfolioTest #test19PortfolioCantAddPortfolioThatContainsOneOfItsDescendants stamp: 'TS 5/21/2023 23:55:50'!
+FAILURE!
+
+!methodRemoval: PortfolioTest #test19PortfolioCantAddPortfolioThatContainsOneOfItsDescendants stamp: 'TS 5/21/2023 23:56:33'!
+test19PortfolioCantAddPortfolioThatContainsOneOfItsDescendants
+
+	| portfolio account childPortfolio1 childPortfolio2 |
+
+	account := ReceptiveAccount new.
+	childPortfolio1 := self portfolioWithAssets: { account }.
+	portfolio := self portfolioWithAssets: { childPortfolio1 }.
+	
+	childPortfolio2 := self portfolioWithAssets: { account }.
+	
+	self
+		should: [ portfolio addAsset: childPortfolio2 ]
+		raise: Error - MessageNotUnderstood
+		withMessageText: Portfolio cantHaveRepeatedAssets!
+!Portfolio methodsFor: 'modification' stamp: 'TS 5/21/2023 23:57:24'!
+anyChildIsContainedIn: anAsset
+
+	^ assets anySatisfy: [ :aChildAsset | anAsset hasAsset: aChildAsset ]! !
+!Portfolio methodsFor: 'modification' stamp: 'TS 5/21/2023 23:57:24' prior: 50623295!
+addAsset: anAsset 
+	
+	(
+	(anAsset = self)
+		or: [ self hasAsset: anAsset ]
+		or: [ anAsset hasAsset: self ]
+		or: [ self parentPortfoliosHaveAsset: anAsset ]
+		or: [ self anyChildIsContainedIn: anAsset ]
+	) ifTrue: [ self error: self class cantHaveRepeatedAssets ].
+	
+	(anAsset isKindOf: self class) ifTrue: [ anAsset addParentPortfolio: self ].
+	
+	assets add: anAsset! !
+!PortfolioTest methodsFor: 'testing' stamp: 'TS 5/21/2023 23:57:51'!
+test19PortfolioCantAddPortfolioThatContainsOneOfItsDescendants
+
+	| portfolio account childPortfolio1 childPortfolio2 |
+
+	account := ReceptiveAccount new.
+	childPortfolio1 := self portfolioWithAssets: { account }.
+	portfolio := self portfolioWithAssets: { childPortfolio1 }.
+	
+	childPortfolio2 := self portfolioWithAssets: { account }.
+	
+	self
+		should: [ portfolio addAsset: childPortfolio2 ]
+		raise: Error - MessageNotUnderstood
+		withMessageText: Portfolio cantHaveRepeatedAssets! !
+
+!testRun: #PortfolioTest #test19PortfolioCantAddPortfolioThatContainsOneOfItsDescendants stamp: 'TS 5/21/2023 23:57:53'!
+FAILURE!
+!Portfolio methodsFor: 'modification' stamp: 'TS 5/21/2023 23:59:05' prior: 50623452!
+anyChildIsContainedIn: anAsset
+
+	^ assets anySatisfy: [ :aChildAsset |
+		(anAsset hasAsset: aChildAsset) or: (aChildAsset anyChildIsContainedIn: anAsset)
+	]! !
+
+!testRun: #PortfolioTest #test01PortfolioWithNoAccountsHasZeroBalance stamp: 'TS 5/21/2023 23:59:10'!
+PASSED!
+
+!testRun: #PortfolioTest #test02PortfolioWithSingleAccountHasSameBalanceAsTheAccount stamp: 'TS 5/21/2023 23:59:10'!
+PASSED!
+
+!testRun: #PortfolioTest #test03PortfolioWithMultipleAccountsHasBalanceEqualToTheSumOfTheAccountBalances stamp: 'TS 5/21/2023 23:59:10'!
+ERROR!
+
+!testRun: #PortfolioTest #test04PortfolioWithChildrenPortfoliosHasTheSumOfTheirBalancesAsItsBalance stamp: 'TS 5/21/2023 23:59:10'!
+ERROR!
+
+!testRun: #PortfolioTest #test05PortfolioWithNoAccountsHasNoTransactions stamp: 'TS 5/21/2023 23:59:10'!
+PASSED!
+
+!testRun: #PortfolioTest #test06PortfolioWithAccountsKnowsTheirTransactions stamp: 'TS 5/21/2023 23:59:10'!
+ERROR!
+
+!testRun: #PortfolioTest #test07PortfolioWithChildrenPortfoliosKnowsTheirTransactions stamp: 'TS 5/21/2023 23:59:10'!
+ERROR!
+
+!testRun: #PortfolioTest #test08PortfolioWithNoAssetsHasNoTransactionsRegistered stamp: 'TS 5/21/2023 23:59:10'!
+PASSED!
+
+!testRun: #PortfolioTest #test09PortfolioWithAssetsHasTheirTransactionRegistered stamp: 'TS 5/21/2023 23:59:10'!
+PASSED!
+
+!testRun: #PortfolioTest #test10PortfolioCantHaveItselfAsAnAsset stamp: 'TS 5/21/2023 23:59:10'!
+PASSED!
+
+!testRun: #PortfolioTest #test11PortfolioCantHaveAssetsThatItAlreadyHasAsDirectChildren stamp: 'TS 5/21/2023 23:59:10'!
+PASSED!
+
+!testRun: #PortfolioTest #test12PortfolioCantHaveAssetsThatAreAlreadyInItsDirectChildrenAssets stamp: 'TS 5/21/2023 23:59:10'!
+PASSED!
+
+!testRun: #PortfolioTest #test13PortfolioCantHaveAssetsThatAreAlreadyInItsDescendantAssets stamp: 'TS 5/21/2023 23:59:10'!
+PASSED!
+
+!testRun: #PortfolioTest #test14PortfolioCantHaveAnAncestorAsAnAsset stamp: 'TS 5/21/2023 23:59:10'!
+PASSED!
+
+!testRun: #PortfolioTest #test15PortfolioWithSingleParentCantHaveASiblingAsAnAsset stamp: 'TS 5/21/2023 23:59:10'!
+PASSED!
+
+!testRun: #PortfolioTest #test16PortfolioWithMultipleParentsCantHaveASiblingAsAnAsset stamp: 'TS 5/21/2023 23:59:10'!
+PASSED!
+
+!testRun: #PortfolioTest #test17PortfolioCantHaveDescendantOfAnAncestorAsAnAsset stamp: 'TS 5/21/2023 23:59:10'!
+PASSED!
+
+!testRun: #PortfolioTest #test18PortfolioCantAddPortfolioThatContainsOneOfItsChildren stamp: 'TS 5/21/2023 23:59:10'!
+ERROR!
+
+!testRun: #PortfolioTest #test19PortfolioCantAddPortfolioThatContainsOneOfItsDescendants stamp: 'TS 5/21/2023 23:59:10'!
+ERROR!
+!ReceptiveAccount methodsFor: 'as yet unclassified' stamp: 'TS 5/21/2023 23:59:36'!
+anyChildIsContainedIn: anAsset
+
+	^ false! !
+
+!testRun: #PortfolioTest #test01PortfolioWithNoAccountsHasZeroBalance stamp: 'TS 5/21/2023 23:59:53'!
+PASSED!
+
+!testRun: #PortfolioTest #test02PortfolioWithSingleAccountHasSameBalanceAsTheAccount stamp: 'TS 5/21/2023 23:59:53'!
+PASSED!
+
+!testRun: #PortfolioTest #test03PortfolioWithMultipleAccountsHasBalanceEqualToTheSumOfTheAccountBalances stamp: 'TS 5/21/2023 23:59:53'!
+PASSED!
+
+!testRun: #PortfolioTest #test04PortfolioWithChildrenPortfoliosHasTheSumOfTheirBalancesAsItsBalance stamp: 'TS 5/21/2023 23:59:53'!
+PASSED!
+
+!testRun: #PortfolioTest #test05PortfolioWithNoAccountsHasNoTransactions stamp: 'TS 5/21/2023 23:59:53'!
+PASSED!
+
+!testRun: #PortfolioTest #test06PortfolioWithAccountsKnowsTheirTransactions stamp: 'TS 5/21/2023 23:59:53'!
+PASSED!
+
+!testRun: #PortfolioTest #test07PortfolioWithChildrenPortfoliosKnowsTheirTransactions stamp: 'TS 5/21/2023 23:59:53'!
+PASSED!
+
+!testRun: #PortfolioTest #test08PortfolioWithNoAssetsHasNoTransactionsRegistered stamp: 'TS 5/21/2023 23:59:53'!
+PASSED!
+
+!testRun: #PortfolioTest #test09PortfolioWithAssetsHasTheirTransactionRegistered stamp: 'TS 5/21/2023 23:59:53'!
+PASSED!
+
+!testRun: #PortfolioTest #test10PortfolioCantHaveItselfAsAnAsset stamp: 'TS 5/21/2023 23:59:53'!
+PASSED!
+
+!testRun: #PortfolioTest #test11PortfolioCantHaveAssetsThatItAlreadyHasAsDirectChildren stamp: 'TS 5/21/2023 23:59:53'!
+PASSED!
+
+!testRun: #PortfolioTest #test12PortfolioCantHaveAssetsThatAreAlreadyInItsDirectChildrenAssets stamp: 'TS 5/21/2023 23:59:53'!
+PASSED!
+
+!testRun: #PortfolioTest #test13PortfolioCantHaveAssetsThatAreAlreadyInItsDescendantAssets stamp: 'TS 5/21/2023 23:59:53'!
+PASSED!
+
+!testRun: #PortfolioTest #test14PortfolioCantHaveAnAncestorAsAnAsset stamp: 'TS 5/21/2023 23:59:53'!
+PASSED!
+
+!testRun: #PortfolioTest #test15PortfolioWithSingleParentCantHaveASiblingAsAnAsset stamp: 'TS 5/21/2023 23:59:53'!
+PASSED!
+
+!testRun: #PortfolioTest #test16PortfolioWithMultipleParentsCantHaveASiblingAsAnAsset stamp: 'TS 5/21/2023 23:59:54'!
+PASSED!
+
+!testRun: #PortfolioTest #test17PortfolioCantHaveDescendantOfAnAncestorAsAnAsset stamp: 'TS 5/21/2023 23:59:54'!
+PASSED!
+
+!testRun: #PortfolioTest #test18PortfolioCantAddPortfolioThatContainsOneOfItsChildren stamp: 'TS 5/21/2023 23:59:54'!
+PASSED!
+
+!testRun: #PortfolioTest #test19PortfolioCantAddPortfolioThatContainsOneOfItsDescendants stamp: 'TS 5/21/2023 23:59:54'!
+PASSED!
+!Portfolio methodsFor: 'as yet unclassified' stamp: 'TS 5/22/2023 00:04:33'!
+anyDescendantIsContainedIn: anAsset
+
+	^ assets anySatisfy: [ :aChildAsset |
+		(anAsset hasAsset: aChildAsset) or: (aChildAsset anyChildIsContainedIn: anAsset)
+	]! !
+!ReceptiveAccount methodsFor: 'as yet unclassified' stamp: 'TS 5/22/2023 00:04:33'!
+anyDescendantIsContainedIn: anAsset
+
+	^ false! !
+!Portfolio methodsFor: 'as yet unclassified' stamp: 'TS 5/22/2023 00:04:33' prior: 50623494!
+anyChildIsContainedIn: anAsset
+
+	^ assets anySatisfy: [ :aChildAsset |
+		(anAsset hasAsset: aChildAsset) or: (aChildAsset anyDescendantIsContainedIn: anAsset)
+	]! !
+!Portfolio methodsFor: 'as yet unclassified' stamp: 'TS 5/22/2023 00:04:33' prior: 50623458!
+addAsset: anAsset 
+	
+	(
+	(anAsset = self)
+		or: [ self hasAsset: anAsset ]
+		or: [ anAsset hasAsset: self ]
+		or: [ self parentPortfoliosHaveAsset: anAsset ]
+		or: [ self anyDescendantIsContainedIn: anAsset ]
+	) ifTrue: [ self error: self class cantHaveRepeatedAssets ].
+	
+	(anAsset isKindOf: self class) ifTrue: [ anAsset addParentPortfolio: self ].
+	
+	assets add: anAsset! !
+!Portfolio methodsFor: 'as yet unclassified' stamp: 'TS 5/22/2023 00:04:33' prior: 50623654!
+anyDescendantIsContainedIn: anAsset
+
+	^ assets anySatisfy: [ :aChildAsset |
+		(anAsset hasAsset: aChildAsset) or: (aChildAsset anyDescendantIsContainedIn: anAsset)
+	]! !
+
+!methodRemoval: Portfolio #anyChildIsContainedIn: stamp: 'TS 5/22/2023 00:04:33'!
+anyChildIsContainedIn: anAsset
+
+	^ assets anySatisfy: [ :aChildAsset |
+		(anAsset hasAsset: aChildAsset) or: (aChildAsset anyDescendantIsContainedIn: anAsset)
+	]!
+
+!methodRemoval: ReceptiveAccount #anyChildIsContainedIn: stamp: 'TS 5/22/2023 00:04:33'!
+anyChildIsContainedIn: anAsset
+
+	^ false!
+!Portfolio methodsFor: 'as yet unclassified' stamp: 'TS 5/22/2023 00:04:46'!
+anyDescendantHasAsset: anAsset
+
+	^ parentPortfolios anySatisfy: [:aParentPortfolio |
+		(aParentPortfolio hasAsset: anAsset) or: [ aParentPortfolio parentPortfoliosHaveAsset: anAsset ]
+	]! !
+!Portfolio methodsFor: 'as yet unclassified' stamp: 'TS 5/22/2023 00:04:46' prior: 50623676!
+addAsset: anAsset 
+	
+	(
+	(anAsset = self)
+		or: [ self hasAsset: anAsset ]
+		or: [ anAsset hasAsset: self ]
+		or: [ self anyDescendantHasAsset: anAsset ]
+		or: [ self anyDescendantIsContainedIn: anAsset ]
+	) ifTrue: [ self error: self class cantHaveRepeatedAssets ].
+	
+	(anAsset isKindOf: self class) ifTrue: [ anAsset addParentPortfolio: self ].
+	
+	assets add: anAsset! !
+!Portfolio methodsFor: 'as yet unclassified' stamp: 'TS 5/22/2023 00:04:46' prior: 50623266!
+parentPortfoliosHaveAsset: anAsset
+
+	^ parentPortfolios anySatisfy: [:aParentPortfolio |
+		(aParentPortfolio hasAsset: anAsset) or: [ aParentPortfolio anyDescendantHasAsset: anAsset ]
+	]! !
+!Portfolio methodsFor: 'as yet unclassified' stamp: 'TS 5/22/2023 00:04:46' prior: 50623711!
+anyDescendantHasAsset: anAsset
+
+	^ parentPortfolios anySatisfy: [:aParentPortfolio |
+		(aParentPortfolio hasAsset: anAsset) or: [ aParentPortfolio anyDescendantHasAsset: anAsset ]
+	]! !
+
+!methodRemoval: Portfolio #parentPortfoliosHaveAsset: stamp: 'TS 5/22/2023 00:04:46'!
+parentPortfoliosHaveAsset: anAsset
+
+	^ parentPortfolios anySatisfy: [:aParentPortfolio |
+		(aParentPortfolio hasAsset: anAsset) or: [ aParentPortfolio anyDescendantHasAsset: anAsset ]
+	]!
+
+----SNAPSHOT----(22 May 2023 00:04:53) CuisUniversity-5799.image priorSource: 9222790!
+!Portfolio methodsFor: 'modification' stamp: 'TS 5/22/2023 00:14:46' prior: 50623720!
+addAsset: anAsset 
+	
+	((anAsset = self)
+		or: [ self hasAsset: anAsset ]
+		or: [ anAsset hasAsset: self ]
+		or: [ self anyDescendantHasAsset: anAsset ]
+		or: [ self anyDescendantIsContainedIn: anAsset ]
+	) ifTrue: [ self error: self class cantHaveRepeatedAssets ].
+	
+	(anAsset isKindOf: self class) ifTrue: [ anAsset addParentPortfolio: self ].
+	
+	assets add: anAsset! !
+!Portfolio methodsFor: 'modification' stamp: 'TS 5/22/2023 00:16:13' prior: 50623764!
+addAsset: anAsset 
+	
+	(anAsset canBeAddedTo: self) ifFalse: [self error: self class cantHaveRepeatedAssets ].
+	
+	((anAsset = self)
+		or: [ self hasAsset: anAsset ]
+		or: [ anAsset hasAsset: self ]
+		or: [ self anyDescendantHasAsset: anAsset ]
+		or: [ self anyDescendantIsContainedIn: anAsset ]
+	) ifTrue: [ self error: self class cantHaveRepeatedAssets ].
+	
+	(anAsset isKindOf: self class) ifTrue: [ anAsset addParentPortfolio: self ].
+	
+	assets add: anAsset! !
+!Asset methodsFor: 'nil' stamp: 'TS 5/22/2023 00:16:45'!
+canBeAddedTo: aPortfolio
+
+	self subclassResponsibility! !
+!ReceptiveAccount methodsFor: 'as yet unclassified' stamp: 'TS 5/22/2023 00:16:51' overrides: 50623796!
+canBeAddedTo: aPortfolio
+
+	self subclassResponsibility! !
+!Portfolio methodsFor: 'as yet unclassified' stamp: 'TS 5/22/2023 00:16:51' overrides: 50623796!
+canBeAddedTo: aPortfolio
+
+	self subclassResponsibility! !
+
+!methodRemoval: Asset #canBeAddedTo: stamp: 'TS 5/22/2023 00:16:51'!
+canBeAddedTo: aPortfolio
+
+	self subclassResponsibility!
+!Asset methodsFor: 'nil' stamp: 'TS 5/22/2023 00:16:55'!
+canBeAddedTo: aPortfolio
+
+	self subclassResponsibility! !
+!ReceptiveAccount methodsFor: 'as yet unclassified' stamp: 'TS 5/22/2023 00:17:31' prior: 50623802 overrides: 50623815!
+canBeAddedTo: aPortfolio
+
+	! !
+!ReceptiveAccount methodsFor: 'as yet unclassified' stamp: 'TS 5/22/2023 00:18:02' prior: 50623821 overrides: 50623815!
+canBeAddedTo: aPortfolio
+
+	! !
+
+!methodRemoval: Asset #canBeAddedTo: stamp: 'TS 5/22/2023 00:19:20'!
+canBeAddedTo: aPortfolio
+
+	self subclassResponsibility!
+
+!methodRemoval: ReceptiveAccount #canBeAddedTo: stamp: 'TS 5/22/2023 00:19:23'!
+canBeAddedTo: aPortfolio
+
+	!
+
+!methodRemoval: Portfolio #canBeAddedTo: stamp: 'TS 5/22/2023 00:19:26'!
+canBeAddedTo: aPortfolio
+
+	self subclassResponsibility!
+!Portfolio methodsFor: 'modification' stamp: 'TS 5/22/2023 00:19:42' prior: 50623779!
+addAsset: anAsset 
+	
+	((anAsset = self)
+		or: [ self hasAsset: anAsset ]
+		or: [ anAsset hasAsset: self ]
+		or: [ self anyDescendantHasAsset: anAsset ]
+		or: [ self anyDescendantIsContainedIn: anAsset ]
+	) ifTrue: [ self error: self class cantHaveRepeatedAssets ].
+	
+	(anAsset isKindOf: self class) ifTrue: [ anAsset addParentPortfolio: self ].
+	
+	assets add: anAsset! !
+
+!testRun: #PortfolioTest #test01PortfolioWithNoAccountsHasZeroBalance stamp: 'TS 5/22/2023 00:19:43'!
+PASSED!
+
+!testRun: #PortfolioTest #test02PortfolioWithSingleAccountHasSameBalanceAsTheAccount stamp: 'TS 5/22/2023 00:19:43'!
+PASSED!
+
+!testRun: #PortfolioTest #test03PortfolioWithMultipleAccountsHasBalanceEqualToTheSumOfTheAccountBalances stamp: 'TS 5/22/2023 00:19:43'!
+PASSED!
+
+!testRun: #PortfolioTest #test04PortfolioWithChildrenPortfoliosHasTheSumOfTheirBalancesAsItsBalance stamp: 'TS 5/22/2023 00:19:43'!
+PASSED!
+
+!testRun: #PortfolioTest #test05PortfolioWithNoAccountsHasNoTransactions stamp: 'TS 5/22/2023 00:19:43'!
+PASSED!
+
+!testRun: #PortfolioTest #test06PortfolioWithAccountsKnowsTheirTransactions stamp: 'TS 5/22/2023 00:19:43'!
+PASSED!
+
+!testRun: #PortfolioTest #test07PortfolioWithChildrenPortfoliosKnowsTheirTransactions stamp: 'TS 5/22/2023 00:19:43'!
+PASSED!
+
+!testRun: #PortfolioTest #test08PortfolioWithNoAssetsHasNoTransactionsRegistered stamp: 'TS 5/22/2023 00:19:43'!
+PASSED!
+
+!testRun: #PortfolioTest #test09PortfolioWithAssetsHasTheirTransactionRegistered stamp: 'TS 5/22/2023 00:19:43'!
+PASSED!
+
+!testRun: #PortfolioTest #test10PortfolioCantHaveItselfAsAnAsset stamp: 'TS 5/22/2023 00:19:43'!
+PASSED!
+
+!testRun: #PortfolioTest #test11PortfolioCantHaveAssetsThatItAlreadyHasAsDirectChildren stamp: 'TS 5/22/2023 00:19:43'!
+PASSED!
+
+!testRun: #PortfolioTest #test12PortfolioCantHaveAssetsThatAreAlreadyInItsDirectChildrenAssets stamp: 'TS 5/22/2023 00:19:43'!
+PASSED!
+
+!testRun: #PortfolioTest #test13PortfolioCantHaveAssetsThatAreAlreadyInItsDescendantAssets stamp: 'TS 5/22/2023 00:19:43'!
+PASSED!
+
+!testRun: #PortfolioTest #test14PortfolioCantHaveAnAncestorAsAnAsset stamp: 'TS 5/22/2023 00:19:43'!
+PASSED!
+
+!testRun: #PortfolioTest #test15PortfolioWithSingleParentCantHaveASiblingAsAnAsset stamp: 'TS 5/22/2023 00:19:43'!
+PASSED!
+
+!testRun: #PortfolioTest #test16PortfolioWithMultipleParentsCantHaveASiblingAsAnAsset stamp: 'TS 5/22/2023 00:19:43'!
+PASSED!
+
+!testRun: #PortfolioTest #test17PortfolioCantHaveDescendantOfAnAncestorAsAnAsset stamp: 'TS 5/22/2023 00:19:43'!
+PASSED!
+
+!testRun: #PortfolioTest #test18PortfolioCantAddPortfolioThatContainsOneOfItsChildren stamp: 'TS 5/22/2023 00:19:43'!
+PASSED!
+
+!testRun: #PortfolioTest #test19PortfolioCantAddPortfolioThatContainsOneOfItsDescendants stamp: 'TS 5/22/2023 00:19:43'!
+PASSED!
+!PortfolioTest methodsFor: 'testing' stamp: 'TS 5/22/2023 00:26:26'!
+test20PortfolioCantAddPortfolioThatHasASiblingAsADescendant
+
+	| portfolio otherParentOfSibling parentPortfolio sibling |
+
+	sibling := ReceptiveAccount new.
+	portfolio := Portfolio new.
+	parentPortfolio := self portfolioWithAssets: { portfolio. sibling }.
+	otherParentOfSibling := self portfolioWithAssets: { sibling }.
+	
+	self
+		should: [ portfolio addAsset: otherParentOfSibling ]
+		raise: Error - MessageNotUnderstood
+		withMessageText: Portfolio cantHaveRepeatedAssets! !
+
+!testRun: #PortfolioTest #test20PortfolioCantAddPortfolioThatHasASiblingAsADescendant stamp: 'TS 5/22/2023 00:26:36'!
+FAILURE!
+!Portfolio methodsFor: 'modification' stamp: 'TS 5/22/2023 00:30:06' prior: 50623842!
+addAsset: anAsset 
+	
+	((anAsset = self)
+		or: [ self hasAsset: anAsset ]
+		or: [ anAsset hasAsset: self ]
+		or: [ self anyDescendantHasAsset: anAsset ]
+		or: [
+			(self anyDescendantIsContainedIn: anAsset)
+				or: [ self anyAncestorHasDescendantIn: anAsset ]
+		]
+	) ifTrue: [ self error: self class cantHaveRepeatedAssets ].
+	
+	(anAsset isKindOf: self class) ifTrue: [ anAsset addParentPortfolio: self ].
+	
+	assets add: anAsset! !
+!Portfolio methodsFor: 'as yet unclassified' stamp: 'TS 5/22/2023 00:33:58'!
+anyAncestorHasDescendantIn: anAsset
+
+	^ parentPortfolios anySatisfy: [:aParentPortfolio |
+		
+	]! !
+!Portfolio methodsFor: 'as yet unclassified' stamp: 'TS 5/22/2023 00:34:51' prior: 50623968!
+anyAncestorHasDescendantIn: anAsset
+
+	^ parentPortfolios anySatisfy: [:aParentPortfolio |
+		(aParentPortfolio anyDescendantIsContainedIn: anAsset) or: [ aParentPortfolio anyAncestorHasDescendantIn: anAsset ]
+	]! !
+
+!testRun: #PortfolioTest #test01PortfolioWithNoAccountsHasZeroBalance stamp: 'TS 5/22/2023 00:34:55'!
+PASSED!
+
+!testRun: #PortfolioTest #test02PortfolioWithSingleAccountHasSameBalanceAsTheAccount stamp: 'TS 5/22/2023 00:34:55'!
+PASSED!
+
+!testRun: #PortfolioTest #test03PortfolioWithMultipleAccountsHasBalanceEqualToTheSumOfTheAccountBalances stamp: 'TS 5/22/2023 00:34:55'!
+PASSED!
+
+!testRun: #PortfolioTest #test04PortfolioWithChildrenPortfoliosHasTheSumOfTheirBalancesAsItsBalance stamp: 'TS 5/22/2023 00:34:55'!
+PASSED!
+
+!testRun: #PortfolioTest #test05PortfolioWithNoAccountsHasNoTransactions stamp: 'TS 5/22/2023 00:34:55'!
+PASSED!
+
+!testRun: #PortfolioTest #test06PortfolioWithAccountsKnowsTheirTransactions stamp: 'TS 5/22/2023 00:34:55'!
+PASSED!
+
+!testRun: #PortfolioTest #test07PortfolioWithChildrenPortfoliosKnowsTheirTransactions stamp: 'TS 5/22/2023 00:34:55'!
+PASSED!
+
+!testRun: #PortfolioTest #test08PortfolioWithNoAssetsHasNoTransactionsRegistered stamp: 'TS 5/22/2023 00:34:55'!
+PASSED!
+
+!testRun: #PortfolioTest #test09PortfolioWithAssetsHasTheirTransactionRegistered stamp: 'TS 5/22/2023 00:34:55'!
+PASSED!
+
+!testRun: #PortfolioTest #test10PortfolioCantHaveItselfAsAnAsset stamp: 'TS 5/22/2023 00:34:55'!
+PASSED!
+
+!testRun: #PortfolioTest #test11PortfolioCantHaveAssetsThatItAlreadyHasAsDirectChildren stamp: 'TS 5/22/2023 00:34:55'!
+PASSED!
+
+!testRun: #PortfolioTest #test12PortfolioCantHaveAssetsThatAreAlreadyInItsDirectChildrenAssets stamp: 'TS 5/22/2023 00:34:55'!
+PASSED!
+
+!testRun: #PortfolioTest #test13PortfolioCantHaveAssetsThatAreAlreadyInItsDescendantAssets stamp: 'TS 5/22/2023 00:34:55'!
+PASSED!
+
+!testRun: #PortfolioTest #test14PortfolioCantHaveAnAncestorAsAnAsset stamp: 'TS 5/22/2023 00:34:55'!
+PASSED!
+
+!testRun: #PortfolioTest #test15PortfolioWithSingleParentCantHaveASiblingAsAnAsset stamp: 'TS 5/22/2023 00:34:55'!
+PASSED!
+
+!testRun: #PortfolioTest #test16PortfolioWithMultipleParentsCantHaveASiblingAsAnAsset stamp: 'TS 5/22/2023 00:34:55'!
+PASSED!
+
+!testRun: #PortfolioTest #test17PortfolioCantHaveDescendantOfAnAncestorAsAnAsset stamp: 'TS 5/22/2023 00:34:55'!
+PASSED!
+
+!testRun: #PortfolioTest #test18PortfolioCantAddPortfolioThatContainsOneOfItsChildren stamp: 'TS 5/22/2023 00:34:55'!
+PASSED!
+
+!testRun: #PortfolioTest #test19PortfolioCantAddPortfolioThatContainsOneOfItsDescendants stamp: 'TS 5/22/2023 00:34:55'!
+PASSED!
+
+!testRun: #PortfolioTest #test20PortfolioCantAddPortfolioThatHasASiblingAsADescendant stamp: 'TS 5/22/2023 00:34:55'!
+PASSED!
+
+!testRun: #PortfolioTest #test01PortfolioWithNoAccountsHasZeroBalance stamp: 'TS 5/22/2023 00:42:47'!
+PASSED!
+
+!testRun: #PortfolioTest #test02PortfolioWithSingleAccountHasSameBalanceAsTheAccount stamp: 'TS 5/22/2023 00:42:47'!
+PASSED!
+
+!testRun: #PortfolioTest #test03PortfolioWithMultipleAccountsHasBalanceEqualToTheSumOfTheAccountBalances stamp: 'TS 5/22/2023 00:42:47'!
+PASSED!
+
+!testRun: #PortfolioTest #test04PortfolioWithChildrenPortfoliosHasTheSumOfTheirBalancesAsItsBalance stamp: 'TS 5/22/2023 00:42:47'!
+PASSED!
+
+!testRun: #PortfolioTest #test05PortfolioWithNoAccountsHasNoTransactions stamp: 'TS 5/22/2023 00:42:47'!
+PASSED!
+
+!testRun: #PortfolioTest #test06PortfolioWithAccountsKnowsTheirTransactions stamp: 'TS 5/22/2023 00:42:47'!
+PASSED!
+
+!testRun: #PortfolioTest #test07PortfolioWithChildrenPortfoliosKnowsTheirTransactions stamp: 'TS 5/22/2023 00:42:47'!
+PASSED!
+
+!testRun: #PortfolioTest #test08PortfolioWithNoAssetsHasNoTransactionsRegistered stamp: 'TS 5/22/2023 00:42:47'!
+PASSED!
+
+!testRun: #PortfolioTest #test09PortfolioWithAssetsHasTheirTransactionRegistered stamp: 'TS 5/22/2023 00:42:47'!
+PASSED!
+
+!testRun: #PortfolioTest #test10PortfolioCantHaveItselfAsAnAsset stamp: 'TS 5/22/2023 00:42:47'!
+PASSED!
+
+!testRun: #PortfolioTest #test11PortfolioCantHaveAssetsThatItAlreadyHasAsDirectChildren stamp: 'TS 5/22/2023 00:42:47'!
+PASSED!
+
+!testRun: #PortfolioTest #test12PortfolioCantHaveAssetsThatAreAlreadyInItsDirectChildrenAssets stamp: 'TS 5/22/2023 00:42:47'!
+PASSED!
+
+!testRun: #PortfolioTest #test13PortfolioCantHaveAssetsThatAreAlreadyInItsDescendantAssets stamp: 'TS 5/22/2023 00:42:47'!
+PASSED!
+
+!testRun: #PortfolioTest #test14PortfolioCantHaveAnAncestorAsAnAsset stamp: 'TS 5/22/2023 00:42:47'!
+PASSED!
+
+!testRun: #PortfolioTest #test15PortfolioWithSingleParentCantHaveASiblingAsAnAsset stamp: 'TS 5/22/2023 00:42:47'!
+PASSED!
+
+!testRun: #PortfolioTest #test16PortfolioWithMultipleParentsCantHaveASiblingAsAnAsset stamp: 'TS 5/22/2023 00:42:47'!
+PASSED!
+
+!testRun: #PortfolioTest #test17PortfolioCantHaveDescendantOfAnAncestorAsAnAsset stamp: 'TS 5/22/2023 00:42:47'!
+PASSED!
+
+!testRun: #PortfolioTest #test18PortfolioCantAddPortfolioThatContainsOneOfItsChildren stamp: 'TS 5/22/2023 00:42:47'!
+PASSED!
+
+!testRun: #PortfolioTest #test19PortfolioCantAddPortfolioThatContainsOneOfItsDescendants stamp: 'TS 5/22/2023 00:42:47'!
+PASSED!
+
+!testRun: #PortfolioTest #test20PortfolioCantAddPortfolioThatHasASiblingAsADescendant stamp: 'TS 5/22/2023 00:42:47'!
+PASSED!
+!Portfolio methodsFor: 'as yet unclassified' stamp: 'TS 5/22/2023 00:43:45'!
+anyAncestorHasAsset: anAsset
+
+	^ parentPortfolios anySatisfy: [:aParentPortfolio |
+		(aParentPortfolio hasAsset: anAsset) or: [ aParentPortfolio anyDescendantHasAsset: anAsset ]
+	]! !
+!Portfolio methodsFor: 'as yet unclassified' stamp: 'TS 5/22/2023 00:43:45' prior: 50623952!
+addAsset: anAsset 
+	
+	((anAsset = self)
+		or: [ self hasAsset: anAsset ]
+		or: [ anAsset hasAsset: self ]
+		or: [ self anyAncestorHasAsset: anAsset ]
+		or: [
+			(self anyDescendantIsContainedIn: anAsset)
+				or: [ self anyAncestorHasDescendantIn: anAsset ]
+		]
+	) ifTrue: [ self error: self class cantHaveRepeatedAssets ].
+	
+	(anAsset isKindOf: self class) ifTrue: [ anAsset addParentPortfolio: self ].
+	
+	assets add: anAsset! !
+!Portfolio methodsFor: 'as yet unclassified' stamp: 'TS 5/22/2023 00:43:45' prior: 50623744!
+anyDescendantHasAsset: anAsset
+
+	^ parentPortfolios anySatisfy: [:aParentPortfolio |
+		(aParentPortfolio hasAsset: anAsset) or: [ aParentPortfolio anyAncestorHasAsset: anAsset ]
+	]! !
+!Portfolio methodsFor: 'as yet unclassified' stamp: 'TS 5/22/2023 00:43:45' prior: 50624140!
+anyAncestorHasAsset: anAsset
+
+	^ parentPortfolios anySatisfy: [:aParentPortfolio |
+		(aParentPortfolio hasAsset: anAsset) or: [ aParentPortfolio anyAncestorHasAsset: anAsset ]
+	]! !
+
+!methodRemoval: Portfolio #anyDescendantHasAsset: stamp: 'TS 5/22/2023 00:43:45'!
+anyDescendantHasAsset: anAsset
+
+	^ parentPortfolios anySatisfy: [:aParentPortfolio |
+		(aParentPortfolio hasAsset: anAsset) or: [ aParentPortfolio anyAncestorHasAsset: anAsset ]
+	]!
+
+!testRun: #PortfolioTest #test01PortfolioWithNoAccountsHasZeroBalance stamp: 'TS 5/22/2023 00:44:09'!
+PASSED!
+
+!testRun: #PortfolioTest #test02PortfolioWithSingleAccountHasSameBalanceAsTheAccount stamp: 'TS 5/22/2023 00:44:09'!
+PASSED!
+
+!testRun: #PortfolioTest #test03PortfolioWithMultipleAccountsHasBalanceEqualToTheSumOfTheAccountBalances stamp: 'TS 5/22/2023 00:44:09'!
+PASSED!
+
+!testRun: #PortfolioTest #test04PortfolioWithChildrenPortfoliosHasTheSumOfTheirBalancesAsItsBalance stamp: 'TS 5/22/2023 00:44:09'!
+PASSED!
+
+!testRun: #PortfolioTest #test05PortfolioWithNoAccountsHasNoTransactions stamp: 'TS 5/22/2023 00:44:09'!
+PASSED!
+
+!testRun: #PortfolioTest #test06PortfolioWithAccountsKnowsTheirTransactions stamp: 'TS 5/22/2023 00:44:09'!
+PASSED!
+
+!testRun: #PortfolioTest #test07PortfolioWithChildrenPortfoliosKnowsTheirTransactions stamp: 'TS 5/22/2023 00:44:09'!
+PASSED!
+
+!testRun: #PortfolioTest #test08PortfolioWithNoAssetsHasNoTransactionsRegistered stamp: 'TS 5/22/2023 00:44:09'!
+PASSED!
+
+!testRun: #PortfolioTest #test09PortfolioWithAssetsHasTheirTransactionRegistered stamp: 'TS 5/22/2023 00:44:09'!
+PASSED!
+
+!testRun: #PortfolioTest #test10PortfolioCantHaveItselfAsAnAsset stamp: 'TS 5/22/2023 00:44:09'!
+PASSED!
+
+!testRun: #PortfolioTest #test11PortfolioCantHaveAssetsThatItAlreadyHasAsDirectChildren stamp: 'TS 5/22/2023 00:44:09'!
+PASSED!
+
+!testRun: #PortfolioTest #test12PortfolioCantHaveAssetsThatAreAlreadyInItsDirectChildrenAssets stamp: 'TS 5/22/2023 00:44:09'!
+PASSED!
+
+!testRun: #PortfolioTest #test13PortfolioCantHaveAssetsThatAreAlreadyInItsDescendantAssets stamp: 'TS 5/22/2023 00:44:09'!
+PASSED!
+
+!testRun: #PortfolioTest #test14PortfolioCantHaveAnAncestorAsAnAsset stamp: 'TS 5/22/2023 00:44:09'!
+PASSED!
+
+!testRun: #PortfolioTest #test15PortfolioWithSingleParentCantHaveASiblingAsAnAsset stamp: 'TS 5/22/2023 00:44:09'!
+PASSED!
+
+!testRun: #PortfolioTest #test16PortfolioWithMultipleParentsCantHaveASiblingAsAnAsset stamp: 'TS 5/22/2023 00:44:09'!
+PASSED!
+
+!testRun: #PortfolioTest #test17PortfolioCantHaveDescendantOfAnAncestorAsAnAsset stamp: 'TS 5/22/2023 00:44:09'!
+PASSED!
+
+!testRun: #PortfolioTest #test18PortfolioCantAddPortfolioThatContainsOneOfItsChildren stamp: 'TS 5/22/2023 00:44:09'!
+PASSED!
+
+!testRun: #PortfolioTest #test19PortfolioCantAddPortfolioThatContainsOneOfItsDescendants stamp: 'TS 5/22/2023 00:44:09'!
+PASSED!
+
+!testRun: #PortfolioTest #test20PortfolioCantAddPortfolioThatHasASiblingAsADescendant stamp: 'TS 5/22/2023 00:44:09'!
+PASSED!
+!Portfolio methodsFor: 'modification' stamp: 'TS 5/22/2023 00:49:24' prior: 50624149!
+addAsset: anAsset
+
+	(anAsset canBeAddedTo: self) ifFalse: [ self error: self class cantHaveRepeatedAssets ].
+	
+	((anAsset = self)
+		or: [ self hasAsset: anAsset ]
+		or: [ anAsset hasAsset: self ]
+		or: [ self anyAncestorHasAsset: anAsset ]
+		or: [
+			(self anyDescendantIsContainedIn: anAsset)
+				or: [ self anyAncestorHasDescendantIn: anAsset ]
+		]
+	) ifTrue: [ self error: self class cantHaveRepeatedAssets ].
+	
+	(anAsset isKindOf: self class) ifTrue: [ anAsset addParentPortfolio: self ].
+	
+	assets add: anAsset! !
+!Asset methodsFor: 'as yet unclassified' stamp: 'TS 5/22/2023 00:49:38'!
+canBeAddedTo: aPortfolio
+
+	self subclassResponsibility! !
+!ReceptiveAccount methodsFor: 'as yet unclassified' stamp: 'TS 5/22/2023 00:49:42' overrides: 50624289!
+canBeAddedTo: aPortfolio
+
+	self subclassResponsibility! !
+!Portfolio methodsFor: 'as yet unclassified' stamp: 'TS 5/22/2023 00:49:42' overrides: 50624289!
+canBeAddedTo: aPortfolio
+
+	self subclassResponsibility! !
+
+!methodRemoval: Asset #canBeAddedTo: stamp: 'TS 5/22/2023 00:49:42'!
+canBeAddedTo: aPortfolio
+
+	self subclassResponsibility!
+!Asset methodsFor: 'as yet unclassified' stamp: 'TS 5/22/2023 00:49:43'!
+canBeAddedTo: aPortfolio
+
+	self subclassResponsibility! !
+!ReceptiveAccount methodsFor: 'as yet unclassified' stamp: 'TS 5/22/2023 00:50:50' prior: 50624295 overrides: 50624309!
+canBeAddedTo: aPortfolio
+
+	^ (
+		(aPortfolio hasAsset: self) or:
+		(aPortfolio anyAncestorHasAsset: self)
+	) not! !
+!Portfolio methodsFor: 'as yet unclassified' stamp: 'TS 5/22/2023 00:51:40' prior: 50624300 overrides: 50624309!
+canBeAddedTo: aPortfolio
+
+	^ (
+		(self = aPortfolio)
+	) not! !
+!ReceptiveAccount methodsFor: 'as yet unclassified' stamp: 'TS 5/22/2023 00:51:47' prior: 50624315 overrides: 50624309!
+canBeAddedTo: aPortfolio
+
+	^ (
+		(aPortfolio hasAsset: self) or:
+		[aPortfolio anyAncestorHasAsset: self]
+	) not! !
+!Portfolio methodsFor: 'as yet unclassified' stamp: 'TS 5/22/2023 00:53:23' prior: 50624323 overrides: 50624309!
+canBeAddedTo: aPortfolio
+
+	^ (
+		( self = aPortfolio ) or:
+		[ aPortfolio hasAsset: self ]
+	) not! !
+!ReceptiveAccount methodsFor: 'as yet unclassified' stamp: 'TS 5/22/2023 00:53:49'!
+isInHierarchyOf: aPortfolio
+
+	^ (aPortfolio hasAsset: self) or:
+		[aPortfolio anyAncestorHasAsset: self]! !
+!ReceptiveAccount methodsFor: 'as yet unclassified' stamp: 'TS 5/22/2023 00:53:49' prior: 50624329 overrides: 50624309!
+canBeAddedTo: aPortfolio
+
+	^ (
+		self isInHierarchyOf: aPortfolio
+	) not! !
+!ReceptiveAccount methodsFor: 'as yet unclassified' stamp: 'TS 5/22/2023 00:53:57' prior: 50624351 overrides: 50624309!
+canBeAddedTo: aPortfolio
+
+	^ (self isInHierarchyOf: aPortfolio) not! !
+!ReceptiveAccount methodsFor: 'as yet unclassified' stamp: 'TS 5/22/2023 00:54:39' prior: 50624343!
+isInHierarchyOf: aPortfolio
+
+	^ (aPortfolio hasAsset: self) or:
+	[aPortfolio anyAncestorHasAsset: self] or:
+	(aPortfolio = self)! !
+!Asset methodsFor: 'as yet unclassified' stamp: 'TS 5/22/2023 00:54:57'!
+isInHierarchyOf: aPortfolio
+
+	^ (aPortfolio hasAsset: self) or:
+	[aPortfolio anyAncestorHasAsset: self] or:
+	(aPortfolio = self)! !
+
+!methodRemoval: ReceptiveAccount #isInHierarchyOf: stamp: 'TS 5/22/2023 00:54:57'!
+isInHierarchyOf: aPortfolio
+
+	^ (aPortfolio hasAsset: self) or:
+	[aPortfolio anyAncestorHasAsset: self] or:
+	(aPortfolio = self)!
+!Portfolio methodsFor: 'as yet unclassified' stamp: 'TS 5/22/2023 00:56:10' prior: 50624337 overrides: 50624309!
+canBeAddedTo: aPortfolio
+
+	^ (
+		(self isInHierarchyOf: aPortfolio) or:
+		(self hasAssetsInHierarchyOf: aPortfolio)
+	) not! !
+!Portfolio methodsFor: 'as yet unclassified' stamp: 'TS 5/22/2023 00:58:04' prior: 50624386 overrides: 50624309!
+canBeAddedTo: aPortfolio
+
+	^ (self isInHierarchyOf: aPortfolio	) not and:
+		[ assets allSatisfy: [ :anAsset | anAsset canBeAddedTo: aPortfolio ] ]! !
+!Portfolio methodsFor: 'modification' stamp: 'TS 5/22/2023 00:58:49' prior: 50624270!
+addAsset: anAsset
+
+	(anAsset canBeAddedTo: self) ifFalse: [ self error: self class cantHaveRepeatedAssets ].
+
+	(anAsset isKindOf: self class) ifTrue: [ anAsset addParentPortfolio: self ].
+	
+	assets add: anAsset! !
+
+!testRun: #PortfolioTest #test01PortfolioWithNoAccountsHasZeroBalance stamp: 'TS 5/22/2023 00:58:51'!
+PASSED!
+
+!testRun: #PortfolioTest #test02PortfolioWithSingleAccountHasSameBalanceAsTheAccount stamp: 'TS 5/22/2023 00:58:51'!
+PASSED!
+
+!testRun: #PortfolioTest #test03PortfolioWithMultipleAccountsHasBalanceEqualToTheSumOfTheAccountBalances stamp: 'TS 5/22/2023 00:58:51'!
+PASSED!
+
+!testRun: #PortfolioTest #test04PortfolioWithChildrenPortfoliosHasTheSumOfTheirBalancesAsItsBalance stamp: 'TS 5/22/2023 00:58:51'!
+PASSED!
+
+!testRun: #PortfolioTest #test05PortfolioWithNoAccountsHasNoTransactions stamp: 'TS 5/22/2023 00:58:51'!
+PASSED!
+
+!testRun: #PortfolioTest #test06PortfolioWithAccountsKnowsTheirTransactions stamp: 'TS 5/22/2023 00:58:51'!
+PASSED!
+
+!testRun: #PortfolioTest #test07PortfolioWithChildrenPortfoliosKnowsTheirTransactions stamp: 'TS 5/22/2023 00:58:51'!
+PASSED!
+
+!testRun: #PortfolioTest #test08PortfolioWithNoAssetsHasNoTransactionsRegistered stamp: 'TS 5/22/2023 00:58:51'!
+PASSED!
+
+!testRun: #PortfolioTest #test09PortfolioWithAssetsHasTheirTransactionRegistered stamp: 'TS 5/22/2023 00:58:51'!
+PASSED!
+
+!testRun: #PortfolioTest #test10PortfolioCantHaveItselfAsAnAsset stamp: 'TS 5/22/2023 00:58:51'!
+PASSED!
+
+!testRun: #PortfolioTest #test11PortfolioCantHaveAssetsThatItAlreadyHasAsDirectChildren stamp: 'TS 5/22/2023 00:58:51'!
+PASSED!
+
+!testRun: #PortfolioTest #test12PortfolioCantHaveAssetsThatAreAlreadyInItsDirectChildrenAssets stamp: 'TS 5/22/2023 00:58:51'!
+PASSED!
+
+!testRun: #PortfolioTest #test13PortfolioCantHaveAssetsThatAreAlreadyInItsDescendantAssets stamp: 'TS 5/22/2023 00:58:51'!
+PASSED!
+
+!testRun: #PortfolioTest #test14PortfolioCantHaveAnAncestorAsAnAsset stamp: 'TS 5/22/2023 00:58:51'!
+PASSED!
+
+!testRun: #PortfolioTest #test15PortfolioWithSingleParentCantHaveASiblingAsAnAsset stamp: 'TS 5/22/2023 00:58:51'!
+PASSED!
+
+!testRun: #PortfolioTest #test16PortfolioWithMultipleParentsCantHaveASiblingAsAnAsset stamp: 'TS 5/22/2023 00:58:51'!
+PASSED!
+
+!testRun: #PortfolioTest #test17PortfolioCantHaveDescendantOfAnAncestorAsAnAsset stamp: 'TS 5/22/2023 00:58:51'!
+PASSED!
+
+!testRun: #PortfolioTest #test18PortfolioCantAddPortfolioThatContainsOneOfItsChildren stamp: 'TS 5/22/2023 00:58:51'!
+PASSED!
+
+!testRun: #PortfolioTest #test19PortfolioCantAddPortfolioThatContainsOneOfItsDescendants stamp: 'TS 5/22/2023 00:58:51'!
+PASSED!
+
+!testRun: #PortfolioTest #test20PortfolioCantAddPortfolioThatHasASiblingAsADescendant stamp: 'TS 5/22/2023 00:58:51'!
+PASSED!
+
+!methodRemoval: Portfolio #anyAncestorHasDescendantIn: stamp: 'TS 5/22/2023 01:00:03'!
+anyAncestorHasDescendantIn: anAsset
+
+	^ parentPortfolios anySatisfy: [:aParentPortfolio |
+		(aParentPortfolio anyDescendantIsContainedIn: anAsset) or: [ aParentPortfolio anyAncestorHasDescendantIn: anAsset ]
+	]!
+
+!methodRemoval: Portfolio #anyDescendantIsContainedIn: stamp: 'TS 5/22/2023 01:00:04'!
+anyDescendantIsContainedIn: anAsset
+
+	^ assets anySatisfy: [ :aChildAsset |
+		(anAsset hasAsset: aChildAsset) or: (aChildAsset anyDescendantIsContainedIn: anAsset)
+	]!
+
+!methodRemoval: ReceptiveAccount #anyDescendantIsContainedIn: stamp: 'TS 5/22/2023 01:00:12'!
+anyDescendantIsContainedIn: anAsset
+
+	^ false!
+!Portfolio methodsFor: 'as yet unclassified' stamp: 'TS 5/22/2023 01:01:55'!
+hasDescendantAsset: anAsset
+
+	^ (assets includes: anAsset) or: [ assets anySatisfy: [:aChildAsset | aChildAsset hasAsset: anAsset ] ]! !
+!ReceptiveAccount methodsFor: 'as yet unclassified' stamp: 'TS 5/22/2023 01:01:55'!
+hasDescendantAsset: anAsset
+
+	^ false! !
+!Portfolio methodsFor: 'as yet unclassified' stamp: 'TS 5/22/2023 01:01:55' prior: 50624175!
+anyAncestorHasAsset: anAsset
+
+	^ parentPortfolios anySatisfy: [:aParentPortfolio |
+		(aParentPortfolio hasDescendantAsset: anAsset) or: [ aParentPortfolio anyAncestorHasAsset: anAsset ]
+	]! !
+!Portfolio methodsFor: 'as yet unclassified' stamp: 'TS 5/22/2023 01:01:55' prior: 50622260!
+hasAsset: anAsset
+
+	^ (assets includes: anAsset) or: [ assets anySatisfy: [:aChildAsset | aChildAsset hasDescendantAsset: anAsset ] ]! !
+!Asset methodsFor: 'as yet unclassified' stamp: 'TS 5/22/2023 01:01:55' prior: 50624371!
+isInHierarchyOf: aPortfolio
+
+	^ (aPortfolio hasDescendantAsset: self) or:
+	[aPortfolio anyAncestorHasAsset: self] or:
+	(aPortfolio = self)! !
+!Portfolio methodsFor: 'as yet unclassified' stamp: 'TS 5/22/2023 01:01:55' prior: 50624511!
+hasDescendantAsset: anAsset
+
+	^ (assets includes: anAsset) or: [ assets anySatisfy: [:aChildAsset | aChildAsset hasDescendantAsset: anAsset ] ]! !
+
+!methodRemoval: Portfolio #hasAsset: stamp: 'TS 5/22/2023 01:01:55'!
+hasAsset: anAsset
+
+	^ (assets includes: anAsset) or: [ assets anySatisfy: [:aChildAsset | aChildAsset hasDescendantAsset: anAsset ] ]!
+
+!methodRemoval: ReceptiveAccount #hasAsset: stamp: 'TS 5/22/2023 01:01:55'!
+hasAsset: anAsset
+
+	^ false!
+!Portfolio methodsFor: 'as yet unclassified' stamp: 'TS 5/22/2023 01:02:02' prior: 50624548!
+hasDescendantAsset: anAsset
+
+	^ (assets includes: anAsset) or:
+		[ assets anySatisfy: [:aChildAsset | aChildAsset hasDescendantAsset: anAsset ] ]! !
+
+----QUIT----(22 May 2023 01:35:08) CuisUniversity-5799.image priorSource: 9347532!
+
+----STARTUP---- (22 May 2023 03:15:57) as /home/sponja/Temp/Cuises/cursada2/CuisUniversity-5799.image!
+
+!Portfolio methodsFor: 'transactions' stamp: 'TS 5/22/2023 03:22:20' prior: 50621542 overrides: 50620603!
+transactions
+	
+	^ assets inject: (Set new) into: [:transactions :anAsset | 
+		anAsset addTransactionsTo: transactions.
+		transactions
+	]! !
+!Portfolio methodsFor: 'transactions' stamp: 'TS 5/22/2023 03:23:38' prior: 50624580 overrides: 50620603!
+transactions
+	
+	| transactions |
+	
+	transactions := Set new.
+	
+	self addTransactionsTo: transactions.
+	
+	^ transactions! !
+!Portfolio methodsFor: 'transactions' stamp: 'TS 5/22/2023 03:25:03'!
+addTransactionsTo: aCollectionTransactions
+
+	assets do: [ :anAsset | anAsset addTransactionsTo: aCollectionTransactions ]! !
+!ReceptiveAccount methodsFor: 'transactions' stamp: 'TS 5/22/2023 03:25:28'!
+addTransactionsTo: aCollectionTransactions
+
+	aCollectionTransactions ! !
+!ReceptiveAccount methodsFor: 'transactions' stamp: 'TS 5/22/2023 03:25:33' prior: 50624602!
+addTransactionsTo: aCollectionOfTransactions
+
+	aCollectionOfTransactions ! !
+!ReceptiveAccount methodsFor: 'transactions' stamp: 'TS 5/22/2023 03:26:11' prior: 50624608!
+addTransactionsTo: aCollectionOfTransactions
+
+	aCollectionOfTransactions addAll: transactions! !
+!Portfolio methodsFor: 'as yet unclassified' stamp: 'TS 5/22/2023 03:43:17'!
+isComposedOf: anAsset
+
+	^ (assets includes: anAsset) or:
+		[ assets anySatisfy: [:aChildAsset | aChildAsset hasDescendantAsset: anAsset ] ]! !
+!ReceptiveAccount methodsFor: 'as yet unclassified' stamp: 'TS 5/22/2023 03:43:17'!
+isComposedOf: anAsset
+
+	^ false! !
+!Asset methodsFor: 'as yet unclassified' stamp: 'TS 5/22/2023 03:43:17' prior: 50624540!
+isInHierarchyOf: aPortfolio
+
+	^ (aPortfolio isComposedOf: self) or:
+	[aPortfolio anyAncestorHasAsset: self] or:
+	(aPortfolio = self)! !
+!Portfolio methodsFor: 'as yet unclassified' stamp: 'TS 5/22/2023 03:43:17' prior: 50624566!
+hasDescendantAsset: anAsset
+
+	^ (assets includes: anAsset) or:
+		[ assets anySatisfy: [:aChildAsset | aChildAsset isComposedOf: anAsset ] ]! !
+!Portfolio methodsFor: 'as yet unclassified' stamp: 'TS 5/22/2023 03:43:17' prior: 50624523!
+anyAncestorHasAsset: anAsset
+
+	^ parentPortfolios anySatisfy: [:aParentPortfolio |
+		(aParentPortfolio isComposedOf: anAsset) or: [ aParentPortfolio anyAncestorHasAsset: anAsset ]
+	]! !
+!Portfolio methodsFor: 'as yet unclassified' stamp: 'TS 5/22/2023 03:43:17' prior: 50624620!
+isComposedOf: anAsset
+
+	^ (assets includes: anAsset) or:
+		[ assets anySatisfy: [:aChildAsset | aChildAsset isComposedOf: anAsset ] ]! !
+
+!methodRemoval: Portfolio #hasDescendantAsset: stamp: 'TS 5/22/2023 03:43:17'!
+hasDescendantAsset: anAsset
+
+	^ (assets includes: anAsset) or:
+		[ assets anySatisfy: [:aChildAsset | aChildAsset isComposedOf: anAsset ] ]!
+
+!methodRemoval: ReceptiveAccount #hasDescendantAsset: stamp: 'TS 5/22/2023 03:43:17'!
+hasDescendantAsset: anAsset
+
+	^ false!
+!Portfolio methodsFor: 'as yet unclassified' stamp: 'TS 5/22/2023 03:43:40' prior: 50624657!
+isComposedOf: anAsset
+
+	^ self = anAsset or: 
+		(assets includes: anAsset) or:
+		[ assets anySatisfy: [:aChildAsset | aChildAsset isComposedOf: anAsset ] ]! !
+!Portfolio methodsFor: 'as yet unclassified' stamp: 'TS 5/22/2023 03:43:44' prior: 50624676!
+isComposedOf: anAsset
+
+	^ self = anAsset or: 
+		(assets includes: anAsset) or:
+		[ assets anySatisfy: [:aChildAsset | aChildAsset isComposedOf: anAsset ] ]! !
+!ReceptiveAccount methodsFor: 'as yet unclassified' stamp: 'TS 5/22/2023 03:44:08' prior: 50624628!
+isComposedOf: anAsset
+
+	^ self = anAsset! !
+!Asset methodsFor: 'as yet unclassified' stamp: 'TS 5/22/2023 03:44:28' prior: 50624632!
+isInHierarchyOf: aPortfolio
+
+	^ (aPortfolio isComposedOf: self) or:
+	[aPortfolio anyAncestorHasAsset: self]! !
+
+!testRun: #PortfolioTest #test01PortfolioWithNoAccountsHasZeroBalance stamp: 'TS 5/22/2023 03:44:31'!
+PASSED!
+
+!testRun: #PortfolioTest #test02PortfolioWithSingleAccountHasSameBalanceAsTheAccount stamp: 'TS 5/22/2023 03:44:31'!
+PASSED!
+
+!testRun: #PortfolioTest #test03PortfolioWithMultipleAccountsHasBalanceEqualToTheSumOfTheAccountBalances stamp: 'TS 5/22/2023 03:44:31'!
+PASSED!
+
+!testRun: #PortfolioTest #test04PortfolioWithChildrenPortfoliosHasTheSumOfTheirBalancesAsItsBalance stamp: 'TS 5/22/2023 03:44:31'!
+PASSED!
+
+!testRun: #PortfolioTest #test05PortfolioWithNoAccountsHasNoTransactions stamp: 'TS 5/22/2023 03:44:31'!
+PASSED!
+
+!testRun: #PortfolioTest #test06PortfolioWithAccountsKnowsTheirTransactions stamp: 'TS 5/22/2023 03:44:31'!
+PASSED!
+
+!testRun: #PortfolioTest #test07PortfolioWithChildrenPortfoliosKnowsTheirTransactions stamp: 'TS 5/22/2023 03:44:31'!
+PASSED!
+
+!testRun: #PortfolioTest #test08PortfolioWithNoAssetsHasNoTransactionsRegistered stamp: 'TS 5/22/2023 03:44:31'!
+PASSED!
+
+!testRun: #PortfolioTest #test09PortfolioWithAssetsHasTheirTransactionRegistered stamp: 'TS 5/22/2023 03:44:31'!
+PASSED!
+
+!testRun: #PortfolioTest #test10PortfolioCantHaveItselfAsAnAsset stamp: 'TS 5/22/2023 03:44:31'!
+PASSED!
+
+!testRun: #PortfolioTest #test11PortfolioCantHaveAssetsThatItAlreadyHasAsDirectChildren stamp: 'TS 5/22/2023 03:44:31'!
+PASSED!
+
+!testRun: #PortfolioTest #test12PortfolioCantHaveAssetsThatAreAlreadyInItsDirectChildrenAssets stamp: 'TS 5/22/2023 03:44:31'!
+PASSED!
+
+!testRun: #PortfolioTest #test13PortfolioCantHaveAssetsThatAreAlreadyInItsDescendantAssets stamp: 'TS 5/22/2023 03:44:31'!
+PASSED!
+
+!testRun: #PortfolioTest #test14PortfolioCantHaveAnAncestorAsAnAsset stamp: 'TS 5/22/2023 03:44:31'!
+PASSED!
+
+!testRun: #PortfolioTest #test15PortfolioWithSingleParentCantHaveASiblingAsAnAsset stamp: 'TS 5/22/2023 03:44:31'!
+PASSED!
+
+!testRun: #PortfolioTest #test16PortfolioWithMultipleParentsCantHaveASiblingAsAnAsset stamp: 'TS 5/22/2023 03:44:31'!
+PASSED!
+
+!testRun: #PortfolioTest #test17PortfolioCantHaveDescendantOfAnAncestorAsAnAsset stamp: 'TS 5/22/2023 03:44:31'!
+PASSED!
+
+!testRun: #PortfolioTest #test18PortfolioCantAddPortfolioThatContainsOneOfItsChildren stamp: 'TS 5/22/2023 03:44:31'!
+PASSED!
+
+!testRun: #PortfolioTest #test19PortfolioCantAddPortfolioThatContainsOneOfItsDescendants stamp: 'TS 5/22/2023 03:44:31'!
+PASSED!
+
+!testRun: #PortfolioTest #test20PortfolioCantAddPortfolioThatHasASiblingAsADescendant stamp: 'TS 5/22/2023 03:44:31'!
+PASSED!
+!Portfolio methodsFor: 'as yet unclassified' stamp: 'TS 5/22/2023 03:45:47'!
+anyChildIsComposedOf: anAsset
+
+	^ assets anySatisfy: [:aChildAsset | aChildAsset isComposedOf: anAsset ]! !
+!Portfolio methodsFor: 'as yet unclassified' stamp: 'TS 5/22/2023 03:45:47' prior: 50624684!
+isComposedOf: anAsset
+
+	^ self = anAsset or: 
+		(assets includes: anAsset) or:
+		[ self anyChildIsComposedOf: anAsset ]! !
+!Portfolio methodsFor: 'as yet unclassified' stamp: 'TS 5/22/2023 03:46:31'!
+allChildrenCanBeAddedTo: aPortfolio
+
+	^ assets allSatisfy: [ :anAsset | anAsset canBeAddedTo: aPortfolio ]! !
+!Portfolio methodsFor: 'as yet unclassified' stamp: 'TS 5/22/2023 03:46:31' prior: 50624394 overrides: 50624309!
+canBeAddedTo: aPortfolio
+
+	^ (self isInHierarchyOf: aPortfolio	) not and:
+		[ self allChildrenCanBeAddedTo: aPortfolio ]! !
+!Portfolio methodsFor: 'modification' stamp: 'TS 5/22/2023 03:57:23'!
+addToPortfolio: aPortfolio
+
+	self addParentPortfolio: aPortfolio! !
+!Portfolio methodsFor: 'modification' stamp: 'TS 5/22/2023 03:57:46' prior: 50624402!
+addAsset: anAsset
+
+	(anAsset canBeAddedTo: self) ifFalse: [ self error: self class cantHaveRepeatedAssets ].
+
+	anAsset addToPortfolio: self.
+	
+	assets add: anAsset! !
+!Asset methodsFor: 'as yet unclassified' stamp: 'TS 5/22/2023 03:58:14'!
+addToPortfolio: aPortfolio
+! !
+!Asset methodsFor: 'as yet unclassified' stamp: 'TS 5/22/2023 03:58:22' prior: 50624823!
+addToPortfolio: aPortfolio
+
+	self subclassResponsibility! !
+!ReceptiveAccount methodsFor: 'as yet unclassified' stamp: 'TS 5/22/2023 03:58:29' overrides: 50624827!
+addToPortfolio: aPortfolio! !
+
+!testRun: #PortfolioTest #test01PortfolioWithNoAccountsHasZeroBalance stamp: 'TS 5/22/2023 04:00:50'!
+PASSED!
+
+!testRun: #PortfolioTest #test02PortfolioWithSingleAccountHasSameBalanceAsTheAccount stamp: 'TS 5/22/2023 04:00:50'!
+PASSED!
+
+!testRun: #PortfolioTest #test03PortfolioWithMultipleAccountsHasBalanceEqualToTheSumOfTheAccountBalances stamp: 'TS 5/22/2023 04:00:50'!
+PASSED!
+
+!testRun: #PortfolioTest #test04PortfolioWithChildrenPortfoliosHasTheSumOfTheirBalancesAsItsBalance stamp: 'TS 5/22/2023 04:00:50'!
+PASSED!
+
+!testRun: #PortfolioTest #test05PortfolioWithNoAccountsHasNoTransactions stamp: 'TS 5/22/2023 04:00:50'!
+PASSED!
+
+!testRun: #PortfolioTest #test06PortfolioWithAccountsKnowsTheirTransactions stamp: 'TS 5/22/2023 04:00:51'!
+PASSED!
+
+!testRun: #PortfolioTest #test07PortfolioWithChildrenPortfoliosKnowsTheirTransactions stamp: 'TS 5/22/2023 04:00:51'!
+PASSED!
+
+!testRun: #PortfolioTest #test08PortfolioWithNoAssetsHasNoTransactionsRegistered stamp: 'TS 5/22/2023 04:00:51'!
+PASSED!
+
+!testRun: #PortfolioTest #test09PortfolioWithAssetsHasTheirTransactionRegistered stamp: 'TS 5/22/2023 04:00:51'!
+PASSED!
+
+!testRun: #PortfolioTest #test10PortfolioCantHaveItselfAsAnAsset stamp: 'TS 5/22/2023 04:00:51'!
+PASSED!
+
+!testRun: #PortfolioTest #test11PortfolioCantHaveAssetsThatItAlreadyHasAsDirectChildren stamp: 'TS 5/22/2023 04:00:51'!
+PASSED!
+
+!testRun: #PortfolioTest #test12PortfolioCantHaveAssetsThatAreAlreadyInItsDirectChildrenAssets stamp: 'TS 5/22/2023 04:00:51'!
+PASSED!
+
+!testRun: #PortfolioTest #test13PortfolioCantHaveAssetsThatAreAlreadyInItsDescendantAssets stamp: 'TS 5/22/2023 04:00:51'!
+PASSED!
+
+!testRun: #PortfolioTest #test14PortfolioCantHaveAnAncestorAsAnAsset stamp: 'TS 5/22/2023 04:00:51'!
+PASSED!
+
+!testRun: #PortfolioTest #test15PortfolioWithSingleParentCantHaveASiblingAsAnAsset stamp: 'TS 5/22/2023 04:00:51'!
+PASSED!
+
+!testRun: #PortfolioTest #test16PortfolioWithMultipleParentsCantHaveASiblingAsAnAsset stamp: 'TS 5/22/2023 04:00:51'!
+PASSED!
+
+!testRun: #PortfolioTest #test17PortfolioCantHaveDescendantOfAnAncestorAsAnAsset stamp: 'TS 5/22/2023 04:00:51'!
+PASSED!
+
+!testRun: #PortfolioTest #test18PortfolioCantAddPortfolioThatContainsOneOfItsChildren stamp: 'TS 5/22/2023 04:00:51'!
+PASSED!
+
+!testRun: #PortfolioTest #test19PortfolioCantAddPortfolioThatContainsOneOfItsDescendants stamp: 'TS 5/22/2023 04:00:51'!
+PASSED!
+
+!testRun: #PortfolioTest #test20PortfolioCantAddPortfolioThatHasASiblingAsADescendant stamp: 'TS 5/22/2023 04:00:51'!
+PASSED!
+!Asset methodsFor: 'portfolio-private' stamp: 'TS 5/22/2023 04:01:34'!
+isComposedOf: anAsset
+
+	self subclassResponsibility! !
+
+----SNAPSHOT----(22 May 2023 04:11:12) CuisUniversity-5799.image priorSource: 9373524!
+
+----SNAPSHOT----(22 May 2023 04:19:13) CuisUniversity-5799.image priorSource: 9384598!
+
+----QUIT----(22 May 2023 04:25:24) CuisUniversity-5799.image priorSource: 9384686!
