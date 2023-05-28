@@ -1,0 +1,2704 @@
+
+
+----QUIT----(26 May 2023 20:53:32) CuisUniversity-5819.image priorSource: 4873322!
+
+----STARTUP---- (26 May 2023 20:53:33) as /Users/hernan/Documents/Cuis/5.0-64Bits/Cuis-University-Installer/CuisUniversity-5819.image!
+
+
+----QUIT----(26 May 2023 20:53:33) CuisUniversity-5819.image priorSource: 9302089!
+
+----STARTUP---- (27 May 2023 19:55:15) as /home/sponja/Temp/linux64/CuisUniversity-5819.image!
+
+
+----End fileIn of /home/sponja/Downloads/Portfolio-Solucion.st----!
+
+TestCase subclass: #TransferTest
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Portfolio-Solucion'!
+
+!classDefinition: #TransferTest category: 'Portfolio-Solucion' stamp: 'SMG 5/27/2023 19:57:45'!
+TestCase subclass: #TransferTest
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Portfolio-Solucion'!
+
+!classDefinition: #Transfer category: 'Portfolio-Solucion' stamp: 'SMG 5/27/2023 19:59:41'!
+Object subclass: #Transfer
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Portfolio-Solucion'!
+!TransferTest methodsFor: 'no messages' stamp: 'SMG 5/27/2023 19:59:35'!
+test01TransferRemovesBalanceFromSenderAndAddsItToReceiver
+
+	| receiver sender |
+	sender := ReceptiveAccount new.
+	Deposit register: 50 on: sender.
+	receiver := ReceptiveAccount new.
+	
+	Transfer register: 50 from: sender to: receiver.
+	
+	self assert: 0 equals: sender balance.
+	self assert: 50 equals: receiver balance! !
+
+!testRun: #TransferTest #test01TransferRemovesBalanceFromSenderAndAddsItToReceiver stamp: 'SMG 5/27/2023 19:59:43'!
+ERROR!
+!Transfer class methodsFor: 'instance creation' stamp: 'SMG 5/27/2023 19:59:48'!
+register: aSmallInteger from: aReceptiveAccount to: aReceptiveAccount3 
+	"DO NOT FORGET TO RENAME COLLABORATORS AND REMOVE THIS COMMENT!!!!"
+	self shouldBeImplemented.
+	^self new initializeRegister: aSmallInteger from: aReceptiveAccount to: aReceptiveAccount3 ! !
+!Transfer class methodsFor: 'instance creation' stamp: 'SMG 5/27/2023 20:00:57' prior: 50623107!
+register: aValue from: aSender to: aReceiver 
+	
+	Withdraw register: aValue on: aSender.
+	Deposit register: aValue on: aReceiver! !
+
+!testRun: #TransferTest #test01TransferRemovesBalanceFromSenderAndAddsItToReceiver stamp: 'SMG 5/27/2023 20:00:59'!
+PASSED!
+
+!testRun: #TransferTest #test01TransferRemovesBalanceFromSenderAndAddsItToReceiver stamp: 'SMG 5/27/2023 20:00:59'!
+PASSED!
+!TransferTest methodsFor: 'as yet unclassified' stamp: 'SMG 5/27/2023 20:03:01'!
+test02TransferLegsAreRegisteredOnParticipantAccounts
+
+	| receiver sender transfer |
+	sender := ReceptiveAccount new.
+	Deposit register: 50 on: sender.
+	receiver := ReceptiveAccount new.
+	
+	transfer := 	Transfer register: 50 from: sender to: receiver.
+	
+	self assert: (sender hasRegistered: transfer withdrawLeg).
+	self assert: (receiver hasRegistered: transfer depositLeg)! !
+
+!testRun: #TransferTest #test02TransferLegsAreRegisteredOnParticipantAccounts stamp: 'SMG 5/27/2023 20:03:08'!
+ERROR!
+!Transfer class methodsFor: 'instance creation' stamp: 'SMG 5/27/2023 20:03:45' prior: 50623119!
+register: aValue from: aSender to: aReceiver 
+
+	^self new initializeWith: aValue from: aSender to: aReceiver! !
+
+!testRun: #TransferTest #test01TransferRemovesBalanceFromSenderAndAddsItToReceiver stamp: 'SMG 5/27/2023 20:03:51'!
+ERROR!
+
+!testRun: #TransferTest #test02TransferLegsAreRegisteredOnParticipantAccounts stamp: 'SMG 5/27/2023 20:03:51'!
+ERROR!
+
+!testRun: #TransferTest #test01TransferRemovesBalanceFromSenderAndAddsItToReceiver stamp: 'SMG 5/27/2023 20:03:52'!
+ERROR!
+
+!classDefinition: #Transfer category: 'Portfolio-Solucion' stamp: 'SMG 5/27/2023 20:04:02'!
+Object subclass: #Transfer
+	instanceVariableNames: 'value'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Portfolio-Solucion'!
+
+!classDefinition: #Transfer category: 'Portfolio-Solucion' stamp: 'SMG 5/27/2023 20:04:02'!
+Object subclass: #Transfer
+	instanceVariableNames: 'value sender'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Portfolio-Solucion'!
+
+!classDefinition: #Transfer category: 'Portfolio-Solucion' stamp: 'SMG 5/27/2023 20:04:02'!
+Object subclass: #Transfer
+	instanceVariableNames: 'value sender receiver'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Portfolio-Solucion'!
+!Transfer methodsFor: 'initialization' stamp: 'SMG 5/27/2023 20:04:02'!
+initializeWith: aValue from: aSender to: aReceiver 
+	self shouldBeImplemented.
+	value := aValue.
+	sender := aSender.
+	receiver := aReceiver.! !
+
+!classDefinition: #Transfer category: 'Portfolio-Solucion' stamp: 'SMG 5/27/2023 20:04:48'!
+Object subclass: #Transfer
+	instanceVariableNames: 'value sender receiver withdrawLeg'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Portfolio-Solucion'!
+
+!classDefinition: #Transfer category: 'Portfolio-Solucion' stamp: 'SMG 5/27/2023 20:04:49'!
+Object subclass: #Transfer
+	instanceVariableNames: 'value sender receiver withdrawLeg depositLeg'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Portfolio-Solucion'!
+!Transfer methodsFor: 'initialization' stamp: 'SMG 5/27/2023 20:04:47' prior: 50623193!
+initializeWith: aValue from: aSender to: aReceiver 
+	
+	withdrawLeg := Withdraw register: aValue on: aSender.
+	depositLeg := Deposit register: aValue on: aReceiver
+! !
+
+!testRun: #TransferTest #test01TransferRemovesBalanceFromSenderAndAddsItToReceiver stamp: 'SMG 5/27/2023 20:04:51'!
+PASSED!
+
+!testRun: #TransferTest #test01TransferRemovesBalanceFromSenderAndAddsItToReceiver stamp: 'SMG 5/27/2023 20:04:54'!
+PASSED!
+
+!testRun: #TransferTest #test02TransferLegsAreRegisteredOnParticipantAccounts stamp: 'SMG 5/27/2023 20:04:54'!
+ERROR!
+
+!testRun: #TransferTest #test02TransferLegsAreRegisteredOnParticipantAccounts stamp: 'SMG 5/27/2023 20:04:54'!
+ERROR!
+!Transfer methodsFor: 'accessing' stamp: 'SMG 5/27/2023 20:05:04'!
+withdrawLeg
+	self shouldBeImplemented.
+	^withdrawLeg! !
+!Transfer methodsFor: 'accessing' stamp: 'SMG 5/27/2023 20:05:08' prior: 50623240!
+withdrawLeg
+
+	^withdrawLeg! !
+
+!testRun: #TransferTest #test02TransferLegsAreRegisteredOnParticipantAccounts stamp: 'SMG 5/27/2023 20:05:11'!
+ERROR!
+!Transfer methodsFor: 'accessing' stamp: 'SMG 5/27/2023 20:05:15'!
+depositLeg
+	self shouldBeImplemented.
+	^depositLeg! !
+!Transfer methodsFor: 'accessing' stamp: 'SMG 5/27/2023 20:05:17' prior: 50623252!
+depositLeg
+
+	^depositLeg! !
+
+!testRun: #TransferTest #test02TransferLegsAreRegisteredOnParticipantAccounts stamp: 'SMG 5/27/2023 20:05:19'!
+PASSED!
+
+!testRun: #TransferTest #test01TransferRemovesBalanceFromSenderAndAddsItToReceiver stamp: 'SMG 5/27/2023 20:05:22'!
+PASSED!
+
+!testRun: #TransferTest #test02TransferLegsAreRegisteredOnParticipantAccounts stamp: 'SMG 5/27/2023 20:05:22'!
+PASSED!
+
+----SNAPSHOT----(27 May 2023 20:05:40) CuisUniversity-5819.image priorSource: 9302310!
+!Withdraw class methodsFor: 'instance creation' stamp: 'SMG 5/27/2023 20:06:12' overrides: 50622987!
+register: aValue on: account
+
+	| transaction |
+	
+	transaction := self for: aValue.
+	account register: transaction.
+		
+	^ transaction! !
+!Deposit class methodsFor: 'instance creation' stamp: 'SMG 5/27/2023 20:06:23' overrides: 50622987!
+register: aValue on: account
+
+	| transaction |
+	
+	transaction := self for: aValue.
+	account register: transaction.
+		
+	^ transaction! !
+
+!methodRemoval: AccountTransaction class #register:on: stamp: 'SMG 5/27/2023 20:06:29'!
+register: aValue on: account
+
+	| transaction |
+	
+	transaction := self for: aValue.
+	account register: transaction.
+		
+	^ transaction!
+
+!testRun: #PortfolioTest #test01BalanceOfPortfolioWithoutAccountsIsZero stamp: 'SMG 5/27/2023 20:06:30'!
+PASSED!
+
+!testRun: #PortfolioTest #test02BalanceOfPortfolioWithAccountsIsSumOfAccountsBalance stamp: 'SMG 5/27/2023 20:06:30'!
+PASSED!
+
+!testRun: #PortfolioTest #test03BalanceOfPortfolioIsCalculatedRecursivelyOnPortfolios stamp: 'SMG 5/27/2023 20:06:30'!
+PASSED!
+
+!testRun: #PortfolioTest #test04PortfolioWithoutAccountsHasNoRegisteredTransaction stamp: 'SMG 5/27/2023 20:06:30'!
+PASSED!
+
+!testRun: #PortfolioTest #test05PortfolioHasRegisteredItsAccountsTransactions stamp: 'SMG 5/27/2023 20:06:30'!
+PASSED!
+
+!testRun: #PortfolioTest #test06PortfolioLooksForRegisteredTransactionsRecursively stamp: 'SMG 5/27/2023 20:06:30'!
+PASSED!
+
+!testRun: #PortfolioTest #test07PortfolioHasNoTransactionWhenHasNoAccounts stamp: 'SMG 5/27/2023 20:06:30'!
+PASSED!
+
+!testRun: #PortfolioTest #test08PortfolioTransactionsIncludesAllItsAccountsTransactions stamp: 'SMG 5/27/2023 20:06:30'!
+PASSED!
+
+!testRun: #PortfolioTest #test09PortfolioTransactionsAreCalculatedRecursively stamp: 'SMG 5/27/2023 20:06:30'!
+PASSED!
+
+!testRun: #PortfolioTest #test10PortfolioCanNotIncludeTheSameAccountMoreThanOnce stamp: 'SMG 5/27/2023 20:06:30'!
+PASSED!
+
+!testRun: #PortfolioTest #test11PortfolioCanNotIncludeAccountOfItsPortfolios stamp: 'SMG 5/27/2023 20:06:30'!
+PASSED!
+
+!testRun: #PortfolioTest #test12PortfolioCanNotIncludeItself stamp: 'SMG 5/27/2023 20:06:30'!
+PASSED!
+
+!testRun: #PortfolioTest #test13ComposedPortfolioCanNotHaveParentPortfolioAccount stamp: 'SMG 5/27/2023 20:06:30'!
+PASSED!
+
+!testRun: #PortfolioTest #test14ComposedPortfolioCanNotHaveAccountOfAnyRootParentRecursively stamp: 'SMG 5/27/2023 20:06:30'!
+PASSED!
+
+!testRun: #PortfolioTest #test15PortfolioCanNotIncludeAnyOfTheComposedAccountOfPortfolioToAdd stamp: 'SMG 5/27/2023 20:06:30'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test01ReceptiveAccountHaveZeroAsBalanceWhenCreated stamp: 'SMG 5/27/2023 20:06:30'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test02DepositIncreasesBalanceOnTransactionValue stamp: 'SMG 5/27/2023 20:06:30'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test03WithdrawDecreasesBalanceOnTransactionValue stamp: 'SMG 5/27/2023 20:06:30'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test04WithdrawValueMustBePositive stamp: 'SMG 5/27/2023 20:06:30'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test05ReceptiveAccountKnowsRegisteredTransactions stamp: 'SMG 5/27/2023 20:06:30'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test06ReceptiveAccountDoNotKnowNotRegisteredTransactions stamp: 'SMG 5/27/2023 20:06:30'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test07AccountKnowsItsTransactions stamp: 'SMG 5/27/2023 20:06:30'!
+PASSED!
+
+!testRun: #TransferTest #test01TransferRemovesBalanceFromSenderAndAddsItToReceiver stamp: 'SMG 5/27/2023 20:06:30'!
+PASSED!
+
+!testRun: #TransferTest #test02TransferLegsAreRegisteredOnParticipantAccounts stamp: 'SMG 5/27/2023 20:06:30'!
+PASSED!
+!TransferTest methodsFor: 'as yet unclassified' stamp: 'SMG 5/27/2023 20:08:04'!
+test03TransferLegsHaveCorrectTransferValue
+
+	| receiver sender transfer |
+	sender := ReceptiveAccount new.
+	Deposit register: 50 on: sender.
+	receiver := ReceptiveAccount new.
+	
+	transfer := 	Transfer register: 50 from: sender to: receiver.
+	
+	self assert: (sender hasRegistered: transfer withdrawLeg).
+	self assert: (receiver hasRegistered: transfer depositLeg)! !
+!TransferTest methodsFor: 'as yet unclassified' stamp: 'SMG 5/27/2023 20:08:21' prior: 50623390!
+test03TransferLegsHaveCorrectTransferValue
+
+	| receiver sender transfer transferValue |
+	sender := ReceptiveAccount new.
+	transferValue := 50.
+	Deposit register: transferValue on: sender.
+	receiver := ReceptiveAccount new.
+	
+	transfer := 	Transfer register: 50 from: sender to: receiver.
+	
+	self assert: (sender hasRegistered: transfer withdrawLeg).
+	self assert: (receiver hasRegistered: transfer depositLeg)! !
+!TransferTest methodsFor: 'as yet unclassified' stamp: 'SMG 5/27/2023 20:09:06' prior: 50623405!
+test03TransferLegsHaveCorrectTransferValue
+
+	| receiver sender transfer transferValue |
+	sender := ReceptiveAccount new.
+	transferValue := 50.
+	Deposit register: transferValue on: sender.
+	receiver := ReceptiveAccount new.
+	
+	transfer := 	Transfer register: transferValue from: sender to: receiver.
+	
+	self assert: transferValue equals: transfer withdrawLeg value.
+	self assert: transferValue equals: transfer depositLeg value! !
+
+!testRun: #TransferTest #test03TransferLegsHaveCorrectTransferValue stamp: 'SMG 5/27/2023 20:09:15'!
+PASSED!
+
+!testRun: #TransferTest #test01TransferRemovesBalanceFromSenderAndAddsItToReceiver stamp: 'SMG 5/27/2023 20:09:15'!
+PASSED!
+
+!testRun: #TransferTest #test02TransferLegsAreRegisteredOnParticipantAccounts stamp: 'SMG 5/27/2023 20:09:15'!
+PASSED!
+
+!testRun: #TransferTest #test03TransferLegsHaveCorrectTransferValue stamp: 'SMG 5/27/2023 20:09:15'!
+PASSED!
+!TransferTest methodsFor: 'as yet unclassified' stamp: 'SMG 5/27/2023 20:10:26'!
+test03TransferLegsCanAccessTransfer
+
+	| receiver sender transfer |
+	sender := ReceptiveAccount new.
+	Deposit register: 50 on: sender.
+	receiver := ReceptiveAccount new.
+	
+	transfer := 	Transfer register: 50 from: sender to: receiver.
+	
+	self assert: transfer equals: transfer withdrawLeg transfer.
+	self assert: transfer equals: transfer depositLeg transfer! !
+
+!methodRemoval: TransferTest #test03TransferLegsHaveCorrectTransferValue stamp: 'SMG 5/27/2023 20:10:32'!
+test03TransferLegsHaveCorrectTransferValue
+
+	| receiver sender transfer transferValue |
+	sender := ReceptiveAccount new.
+	transferValue := 50.
+	Deposit register: transferValue on: sender.
+	receiver := ReceptiveAccount new.
+	
+	transfer := 	Transfer register: transferValue from: sender to: receiver.
+	
+	self assert: transferValue equals: transfer withdrawLeg value.
+	self assert: transferValue equals: transfer depositLeg value!
+
+!testRun: #TransferTest #test03TransferLegsCanAccessTransfer stamp: 'SMG 5/27/2023 20:10:36'!
+ERROR!
+
+AccountTransaction subclass: #TransferLeg
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Portfolio-Solucion'!
+
+!classDefinition: #TransferLeg category: 'Portfolio-Solucion' stamp: 'SMG 5/27/2023 20:11:22'!
+AccountTransaction subclass: #TransferLeg
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Portfolio-Solucion'!
+!TransferLeg class methodsFor: 'no messages' stamp: 'SMG 5/27/2023 20:12:45'!
+for: aTransfer on: anAccount
+
+	^ self new initializeFor: aTransfer on: anAccount! !
+
+!classDefinition: #TransferLeg category: 'Portfolio-Solucion' stamp: 'SMG 5/27/2023 20:13:21'!
+AccountTransaction subclass: #TransferLeg
+	instanceVariableNames: 'transfer'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Portfolio-Solucion'!
+
+!classDefinition: #TransferLeg category: 'Portfolio-Solucion' stamp: 'SMG 5/27/2023 20:13:25'!
+AccountTransaction subclass: #TransferLeg
+	instanceVariableNames: 'transfer account'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Portfolio-Solucion'!
+!TransferLeg methodsFor: 'no messages' stamp: 'SMG 5/27/2023 20:13:24'!
+initializeFor: aTransfer on: anAccount
+
+	transfer := aTransfer.
+	account := anAccount! !
+!TransferLeg methodsFor: 'as yet unclassified' stamp: 'SMG 5/27/2023 20:15:36' overrides: 50622973!
+affectBalance: aBalance
+
+	(transfer sender = account) ifTrue: [ ^ aBalance - transfer value ].
+	^ aBalance + transfer value! !
+
+!testRun: #TransferTest #test01TransferRemovesBalanceFromSenderAndAddsItToReceiver stamp: 'SMG 5/27/2023 20:16:23'!
+PASSED!
+
+!testRun: #TransferTest #test02TransferLegsAreRegisteredOnParticipantAccounts stamp: 'SMG 5/27/2023 20:16:23'!
+PASSED!
+
+!testRun: #TransferTest #test03TransferLegsCanAccessTransfer stamp: 'SMG 5/27/2023 20:16:23'!
+ERROR!
+
+!testRun: #TransferTest #test03TransferLegsCanAccessTransfer stamp: 'SMG 5/27/2023 20:16:23'!
+ERROR!
+!Transfer methodsFor: 'accessing' stamp: 'SMG 5/27/2023 20:16:39'!
+sender
+
+	^ sender! !
+!Transfer methodsFor: 'initialization' stamp: 'SMG 5/27/2023 20:17:14' prior: 50623217!
+initializeWith: aValue from: aSender to: aReceiver 
+	
+	value := aValue.
+	sender := aSender.
+	receiver := aReceiver.
+	withdrawLeg := Withdraw register: aValue on: aSender.
+	depositLeg := Deposit register: aValue on: aReceiver
+! !
+!Transfer methodsFor: 'accessing' stamp: 'SMG 5/27/2023 20:17:26'!
+receiver
+
+	^ receiver! !
+!Transfer methodsFor: 'accessing' stamp: 'SMG 5/27/2023 20:17:32' overrides: 16902254!
+value
+
+	^ value! !
+
+!testRun: #TransferTest #test01TransferRemovesBalanceFromSenderAndAddsItToReceiver stamp: 'SMG 5/27/2023 20:17:39'!
+PASSED!
+
+!testRun: #TransferTest #test02TransferLegsAreRegisteredOnParticipantAccounts stamp: 'SMG 5/27/2023 20:17:39'!
+PASSED!
+
+!testRun: #TransferTest #test03TransferLegsCanAccessTransfer stamp: 'SMG 5/27/2023 20:17:39'!
+ERROR!
+
+!testRun: #TransferTest #test03TransferLegsCanAccessTransfer stamp: 'SMG 5/27/2023 20:17:39'!
+ERROR!
+!Transfer methodsFor: 'initialization' stamp: 'SMG 5/27/2023 20:18:25' prior: 50623550!
+initializeWith: aValue from: aSender to: aReceiver 
+	
+	value := aValue.
+	sender := aSender.
+	receiver := aReceiver.
+	withdrawLeg := TransferLeg for: self on: aSender.
+	depositLeg := Deposit for: self on: aReceiver.
+! !
+!Transfer methodsFor: 'initialization' stamp: 'SMG 5/27/2023 20:18:25' prior: 50623582!
+initializeWith: aValue from: aSender to: aReceiver 
+	
+	value := aValue.
+	sender := aSender.
+	receiver := aReceiver.
+	withdrawLeg := TransferLeg for: self on: aSender.
+	depositLeg := Deposit for: self on: aReceiver
+! !
+
+!testRun: #TransferTest #test01TransferRemovesBalanceFromSenderAndAddsItToReceiver stamp: 'SMG 5/27/2023 20:18:29'!
+ERROR!
+
+!testRun: #TransferTest #test02TransferLegsAreRegisteredOnParticipantAccounts stamp: 'SMG 5/27/2023 20:18:29'!
+ERROR!
+
+!testRun: #TransferTest #test03TransferLegsCanAccessTransfer stamp: 'SMG 5/27/2023 20:18:29'!
+ERROR!
+
+----SNAPSHOT----(27 May 2023 20:18:42) CuisUniversity-5819.image priorSource: 9331880!
+
+!testRun: #TransferTest #test01TransferRemovesBalanceFromSenderAndAddsItToReceiver stamp: 'SMG 5/27/2023 20:18:46'!
+ERROR!
+
+!testRun: #TransferTest #test02TransferLegsAreRegisteredOnParticipantAccounts stamp: 'SMG 5/27/2023 20:18:46'!
+ERROR!
+
+!testRun: #TransferTest #test03TransferLegsCanAccessTransfer stamp: 'SMG 5/27/2023 20:18:46'!
+ERROR!
+
+!testRun: #TransferTest #test01TransferRemovesBalanceFromSenderAndAddsItToReceiver stamp: 'SMG 5/27/2023 20:18:48'!
+ERROR!
+!Transfer methodsFor: 'initialization' stamp: 'SMG 5/27/2023 20:19:08' prior: 50623592!
+initializeWith: aValue from: aSender to: aReceiver 
+	
+	value := aValue.
+	sender := aSender.
+	receiver := aReceiver.
+	withdrawLeg := TransferLeg for: self on: aSender.
+	depositLeg := TransferLeg for: self on: aReceiver
+! !
+
+!testRun: #TransferTest #test01TransferRemovesBalanceFromSenderAndAddsItToReceiver stamp: 'SMG 5/27/2023 20:19:10'!
+FAILURE!
+
+!testRun: #TransferTest #test02TransferLegsAreRegisteredOnParticipantAccounts stamp: 'SMG 5/27/2023 20:19:10'!
+FAILURE!
+
+!testRun: #TransferTest #test03TransferLegsCanAccessTransfer stamp: 'SMG 5/27/2023 20:19:10'!
+ERROR!
+
+!testRun: #TransferTest #test01TransferRemovesBalanceFromSenderAndAddsItToReceiver stamp: 'SMG 5/27/2023 20:19:12'!
+FAILURE!
+
+!testRun: #TransferTest #test01TransferRemovesBalanceFromSenderAndAddsItToReceiver stamp: 'SMG 5/27/2023 20:19:47'!
+FAILURE!
+!TransferLeg class methodsFor: 'instance creation' stamp: 'SMG 5/27/2023 20:22:16' prior: 50623498!
+for: aTransfer on: anAccount
+
+	| transferLeg |
+	transferLeg := self new initializeFor: aTransfer on: anAccount.
+	
+	anAccount register: transferLeg.
+	
+	^ transferLeg! !
+!TransferLeg class methodsFor: 'instance creation' stamp: 'SMG 5/27/2023 20:22:20' prior: 50623659!
+for: aTransfer on: anAccount
+
+	| transferLeg |
+	
+	transferLeg := self new initializeFor: aTransfer on: anAccount.
+	
+	anAccount register: transferLeg.
+	
+	^ transferLeg! !
+
+!testRun: #TransferTest #test01TransferRemovesBalanceFromSenderAndAddsItToReceiver stamp: 'SMG 5/27/2023 20:22:23'!
+PASSED!
+
+!testRun: #TransferTest #test02TransferLegsAreRegisteredOnParticipantAccounts stamp: 'SMG 5/27/2023 20:22:23'!
+PASSED!
+
+!testRun: #TransferTest #test03TransferLegsCanAccessTransfer stamp: 'SMG 5/27/2023 20:22:23'!
+ERROR!
+
+!testRun: #TransferTest #test03TransferLegsCanAccessTransfer stamp: 'SMG 5/27/2023 20:22:23'!
+ERROR!
+!TransferLeg methodsFor: 'accessing' stamp: 'SMG 5/27/2023 20:22:34'!
+transfer
+	self shouldBeImplemented.
+	^transfer! !
+!TransferLeg methodsFor: 'accessing' stamp: 'SMG 5/27/2023 20:22:36' prior: 50623690!
+transfer
+
+	^transfer! !
+
+!testRun: #TransferTest #test03TransferLegsCanAccessTransfer stamp: 'SMG 5/27/2023 20:22:39'!
+PASSED!
+
+!testRun: #TransferTest #test01TransferRemovesBalanceFromSenderAndAddsItToReceiver stamp: 'SMG 5/27/2023 20:22:41'!
+PASSED!
+
+!testRun: #TransferTest #test02TransferLegsAreRegisteredOnParticipantAccounts stamp: 'SMG 5/27/2023 20:22:41'!
+PASSED!
+
+!testRun: #TransferTest #test03TransferLegsCanAccessTransfer stamp: 'SMG 5/27/2023 20:22:41'!
+PASSED!
+!TransferTest methodsFor: 'as yet unclassified' stamp: 'SMG 5/27/2023 20:25:43'!
+test04
+
+	| receiver sender transfer |
+	sender := ReceptiveAccount new.
+	Deposit register: 50 on: sender.
+	receiver := ReceptiveAccount new.
+	
+	transfer := 	Transfer register: 50 from: sender to: receiver.
+	
+	self assert: transfer equals: transfer withdrawLeg transfer.
+	self assert: transfer equals: transfer depositLeg transfer! !
+!TransferTest methodsFor: 'as yet unclassified' stamp: 'SMG 5/27/2023 20:32:16'!
+test04TransferLegsHasCorrectTransferValue
+
+	| receiver sender transfer |
+	sender := ReceptiveAccount new.
+	Deposit register: 50 on: sender.
+	receiver := ReceptiveAccount new.
+	
+	transfer := 	Transfer register: 50 from: sender to: receiver.
+	
+	self assert: 50 equals: transfer withdrawLeg value.
+	self assert: 50 equals: transfer depositLeg value! !
+
+!methodRemoval: TransferTest #test04 stamp: 'SMG 5/27/2023 20:32:19'!
+test04
+
+	| receiver sender transfer |
+	sender := ReceptiveAccount new.
+	Deposit register: 50 on: sender.
+	receiver := ReceptiveAccount new.
+	
+	transfer := 	Transfer register: 50 from: sender to: receiver.
+	
+	self assert: transfer equals: transfer withdrawLeg transfer.
+	self assert: transfer equals: transfer depositLeg transfer!
+
+!testRun: #TransferTest #test04TransferLegsHasCorrectTransferValue stamp: 'SMG 5/27/2023 20:32:23'!
+ERROR!
+!TransferLeg methodsFor: 'value' stamp: 'SMG 5/27/2023 20:32:33' overrides: 50622969!
+value
+	self shouldBeImplemented.! !
+!TransferLeg methodsFor: 'value' stamp: 'SMG 5/27/2023 20:32:43' prior: 50623756 overrides: 50622969!
+value
+
+	^ transfer value! !
+
+!testRun: #TransferTest #test04TransferLegsHasCorrectTransferValue stamp: 'SMG 5/27/2023 20:32:44'!
+PASSED!
+
+!testRun: #TransferTest #test01TransferRemovesBalanceFromSenderAndAddsItToReceiver stamp: 'SMG 5/27/2023 20:32:44'!
+PASSED!
+
+!testRun: #TransferTest #test02TransferLegsAreRegisteredOnParticipantAccounts stamp: 'SMG 5/27/2023 20:32:44'!
+PASSED!
+
+!testRun: #TransferTest #test03TransferLegsCanAccessTransfer stamp: 'SMG 5/27/2023 20:32:44'!
+PASSED!
+
+!testRun: #TransferTest #test04TransferLegsHasCorrectTransferValue stamp: 'SMG 5/27/2023 20:32:44'!
+PASSED!
+
+TransferLeg subclass: #WithdrawLeg
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Portfolio-Solucion'!
+
+!classDefinition: #WithdrawLeg category: 'Portfolio-Solucion' stamp: 'SMG 5/27/2023 20:34:15'!
+TransferLeg subclass: #WithdrawLeg
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Portfolio-Solucion'!
+
+TransferLeg subclass: #DepositLeg
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Portfolio-Solucion'!
+
+!classDefinition: #DepositLeg category: 'Portfolio-Solucion' stamp: 'SMG 5/27/2023 20:34:34'!
+TransferLeg subclass: #DepositLeg
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Portfolio-Solucion'!
+!WithdrawLeg methodsFor: 'balance' stamp: 'SMG 5/27/2023 20:34:59' overrides: 50623525!
+affectBalance: aBalance
+
+	(transfer sender = account) ifTrue: [ ^ aBalance - transfer value ].
+	^ aBalance + transfer value! !
+!DepositLeg methodsFor: 'balance' stamp: 'SMG 5/27/2023 20:34:59' overrides: 50623525!
+affectBalance: aBalance
+
+	(transfer sender = account) ifTrue: [ ^ aBalance - transfer value ].
+	^ aBalance + transfer value! !
+
+!methodRemoval: TransferLeg #affectBalance: stamp: 'SMG 5/27/2023 20:34:59'!
+affectBalance: aBalance
+
+	(transfer sender = account) ifTrue: [ ^ aBalance - transfer value ].
+	^ aBalance + transfer value!
+!TransferLeg methodsFor: 'balance' stamp: 'SMG 5/27/2023 20:35:23' overrides: 50622973!
+affectBalance: aBalance
+
+	self subclassResponsibility! !
+
+!methodRemoval: TransferLeg #affectBalance: stamp: 'SMG 5/27/2023 20:35:31'!
+affectBalance: aBalance
+
+	self subclassResponsibility!
+!DepositLeg methodsFor: 'balance' stamp: 'SMG 5/27/2023 20:35:47' prior: 50623813 overrides: 50622973!
+affectBalance: aBalance
+
+	^ aBalance + transfer value! !
+!WithdrawLeg methodsFor: 'balance' stamp: 'SMG 5/27/2023 20:35:58' prior: 50623806 overrides: 50622973!
+affectBalance: aBalance
+
+	^ aBalance - transfer value! !
+!Transfer methodsFor: 'initialization' stamp: 'SMG 5/27/2023 20:36:20' prior: 50623630!
+initializeWith: aValue from: aSender to: aReceiver 
+	
+	value := aValue.
+	sender := aSender.
+	receiver := aReceiver.
+	withdrawLeg := WithdrawLeg for: self on: aSender.
+	depositLeg := DepositLeg for: self on: aReceiver
+! !
+
+!testRun: #TransferTest #test01TransferRemovesBalanceFromSenderAndAddsItToReceiver stamp: 'SMG 5/27/2023 20:36:22'!
+PASSED!
+
+!testRun: #TransferTest #test02TransferLegsAreRegisteredOnParticipantAccounts stamp: 'SMG 5/27/2023 20:36:22'!
+PASSED!
+
+!testRun: #TransferTest #test03TransferLegsCanAccessTransfer stamp: 'SMG 5/27/2023 20:36:22'!
+PASSED!
+
+!testRun: #TransferTest #test04TransferLegsHasCorrectTransferValue stamp: 'SMG 5/27/2023 20:36:22'!
+PASSED!
+!TransferLeg methodsFor: 'initialization' stamp: 'SMG 5/27/2023 20:36:51' prior: 50623519!
+initializeFor: aTransfer on: anAccount
+
+	transfer := aTransfer! !
+
+!classDefinition: #TransferLeg category: 'Portfolio-Solucion' stamp: 'SMG 5/27/2023 20:37:03'!
+AccountTransaction subclass: #TransferLeg
+	instanceVariableNames: 'transfer'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Portfolio-Solucion'!
+!TransferLeg methodsFor: 'initialization' stamp: 'SMG 5/27/2023 20:37:18'!
+initializeFor: aTransfer 
+
+	transfer := aTransfer! !
+!TransferLeg class methodsFor: 'as yet unclassified' stamp: 'SMG 5/27/2023 20:37:18' prior: 50623668!
+for: aTransfer on: anAccount
+
+	| transferLeg |
+	
+	transferLeg := self new initializeFor: aTransfer .
+	
+	anAccount register: transferLeg.
+	
+	^ transferLeg! !
+
+!methodRemoval: TransferLeg #initializeFor:on: stamp: 'SMG 5/27/2023 20:37:18'!
+initializeFor: aTransfer on: anAccount
+
+	transfer := aTransfer!
+!TransferLeg class methodsFor: 'instance creation' stamp: 'SMG 5/27/2023 20:37:28' prior: 50623891!
+for: aTransfer on: anAccount
+
+	| transferLeg |
+	
+	transferLeg := self new initializeFor: aTransfer.
+	
+	anAccount register: transferLeg.
+	
+	^ transferLeg! !
+!TransferLeg class methodsFor: 'instance creation' stamp: 'SMG 5/27/2023 20:38:16'!
+register: aTransfer on: anAccount
+
+	| transferLeg |
+	
+	transferLeg := self new initializeFor: aTransfer.
+	
+	anAccount register: transferLeg.
+	
+	^ transferLeg! !
+!Transfer methodsFor: 'as yet unclassified' stamp: 'SMG 5/27/2023 20:38:16' prior: 50623848!
+initializeWith: aValue from: aSender to: aReceiver 
+	
+	value := aValue.
+	sender := aSender.
+	receiver := aReceiver.
+	withdrawLeg := WithdrawLeg register: self on: aSender.
+	depositLeg := DepositLeg register: self on: aReceiver
+! !
+
+!methodRemoval: TransferLeg class #for:on: stamp: 'SMG 5/27/2023 20:38:16'!
+for: aTransfer on: anAccount
+
+	| transferLeg |
+	
+	transferLeg := self new initializeFor: aTransfer.
+	
+	anAccount register: transferLeg.
+	
+	^ transferLeg!
+!TransferLeg class methodsFor: 'instance creation' stamp: 'SMG 5/27/2023 20:40:26' prior: 50623912!
+register: aTransfer on: anAccount
+
+	"
+	A pesar de que este mensaje y el for: tienen la misma implementación que las otras transacciones,
+	tienen distinta semántica: los otros toman un valor, mientras que éste toma una transferencia. Es
+	por esto que decidimos no hacer polimórfico a los métodos for: y register:on:
+	"
+
+	| transferLeg |
+	
+	transferLeg := self new initializeFor: aTransfer.
+	
+	anAccount register: transferLeg.
+	
+	^ transferLeg! !
+!TransferLeg class methodsFor: 'instance creation' stamp: 'SMG 5/27/2023 20:40:36' prior: 50623938!
+register: aTransfer on: anAccount
+
+	"
+	A pesar de que este mensaje y el for: tienen la misma implementación que las otras transacciones,
+	tienen distinta semántica: los otros toman un valor, mientras que éste toma una transferencia. Es
+	por esto que decidimos no hacer polimórfico a los métodos for: y register:on:
+	"
+
+	| transferLeg |
+	
+	transferLeg := self for: aTransfer.
+	
+	anAccount register: transferLeg.
+	
+	^ transferLeg! !
+!TransferLeg class methodsFor: 'instance creation' stamp: 'SMG 5/27/2023 20:40:50'!
+for: aTransfer
+
+	^ self new initializeFor: aTransfer! !
+
+!testRun: #TransferTest #test01TransferRemovesBalanceFromSenderAndAddsItToReceiver stamp: 'SMG 5/27/2023 20:40:53'!
+PASSED!
+
+!testRun: #TransferTest #test02TransferLegsAreRegisteredOnParticipantAccounts stamp: 'SMG 5/27/2023 20:40:53'!
+PASSED!
+
+!testRun: #TransferTest #test03TransferLegsCanAccessTransfer stamp: 'SMG 5/27/2023 20:40:53'!
+PASSED!
+
+!testRun: #TransferTest #test04TransferLegsHasCorrectTransferValue stamp: 'SMG 5/27/2023 20:40:53'!
+PASSED!
+
+!testRun: #PortfolioTest #test01BalanceOfPortfolioWithoutAccountsIsZero stamp: 'SMG 5/27/2023 20:40:55'!
+PASSED!
+
+!testRun: #PortfolioTest #test02BalanceOfPortfolioWithAccountsIsSumOfAccountsBalance stamp: 'SMG 5/27/2023 20:40:55'!
+PASSED!
+
+!testRun: #PortfolioTest #test03BalanceOfPortfolioIsCalculatedRecursivelyOnPortfolios stamp: 'SMG 5/27/2023 20:40:55'!
+PASSED!
+
+!testRun: #PortfolioTest #test04PortfolioWithoutAccountsHasNoRegisteredTransaction stamp: 'SMG 5/27/2023 20:40:55'!
+PASSED!
+
+!testRun: #PortfolioTest #test05PortfolioHasRegisteredItsAccountsTransactions stamp: 'SMG 5/27/2023 20:40:55'!
+PASSED!
+
+!testRun: #PortfolioTest #test06PortfolioLooksForRegisteredTransactionsRecursively stamp: 'SMG 5/27/2023 20:40:55'!
+PASSED!
+
+!testRun: #PortfolioTest #test07PortfolioHasNoTransactionWhenHasNoAccounts stamp: 'SMG 5/27/2023 20:40:55'!
+PASSED!
+
+!testRun: #PortfolioTest #test08PortfolioTransactionsIncludesAllItsAccountsTransactions stamp: 'SMG 5/27/2023 20:40:55'!
+PASSED!
+
+!testRun: #PortfolioTest #test09PortfolioTransactionsAreCalculatedRecursively stamp: 'SMG 5/27/2023 20:40:55'!
+PASSED!
+
+!testRun: #PortfolioTest #test10PortfolioCanNotIncludeTheSameAccountMoreThanOnce stamp: 'SMG 5/27/2023 20:40:55'!
+PASSED!
+
+!testRun: #PortfolioTest #test11PortfolioCanNotIncludeAccountOfItsPortfolios stamp: 'SMG 5/27/2023 20:40:55'!
+PASSED!
+
+!testRun: #PortfolioTest #test12PortfolioCanNotIncludeItself stamp: 'SMG 5/27/2023 20:40:55'!
+PASSED!
+
+!testRun: #PortfolioTest #test13ComposedPortfolioCanNotHaveParentPortfolioAccount stamp: 'SMG 5/27/2023 20:40:55'!
+PASSED!
+
+!testRun: #PortfolioTest #test14ComposedPortfolioCanNotHaveAccountOfAnyRootParentRecursively stamp: 'SMG 5/27/2023 20:40:55'!
+PASSED!
+
+!testRun: #PortfolioTest #test15PortfolioCanNotIncludeAnyOfTheComposedAccountOfPortfolioToAdd stamp: 'SMG 5/27/2023 20:40:55'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test01ReceptiveAccountHaveZeroAsBalanceWhenCreated stamp: 'SMG 5/27/2023 20:40:55'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test02DepositIncreasesBalanceOnTransactionValue stamp: 'SMG 5/27/2023 20:40:55'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test03WithdrawDecreasesBalanceOnTransactionValue stamp: 'SMG 5/27/2023 20:40:55'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test04WithdrawValueMustBePositive stamp: 'SMG 5/27/2023 20:40:55'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test05ReceptiveAccountKnowsRegisteredTransactions stamp: 'SMG 5/27/2023 20:40:55'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test06ReceptiveAccountDoNotKnowNotRegisteredTransactions stamp: 'SMG 5/27/2023 20:40:55'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test07AccountKnowsItsTransactions stamp: 'SMG 5/27/2023 20:40:55'!
+PASSED!
+
+!testRun: #TransferTest #test01TransferRemovesBalanceFromSenderAndAddsItToReceiver stamp: 'SMG 5/27/2023 20:40:55'!
+PASSED!
+
+!testRun: #TransferTest #test02TransferLegsAreRegisteredOnParticipantAccounts stamp: 'SMG 5/27/2023 20:40:55'!
+PASSED!
+
+!testRun: #TransferTest #test03TransferLegsCanAccessTransfer stamp: 'SMG 5/27/2023 20:40:55'!
+PASSED!
+
+!testRun: #TransferTest #test04TransferLegsHasCorrectTransferValue stamp: 'SMG 5/27/2023 20:40:55'!
+PASSED!
+!TransferTest methodsFor: 'as yet unclassified' stamp: 'SMG 5/27/2023 20:45:31'!
+test04CantCreateATransferBetweenTheSameAccount
+
+	| account |
+	account := ReceptiveAccount new.
+	
+	self
+		should: [ Transfer register: 50 from: account to: account ]
+		raise: Error - MessageNotUnderstood 
+		withMessageText: Transfer cantTransferBetweenTheSameAccountErrorDescription! !
+!TransferTest methodsFor: 'as yet unclassified' stamp: 'SMG 5/27/2023 20:45:40'!
+test05CantCreateATransferBetweenTheSameAccount
+
+	| account |
+	account := ReceptiveAccount new.
+	
+	self
+		should: [ Transfer register: 50 from: account to: account ]
+		raise: Error - MessageNotUnderstood 
+		withMessageText: Transfer cantTransferBetweenTheSameAccountErrorDescription! !
+
+!methodRemoval: TransferTest #test04CantCreateATransferBetweenTheSameAccount stamp: 'SMG 5/27/2023 20:45:40'!
+test04CantCreateATransferBetweenTheSameAccount
+
+	| account |
+	account := ReceptiveAccount new.
+	
+	self
+		should: [ Transfer register: 50 from: account to: account ]
+		raise: Error - MessageNotUnderstood 
+		withMessageText: Transfer cantTransferBetweenTheSameAccountErrorDescription!
+
+!testRun: #TransferTest #test05CantCreateATransferBetweenTheSameAccount stamp: 'SMG 5/27/2023 20:45:52'!
+ERROR!
+!Transfer class methodsFor: 'error descriptions' stamp: 'SMG 5/27/2023 20:46:03'!
+cantTransferBetweenTheSameAccountErrorDescription
+	self shouldBeImplemented.! !
+!Transfer class methodsFor: 'error descriptions' stamp: 'SMG 5/27/2023 20:46:25' prior: 50624131!
+cantTransferBetweenTheSameAccountErrorDescription
+
+	^ 'No se puede realizar una transferencia entre una cuenta y sí misma'! !
+
+!testRun: #TransferTest #test05CantCreateATransferBetweenTheSameAccount stamp: 'SMG 5/27/2023 20:46:29'!
+FAILURE!
+!Transfer class methodsFor: 'instance creation' stamp: 'SMG 5/27/2023 20:47:01' prior: 50623153!
+register: aValue from: aSender to: aReceiver 
+
+	aSender = aReceiver ifTrue: [ self error: self cantTransferBetweenTheSameAccountErrorDescription ].
+
+	^self new initializeWith: aValue from: aSender to: aReceiver! !
+
+!testRun: #TransferTest #test01TransferRemovesBalanceFromSenderAndAddsItToReceiver stamp: 'SMG 5/27/2023 20:47:03'!
+PASSED!
+
+!testRun: #TransferTest #test02TransferLegsAreRegisteredOnParticipantAccounts stamp: 'SMG 5/27/2023 20:47:03'!
+PASSED!
+
+!testRun: #TransferTest #test03TransferLegsCanAccessTransfer stamp: 'SMG 5/27/2023 20:47:03'!
+PASSED!
+
+!testRun: #TransferTest #test04TransferLegsHasCorrectTransferValue stamp: 'SMG 5/27/2023 20:47:03'!
+PASSED!
+
+!testRun: #TransferTest #test05CantCreateATransferBetweenTheSameAccount stamp: 'SMG 5/27/2023 20:47:03'!
+PASSED!
+!TransferTest methodsFor: 'testing' stamp: 'SMG 5/27/2023 20:47:55'!
+test06TransferValueMustBePositive
+
+	| account |
+	account := ReceptiveAccount new.
+	
+	self
+		should: [ Transfer register: 50 from: account to: account ]
+		raise: Error - MessageNotUnderstood 
+		withMessageText: Transfer cantTransferBetweenTheSameAccountErrorDescription! !
+!TransferTest methodsFor: 'testing' stamp: 'SMG 5/27/2023 20:48:16' prior: 50624175!
+test06TransferValueMustBePositive
+
+	| receiver sender |
+	sender := ReceptiveAccount new.
+	receiver := ReceptiveAccount new.
+	
+	self
+		should: [ Transfer register: -50 from: sender to: receiver ]
+		raise: Error - MessageNotUnderstood 
+		withMessageText: Transfer cantTransferBetweenTheSameAccountErrorDescription! !
+!TransferTest methodsFor: 'testing' stamp: 'SMG 5/27/2023 20:48:36' prior: 50624187!
+test06TransferValueMustBePositive
+
+	| receiver sender |
+	sender := ReceptiveAccount new.
+	receiver := ReceptiveAccount new.
+	
+	self
+		should: [ Transfer register: -50 from: sender to: receiver ]
+		raise: Error - MessageNotUnderstood 
+		withMessageText: Transfer transferValueMustBePositive! !
+
+!testRun: #TransferTest #test06TransferValueMustBePositive stamp: 'SMG 5/27/2023 20:48:39'!
+ERROR!
+!Transfer class methodsFor: 'error descriptions' stamp: 'SMG 5/27/2023 20:48:43'!
+transferValueMustBePositive
+	self shouldBeImplemented.! !
+!Transfer class methodsFor: 'error descriptions' stamp: 'SMG 5/27/2023 20:49:25' prior: 50624215!
+transferValueMustBePositive
+
+	^ 'Las transferencias deben ser de un valor positivo'! !
+
+!testRun: #TransferTest #test06TransferValueMustBePositive stamp: 'SMG 5/27/2023 20:49:27'!
+FAILURE!
+!Transfer class methodsFor: 'error descriptions' stamp: 'SMG 5/27/2023 20:49:40'!
+transferValueMustBePositiveErrorDescription
+
+	^ 'Las transferencias deben ser de un valor positivo'! !
+!TransferTest methodsFor: 'as yet unclassified' stamp: 'SMG 5/27/2023 20:49:40' prior: 50624200!
+test06TransferValueMustBePositive
+
+	| receiver sender |
+	sender := ReceptiveAccount new.
+	receiver := ReceptiveAccount new.
+	
+	self
+		should: [ Transfer register: -50 from: sender to: receiver ]
+		raise: Error - MessageNotUnderstood 
+		withMessageText: Transfer transferValueMustBePositiveErrorDescription! !
+
+!methodRemoval: Transfer class #transferValueMustBePositive stamp: 'SMG 5/27/2023 20:49:40'!
+transferValueMustBePositive
+
+	^ 'Las transferencias deben ser de un valor positivo'!
+!Transfer class methodsFor: 'instance creation' stamp: 'SMG 5/27/2023 20:50:09' prior: 50624148!
+register: aValue from: aSender to: aReceiver 
+
+	aSender = aReceiver ifTrue: [ self error: self cantTransferBetweenTheSameAccountErrorDescription ].
+	aValue strictlyPositive ifFalse: [ self error: self transferValueMustBePositiveErrorDescription ].
+
+	^self new initializeWith: aValue from: aSender to: aReceiver! !
+
+!testRun: #TransferTest #test01TransferRemovesBalanceFromSenderAndAddsItToReceiver stamp: 'SMG 5/27/2023 20:50:10'!
+PASSED!
+
+!testRun: #TransferTest #test02TransferLegsAreRegisteredOnParticipantAccounts stamp: 'SMG 5/27/2023 20:50:11'!
+PASSED!
+
+!testRun: #TransferTest #test03TransferLegsCanAccessTransfer stamp: 'SMG 5/27/2023 20:50:11'!
+PASSED!
+
+!testRun: #TransferTest #test04TransferLegsHasCorrectTransferValue stamp: 'SMG 5/27/2023 20:50:11'!
+PASSED!
+
+!testRun: #TransferTest #test05CantCreateATransferBetweenTheSameAccount stamp: 'SMG 5/27/2023 20:50:11'!
+PASSED!
+
+!testRun: #TransferTest #test06TransferValueMustBePositive stamp: 'SMG 5/27/2023 20:50:11'!
+PASSED!
+!Transfer class methodsFor: 'instance creation' stamp: 'SMG 5/27/2023 20:51:26'!
+assertCantTransferFrom: aValue to: aSender withValue: aReceiver
+
+	aSender = aReceiver ifTrue: [ self error: self cantTransferBetweenTheSameAccountErrorDescription ].
+	aValue strictlyPositive ifFalse: [ self error: self transferValueMustBePositiveErrorDescription ]! !
+!Transfer class methodsFor: 'instance creation' stamp: 'SMG 5/27/2023 20:51:26' prior: 50624255!
+register: aValue from: aSender to: aReceiver 
+
+	self assertCantTransferFrom: aValue to: aSender withValue: aReceiver.
+
+	^self new initializeWith: aValue from: aSender to: aReceiver! !
+
+TestCase subclass: #ReportTest
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Portfolio-Solucion'!
+
+!classDefinition: #ReportTest category: 'Portfolio-Solucion' stamp: 'SMG 5/27/2023 20:53:42'!
+TestCase subclass: #ReportTest
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Portfolio-Solucion'!
+
+!classDefinition: #AccountSummary category: 'Portfolio-Solucion' stamp: 'SMG 5/27/2023 21:03:18'!
+Object subclass: #AccountSummary
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Portfolio-Solucion'!
+!ReportTest methodsFor: 'no messages' stamp: 'SMG 5/27/2023 21:03:16'!
+test01AccountSummaryOfEmptyAccountOnlyContainsBalanceLine
+
+	| account |
+	account := ReceptiveAccount new.
+	
+	AccountSummary for: account.
+	
+	self
+		assert: #('Balance = 0')
+		equals: AccountSummary lines! !
+
+!testRun: #ReportTest #test01AccountSummaryOfEmptyAccountOnlyContainsBalanceLine stamp: 'SMG 5/27/2023 23:02:21'!
+ERROR!
+!AccountSummary class methodsFor: 'instance creation' stamp: 'SMG 5/27/2023 23:02:33'!
+for: aReceptiveAccount 
+	"DO NOT FORGET TO RENAME COLLABORATORS AND REMOVE THIS COMMENT!!!!"
+	self shouldBeImplemented.
+	^self new initializeFor: aReceptiveAccount ! !
+!AccountSummary class methodsFor: 'instance creation' stamp: 'SMG 5/27/2023 23:02:47' prior: 50624341!
+for: anAccount 
+	^ self new! !
+!AccountSummary class methodsFor: 'instance creation' stamp: 'SMG 5/27/2023 23:02:49' prior: 50624350!
+for: anAccount
+ 
+	^ self new! !
+
+!testRun: #ReportTest #test01AccountSummaryOfEmptyAccountOnlyContainsBalanceLine stamp: 'SMG 5/27/2023 23:02:51'!
+ERROR!
+!ReportTest methodsFor: 'as yet unclassified' stamp: 'SMG 5/27/2023 23:03:13' prior: 50624328!
+test01AccountSummaryOfEmptyAccountOnlyContainsBalanceLine
+
+	| account report |
+	account := ReceptiveAccount new.
+	
+	report := AccountSummary for: account.
+	
+	self
+		assert: #('Balance = 0')
+		equals: report lines! !
+
+!testRun: #ReportTest #test01AccountSummaryOfEmptyAccountOnlyContainsBalanceLine stamp: 'SMG 5/27/2023 23:03:14'!
+ERROR!
+!AccountSummary methodsFor: 'report' stamp: 'SMG 5/27/2023 23:03:31'!
+lines
+	self shouldBeImplemented.! !
+!AccountSummary methodsFor: 'report' stamp: 'SMG 5/27/2023 23:03:45' prior: 50624376!
+lines
+
+	^ #( 'Balance = 0' )! !
+
+!testRun: #ReportTest #test01AccountSummaryOfEmptyAccountOnlyContainsBalanceLine stamp: 'SMG 5/27/2023 23:03:48'!
+PASSED!
+
+!testRun: #ReportTest #test01AccountSummaryOfEmptyAccountOnlyContainsBalanceLine stamp: 'SMG 5/27/2023 23:03:48'!
+PASSED!
+!ReportTest methodsFor: 'as yet unclassified' stamp: 'SMG 5/27/2023 23:07:17'!
+test02AccountSummaryContainsDepositTransactions
+
+	| account report |
+	account := ReceptiveAccount new.
+	Deposit register: 50 on: account.
+	Deposit register: 100 on: account.
+	
+	report := AccountSummary for: account.
+	
+	self
+		assert: #('Balance = 0')
+		equals: report lines! !
+!ReportTest methodsFor: 'as yet unclassified' stamp: 'SMG 5/27/2023 23:07:20' prior: 50624392!
+test02AccountSummaryContainsDepositTransactions
+
+	| account report |
+	account := ReceptiveAccount new.
+	Deposit register: 50 on: account.
+	Deposit register: 100 on: account.
+
+	report := AccountSummary for: account.
+	
+	self
+		assert: #('Balance = 0')
+		equals: report lines! !
+!ReportTest methodsFor: 'as yet unclassified' stamp: 'SMG 5/27/2023 23:07:22' prior: 50624404!
+test02AccountSummaryContainsDepositTransactions
+
+	| account report |
+	account := ReceptiveAccount new.
+	Deposit register: 50 on: account.
+	Deposit register: 100 on: account.
+
+	report := AccountSummary for: account.
+
+	self
+		assert: #('Balance = 0')
+		equals: report lines! !
+!ReportTest methodsFor: 'as yet unclassified' stamp: 'SMG 5/27/2023 23:07:57' prior: 50624416!
+test02AccountSummaryContainsDepositTransactions
+
+	| account report |
+	account := ReceptiveAccount new.
+	Deposit register: 50 on: account.
+	Deposit register: 100 on: account.
+
+	report := AccountSummary for: account.
+
+	self
+		assert: #(
+			'Depósito por 50'
+			'Depósito por 100'
+			'Balance = 150'
+		)
+		equals: report lines! !
+
+!testRun: #ReportTest #test02AccountSummaryContainsDepositTransactions stamp: 'SMG 5/27/2023 23:08:12'!
+FAILURE!
+!AccountSummary class methodsFor: 'instance creation' stamp: 'SMG 5/27/2023 23:08:44' prior: 50624355!
+for: anAccount
+
+	^ self new! !
+!AccountSummary class methodsFor: 'instance creation' stamp: 'SMG 5/27/2023 23:09:06' prior: 50624446!
+for: anAccount
+
+	^ self new initializeFor: anAccount! !
+
+!testRun: #ReportTest #test01AccountSummaryOfEmptyAccountOnlyContainsBalanceLine stamp: 'SMG 5/27/2023 23:09:08'!
+ERROR!
+
+!testRun: #ReportTest #test02AccountSummaryContainsDepositTransactions stamp: 'SMG 5/27/2023 23:09:08'!
+ERROR!
+
+!testRun: #ReportTest #test01AccountSummaryOfEmptyAccountOnlyContainsBalanceLine stamp: 'SMG 5/27/2023 23:09:10'!
+ERROR!
+
+!classDefinition: #AccountSummary category: 'Portfolio-Solucion' stamp: 'SMG 5/27/2023 23:09:16'!
+Object subclass: #AccountSummary
+	instanceVariableNames: 'account'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Portfolio-Solucion'!
+!AccountSummary methodsFor: 'initialization' stamp: 'SMG 5/27/2023 23:09:16'!
+initializeFor: anAccount 
+	self shouldBeImplemented.
+	account := anAccount.! !
+!AccountSummary methodsFor: 'initialization' stamp: 'SMG 5/27/2023 23:09:18' prior: 50624474!
+initializeFor: anAccount 
+
+	account := anAccount.! !
+
+!testRun: #ReportTest #test01AccountSummaryOfEmptyAccountOnlyContainsBalanceLine stamp: 'SMG 5/27/2023 23:09:20'!
+PASSED!
+
+!testRun: #ReportTest #test02AccountSummaryContainsDepositTransactions stamp: 'SMG 5/27/2023 23:09:22'!
+FAILURE!
+!AccountSummary methodsFor: 'report' stamp: 'SMG 5/27/2023 23:10:37' prior: 50624380!
+lines
+
+	(account balance = 0) ifTrue: [ ^ #( 'Balance = 0' ) ]
+	^ #(
+		'Depósito por 50'
+		'Depósito por 100'
+		'Balance = 150'
+	)! !
+
+!testRun: #ReportTest #test01AccountSummaryOfEmptyAccountOnlyContainsBalanceLine stamp: 'SMG 5/27/2023 23:10:42'!
+ERROR!
+
+!testRun: #ReportTest #test02AccountSummaryContainsDepositTransactions stamp: 'SMG 5/27/2023 23:10:42'!
+ERROR!
+
+!testRun: #ReportTest #test01AccountSummaryOfEmptyAccountOnlyContainsBalanceLine stamp: 'SMG 5/27/2023 23:10:44'!
+ERROR!
+!AccountSummary methodsFor: 'report' stamp: 'SMG 5/27/2023 23:10:56' prior: 50624492!
+lines
+
+	(account balance = 0) ifTrue: [ ^ #( 'Balance = 0' ) ].
+	^ #(
+		'Depósito por 50'
+		'Depósito por 100'
+		'Balance = 150'
+	)! !
+
+!testRun: #ReportTest #test01AccountSummaryOfEmptyAccountOnlyContainsBalanceLine stamp: 'SMG 5/27/2023 23:11:02'!
+PASSED!
+
+!testRun: #ReportTest #test02AccountSummaryContainsDepositTransactions stamp: 'SMG 5/27/2023 23:11:02'!
+PASSED!
+!ReportTest methodsFor: 'as yet unclassified' stamp: 'SMG 5/27/2023 23:12:09'!
+test02AccountSummaryContainsWithdrawTransactions
+
+	| account report |
+	account := ReceptiveAccount new.
+	Deposit register: 50 on: account.
+	Withdraw register: 25 on: account.
+
+	report := AccountSummary for: account.
+
+	self
+		assert: #(
+			'Depósito por 50'
+			'Extracción por 25'
+			'Balance = 25'
+		)
+		equals: report lines! !
+!ReportTest methodsFor: 'as yet unclassified' stamp: 'SMG 5/27/2023 23:12:18'!
+test03AccountSummaryContainsWithdrawTransactions
+
+	| account report |
+	account := ReceptiveAccount new.
+	Deposit register: 50 on: account.
+	Withdraw register: 25 on: account.
+
+	report := AccountSummary for: account.
+
+	self
+		assert: #(
+			'Depósito por 50'
+			'Extracción por 25'
+			'Balance = 25'
+		)
+		equals: report lines! !
+
+!methodRemoval: ReportTest #test02AccountSummaryContainsWithdrawTransactions stamp: 'SMG 5/27/2023 23:12:18'!
+test02AccountSummaryContainsWithdrawTransactions
+
+	| account report |
+	account := ReceptiveAccount new.
+	Deposit register: 50 on: account.
+	Withdraw register: 25 on: account.
+
+	report := AccountSummary for: account.
+
+	self
+		assert: #(
+			'Depósito por 50'
+			'Extracción por 25'
+			'Balance = 25'
+		)
+		equals: report lines!
+
+!testRun: #ReportTest #test03AccountSummaryContainsWithdrawTransactions stamp: 'SMG 5/27/2023 23:12:19'!
+FAILURE!
+!ReceptiveAccount methodsFor: 'transactions' stamp: 'SMG 5/27/2023 23:14:26'!
+onTransactionsDo: aBlock
+
+	transactions do: aBlock! !
+
+#() class!
+
+{} class!
+
+#() = OrderedCollection new!
+
+#( 'a' ) class!
+
+#() asOrderedCollection !
+!AccountSummary methodsFor: 'report' stamp: 'SMG 5/27/2023 23:18:40' prior: 50624511!
+lines
+
+	| reportLines |
+	reportLines := OrderedCollection new.
+	
+	account onTransactionsDo: [:aTransaction |
+		
+	].
+
+	reportLines add: 'Balance = ', account balance printString.
+	
+	^ reportLines! !
+!AccountSummary methodsFor: 'report' stamp: 'SMG 5/27/2023 23:18:44' prior: 50624578!
+lines
+
+	| reportLines |
+
+	reportLines := OrderedCollection new.
+	
+	account onTransactionsDo: [:aTransaction |
+		
+	].
+
+	reportLines add: 'Balance = ', account balance printString.
+	
+	^ reportLines! !
+!AccountSummary methodsFor: 'report' stamp: 'SMG 5/27/2023 23:20:49' prior: 50624587!
+lines
+
+	| reportLines |
+
+	reportLines := OrderedCollection new.
+	
+	account onTransactionsDo: [:aTransaction |
+		| newLine |
+		(aTransaction isKindOf: Deposit) ifTrue:
+			[ newLine := 'Depósito por ', aTransaction value printString ].
+		(aTransaction isKindOf: Withdraw) ifTrue:
+			[ newLine := 'Extracción por ', aTransaction value printString ].
+		reportLines add: newLine
+	].
+
+	reportLines add: 'Balance = ', account balance printString.
+	
+	^ reportLines! !
+
+!testRun: #ReportTest #test01AccountSummaryOfEmptyAccountOnlyContainsBalanceLine stamp: 'SMG 5/27/2023 23:20:54'!
+FAILURE!
+
+!testRun: #ReportTest #test02AccountSummaryContainsDepositTransactions stamp: 'SMG 5/27/2023 23:20:54'!
+FAILURE!
+
+!testRun: #ReportTest #test03AccountSummaryContainsWithdrawTransactions stamp: 'SMG 5/27/2023 23:20:54'!
+FAILURE!
+
+!testRun: #ReportTest #test01AccountSummaryOfEmptyAccountOnlyContainsBalanceLine stamp: 'SMG 5/27/2023 23:20:56'!
+FAILURE!
+!ReportTest methodsFor: 'as yet unclassified' stamp: 'SMG 5/27/2023 23:21:07' prior: 50624363!
+test01AccountSummaryOfEmptyAccountOnlyContainsBalanceLine
+
+	| account report |
+	account := ReceptiveAccount new.
+	
+	report := AccountSummary for: account.
+	
+	self
+		assert: #('Balance = 0') asOrderedCollection
+		equals: report lines! !
+!ReportTest methodsFor: 'as yet unclassified' stamp: 'SMG 5/27/2023 23:21:37' prior: 50624428!
+test02AccountSummaryContainsDepositTransactions
+
+	| account report |
+	account := ReceptiveAccount new.
+	Deposit register: 50 on: account.
+	Deposit register: 100 on: account.
+
+	report := AccountSummary for: account.
+
+	self
+		assert: #(
+			'Depósito por 50'
+			'Depósito por 100'
+			'Balance = 150'
+		) asOrderedCollection
+		equals: report lines! !
+!ReportTest methodsFor: 'as yet unclassified' stamp: 'SMG 5/27/2023 23:21:43' prior: 50624539!
+test03AccountSummaryContainsWithdrawTransactions
+
+	| account report |
+	account := ReceptiveAccount new.
+	Deposit register: 50 on: account.
+	Withdraw register: 25 on: account.
+
+	report := AccountSummary for: account.
+
+	self
+		assert: #(
+			'Depósito por 50'
+			'Extracción por 25'
+			'Balance = 25'
+		) asOrderedCollection 
+		equals: report lines! !
+!ReportTest methodsFor: 'as yet unclassified' stamp: 'SMG 5/27/2023 23:21:44' prior: 50624654!
+test03AccountSummaryContainsWithdrawTransactions
+
+	| account report |
+	account := ReceptiveAccount new.
+	Deposit register: 50 on: account.
+	Withdraw register: 25 on: account.
+
+	report := AccountSummary for: account.
+
+	self
+		assert: #(
+			'Depósito por 50'
+			'Extracción por 25'
+			'Balance = 25'
+		) asOrderedCollection
+		equals: report lines! !
+
+!testRun: #ReportTest #test01AccountSummaryOfEmptyAccountOnlyContainsBalanceLine stamp: 'SMG 5/27/2023 23:21:46'!
+PASSED!
+
+!testRun: #ReportTest #test02AccountSummaryContainsDepositTransactions stamp: 'SMG 5/27/2023 23:21:46'!
+PASSED!
+
+!testRun: #ReportTest #test03AccountSummaryContainsWithdrawTransactions stamp: 'SMG 5/27/2023 23:21:46'!
+PASSED!
+!TransferTest methodsFor: 'testing' stamp: 'SMG 5/27/2023 23:24:09'!
+accountWithSingleDepositOf: aValue
+
+	| account |
+	account := ReceptiveAccount new.
+	Deposit register: 50 on: account.
+	
+	^ account! !
+!TransferTest methodsFor: 'testing' stamp: 'SMG 5/27/2023 23:24:12' prior: 50624693!
+accountWithSingleDepositOf: aValue
+
+	| account |
+
+	account := ReceptiveAccount new.
+	Deposit register: 50 on: account.
+	
+	^ account! !
+!TransferTest methodsFor: 'testing' stamp: 'SMG 5/27/2023 23:27:30'!
+withTransferOf: aValue do: aBlock
+
+	| receiver sender |
+	sender := self accountWithSingleDepositOf: aValue.
+	receiver := ReceptiveAccount new.
+	
+	Transfer register: aValue from: sender to: receiver.
+	
+	aBlock value: sender value: receiver! !
+!TransferTest methodsFor: 'testing' stamp: 'SMG 5/27/2023 23:28:38' prior: 50623090!
+test01TransferRemovesBalanceFromSenderAndAddsItToReceiver
+
+	self withTransferOf: 50 do: [:sender :receiver |
+		self assert: 0 equals: sender balance.
+		self assert: 50 equals: receiver balance
+	]! !
+
+!testRun: #TransferTest #test01TransferRemovesBalanceFromSenderAndAddsItToReceiver stamp: 'SMG 5/27/2023 23:28:39'!
+PASSED!
+
+!testRun: #TransferTest #test01TransferRemovesBalanceFromSenderAndAddsItToReceiver stamp: 'SMG 5/27/2023 23:28:39'!
+PASSED!
+
+!testRun: #TransferTest #test02TransferLegsAreRegisteredOnParticipantAccounts stamp: 'SMG 5/27/2023 23:28:39'!
+PASSED!
+
+!testRun: #TransferTest #test03TransferLegsCanAccessTransfer stamp: 'SMG 5/27/2023 23:28:39'!
+PASSED!
+
+!testRun: #TransferTest #test04TransferLegsHasCorrectTransferValue stamp: 'SMG 5/27/2023 23:28:39'!
+PASSED!
+
+!testRun: #TransferTest #test05CantCreateATransferBetweenTheSameAccount stamp: 'SMG 5/27/2023 23:28:39'!
+PASSED!
+
+!testRun: #TransferTest #test06TransferValueMustBePositive stamp: 'SMG 5/27/2023 23:28:39'!
+PASSED!
+!TransferTest methodsFor: 'testing' stamp: 'SMG 5/27/2023 23:29:33' prior: 50623134!
+test02TransferLegsAreRegisteredOnParticipantAccounts
+
+	self withTransferOf: 50 do: [:sender :receiver :transfer |
+		self assert: (sender hasRegistered: transfer withdrawLeg).
+		self assert: (receiver hasRegistered: transfer depositLeg)
+	]! !
+!TransferTest methodsFor: 'setUp/tearDown' stamp: 'SMG 5/27/2023 23:29:45' prior: 50624707!
+withTransferOf: aValue do: aBlock
+
+	| receiver sender transfer |
+	sender := self accountWithSingleDepositOf: aValue.
+	receiver := ReceptiveAccount new.
+	
+	transfer := Transfer register: aValue from: sender to: receiver.
+	
+	aBlock value: sender value: receiver value: transfer! !
+
+!testRun: #TransferTest #test01TransferRemovesBalanceFromSenderAndAddsItToReceiver stamp: 'SMG 5/27/2023 23:29:58'!
+ERROR!
+
+!testRun: #TransferTest #test02TransferLegsAreRegisteredOnParticipantAccounts stamp: 'SMG 5/27/2023 23:29:58'!
+PASSED!
+
+!testRun: #TransferTest #test03TransferLegsCanAccessTransfer stamp: 'SMG 5/27/2023 23:29:58'!
+PASSED!
+
+!testRun: #TransferTest #test04TransferLegsHasCorrectTransferValue stamp: 'SMG 5/27/2023 23:29:58'!
+PASSED!
+
+!testRun: #TransferTest #test05CantCreateATransferBetweenTheSameAccount stamp: 'SMG 5/27/2023 23:29:58'!
+PASSED!
+
+!testRun: #TransferTest #test06TransferValueMustBePositive stamp: 'SMG 5/27/2023 23:29:58'!
+PASSED!
+
+!testRun: #TransferTest #test01TransferRemovesBalanceFromSenderAndAddsItToReceiver stamp: 'SMG 5/27/2023 23:29:58'!
+ERROR!
+!TransferTest methodsFor: 'testing' stamp: 'SMG 5/27/2023 23:30:07' prior: 50624718!
+test01TransferRemovesBalanceFromSenderAndAddsItToReceiver
+
+	self withTransferOf: 50 do: [:sender :receiver :transfer |
+		self assert: 0 equals: sender balance.
+		self assert: 50 equals: receiver balance
+	]! !
+
+!testRun: #TransferTest #test01TransferRemovesBalanceFromSenderAndAddsItToReceiver stamp: 'SMG 5/27/2023 23:30:11'!
+PASSED!
+
+!testRun: #TransferTest #test01TransferRemovesBalanceFromSenderAndAddsItToReceiver stamp: 'SMG 5/27/2023 23:30:11'!
+PASSED!
+
+!testRun: #TransferTest #test02TransferLegsAreRegisteredOnParticipantAccounts stamp: 'SMG 5/27/2023 23:30:11'!
+PASSED!
+
+!testRun: #TransferTest #test03TransferLegsCanAccessTransfer stamp: 'SMG 5/27/2023 23:30:11'!
+PASSED!
+
+!testRun: #TransferTest #test04TransferLegsHasCorrectTransferValue stamp: 'SMG 5/27/2023 23:30:11'!
+PASSED!
+
+!testRun: #TransferTest #test05CantCreateATransferBetweenTheSameAccount stamp: 'SMG 5/27/2023 23:30:11'!
+PASSED!
+
+!testRun: #TransferTest #test06TransferValueMustBePositive stamp: 'SMG 5/27/2023 23:30:11'!
+PASSED!
+!TransferTest methodsFor: 'testing' stamp: 'SMG 5/27/2023 23:30:35' prior: 50623452!
+test03TransferLegsCanAccessTransfer
+
+	self withTransferOf: 50 do: [:sender :receiver :transfer |
+		self assert: transfer equals: transfer withdrawLeg transfer.
+		self assert: transfer equals: transfer depositLeg transfer
+	]! !
+
+!testRun: #TransferTest #test03TransferLegsCanAccessTransfer stamp: 'SMG 5/27/2023 23:30:36'!
+PASSED!
+
+!testRun: #TransferTest #test01TransferRemovesBalanceFromSenderAndAddsItToReceiver stamp: 'SMG 5/27/2023 23:30:36'!
+PASSED!
+
+!testRun: #TransferTest #test02TransferLegsAreRegisteredOnParticipantAccounts stamp: 'SMG 5/27/2023 23:30:36'!
+PASSED!
+
+!testRun: #TransferTest #test03TransferLegsCanAccessTransfer stamp: 'SMG 5/27/2023 23:30:36'!
+PASSED!
+
+!testRun: #TransferTest #test04TransferLegsHasCorrectTransferValue stamp: 'SMG 5/27/2023 23:30:36'!
+PASSED!
+
+!testRun: #TransferTest #test05CantCreateATransferBetweenTheSameAccount stamp: 'SMG 5/27/2023 23:30:36'!
+PASSED!
+
+!testRun: #TransferTest #test06TransferValueMustBePositive stamp: 'SMG 5/27/2023 23:30:36'!
+PASSED!
+!TransferTest methodsFor: 'testing' stamp: 'SMG 5/27/2023 23:30:59' prior: 50623726!
+test04TransferLegsHasCorrectTransferValue
+
+	self withTransferOf: 50 do: [:sender :receiver :transfer |
+		self assert: 50 equals: transfer withdrawLeg value.
+		self assert: 50 equals: transfer depositLeg value
+	]! !
+!TransferTest methodsFor: 'testing' stamp: 'SMG 5/27/2023 23:31:01' prior: 50624869!
+test04TransferLegsHasCorrectTransferValue
+
+	self withTransferOf: 50 do: [:sender :receiver :transfer |
+		self assert: 50 equals: transfer withdrawLeg value.
+		self assert: 50 equals: transfer depositLeg value
+	]
+! !
+
+!testRun: #TransferTest #test06TransferValueMustBePositive stamp: 'SMG 5/27/2023 23:31:09'!
+PASSED!
+
+!testRun: #TransferTest #test04TransferLegsHasCorrectTransferValue stamp: 'SMG 5/27/2023 23:31:13'!
+PASSED!
+
+!testRun: #TransferTest #test01TransferRemovesBalanceFromSenderAndAddsItToReceiver stamp: 'SMG 5/27/2023 23:31:13'!
+PASSED!
+
+!testRun: #TransferTest #test02TransferLegsAreRegisteredOnParticipantAccounts stamp: 'SMG 5/27/2023 23:31:13'!
+PASSED!
+
+!testRun: #TransferTest #test03TransferLegsCanAccessTransfer stamp: 'SMG 5/27/2023 23:31:13'!
+PASSED!
+
+!testRun: #TransferTest #test04TransferLegsHasCorrectTransferValue stamp: 'SMG 5/27/2023 23:31:13'!
+PASSED!
+
+!testRun: #TransferTest #test05CantCreateATransferBetweenTheSameAccount stamp: 'SMG 5/27/2023 23:31:13'!
+PASSED!
+
+!testRun: #TransferTest #test06TransferValueMustBePositive stamp: 'SMG 5/27/2023 23:31:13'!
+PASSED!
+!ReportTest methodsFor: 'testing' stamp: 'SMG 5/27/2023 23:32:45'!
+test04AccountSummaryContainsTransfers
+
+	| report receiver sender |
+	sender := ReceptiveAccount new.
+	Deposit register: 50 on: sender.
+	receiver := ReceptiveAccount new.
+	
+	Transfer register: 50 from: sender to: receiver.
+
+	self
+		assert: #(
+			'Depósito por 50'
+			'Extracción por 25'
+			'Balance = 25'
+		) asOrderedCollection
+		equals: report lines! !
+!ReportTest methodsFor: 'testing' stamp: 'SMG 5/27/2023 23:34:00' prior: 50624916!
+test04AccountSummaryContainsTransfers
+
+	| receiver sender |
+	sender := ReceptiveAccount new.
+	Deposit register: 50 on: sender.
+	receiver := ReceptiveAccount new.
+	
+	Transfer register: 50 from: sender to: receiver.
+
+	self
+		assert: #(
+			'Depósito por 50'
+			'Salida por transferencia de 50'
+			'Balance = 0'
+		) asOrderedCollection
+		equals: (AccountSummary for: sender) lines.
+	self
+		assert: #(
+			'Entrada por transferencia de 50'
+			'Balance = 50'
+		) asOrderedCollection
+		equals: (AccountSummary for: receiver) lines
+	! !
+
+!testRun: #ReportTest #test04AccountSummaryContainsTransfers stamp: 'SMG 5/27/2023 23:34:04'!
+FAILURE!
+!AccountSummary methodsFor: 'report' stamp: 'SMG 5/27/2023 23:35:23' prior: 50624596!
+lines
+
+	| reportLines |
+
+	reportLines := OrderedCollection new.
+	
+	account onTransactionsDo: [:aTransaction |
+		| newLine |
+		(aTransaction isKindOf: Deposit) ifTrue:
+			[ newLine := 'Depósito por ', aTransaction value printString ].
+		(aTransaction isKindOf: Withdraw) ifTrue:
+			[ newLine := 'Extracción por ', aTransaction value printString ].
+		(aTransaction isKindOf: DepositLeg) ifTrue:
+			[ newLine := 'Entrada por transferencia de ', aTransaction value printString ].
+		(aTransaction isKindOf: WithdrawLeg) ifTrue:
+			[ newLine := 'Salida por transferencia de ', aTransaction value printString ].
+		reportLines add: newLine
+	].
+
+	reportLines add: 'Balance = ', account balance printString.
+	
+	^ reportLines! !
+
+!testRun: #ReportTest #test01AccountSummaryOfEmptyAccountOnlyContainsBalanceLine stamp: 'SMG 5/27/2023 23:35:28'!
+PASSED!
+
+!testRun: #ReportTest #test02AccountSummaryContainsDepositTransactions stamp: 'SMG 5/27/2023 23:35:28'!
+PASSED!
+
+!testRun: #ReportTest #test03AccountSummaryContainsWithdrawTransactions stamp: 'SMG 5/27/2023 23:35:28'!
+PASSED!
+
+!testRun: #ReportTest #test04AccountSummaryContainsTransfers stamp: 'SMG 5/27/2023 23:35:28'!
+PASSED!
+!AccountSummary methodsFor: 'report' stamp: 'SMG 5/27/2023 23:35:49' prior: 50624953!
+lines
+
+	| reportLines |
+
+	reportLines := OrderedCollection new.
+	
+	account onTransactionsDo: [:aTransaction |
+		| newLine valueString |
+		valueString := aTransaction value printString.
+	(aTransaction isKindOf: Deposit) ifTrue:
+			[ newLine := 'Depósito por ', valueString ].
+		(aTransaction isKindOf: Withdraw) ifTrue:
+			[ newLine := 'Extracción por ', aTransaction value printString ].
+		(aTransaction isKindOf: DepositLeg) ifTrue:
+			[ newLine := 'Entrada por transferencia de ', aTransaction value printString ].
+		(aTransaction isKindOf: WithdrawLeg) ifTrue:
+			[ newLine := 'Salida por transferencia de ', aTransaction value printString ].
+		reportLines add: newLine
+	].
+
+	reportLines add: 'Balance = ', account balance printString.
+	
+	^ reportLines! !
+!AccountSummary methodsFor: 'report' stamp: 'SMG 5/27/2023 23:35:56' prior: 50624993!
+lines
+
+	| reportLines |
+
+	reportLines := OrderedCollection new.
+	
+	account onTransactionsDo: [:aTransaction |
+		| newLine valueString |
+		valueString := aTransaction value printString.
+		(aTransaction isKindOf: Deposit) ifTrue:
+			[ newLine := 'Depósito por ', valueString ].
+		(aTransaction isKindOf: Withdraw) ifTrue:
+			[ newLine := 'Extracción por ', aTransaction value printString ].
+		(aTransaction isKindOf: DepositLeg) ifTrue:
+			[ newLine := 'Entrada por transferencia de ', aTransaction value printString ].
+		(aTransaction isKindOf: WithdrawLeg) ifTrue:
+			[ newLine := 'Salida por transferencia de ', aTransaction value printString ].
+		reportLines add: newLine
+	].
+
+	reportLines add: 'Balance = ', account balance printString.
+	
+	^ reportLines! !
+!AccountSummary methodsFor: 'report' stamp: 'SMG 5/27/2023 23:35:57' prior: 50625020!
+lines
+
+	| reportLines |
+
+	reportLines := OrderedCollection new.
+	
+	account onTransactionsDo: [:aTransaction |
+		| newLine valueString |
+		valueString := aTransaction value printString.
+	
+		(aTransaction isKindOf: Deposit) ifTrue:
+			[ newLine := 'Depósito por ', valueString ].
+		(aTransaction isKindOf: Withdraw) ifTrue:
+			[ newLine := 'Extracción por ', aTransaction value printString ].
+		(aTransaction isKindOf: DepositLeg) ifTrue:
+			[ newLine := 'Entrada por transferencia de ', aTransaction value printString ].
+		(aTransaction isKindOf: WithdrawLeg) ifTrue:
+			[ newLine := 'Salida por transferencia de ', aTransaction value printString ].
+		reportLines add: newLine
+	].
+
+	reportLines add: 'Balance = ', account balance printString.
+	
+	^ reportLines! !
+!AccountSummary methodsFor: 'report' stamp: 'SMG 5/27/2023 23:36:06' prior: 50625047!
+lines
+
+	| reportLines |
+
+	reportLines := OrderedCollection new.
+	
+	account onTransactionsDo: [:aTransaction |
+		| newLine valueString |
+		valueString := aTransaction value printString.
+	
+		(aTransaction isKindOf: Deposit) ifTrue:
+			[ newLine := 'Depósito por ', valueString ].
+		(aTransaction isKindOf: Withdraw) ifTrue:
+			[ newLine := 'Extracción por ', aTransaction value printString ].
+		(aTransaction isKindOf: DepositLeg) ifTrue:
+			[ newLine := 'Entrada por transferencia de ', aTransaction value printString ].
+		(aTransaction isKindOf: WithdrawLeg) ifTrue:
+			[ newLine := 'Salida por transferencia de ', aTransaction value printString ].
+
+		reportLines add: newLine
+	].
+
+	reportLines add: 'Balance = ', account balance printString.
+	
+	^ reportLines! !
+!AccountSummary methodsFor: 'report' stamp: 'SMG 5/27/2023 23:36:21' prior: 50625074!
+lines
+
+	| reportLines |
+
+	reportLines := OrderedCollection new.
+	
+	account onTransactionsDo: [:aTransaction |
+		| newLine valueString |
+		valueString := aTransaction value printString.
+	
+		(aTransaction isKindOf: Deposit) ifTrue:
+			[ newLine := 'Depósito por ', valueString ].
+		(aTransaction isKindOf: Withdraw) ifTrue:
+			[ newLine := 'Extracción por ', valueString ].
+		(aTransaction isKindOf: DepositLeg) ifTrue:
+			[ newLine := 'Entrada por transferencia de ', valueString ].
+		(aTransaction isKindOf: WithdrawLeg) ifTrue:
+			[ newLine := 'Salida por transferencia de ', valueString ].
+
+		reportLines add: newLine
+	].
+
+	reportLines add: 'Balance = ', account balance printString.
+	
+	^ reportLines! !
+
+!testRun: #ReportTest #test01AccountSummaryOfEmptyAccountOnlyContainsBalanceLine stamp: 'SMG 5/27/2023 23:36:25'!
+PASSED!
+
+!testRun: #ReportTest #test02AccountSummaryContainsDepositTransactions stamp: 'SMG 5/27/2023 23:36:25'!
+PASSED!
+
+!testRun: #ReportTest #test03AccountSummaryContainsWithdrawTransactions stamp: 'SMG 5/27/2023 23:36:25'!
+PASSED!
+
+!testRun: #ReportTest #test04AccountSummaryContainsTransfers stamp: 'SMG 5/27/2023 23:36:25'!
+PASSED!
+
+Object subclass: #TransferNet
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Portfolio-Solucion'!
+
+!classDefinition: #TransferNet category: 'Portfolio-Solucion' stamp: 'SMG 5/27/2023 23:37:04'!
+Object subclass: #TransferNet
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Portfolio-Solucion'!
+
+!classRemoval: #TransferNet stamp: 'SMG 5/27/2023 23:37:12'!
+Object subclass: #TransferNet
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Portfolio-Solucion'!
+!ReportTest methodsFor: 'testing' stamp: 'SMG 5/27/2023 23:39:14'!
+test05TransferNetOfAccountWithNoTransfersIsZero
+
+	| account |
+	account := ReceptiveAccount new.
+	Deposit register: 50 on: account.
+	
+	self assert: 0 equals: (TransferTest for: account) value! !
+!ReportTest methodsFor: 'testing' stamp: 'SMG 5/27/2023 23:39:28' prior: 50625158!
+test05TransferNetOfAccountWithNoTransfersIsZero
+
+	| account |
+	
+	account := ReceptiveAccount new.
+	Deposit register: 50 on: account.
+	
+	self assert: 0 equals: (TransferTest for: account) value! !
+!ReportTest methodsFor: 'testing' stamp: 'SMG 5/27/2023 23:39:29' prior: 50625167!
+test05TransferNetOfAccountWithNoTransfersIsZero
+
+	| account |
+
+	account := ReceptiveAccount new.
+	Deposit register: 50 on: account.
+	
+	self assert: 0 equals: (TransferTest for: account) value! !
+
+!classDefinition: #TransferNet category: 'Portfolio-Solucion' stamp: 'SMG 5/27/2023 23:39:44'!
+Object subclass: #TransferNet
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Portfolio-Solucion'!
+!ReportTest methodsFor: 'testing' stamp: 'SMG 5/27/2023 23:39:39' prior: 50625176!
+test05TransferNetOfAccountWithNoTransfersIsZero
+
+	| account |
+	account := ReceptiveAccount new.
+	Deposit register: 50 on: account.
+	
+	self assert: 0 equals: (TransferNet for: account) value! !
+!ReportTest methodsFor: 'testing' stamp: 'SMG 5/27/2023 23:39:47' prior: 50625192!
+test05TransferNetOfAccountWithNoTransfersIsZero
+
+	| account |
+
+	account := ReceptiveAccount new.
+	Deposit register: 50 on: account.
+	
+	self assert: 0 equals: (TransferNet for: account) value! !
+
+!testRun: #ReportTest #test05TransferNetOfAccountWithNoTransfersIsZero stamp: 'SMG 5/27/2023 23:39:48'!
+ERROR!
+!TransferNet class methodsFor: 'instance creation' stamp: 'SMG 5/27/2023 23:39:55'!
+for: aReceptiveAccount 
+	"DO NOT FORGET TO RENAME COLLABORATORS AND REMOVE THIS COMMENT!!!!"
+	self shouldBeImplemented.
+	^self new initializeFor: aReceptiveAccount ! !
+!TransferNet class methodsFor: 'instance creation' stamp: 'SMG 5/27/2023 23:39:58' prior: 50625214!
+for: aReceptiveAccount 
+
+	^self new initializeFor: aReceptiveAccount ! !
+!TransferNet class methodsFor: 'instance creation' stamp: 'SMG 5/27/2023 23:40:00' prior: 50625223!
+for: aReceptiveAccount 
+
+	^self new! !
+
+!testRun: #ReportTest #test01AccountSummaryOfEmptyAccountOnlyContainsBalanceLine stamp: 'SMG 5/27/2023 23:40:00'!
+PASSED!
+
+!testRun: #ReportTest #test02AccountSummaryContainsDepositTransactions stamp: 'SMG 5/27/2023 23:40:00'!
+PASSED!
+
+!testRun: #ReportTest #test03AccountSummaryContainsWithdrawTransactions stamp: 'SMG 5/27/2023 23:40:00'!
+PASSED!
+
+!testRun: #ReportTest #test04AccountSummaryContainsTransfers stamp: 'SMG 5/27/2023 23:40:00'!
+PASSED!
+
+!testRun: #ReportTest #test05TransferNetOfAccountWithNoTransfersIsZero stamp: 'SMG 5/27/2023 23:40:00'!
+FAILURE!
+
+!testRun: #ReportTest #test05TransferNetOfAccountWithNoTransfersIsZero stamp: 'SMG 5/27/2023 23:40:00'!
+FAILURE!
+!ReportTest methodsFor: 'testing' stamp: 'SMG 5/27/2023 23:40:11' prior: 50625201!
+test05TransferNetOfAccountWithNoTransfersIsZero
+
+	| account |
+
+	account := ReceptiveAccount new.
+	Deposit register: 50 on: account.
+
+	self assert: 0 equals: (TransferNet for: account) value! !
+!TransferNet methodsFor: 'no messages' stamp: 'SMG 5/27/2023 23:40:49' overrides: 16902254!
+value! !
+!TransferNet methodsFor: 'report' stamp: 'SMG 5/27/2023 23:41:04' prior: 50625264 overrides: 16902254!
+value
+
+	^ 0! !
+
+!testRun: #ReportTest #test01AccountSummaryOfEmptyAccountOnlyContainsBalanceLine stamp: 'SMG 5/27/2023 23:41:07'!
+PASSED!
+
+!testRun: #ReportTest #test02AccountSummaryContainsDepositTransactions stamp: 'SMG 5/27/2023 23:41:07'!
+PASSED!
+
+!testRun: #ReportTest #test03AccountSummaryContainsWithdrawTransactions stamp: 'SMG 5/27/2023 23:41:07'!
+PASSED!
+
+!testRun: #ReportTest #test04AccountSummaryContainsTransfers stamp: 'SMG 5/27/2023 23:41:07'!
+PASSED!
+
+!testRun: #ReportTest #test05TransferNetOfAccountWithNoTransfersIsZero stamp: 'SMG 5/27/2023 23:41:07'!
+PASSED!
+!ReportTest methodsFor: 'testing' stamp: 'SMG 5/27/2023 23:42:41'!
+test05TransferNetOfReceivingAccountIsCorrect
+
+	| account receiver sender |
+
+	sender := ReceptiveAccount new.
+	Deposit register: 50 on: account.
+	receiver := ReceptiveAccount new.
+	
+	Transfer register: 50 from: sender to: receiver.
+
+	self assert: 0 equals: (TransferNet for: account) value
+! !
+!ReportTest methodsFor: 'testing' stamp: 'SMG 5/27/2023 23:42:57' prior: 50625289!
+test05TransferNetOfReceivingAccountIsCorrect
+
+	| receiver sender |
+
+	sender := ReceptiveAccount new.
+	Deposit register: 50 on: sender.
+	receiver := ReceptiveAccount new.
+	
+	Transfer register: 50 from: sender to: receiver.
+
+	self assert: 0 equals: (TransferNet for: sender) value
+! !
+!ReportTest methodsFor: 'testing' stamp: 'SMG 5/27/2023 23:43:04' prior: 50625301!
+test05TransferNetOfReceivingAccountIsCorrect
+
+	| receiver sender |
+
+	sender := ReceptiveAccount new.
+	Deposit register: 50 on: sender.
+	receiver := ReceptiveAccount new.
+	
+	Transfer register: 50 from: sender to: receiver.
+
+	self assert: 50 equals: (TransferNet for: sender) value
+! !
+
+!testRun: #ReportTest #test05TransferNetOfReceivingAccountIsCorrect stamp: 'SMG 5/27/2023 23:43:11'!
+FAILURE!
+!TransferNet class methodsFor: 'instance creation' stamp: 'SMG 5/27/2023 23:43:51' prior: 50625229!
+for: anAccount 
+
+	^self new initializeFor: anAccount! !
+
+!testRun: #ReportTest #test01AccountSummaryOfEmptyAccountOnlyContainsBalanceLine stamp: 'SMG 5/27/2023 23:43:53'!
+PASSED!
+
+!testRun: #ReportTest #test02AccountSummaryContainsDepositTransactions stamp: 'SMG 5/27/2023 23:43:53'!
+PASSED!
+
+!testRun: #ReportTest #test03AccountSummaryContainsWithdrawTransactions stamp: 'SMG 5/27/2023 23:43:53'!
+PASSED!
+
+!testRun: #ReportTest #test04AccountSummaryContainsTransfers stamp: 'SMG 5/27/2023 23:43:53'!
+PASSED!
+
+!testRun: #ReportTest #test05TransferNetOfAccountWithNoTransfersIsZero stamp: 'SMG 5/27/2023 23:43:53'!
+ERROR!
+
+!testRun: #ReportTest #test05TransferNetOfReceivingAccountIsCorrect stamp: 'SMG 5/27/2023 23:43:53'!
+ERROR!
+
+!testRun: #ReportTest #test05TransferNetOfAccountWithNoTransfersIsZero stamp: 'SMG 5/27/2023 23:43:55'!
+ERROR!
+
+!classDefinition: #TransferNet category: 'Portfolio-Solucion' stamp: 'SMG 5/27/2023 23:44:09'!
+Object subclass: #TransferNet
+	instanceVariableNames: 'account'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Portfolio-Solucion'!
+!TransferNet methodsFor: 'initialization' stamp: 'SMG 5/27/2023 23:44:09'!
+initializeFor: anAccount 
+	self shouldBeImplemented.
+	account := anAccount.! !
+!TransferNet methodsFor: 'initialization' stamp: 'SMG 5/27/2023 23:44:13' prior: 50625366!
+initializeFor: anAccount 
+
+	account := anAccount.! !
+
+!testRun: #ReportTest #test05TransferNetOfAccountWithNoTransfersIsZero stamp: 'SMG 5/27/2023 23:44:15'!
+PASSED!
+!TransferNet methodsFor: 'report' stamp: 'SMG 5/27/2023 23:44:47' prior: 50625268 overrides: 16902254!
+value
+
+	| netValue |
+	netValue := 0
+	
+	! !
+!TransferNet methodsFor: 'report' stamp: 'SMG 5/27/2023 23:45:02' prior: 50625381 overrides: 16902254!
+value
+
+	| netValue |
+
+	netValue := 0.
+	
+	! !
+!TransferNet methodsFor: 'report' stamp: 'SMG 5/27/2023 23:47:55' prior: 50625386 overrides: 16902254!
+value
+
+	| netValue |
+
+	netValue := 0.
+	
+	account onTransactionsDo: [:aTransaction | 
+		(aTransaction isKindOf: DepositLeg ) ifTrue: [netValue := netValue + aTransaction value].
+		].
+	^ netValue.! !
+!TransferNet methodsFor: 'report' stamp: 'SMG 5/27/2023 23:47:58' prior: 50625391 overrides: 16902254!
+value
+
+	| netValue |
+
+	netValue := 0.
+	
+	account onTransactionsDo: [:aTransaction | 
+		(aTransaction isKindOf: DepositLeg ) ifTrue: [netValue := netValue + aTransaction value].
+	].
+	^ netValue.! !
+!TransferNet methodsFor: 'report' stamp: 'SMG 5/27/2023 23:48:01' prior: 50625401 overrides: 16902254!
+value
+
+	| netValue |
+
+	netValue := 0.
+	
+	account onTransactionsDo: [:aTransaction | 
+		(aTransaction isKindOf: DepositLeg) ifTrue: [netValue := netValue + aTransaction value].
+	].
+	^ netValue.! !
+!TransferNet methodsFor: 'report' stamp: 'SMG 5/27/2023 23:48:07' prior: 50625411 overrides: 16902254!
+value
+
+	| netValue |
+
+	netValue := 0.
+	
+	account onTransactionsDo: [:aTransaction | 
+		(aTransaction isKindOf: DepositLeg) ifTrue: [netValue := netValue + aTransaction value].
+	].
+
+	^ netValue.! !
+
+!testRun: #PortfolioTest #test01BalanceOfPortfolioWithoutAccountsIsZero stamp: 'SMG 5/27/2023 23:48:09'!
+PASSED!
+
+!testRun: #PortfolioTest #test02BalanceOfPortfolioWithAccountsIsSumOfAccountsBalance stamp: 'SMG 5/27/2023 23:48:09'!
+PASSED!
+
+!testRun: #PortfolioTest #test03BalanceOfPortfolioIsCalculatedRecursivelyOnPortfolios stamp: 'SMG 5/27/2023 23:48:09'!
+PASSED!
+
+!testRun: #PortfolioTest #test04PortfolioWithoutAccountsHasNoRegisteredTransaction stamp: 'SMG 5/27/2023 23:48:09'!
+PASSED!
+
+!testRun: #PortfolioTest #test05PortfolioHasRegisteredItsAccountsTransactions stamp: 'SMG 5/27/2023 23:48:09'!
+PASSED!
+
+!testRun: #PortfolioTest #test06PortfolioLooksForRegisteredTransactionsRecursively stamp: 'SMG 5/27/2023 23:48:09'!
+PASSED!
+
+!testRun: #PortfolioTest #test07PortfolioHasNoTransactionWhenHasNoAccounts stamp: 'SMG 5/27/2023 23:48:09'!
+PASSED!
+
+!testRun: #PortfolioTest #test08PortfolioTransactionsIncludesAllItsAccountsTransactions stamp: 'SMG 5/27/2023 23:48:09'!
+PASSED!
+
+!testRun: #PortfolioTest #test09PortfolioTransactionsAreCalculatedRecursively stamp: 'SMG 5/27/2023 23:48:09'!
+PASSED!
+
+!testRun: #PortfolioTest #test10PortfolioCanNotIncludeTheSameAccountMoreThanOnce stamp: 'SMG 5/27/2023 23:48:09'!
+PASSED!
+
+!testRun: #PortfolioTest #test11PortfolioCanNotIncludeAccountOfItsPortfolios stamp: 'SMG 5/27/2023 23:48:09'!
+PASSED!
+
+!testRun: #PortfolioTest #test12PortfolioCanNotIncludeItself stamp: 'SMG 5/27/2023 23:48:09'!
+PASSED!
+
+!testRun: #PortfolioTest #test13ComposedPortfolioCanNotHaveParentPortfolioAccount stamp: 'SMG 5/27/2023 23:48:09'!
+PASSED!
+
+!testRun: #PortfolioTest #test14ComposedPortfolioCanNotHaveAccountOfAnyRootParentRecursively stamp: 'SMG 5/27/2023 23:48:09'!
+PASSED!
+
+!testRun: #PortfolioTest #test15PortfolioCanNotIncludeAnyOfTheComposedAccountOfPortfolioToAdd stamp: 'SMG 5/27/2023 23:48:09'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test01ReceptiveAccountHaveZeroAsBalanceWhenCreated stamp: 'SMG 5/27/2023 23:48:09'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test02DepositIncreasesBalanceOnTransactionValue stamp: 'SMG 5/27/2023 23:48:09'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test03WithdrawDecreasesBalanceOnTransactionValue stamp: 'SMG 5/27/2023 23:48:09'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test04WithdrawValueMustBePositive stamp: 'SMG 5/27/2023 23:48:09'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test05ReceptiveAccountKnowsRegisteredTransactions stamp: 'SMG 5/27/2023 23:48:09'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test06ReceptiveAccountDoNotKnowNotRegisteredTransactions stamp: 'SMG 5/27/2023 23:48:09'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test07AccountKnowsItsTransactions stamp: 'SMG 5/27/2023 23:48:09'!
+PASSED!
+
+!testRun: #ReportTest #test01AccountSummaryOfEmptyAccountOnlyContainsBalanceLine stamp: 'SMG 5/27/2023 23:48:09'!
+PASSED!
+
+!testRun: #ReportTest #test02AccountSummaryContainsDepositTransactions stamp: 'SMG 5/27/2023 23:48:09'!
+PASSED!
+
+!testRun: #ReportTest #test03AccountSummaryContainsWithdrawTransactions stamp: 'SMG 5/27/2023 23:48:09'!
+PASSED!
+
+!testRun: #ReportTest #test04AccountSummaryContainsTransfers stamp: 'SMG 5/27/2023 23:48:09'!
+PASSED!
+
+!testRun: #ReportTest #test05TransferNetOfAccountWithNoTransfersIsZero stamp: 'SMG 5/27/2023 23:48:09'!
+PASSED!
+
+!testRun: #ReportTest #test05TransferNetOfReceivingAccountIsCorrect stamp: 'SMG 5/27/2023 23:48:09'!
+FAILURE!
+
+!testRun: #TransferTest #test01TransferRemovesBalanceFromSenderAndAddsItToReceiver stamp: 'SMG 5/27/2023 23:48:09'!
+PASSED!
+
+!testRun: #TransferTest #test02TransferLegsAreRegisteredOnParticipantAccounts stamp: 'SMG 5/27/2023 23:48:09'!
+PASSED!
+
+!testRun: #TransferTest #test03TransferLegsCanAccessTransfer stamp: 'SMG 5/27/2023 23:48:09'!
+PASSED!
+
+!testRun: #TransferTest #test04TransferLegsHasCorrectTransferValue stamp: 'SMG 5/27/2023 23:48:09'!
+PASSED!
+
+!testRun: #TransferTest #test05CantCreateATransferBetweenTheSameAccount stamp: 'SMG 5/27/2023 23:48:09'!
+PASSED!
+
+!testRun: #TransferTest #test06TransferValueMustBePositive stamp: 'SMG 5/27/2023 23:48:09'!
+PASSED!
+
+!testRun: #ReportTest #test05TransferNetOfReceivingAccountIsCorrect stamp: 'SMG 5/27/2023 23:48:09'!
+FAILURE!
+!TransferNet methodsFor: 'report' stamp: 'SMG 5/27/2023 23:50:07' prior: 50625421 overrides: 16902254!
+value
+
+	| netValue |
+
+	netValue := 0.
+	
+	account onTransactionsDo: [:aTransaction | 
+		(aTransaction isKindOf: DepositLeg) ifTrue: [ netValue := netValue + aTransaction value ].
+	].
+
+	^ netValue.! !
+
+!testRun: #PortfolioTest #test01BalanceOfPortfolioWithoutAccountsIsZero stamp: 'SMG 5/27/2023 23:50:19'!
+PASSED!
+
+!testRun: #PortfolioTest #test02BalanceOfPortfolioWithAccountsIsSumOfAccountsBalance stamp: 'SMG 5/27/2023 23:50:19'!
+PASSED!
+
+!testRun: #PortfolioTest #test03BalanceOfPortfolioIsCalculatedRecursivelyOnPortfolios stamp: 'SMG 5/27/2023 23:50:19'!
+PASSED!
+
+!testRun: #PortfolioTest #test04PortfolioWithoutAccountsHasNoRegisteredTransaction stamp: 'SMG 5/27/2023 23:50:19'!
+PASSED!
+
+!testRun: #PortfolioTest #test05PortfolioHasRegisteredItsAccountsTransactions stamp: 'SMG 5/27/2023 23:50:19'!
+PASSED!
+
+!testRun: #PortfolioTest #test06PortfolioLooksForRegisteredTransactionsRecursively stamp: 'SMG 5/27/2023 23:50:19'!
+PASSED!
+
+!testRun: #PortfolioTest #test07PortfolioHasNoTransactionWhenHasNoAccounts stamp: 'SMG 5/27/2023 23:50:19'!
+PASSED!
+
+!testRun: #PortfolioTest #test08PortfolioTransactionsIncludesAllItsAccountsTransactions stamp: 'SMG 5/27/2023 23:50:19'!
+PASSED!
+
+!testRun: #PortfolioTest #test09PortfolioTransactionsAreCalculatedRecursively stamp: 'SMG 5/27/2023 23:50:19'!
+PASSED!
+
+!testRun: #PortfolioTest #test10PortfolioCanNotIncludeTheSameAccountMoreThanOnce stamp: 'SMG 5/27/2023 23:50:19'!
+PASSED!
+
+!testRun: #PortfolioTest #test11PortfolioCanNotIncludeAccountOfItsPortfolios stamp: 'SMG 5/27/2023 23:50:19'!
+PASSED!
+
+!testRun: #PortfolioTest #test12PortfolioCanNotIncludeItself stamp: 'SMG 5/27/2023 23:50:19'!
+PASSED!
+
+!testRun: #PortfolioTest #test13ComposedPortfolioCanNotHaveParentPortfolioAccount stamp: 'SMG 5/27/2023 23:50:19'!
+PASSED!
+
+!testRun: #PortfolioTest #test14ComposedPortfolioCanNotHaveAccountOfAnyRootParentRecursively stamp: 'SMG 5/27/2023 23:50:19'!
+PASSED!
+
+!testRun: #PortfolioTest #test15PortfolioCanNotIncludeAnyOfTheComposedAccountOfPortfolioToAdd stamp: 'SMG 5/27/2023 23:50:19'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test01ReceptiveAccountHaveZeroAsBalanceWhenCreated stamp: 'SMG 5/27/2023 23:50:19'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test02DepositIncreasesBalanceOnTransactionValue stamp: 'SMG 5/27/2023 23:50:19'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test03WithdrawDecreasesBalanceOnTransactionValue stamp: 'SMG 5/27/2023 23:50:19'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test04WithdrawValueMustBePositive stamp: 'SMG 5/27/2023 23:50:19'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test05ReceptiveAccountKnowsRegisteredTransactions stamp: 'SMG 5/27/2023 23:50:19'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test06ReceptiveAccountDoNotKnowNotRegisteredTransactions stamp: 'SMG 5/27/2023 23:50:19'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test07AccountKnowsItsTransactions stamp: 'SMG 5/27/2023 23:50:19'!
+PASSED!
+
+!testRun: #ReportTest #test01AccountSummaryOfEmptyAccountOnlyContainsBalanceLine stamp: 'SMG 5/27/2023 23:50:19'!
+PASSED!
+
+!testRun: #ReportTest #test02AccountSummaryContainsDepositTransactions stamp: 'SMG 5/27/2023 23:50:19'!
+PASSED!
+
+!testRun: #ReportTest #test03AccountSummaryContainsWithdrawTransactions stamp: 'SMG 5/27/2023 23:50:19'!
+PASSED!
+
+!testRun: #ReportTest #test04AccountSummaryContainsTransfers stamp: 'SMG 5/27/2023 23:50:19'!
+PASSED!
+
+!testRun: #ReportTest #test05TransferNetOfAccountWithNoTransfersIsZero stamp: 'SMG 5/27/2023 23:50:19'!
+PASSED!
+
+!testRun: #ReportTest #test05TransferNetOfReceivingAccountIsCorrect stamp: 'SMG 5/27/2023 23:50:19'!
+FAILURE!
+
+!testRun: #TransferTest #test01TransferRemovesBalanceFromSenderAndAddsItToReceiver stamp: 'SMG 5/27/2023 23:50:19'!
+PASSED!
+
+!testRun: #TransferTest #test02TransferLegsAreRegisteredOnParticipantAccounts stamp: 'SMG 5/27/2023 23:50:19'!
+PASSED!
+
+!testRun: #TransferTest #test03TransferLegsCanAccessTransfer stamp: 'SMG 5/27/2023 23:50:19'!
+PASSED!
+
+!testRun: #TransferTest #test04TransferLegsHasCorrectTransferValue stamp: 'SMG 5/27/2023 23:50:19'!
+PASSED!
+
+!testRun: #TransferTest #test05CantCreateATransferBetweenTheSameAccount stamp: 'SMG 5/27/2023 23:50:19'!
+PASSED!
+
+!testRun: #TransferTest #test06TransferValueMustBePositive stamp: 'SMG 5/27/2023 23:50:19'!
+PASSED!
+
+!testRun: #ReportTest #test05TransferNetOfReceivingAccountIsCorrect stamp: 'SMG 5/27/2023 23:50:19'!
+FAILURE!
+!ReportTest methodsFor: 'testing' stamp: 'SMG 5/27/2023 23:51:16' prior: 50625313!
+test05TransferNetOfReceivingAccountIsCorrect
+
+	| receiver sender |
+
+	sender := ReceptiveAccount new.
+	Deposit register: 50 on: sender.
+	receiver := ReceptiveAccount new.
+	
+	Transfer register: 50 from: sender to: receiver.
+
+	self assert: 50 equals: (TransferNet for: receiver) value
+! !
+!ReportTest methodsFor: 'testing' stamp: 'SMG 5/27/2023 23:51:23'!
+test06TransferNetOfReceivingAccountIsCorrect
+
+	| receiver sender |
+
+	sender := ReceptiveAccount new.
+	Deposit register: 50 on: sender.
+	receiver := ReceptiveAccount new.
+	
+	Transfer register: 50 from: sender to: receiver.
+
+	self assert: 50 equals: (TransferNet for: receiver) value
+! !
+
+!methodRemoval: ReportTest #test05TransferNetOfReceivingAccountIsCorrect stamp: 'SMG 5/27/2023 23:51:23'!
+test05TransferNetOfReceivingAccountIsCorrect
+
+	| receiver sender |
+
+	sender := ReceptiveAccount new.
+	Deposit register: 50 on: sender.
+	receiver := ReceptiveAccount new.
+	
+	Transfer register: 50 from: sender to: receiver.
+
+	self assert: 50 equals: (TransferNet for: receiver) value
+!
+
+!testRun: #ReportTest #test06TransferNetOfReceivingAccountIsCorrect stamp: 'SMG 5/27/2023 23:51:26'!
+PASSED!
+
+!testRun: #PortfolioTest #test01BalanceOfPortfolioWithoutAccountsIsZero stamp: 'SMG 5/27/2023 23:51:26'!
+PASSED!
+
+!testRun: #PortfolioTest #test02BalanceOfPortfolioWithAccountsIsSumOfAccountsBalance stamp: 'SMG 5/27/2023 23:51:26'!
+PASSED!
+
+!testRun: #PortfolioTest #test03BalanceOfPortfolioIsCalculatedRecursivelyOnPortfolios stamp: 'SMG 5/27/2023 23:51:26'!
+PASSED!
+
+!testRun: #PortfolioTest #test04PortfolioWithoutAccountsHasNoRegisteredTransaction stamp: 'SMG 5/27/2023 23:51:26'!
+PASSED!
+
+!testRun: #PortfolioTest #test05PortfolioHasRegisteredItsAccountsTransactions stamp: 'SMG 5/27/2023 23:51:26'!
+PASSED!
+
+!testRun: #PortfolioTest #test06PortfolioLooksForRegisteredTransactionsRecursively stamp: 'SMG 5/27/2023 23:51:26'!
+PASSED!
+
+!testRun: #PortfolioTest #test07PortfolioHasNoTransactionWhenHasNoAccounts stamp: 'SMG 5/27/2023 23:51:26'!
+PASSED!
+
+!testRun: #PortfolioTest #test08PortfolioTransactionsIncludesAllItsAccountsTransactions stamp: 'SMG 5/27/2023 23:51:26'!
+PASSED!
+
+!testRun: #PortfolioTest #test09PortfolioTransactionsAreCalculatedRecursively stamp: 'SMG 5/27/2023 23:51:26'!
+PASSED!
+
+!testRun: #PortfolioTest #test10PortfolioCanNotIncludeTheSameAccountMoreThanOnce stamp: 'SMG 5/27/2023 23:51:26'!
+PASSED!
+
+!testRun: #PortfolioTest #test11PortfolioCanNotIncludeAccountOfItsPortfolios stamp: 'SMG 5/27/2023 23:51:26'!
+PASSED!
+
+!testRun: #PortfolioTest #test12PortfolioCanNotIncludeItself stamp: 'SMG 5/27/2023 23:51:26'!
+PASSED!
+
+!testRun: #PortfolioTest #test13ComposedPortfolioCanNotHaveParentPortfolioAccount stamp: 'SMG 5/27/2023 23:51:26'!
+PASSED!
+
+!testRun: #PortfolioTest #test14ComposedPortfolioCanNotHaveAccountOfAnyRootParentRecursively stamp: 'SMG 5/27/2023 23:51:26'!
+PASSED!
+
+!testRun: #PortfolioTest #test15PortfolioCanNotIncludeAnyOfTheComposedAccountOfPortfolioToAdd stamp: 'SMG 5/27/2023 23:51:26'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test01ReceptiveAccountHaveZeroAsBalanceWhenCreated stamp: 'SMG 5/27/2023 23:51:26'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test02DepositIncreasesBalanceOnTransactionValue stamp: 'SMG 5/27/2023 23:51:26'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test03WithdrawDecreasesBalanceOnTransactionValue stamp: 'SMG 5/27/2023 23:51:26'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test04WithdrawValueMustBePositive stamp: 'SMG 5/27/2023 23:51:26'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test05ReceptiveAccountKnowsRegisteredTransactions stamp: 'SMG 5/27/2023 23:51:26'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test06ReceptiveAccountDoNotKnowNotRegisteredTransactions stamp: 'SMG 5/27/2023 23:51:26'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test07AccountKnowsItsTransactions stamp: 'SMG 5/27/2023 23:51:26'!
+PASSED!
+
+!testRun: #ReportTest #test01AccountSummaryOfEmptyAccountOnlyContainsBalanceLine stamp: 'SMG 5/27/2023 23:51:26'!
+PASSED!
+
+!testRun: #ReportTest #test02AccountSummaryContainsDepositTransactions stamp: 'SMG 5/27/2023 23:51:26'!
+PASSED!
+
+!testRun: #ReportTest #test03AccountSummaryContainsWithdrawTransactions stamp: 'SMG 5/27/2023 23:51:26'!
+PASSED!
+
+!testRun: #ReportTest #test04AccountSummaryContainsTransfers stamp: 'SMG 5/27/2023 23:51:26'!
+PASSED!
+
+!testRun: #ReportTest #test05TransferNetOfAccountWithNoTransfersIsZero stamp: 'SMG 5/27/2023 23:51:26'!
+PASSED!
+
+!testRun: #ReportTest #test06TransferNetOfReceivingAccountIsCorrect stamp: 'SMG 5/27/2023 23:51:26'!
+PASSED!
+
+!testRun: #TransferTest #test01TransferRemovesBalanceFromSenderAndAddsItToReceiver stamp: 'SMG 5/27/2023 23:51:26'!
+PASSED!
+
+!testRun: #TransferTest #test02TransferLegsAreRegisteredOnParticipantAccounts stamp: 'SMG 5/27/2023 23:51:26'!
+PASSED!
+
+!testRun: #TransferTest #test03TransferLegsCanAccessTransfer stamp: 'SMG 5/27/2023 23:51:26'!
+PASSED!
+
+!testRun: #TransferTest #test04TransferLegsHasCorrectTransferValue stamp: 'SMG 5/27/2023 23:51:26'!
+PASSED!
+
+!testRun: #TransferTest #test05CantCreateATransferBetweenTheSameAccount stamp: 'SMG 5/27/2023 23:51:26'!
+PASSED!
+
+!testRun: #TransferTest #test06TransferValueMustBePositive stamp: 'SMG 5/27/2023 23:51:26'!
+PASSED!
+!ReportTest methodsFor: 'testing' stamp: 'SMG 5/27/2023 23:52:07'!
+test06TransferNetOfSendingAccountIsCorrect
+
+	| receiver sender |
+
+	sender := ReceptiveAccount new.
+	Deposit register: 50 on: sender.
+	receiver := ReceptiveAccount new.
+	
+	Transfer register: 50 from: sender to: receiver.
+
+	self assert: -50 equals: (TransferNet for: sender) value
+! !
+!ReportTest methodsFor: 'testing' stamp: 'SMG 5/27/2023 23:52:14'!
+test07TransferNetOfSendingAccountIsCorrect
+
+	| receiver sender |
+
+	sender := ReceptiveAccount new.
+	Deposit register: 50 on: sender.
+	receiver := ReceptiveAccount new.
+	
+	Transfer register: 50 from: sender to: receiver.
+
+	self assert: -50 equals: (TransferNet for: sender) value
+! !
+
+!methodRemoval: ReportTest #test06TransferNetOfSendingAccountIsCorrect stamp: 'SMG 5/27/2023 23:52:14'!
+test06TransferNetOfSendingAccountIsCorrect
+
+	| receiver sender |
+
+	sender := ReceptiveAccount new.
+	Deposit register: 50 on: sender.
+	receiver := ReceptiveAccount new.
+	
+	Transfer register: 50 from: sender to: receiver.
+
+	self assert: -50 equals: (TransferNet for: sender) value
+!
+
+!testRun: #ReportTest #test07TransferNetOfSendingAccountIsCorrect stamp: 'SMG 5/27/2023 23:52:16'!
+FAILURE!
+!TransferNet methodsFor: 'report' stamp: 'SMG 5/27/2023 23:52:49' prior: 50625561 overrides: 16902254!
+value
+
+	| netValue |
+
+	netValue := 0.
+	
+	account onTransactionsDo: [:aTransaction | 
+		(aTransaction isKindOf: DepositLeg) ifTrue: [ netValue := netValue + aTransaction value ].
+		(aTransaction isKindOf: WithdrawLeg) ifTrue: [ netValue := netValue - aTransaction value ].
+	].
+
+	^ netValue.! !
+
+!testRun: #ReportTest #test01AccountSummaryOfEmptyAccountOnlyContainsBalanceLine stamp: 'SMG 5/27/2023 23:52:55'!
+PASSED!
+
+!testRun: #ReportTest #test02AccountSummaryContainsDepositTransactions stamp: 'SMG 5/27/2023 23:52:55'!
+PASSED!
+
+!testRun: #ReportTest #test03AccountSummaryContainsWithdrawTransactions stamp: 'SMG 5/27/2023 23:52:55'!
+PASSED!
+
+!testRun: #ReportTest #test04AccountSummaryContainsTransfers stamp: 'SMG 5/27/2023 23:52:55'!
+PASSED!
+
+!testRun: #ReportTest #test05TransferNetOfAccountWithNoTransfersIsZero stamp: 'SMG 5/27/2023 23:52:55'!
+PASSED!
+
+!testRun: #ReportTest #test06TransferNetOfReceivingAccountIsCorrect stamp: 'SMG 5/27/2023 23:52:55'!
+PASSED!
+
+!testRun: #ReportTest #test07TransferNetOfSendingAccountIsCorrect stamp: 'SMG 5/27/2023 23:52:55'!
+PASSED!
+
+!testRun: #PortfolioTest #test01BalanceOfPortfolioWithoutAccountsIsZero stamp: 'SMG 5/27/2023 23:53:00'!
+PASSED!
+
+!testRun: #PortfolioTest #test02BalanceOfPortfolioWithAccountsIsSumOfAccountsBalance stamp: 'SMG 5/27/2023 23:53:00'!
+PASSED!
+
+!testRun: #PortfolioTest #test03BalanceOfPortfolioIsCalculatedRecursivelyOnPortfolios stamp: 'SMG 5/27/2023 23:53:00'!
+PASSED!
+
+!testRun: #PortfolioTest #test04PortfolioWithoutAccountsHasNoRegisteredTransaction stamp: 'SMG 5/27/2023 23:53:00'!
+PASSED!
+
+!testRun: #PortfolioTest #test05PortfolioHasRegisteredItsAccountsTransactions stamp: 'SMG 5/27/2023 23:53:00'!
+PASSED!
+
+!testRun: #PortfolioTest #test06PortfolioLooksForRegisteredTransactionsRecursively stamp: 'SMG 5/27/2023 23:53:00'!
+PASSED!
+
+!testRun: #PortfolioTest #test07PortfolioHasNoTransactionWhenHasNoAccounts stamp: 'SMG 5/27/2023 23:53:00'!
+PASSED!
+
+!testRun: #PortfolioTest #test08PortfolioTransactionsIncludesAllItsAccountsTransactions stamp: 'SMG 5/27/2023 23:53:00'!
+PASSED!
+
+!testRun: #PortfolioTest #test09PortfolioTransactionsAreCalculatedRecursively stamp: 'SMG 5/27/2023 23:53:00'!
+PASSED!
+
+!testRun: #PortfolioTest #test10PortfolioCanNotIncludeTheSameAccountMoreThanOnce stamp: 'SMG 5/27/2023 23:53:00'!
+PASSED!
+
+!testRun: #PortfolioTest #test11PortfolioCanNotIncludeAccountOfItsPortfolios stamp: 'SMG 5/27/2023 23:53:00'!
+PASSED!
+
+!testRun: #PortfolioTest #test12PortfolioCanNotIncludeItself stamp: 'SMG 5/27/2023 23:53:00'!
+PASSED!
+
+!testRun: #PortfolioTest #test13ComposedPortfolioCanNotHaveParentPortfolioAccount stamp: 'SMG 5/27/2023 23:53:00'!
+PASSED!
+
+!testRun: #PortfolioTest #test14ComposedPortfolioCanNotHaveAccountOfAnyRootParentRecursively stamp: 'SMG 5/27/2023 23:53:00'!
+PASSED!
+
+!testRun: #PortfolioTest #test15PortfolioCanNotIncludeAnyOfTheComposedAccountOfPortfolioToAdd stamp: 'SMG 5/27/2023 23:53:00'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test01ReceptiveAccountHaveZeroAsBalanceWhenCreated stamp: 'SMG 5/27/2023 23:53:00'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test02DepositIncreasesBalanceOnTransactionValue stamp: 'SMG 5/27/2023 23:53:00'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test03WithdrawDecreasesBalanceOnTransactionValue stamp: 'SMG 5/27/2023 23:53:00'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test04WithdrawValueMustBePositive stamp: 'SMG 5/27/2023 23:53:00'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test05ReceptiveAccountKnowsRegisteredTransactions stamp: 'SMG 5/27/2023 23:53:00'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test06ReceptiveAccountDoNotKnowNotRegisteredTransactions stamp: 'SMG 5/27/2023 23:53:00'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test07AccountKnowsItsTransactions stamp: 'SMG 5/27/2023 23:53:00'!
+PASSED!
+
+!testRun: #ReportTest #test01AccountSummaryOfEmptyAccountOnlyContainsBalanceLine stamp: 'SMG 5/27/2023 23:53:00'!
+PASSED!
+
+!testRun: #ReportTest #test02AccountSummaryContainsDepositTransactions stamp: 'SMG 5/27/2023 23:53:00'!
+PASSED!
+
+!testRun: #ReportTest #test03AccountSummaryContainsWithdrawTransactions stamp: 'SMG 5/27/2023 23:53:00'!
+PASSED!
+
+!testRun: #ReportTest #test04AccountSummaryContainsTransfers stamp: 'SMG 5/27/2023 23:53:00'!
+PASSED!
+
+!testRun: #ReportTest #test05TransferNetOfAccountWithNoTransfersIsZero stamp: 'SMG 5/27/2023 23:53:00'!
+PASSED!
+
+!testRun: #ReportTest #test06TransferNetOfReceivingAccountIsCorrect stamp: 'SMG 5/27/2023 23:53:00'!
+PASSED!
+
+!testRun: #ReportTest #test07TransferNetOfSendingAccountIsCorrect stamp: 'SMG 5/27/2023 23:53:00'!
+PASSED!
+
+!testRun: #TransferTest #test01TransferRemovesBalanceFromSenderAndAddsItToReceiver stamp: 'SMG 5/27/2023 23:53:00'!
+PASSED!
+
+!testRun: #TransferTest #test02TransferLegsAreRegisteredOnParticipantAccounts stamp: 'SMG 5/27/2023 23:53:00'!
+PASSED!
+
+!testRun: #TransferTest #test03TransferLegsCanAccessTransfer stamp: 'SMG 5/27/2023 23:53:00'!
+PASSED!
+
+!testRun: #TransferTest #test04TransferLegsHasCorrectTransferValue stamp: 'SMG 5/27/2023 23:53:00'!
+PASSED!
+
+!testRun: #TransferTest #test05CantCreateATransferBetweenTheSameAccount stamp: 'SMG 5/27/2023 23:53:00'!
+PASSED!
+
+!testRun: #TransferTest #test06TransferValueMustBePositive stamp: 'SMG 5/27/2023 23:53:00'!
+PASSED!
+
+----SNAPSHOT----(27 May 2023 23:56:44) CuisUniversity-5819.image priorSource: 9342770!
