@@ -1,3 +1,158 @@
+!classDefinition: #PortfolioReportTest category: 'Portfolio-Solucion'!
+TestCase subclass: #PortfolioReportTest
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Portfolio-Solucion'!
+
+!PortfolioReportTest methodsFor: 'tests' stamp: 'TS 5/31/2023 00:31:59'!
+test01PortfolioStructureOfEmptyPortfolioOnlyShowsItsName
+
+	| portfolio |
+	portfolio := Portfolio named: 'Portfolio de Juan'.
+	
+	self
+		assert: #('Portfolio de Juan') asOrderedCollection
+		equals: (PortfolioStructureSummary for: portfolio) lines
+! !
+
+!PortfolioReportTest methodsFor: 'tests' stamp: 'TS 5/31/2023 00:32:13'!
+test02PortfolioStructureOfPortfolioWithChildrenAccountsShowsTheirNamesWith1LevelOfIndentation
+
+	| portfolio account1 account2 |
+	account1 := ReceptiveAccount named: 'Cuenta de María'.
+	account2 := ReceptiveAccount named: 'Cuenta mía'.
+	portfolio := Portfolio named: 'Portfolio de Martín' with: account1 with: account2.
+
+	self
+		assert: #(
+			'Portfolio de Martín'
+			'	Cuenta de María'
+			'	Cuenta mía'
+		) asOrderedCollection
+		equals: (PortfolioStructureSummary for: portfolio) lines
+! !
+
+!PortfolioReportTest methodsFor: 'tests' stamp: 'TS 5/31/2023 00:32:19'!
+test03PortfolioStructureOfPortfolioWithNestedPortfolioShowsItsStructureCorrectly
+
+	| account1 account2 childPortfolio parentPortfolio |
+	account1 := ReceptiveAccount named: 'Cuenta de María'.
+	account2 := ReceptiveAccount named: 'Cuenta mía'.
+	childPortfolio := Portfolio named: 'Portfolio de Juan' with: account1.
+	parentPortfolio := Portfolio named: 'Portfolio de Martín' with: childPortfolio with: account2.
+
+	self
+		assert: #(
+			'Portfolio de Martín'
+			'	Portfolio de Juan'
+			'		Cuenta de María'
+			'	Cuenta mía'
+		) asOrderedCollection
+		equals: (PortfolioStructureSummary for: parentPortfolio) lines
+! !
+
+!PortfolioReportTest methodsFor: 'tests' stamp: 'TS 5/31/2023 00:32:28'!
+test04PortfolioStructureOfPortfolioWithMultipleLevelsOfNestingShowsItsStructureCorrectly
+
+	| account1 account2 parentPortfolio childPortfolio grandchildPortfolio |
+	account1 := ReceptiveAccount named: 'Cuenta de María'.
+	account2 := ReceptiveAccount named: 'Cuenta mía'.
+	grandchildPortfolio := Portfolio named: 'Portfolio mío' with: account2.
+	childPortfolio := Portfolio named: 'Portfolio de Juan' with: account1 with: grandchildPortfolio.
+	parentPortfolio := Portfolio named: 'Portfolio de Martín' with: childPortfolio.
+
+	self
+		assert: #(
+			'Portfolio de Martín'
+			'	Portfolio de Juan'
+			'		Cuenta de María'
+			'		Portfolio mío'
+			'			Cuenta mía'
+		) asOrderedCollection
+		equals: (PortfolioStructureSummary for: parentPortfolio) lines
+! !
+
+!PortfolioReportTest methodsFor: 'tests' stamp: 'TS 5/31/2023 00:04:03'!
+test05PortfolioSummaryOfEmptyPortfolioOnlyShowsItsName
+
+	| portfolio |
+	portfolio := Portfolio named: 'Portfolio de Martín'.
+
+	self
+		assert: #(
+			'Portfolio de Martín'
+		) asOrderedCollection
+		equals: (PortfolioTransactionSummary for: portfolio) lines
+! !
+
+!PortfolioReportTest methodsFor: 'tests' stamp: 'TS 5/31/2023 00:07:38'!
+test06PortfolioSummaryOfPortfolioWithChildAccountShowsItsNameAndItsChildsAccountSummary
+
+	| portfolio account |
+	account := ReceptiveAccount named: 'Cuenta de Martín'.
+	Deposit register: 50 on: account.
+	portfolio := Portfolio named: 'Portfolio de Martín' with: account.
+
+	self
+		assert: #(
+			'Portfolio de Martín'
+			'	Cuenta de Martín'
+			'		Depósito por 50'
+			'		Balance = 50'
+		) asOrderedCollection
+		equals: (PortfolioTransactionSummary for: portfolio) lines
+! !
+
+!PortfolioReportTest methodsFor: 'tests' stamp: 'TS 5/31/2023 00:16:38'!
+test07PortfolioSummaryOfPortfolioWithChildPortfolioShowsItsName
+
+	| portfolio account childPortfolio |
+	account := ReceptiveAccount named: 'Cuenta de Martín'.
+	Deposit register: 50 on: account.
+	childPortfolio := Portfolio named: 'Portfolio de Juan'.
+	portfolio := Portfolio named: 'Portfolio de Martín' with: account with: childPortfolio.
+
+	self
+		assert: #(
+			'Portfolio de Martín'
+			'	Cuenta de Martín'
+			'		Depósito por 50'
+			'		Balance = 50'
+			'	Portfolio de Juan'
+		) asOrderedCollection
+		equals: (PortfolioTransactionSummary for: portfolio) lines
+! !
+
+!PortfolioReportTest methodsFor: 'tests' stamp: 'TS 5/31/2023 00:31:33'!
+test08PortfolioSummaryOfNestedPortfoliosShowsAllSummariesCorrectly
+
+	| portfolio account1 childPortfolio account2 grandchildPortfolio |
+	account1 := ReceptiveAccount named: 'Cuenta de Juan'.
+	Deposit register: 50 on: account1.
+	account2 := ReceptiveAccount named: 'Cuenta de María'.
+	Transfer register: 50 from: account1 to: account2.
+	grandchildPortfolio := Portfolio named: 'Portfolio de María' with: account2.
+	childPortfolio := Portfolio named: 'Portfolio de Juan' with: account1 with: grandchildPortfolio.
+	portfolio := Portfolio named: 'Portfolio de Martín' with: childPortfolio.
+
+	self
+		assert: #(
+			'Portfolio de Martín'
+			'	Portfolio de Juan'
+			'		Cuenta de Juan'
+			'			Depósito por 50'
+			'			Salida por transferencia de 50'
+			'			Balance = 0'
+			'		Portfolio de María'
+			'			Cuenta de María'
+			'				Entrada por transferencia de 50'
+			'				Balance = 50'
+		) asOrderedCollection
+		equals: (PortfolioTransactionSummary for: portfolio) lines
+! !
+
+
 !classDefinition: #PortfolioTest category: 'Portfolio-Solucion'!
 TestCase subclass: #PortfolioTest
 	instanceVariableNames: ''
@@ -305,14 +460,14 @@ test07AccountKnowsItsTransactions
 ! !
 
 
-!classDefinition: #ReportTest category: 'Portfolio-Solucion'!
-TestCase subclass: #ReportTest
+!classDefinition: #TransactionReportTest category: 'Portfolio-Solucion'!
+TestCase subclass: #TransactionReportTest
 	instanceVariableNames: ''
 	classVariableNames: ''
 	poolDictionaries: ''
 	category: 'Portfolio-Solucion'!
 
-!ReportTest methodsFor: 'testing' stamp: 'SMG 5/27/2023 23:21:07'!
+!TransactionReportTest methodsFor: 'testing' stamp: 'SMG 5/27/2023 23:21:07'!
 test01AccountSummaryOfEmptyAccountOnlyContainsBalanceLine
 
 	| account report |
@@ -324,7 +479,7 @@ test01AccountSummaryOfEmptyAccountOnlyContainsBalanceLine
 		assert: #('Balance = 0') asOrderedCollection
 		equals: report lines! !
 
-!ReportTest methodsFor: 'testing' stamp: 'SMG 5/27/2023 23:21:37'!
+!TransactionReportTest methodsFor: 'testing' stamp: 'SMG 5/27/2023 23:21:37'!
 test02AccountSummaryContainsDepositTransactions
 
 	| account report |
@@ -342,7 +497,7 @@ test02AccountSummaryContainsDepositTransactions
 		) asOrderedCollection
 		equals: report lines! !
 
-!ReportTest methodsFor: 'testing' stamp: 'SMG 5/27/2023 23:21:44'!
+!TransactionReportTest methodsFor: 'testing' stamp: 'SMG 5/27/2023 23:21:44'!
 test03AccountSummaryContainsWithdrawTransactions
 
 	| account report |
@@ -360,7 +515,7 @@ test03AccountSummaryContainsWithdrawTransactions
 		) asOrderedCollection
 		equals: report lines! !
 
-!ReportTest methodsFor: 'testing' stamp: 'SMG 5/27/2023 23:34:00'!
+!TransactionReportTest methodsFor: 'testing' stamp: 'SMG 5/27/2023 23:34:00'!
 test04AccountSummaryContainsTransfers
 
 	| receiver sender |
@@ -385,7 +540,7 @@ test04AccountSummaryContainsTransfers
 		equals: (AccountSummary for: receiver) lines
 	! !
 
-!ReportTest methodsFor: 'testing' stamp: 'SMG 5/27/2023 23:40:11'!
+!TransactionReportTest methodsFor: 'testing' stamp: 'SMG 5/27/2023 23:40:11'!
 test05TransferNetOfAccountWithNoTransfersIsZero
 
 	| account |
@@ -395,7 +550,7 @@ test05TransferNetOfAccountWithNoTransfersIsZero
 
 	self assert: 0 equals: (TransferNet for: account) value! !
 
-!ReportTest methodsFor: 'testing' stamp: 'SMG 5/27/2023 23:51:23'!
+!TransactionReportTest methodsFor: 'testing' stamp: 'SMG 5/27/2023 23:51:23'!
 test06TransferNetOfReceivingAccountIsCorrect
 
 	| receiver sender |
@@ -409,7 +564,7 @@ test06TransferNetOfReceivingAccountIsCorrect
 	self assert: 50 equals: (TransferNet for: receiver) value
 ! !
 
-!ReportTest methodsFor: 'testing' stamp: 'SMG 5/27/2023 23:52:14'!
+!TransactionReportTest methodsFor: 'testing' stamp: 'SMG 5/27/2023 23:52:14'!
 test07TransferNetOfSendingAccountIsCorrect
 
 	| receiver sender |
@@ -421,6 +576,35 @@ test07TransferNetOfSendingAccountIsCorrect
 	Transfer register: 50 from: sender to: receiver.
 
 	self assert: -50 equals: (TransferNet for: sender) value
+! !
+
+!TransactionReportTest methodsFor: 'testing' stamp: 'TS 5/30/2023 15:07:52'!
+test08PortfoliosHaveCorrectAccountSummaryAndTransferNet
+
+	| account1 account2 portfolio |
+	account1 := ReceptiveAccount new.
+	Deposit register: 50 on: account1.
+	
+	account2 := ReceptiveAccount new.
+	Transfer register: 50 from: account1 to: account2.
+	
+	portfolio := Portfolio new.
+	portfolio add: account1; add: account2.
+	
+	"
+	Los comparamos como conjuntos porque nos dijeron que no
+	importa el orden entre las transacciones de las cuentas
+	"
+	self
+		assert: #(
+			'Depósito por 50'
+			'Salida por transferencia de 50'
+			'Entrada por transferencia de 50'
+			'Balance = 50'
+		) asSet
+		equals: (AccountSummary for: portfolio) lines asSet.
+		
+	self assert: 0 equals: (TransferNet for: portfolio)	 value.
 ! !
 
 
@@ -512,7 +696,7 @@ withTransferOf: aValue do: aBlock
 
 !classDefinition: #Account category: 'Portfolio-Solucion'!
 Object subclass: #Account
-	instanceVariableNames: ''
+	instanceVariableNames: 'name'
 	classVariableNames: ''
 	poolDictionaries: ''
 	category: 'Portfolio-Solucion'!
@@ -539,6 +723,11 @@ addTransactionsTo: aCollectionOfTransactions
 
 	self subclassResponsibility ! !
 
+!Account methodsFor: 'transactions' stamp: 'TS 5/30/2023 15:08:12'!
+onTransactionsDo: aBlock
+
+	self subclassResponsibility! !
+
 !Account methodsFor: 'transactions' stamp: 'HAW 5/25/2019 12:23:15'!
 transactions
 
@@ -549,6 +738,29 @@ transactions
 addedTo: aPortfolio
 
 	self subclassResponsibility ! !
+
+
+!Account methodsFor: 'operation' stamp: 'TS 5/30/2023 23:54:18'!
+doOperationOf: anAccountOperation
+
+	self subclassResponsibility! !
+
+
+!Account methodsFor: 'accessing' stamp: 'TS 5/30/2023 17:08:20'!
+accountName
+
+	^ name! !
+
+"-- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- "!
+
+!classDefinition: 'Account class' category: 'Portfolio-Solucion'!
+Account class
+	instanceVariableNames: ''!
+
+!Account class methodsFor: 'instance creation' stamp: 'TS 5/30/2023 17:07:59'!
+named: aName
+
+	^self new initializeNamed: aName ! !
 
 
 !classDefinition: #Portfolio category: 'Portfolio-Solucion'!
@@ -582,6 +794,11 @@ add: accountToAdd
 	accountToAdd addedTo: self 
 	! !
 
+!Portfolio methodsFor: 'accounts management' stamp: 'TS 5/30/2023 16:14:42'!
+onAccountsDo: aBlock
+
+	accounts do: aBlock! !
+
 !Portfolio methodsFor: 'accounts management' stamp: 'HAW 5/25/2019 12:17:31'!
 rootParents
 	
@@ -599,6 +816,11 @@ initialize
 	accounts := OrderedCollection new.
 	parents := OrderedCollection new.! !
 
+!Portfolio methodsFor: 'initialization' stamp: 'TS 5/30/2023 16:00:01'!
+initializeNamed: aName 
+
+	name := aName! !
+
 
 !Portfolio methodsFor: 'balance' stamp: 'HAW 5/25/2019 11:19:36'!
 balance
@@ -610,6 +832,13 @@ balance
 addTransactionsTo: aCollectionOfTransactions
 
 	accounts do: [ :anAccount | anAccount addTransactionsTo: aCollectionOfTransactions ]! !
+
+!Portfolio methodsFor: 'transactions' stamp: 'TS 5/30/2023 15:07:17'!
+onTransactionsDo: aBlock 
+
+	accounts do: [:anAccount |
+		anAccount onTransactionsDo: aBlock
+	]! !
 
 !Portfolio methodsFor: 'transactions' stamp: 'HAW 5/25/2019 11:38:32'!
 transactions
@@ -662,25 +891,47 @@ signalCanNotAddAccount
 	
 	self error: self class canNotAddAccountErrorMessage! !
 
+
+!Portfolio methodsFor: 'operation' stamp: 'TS 5/30/2023 23:54:26'!
+doOperationOf: anAccountOperation
+
+	anAccountOperation operateOnPortfolio: self! !
+
 "-- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- "!
 
 !classDefinition: 'Portfolio class' category: 'Portfolio-Solucion'!
 Portfolio class
 	instanceVariableNames: ''!
 
-!Portfolio class methodsFor: 'as yet unclassified' stamp: 'HAW 5/25/2019 11:48:55'!
+!Portfolio class methodsFor: 'error descriptions' stamp: 'HAW 5/25/2019 11:48:55'!
 canNotAddAccountErrorMessage
 	
 	^'Can not add repeated account to a portfolio'! !
 
-!Portfolio class methodsFor: 'as yet unclassified' stamp: 'HAW 5/25/2019 11:18:21'!
+
+!Portfolio class methodsFor: 'instance creation' stamp: 'TS 5/30/2023 16:28:03'!
+named: aName with: anAccount 
+	
+	^ (self named: aName)
+		add: anAccount;
+		yourself! !
+
+!Portfolio class methodsFor: 'instance creation' stamp: 'TS 5/30/2023 16:08:04'!
+named: aName with: anAccount with: anotherAccount
+
+	^ (self named: aName)
+		add: anAccount;
+		add: anotherAccount;
+		yourself! !
+
+!Portfolio class methodsFor: 'instance creation' stamp: 'HAW 5/25/2019 11:18:21'!
 with: anAccount
 
 	^self new 
 		add: anAccount;
 		yourself! !
 
-!Portfolio class methodsFor: 'as yet unclassified' stamp: 'HAW 5/25/2019 11:23:59'!
+!Portfolio class methodsFor: 'instance creation' stamp: 'HAW 5/25/2019 11:23:59'!
 with: anAccount with: anotherAccount
 
 	^self new 
@@ -701,6 +952,11 @@ initialize
 
 	super initialize.
 	transactions := OrderedCollection new.! !
+
+!ReceptiveAccount methodsFor: 'initialization' stamp: 'TS 5/30/2023 16:06:50'!
+initializeNamed: aName 
+
+	name := aName.! !
 
 
 !ReceptiveAccount methodsFor: 'transactions' stamp: 'HAW 5/25/2019 11:38:52'!
@@ -750,57 +1006,175 @@ addedTo: aPortfolio
 	
 	! !
 
+
+!ReceptiveAccount methodsFor: 'operation' stamp: 'TS 5/30/2023 23:54:32'!
+doOperationOf: anAccountOperation
+
+	anAccountOperation operateOnReceptiveAccount: self! !
+
 
-!classDefinition: #AccountSummary category: 'Portfolio-Solucion'!
-Object subclass: #AccountSummary
-	instanceVariableNames: 'account'
+!classDefinition: #AccountOperation category: 'Portfolio-Solucion'!
+Object subclass: #AccountOperation
+	instanceVariableNames: ''
 	classVariableNames: ''
 	poolDictionaries: ''
 	category: 'Portfolio-Solucion'!
 
-!AccountSummary methodsFor: 'report' stamp: 'SMG 5/27/2023 23:36:21'!
+!AccountOperation methodsFor: 'operation' stamp: 'TS 5/30/2023 23:56:33'!
+operateOnPortfolio: aPortfolio
+
+	self subclassResponsibility! !
+
+!AccountOperation methodsFor: 'operation' stamp: 'TS 5/30/2023 23:56:51'!
+operateOnReceptiveAccount: aReceptiveAccount
+
+	self subclassResponsibility! !
+
+
+!classDefinition: #PortfolioStructureSummary category: 'Portfolio-Solucion'!
+AccountOperation subclass: #PortfolioStructureSummary
+	instanceVariableNames: 'portfolio reportLines currentIndentationLevel'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Portfolio-Solucion'!
+
+!PortfolioStructureSummary methodsFor: 'initialization' stamp: 'TS 5/30/2023 16:00:27'!
+initializeFor: aPortfolio 
+
+	portfolio := aPortfolio! !
+
+
+!PortfolioStructureSummary methodsFor: 'report' stamp: 'TS 5/30/2023 23:53:23'!
 lines
 
-	| reportLines |
-
 	reportLines := OrderedCollection new.
-	
-	account onTransactionsDo: [:aTransaction |
-		| newLine valueString |
-		valueString := aTransaction value printString.
-	
-		(aTransaction isKindOf: Deposit) ifTrue:
-			[ newLine := 'Depósito por ', valueString ].
-		(aTransaction isKindOf: Withdraw) ifTrue:
-			[ newLine := 'Extracción por ', valueString ].
-		(aTransaction isKindOf: DepositLeg) ifTrue:
-			[ newLine := 'Entrada por transferencia de ', valueString ].
-		(aTransaction isKindOf: WithdrawLeg) ifTrue:
-			[ newLine := 'Salida por transferencia de ', valueString ].
+	currentIndentationLevel := 0.
 
-		reportLines add: newLine
-	].
+	self operateOnPortfolio: portfolio.
 
-	reportLines add: 'Balance = ', account balance printString.
-	
 	^ reportLines! !
 
 
-!AccountSummary methodsFor: 'initialization' stamp: 'SMG 5/27/2023 23:09:18'!
-initializeFor: anAccount 
+!PortfolioStructureSummary methodsFor: 'operation' stamp: 'TS 5/31/2023 00:43:42'!
+operateOnPortfolio: aPortfolio 
 
-	account := anAccount.! !
+	self addLine: aPortfolio accountName.
+
+	currentIndentationLevel := currentIndentationLevel + 1.
+
+	aPortfolio onAccountsDo: [:anAccount | anAccount doOperationOf: self ].
+
+	currentIndentationLevel := currentIndentationLevel - 1.! !
+
+!PortfolioStructureSummary methodsFor: 'operation' stamp: 'TS 5/30/2023 23:52:59'!
+operateOnReceptiveAccount: aReceptiveAccount
+
+	self addLine: aReceptiveAccount accountName
+! !
+
+
+!PortfolioStructureSummary methodsFor: 'indentation' stamp: 'TS 5/30/2023 17:02:06'!
+addLine: aLine
+
+	self addLine: aLine withIndentationLevel: currentIndentationLevel
+! !
+
+!PortfolioStructureSummary methodsFor: 'indentation' stamp: 'TS 5/30/2023 16:42:21'!
+addLine: aLine withIndentationLevel: anIndentationLevel
+
+	reportLines addLast: (self getTabsForIndentationLevel: anIndentationLevel), aLine! !
+
+!PortfolioStructureSummary methodsFor: 'indentation' stamp: 'TS 5/30/2023 16:40:27'!
+getTabsForIndentationLevel: anIndentationLevel
+
+	^ String new: anIndentationLevel withAll: Character tab! !
 
 "-- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- "!
 
-!classDefinition: 'AccountSummary class' category: 'Portfolio-Solucion'!
-AccountSummary class
+!classDefinition: 'PortfolioStructureSummary class' category: 'Portfolio-Solucion'!
+PortfolioStructureSummary class
 	instanceVariableNames: ''!
 
-!AccountSummary class methodsFor: 'instance creation' stamp: 'SMG 5/27/2023 23:09:06'!
-for: anAccount
+!PortfolioStructureSummary class methodsFor: 'instance creation' stamp: 'TS 5/30/2023 16:00:12'!
+for: aPortfolio 
 
-	^ self new initializeFor: anAccount! !
+	^self new initializeFor: aPortfolio ! !
+
+
+!classDefinition: #PortfolioTransactionSummary category: 'Portfolio-Solucion'!
+AccountOperation subclass: #PortfolioTransactionSummary
+	instanceVariableNames: 'portfolio reportLines currentIndentationLevel'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Portfolio-Solucion'!
+
+!PortfolioTransactionSummary methodsFor: 'initialization' stamp: 'TS 5/31/2023 00:04:25'!
+initializeFor: aPortfolio 
+
+	portfolio := aPortfolio.! !
+
+
+!PortfolioTransactionSummary methodsFor: 'report' stamp: 'TS 5/31/2023 00:41:46'!
+lines
+
+	reportLines := OrderedCollection new.
+	currentIndentationLevel := 0.
+	
+	self operateOnPortfolio: portfolio.
+
+	^ reportLines! !
+
+
+!PortfolioTransactionSummary methodsFor: 'indentation' stamp: 'TS 5/31/2023 00:34:56'!
+addLine: aLine
+
+	reportLines addLast: (self currentIndentation), aLine! !
+
+!PortfolioTransactionSummary methodsFor: 'indentation' stamp: 'TS 5/31/2023 00:40:28'!
+currentIndentation
+
+	^ String new: currentIndentationLevel withAll: Character tab! !
+
+!PortfolioTransactionSummary methodsFor: 'indentation' stamp: 'TS 5/31/2023 00:40:28'!
+withIncreasedIndentationLevelDo: aBlock	
+
+	currentIndentationLevel := currentIndentationLevel + 1.
+	
+	aBlock value.
+
+	currentIndentationLevel := currentIndentationLevel - 1.! !
+
+
+!PortfolioTransactionSummary methodsFor: 'operation' stamp: 'TS 5/31/2023 00:42:28'!
+operateOnPortfolio: aPortfolio
+
+	self addLine: aPortfolio accountName.
+	
+	self withIncreasedIndentationLevelDo: [
+		aPortfolio onAccountsDo: [:anAccount | anAccount doOperationOf: self ].
+	]! !
+
+!PortfolioTransactionSummary methodsFor: 'operation' stamp: 'TS 5/31/2023 00:41:57'!
+operateOnReceptiveAccount: aReceptiveAccount
+
+	self addLine: aReceptiveAccount accountName.
+
+	self withIncreasedIndentationLevelDo: [
+		(AccountSummary for: aReceptiveAccount) lines do: [:aLine |
+			self addLine: aLine
+		]
+	]! !
+
+"-- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- "!
+
+!classDefinition: 'PortfolioTransactionSummary class' category: 'Portfolio-Solucion'!
+PortfolioTransactionSummary class
+	instanceVariableNames: ''!
+
+!PortfolioTransactionSummary class methodsFor: 'instance creation' stamp: 'TS 5/31/2023 00:04:16'!
+for: aPortfolio 
+
+	^self new initializeFor: aPortfolio! !
 
 
 !classDefinition: #AccountTransaction category: 'Portfolio-Solucion'!
@@ -814,6 +1188,12 @@ Object subclass: #AccountTransaction
 value 
 
 	self subclassResponsibility ! !
+
+
+!AccountTransaction methodsFor: 'operation' stamp: 'TS 5/30/2023 15:47:11'!
+doOperationOf: anAccountSummary
+
+	self subclassResponsibility! !
 
 
 !AccountTransaction methodsFor: 'balance' stamp: 'HAW 5/25/2019 11:25:39'!
@@ -845,6 +1225,12 @@ value
 affectBalance: aBalance
 
 	^aBalance + value ! !
+
+
+!Deposit methodsFor: 'operation' stamp: 'TS 5/30/2023 15:48:59'!
+doOperationOf: aTransactionOperation
+
+	aTransactionOperation operateOnDeposit: self! !
 
 "-- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- "!
 
@@ -928,10 +1314,16 @@ TransferLeg subclass: #DepositLeg
 	poolDictionaries: ''
 	category: 'Portfolio-Solucion'!
 
-!DepositLeg methodsFor: 'balance' stamp: 'SMG 5/27/2023 20:35:47'!
+!DepositLeg methodsFor: 'balance' stamp: 'TS 5/30/2023 15:49:50'!
 affectBalance: aBalance
 
-	^ aBalance + transfer value! !
+	^ aBalance + self value! !
+
+
+!DepositLeg methodsFor: 'operation' stamp: 'TS 5/30/2023 15:50:17'!
+doOperationOf: aTransactionOperation
+
+	aTransactionOperation operateOnDepositLeg: self! !
 
 
 !classDefinition: #WithdrawLeg category: 'Portfolio-Solucion'!
@@ -941,10 +1333,16 @@ TransferLeg subclass: #WithdrawLeg
 	poolDictionaries: ''
 	category: 'Portfolio-Solucion'!
 
-!WithdrawLeg methodsFor: 'balance' stamp: 'SMG 5/27/2023 20:35:58'!
+!WithdrawLeg methodsFor: 'balance' stamp: 'TS 5/30/2023 15:49:54'!
 affectBalance: aBalance
 
-	^ aBalance - transfer value! !
+	^ aBalance - self value! !
+
+
+!WithdrawLeg methodsFor: 'operation' stamp: 'TS 5/30/2023 15:49:05'!
+doOperationOf: aTransactionOperation
+
+	aTransactionOperation operateOnWithdrawLeg: self! !
 
 
 !classDefinition: #Withdraw category: 'Portfolio-Solucion'!
@@ -971,6 +1369,12 @@ affectBalance: aBalance
 
 	^aBalance - value! !
 
+
+!Withdraw methodsFor: 'operation' stamp: 'TS 5/30/2023 15:50:23'!
+doOperationOf: aTransactionOperation
+
+	aTransactionOperation operateOnWithdraw: self! !
+
 "-- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- "!
 
 !classDefinition: 'Withdraw class' category: 'Portfolio-Solucion'!
@@ -993,19 +1397,160 @@ register: aValue on: account
 	^ transaction! !
 
 
-!classDefinition: #Transfer category: 'Portfolio-Solucion'!
-Object subclass: #Transfer
-	instanceVariableNames: 'value sender receiver withdrawLeg depositLeg'
+!classDefinition: #TransactionOperation category: 'Portfolio-Solucion'!
+Object subclass: #TransactionOperation
+	instanceVariableNames: 'account'
 	classVariableNames: ''
 	poolDictionaries: ''
 	category: 'Portfolio-Solucion'!
 
-!Transfer methodsFor: 'initialization' stamp: 'SMG 5/27/2023 20:38:16'!
+!TransactionOperation methodsFor: 'initialization' stamp: 'TS 5/30/2023 15:39:25'!
+initializeFor: anAccount 
+
+	account := anAccount! !
+
+
+!TransactionOperation methodsFor: 'operation' stamp: 'TS 5/30/2023 15:41:46'!
+operateOnDeposit: aDeposit
+
+	self subclassResponsibility! !
+
+!TransactionOperation methodsFor: 'operation' stamp: 'TS 5/30/2023 15:42:13'!
+operateOnDepositLeg: aDepositLeg
+
+	self subclassResponsibility! !
+
+!TransactionOperation methodsFor: 'operation' stamp: 'TS 5/30/2023 15:42:09'!
+operateOnWithdraw: aWithdraw
+
+	self subclassResponsibility! !
+
+!TransactionOperation methodsFor: 'operation' stamp: 'TS 5/30/2023 15:42:02'!
+operateOnWithdrawLeg: aWithdrawLeg
+
+	self subclassResponsibility! !
+
+
+!classDefinition: #AccountSummary category: 'Portfolio-Solucion'!
+TransactionOperation subclass: #AccountSummary
+	instanceVariableNames: 'reportLines'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Portfolio-Solucion'!
+
+!AccountSummary methodsFor: 'report' stamp: 'TS 5/30/2023 15:21:35'!
+addLine: aString
+
+	reportLines addLast: aString! !
+
+!AccountSummary methodsFor: 'report' stamp: 'TS 5/30/2023 15:46:42'!
+lines
+
+	reportLines := OrderedCollection new.
+
+	account onTransactionsDo: [:aTransaction |
+		aTransaction doOperationOf: self
+	].
+
+	self addLine: 'Balance = ', account balance asString.
+	
+	^ reportLines! !
+
+
+!AccountSummary methodsFor: 'operation' stamp: 'TS 5/30/2023 15:42:36'!
+operateOnDeposit: aDeposit
+
+	self addLine: 'Depósito por ', aDeposit value asString! !
+
+!AccountSummary methodsFor: 'operation' stamp: 'TS 5/30/2023 15:43:29'!
+operateOnDepositLeg: aWithdrawLeg
+
+	self addLine: 'Entrada por transferencia de ', aWithdrawLeg value asString! !
+
+!AccountSummary methodsFor: 'operation' stamp: 'TS 5/30/2023 15:43:42'!
+operateOnWithdraw: aWithdraw
+
+	self addLine: 'Extracción por ', aWithdraw value asString! !
+
+!AccountSummary methodsFor: 'operation' stamp: 'TS 5/30/2023 15:42:54'!
+operateOnWithdrawLeg: aWithdrawLeg
+
+	self addLine: 'Salida por transferencia de ', aWithdrawLeg value asString! !
+
+"-- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- "!
+
+!classDefinition: 'AccountSummary class' category: 'Portfolio-Solucion'!
+AccountSummary class
+	instanceVariableNames: ''!
+
+!AccountSummary class methodsFor: 'instance creation' stamp: 'SMG 5/27/2023 23:09:06'!
+for: anAccount
+
+	^ self new initializeFor: anAccount! !
+
+
+!classDefinition: #TransferNet category: 'Portfolio-Solucion'!
+TransactionOperation subclass: #TransferNet
+	instanceVariableNames: 'netValue'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Portfolio-Solucion'!
+
+!TransferNet methodsFor: 'report' stamp: 'TS 5/30/2023 23:50:03'!
+value
+	
+	netValue := 0.
+
+	account onTransactionsDo: [:aTransaction | 
+		aTransaction doOperationOf: self
+	].
+
+	^ netValue! !
+
+
+!TransferNet methodsFor: 'operation' stamp: 'TS 5/30/2023 15:44:16'!
+operateOnDeposit: aDeposit
+! !
+
+!TransferNet methodsFor: 'operation' stamp: 'TS 5/30/2023 15:43:58'!
+operateOnDepositLeg: aWithdrawLeg
+
+	netValue := netValue + aWithdrawLeg value
+! !
+
+!TransferNet methodsFor: 'operation' stamp: 'TS 5/30/2023 15:44:32'!
+operateOnWithdraw: aWithdraw
+! !
+
+!TransferNet methodsFor: 'operation' stamp: 'TS 5/30/2023 15:44:26'!
+operateOnWithdrawLeg: aWithdrawLeg
+
+	netValue := netValue - aWithdrawLeg value
+! !
+
+"-- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- "!
+
+!classDefinition: 'TransferNet class' category: 'Portfolio-Solucion'!
+TransferNet class
+	instanceVariableNames: ''!
+
+!TransferNet class methodsFor: 'instance creation' stamp: 'SMG 5/27/2023 23:43:51'!
+for: anAccount 
+
+	^self new initializeFor: anAccount! !
+
+
+!classDefinition: #Transfer category: 'Portfolio-Solucion'!
+Object subclass: #Transfer
+	instanceVariableNames: 'value withdrawLeg depositLeg'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Portfolio-Solucion'!
+
+!Transfer methodsFor: 'initialization' stamp: 'TS 5/30/2023 14:42:48'!
 initializeWith: aValue from: aSender to: aReceiver 
 	
 	value := aValue.
-	sender := aSender.
-	receiver := aReceiver.
 	withdrawLeg := WithdrawLeg register: self on: aSender.
 	depositLeg := DepositLeg register: self on: aReceiver
 ! !
@@ -1015,16 +1560,6 @@ initializeWith: aValue from: aSender to: aReceiver
 depositLeg
 
 	^depositLeg! !
-
-!Transfer methodsFor: 'accessing' stamp: 'SMG 5/27/2023 20:17:26'!
-receiver
-
-	^ receiver! !
-
-!Transfer methodsFor: 'accessing' stamp: 'SMG 5/27/2023 20:16:39'!
-sender
-
-	^ sender! !
 
 !Transfer methodsFor: 'accessing' stamp: 'SMG 5/27/2023 20:17:32'!
 value
@@ -1065,42 +1600,3 @@ cantTransferBetweenTheSameAccountErrorDescription
 transferValueMustBePositiveErrorDescription
 
 	^ 'Las transferencias deben ser de un valor positivo'! !
-
-
-!classDefinition: #TransferNet category: 'Portfolio-Solucion'!
-Object subclass: #TransferNet
-	instanceVariableNames: 'account'
-	classVariableNames: ''
-	poolDictionaries: ''
-	category: 'Portfolio-Solucion'!
-
-!TransferNet methodsFor: 'report' stamp: 'SMG 5/27/2023 23:52:49'!
-value
-
-	| netValue |
-
-	netValue := 0.
-	
-	account onTransactionsDo: [:aTransaction | 
-		(aTransaction isKindOf: DepositLeg) ifTrue: [ netValue := netValue + aTransaction value ].
-		(aTransaction isKindOf: WithdrawLeg) ifTrue: [ netValue := netValue - aTransaction value ].
-	].
-
-	^ netValue.! !
-
-
-!TransferNet methodsFor: 'initialization' stamp: 'SMG 5/27/2023 23:44:13'!
-initializeFor: anAccount 
-
-	account := anAccount.! !
-
-"-- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- "!
-
-!classDefinition: 'TransferNet class' category: 'Portfolio-Solucion'!
-TransferNet class
-	instanceVariableNames: ''!
-
-!TransferNet class methodsFor: 'instance creation' stamp: 'SMG 5/27/2023 23:43:51'!
-for: anAccount 
-
-	^self new initializeFor: anAccount! !
