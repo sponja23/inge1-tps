@@ -5926,3 +5926,1577 @@ PASSED!
 ----SNAPSHOT----(31 May 2023 00:44:03) CuisUniversity-5832.image priorSource: 9554450!
 
 ----QUIT----(31 May 2023 00:44:16) CuisUniversity-5832.image priorSource: 9631267!
+
+----STARTUP---- (31 May 2023 15:23:48) as /home/sponja/Temp/Cuises/cursada3/CuisUniversity-5832.image!
+
+!Portfolio methodsFor: 'operation' stamp: 'TS 5/31/2023 15:27:26'!
+doOperationOnAccountsOf: anAccountOperation
+
+	accounts do: [:anAccount | anAccount doOperationOf: anAccountOperation ]! !
+!PortfolioStructureSummary methodsFor: 'operation' stamp: 'TS 5/31/2023 15:27:50' prior: 50632580 overrides: 50630400!
+operateOnPortfolio: aPortfolio 
+
+	self addLine: aPortfolio accountName.
+
+	currentIndentationLevel := currentIndentationLevel + 1.
+
+	aPortfolio doOperationOnAccountsOf: self.
+
+	currentIndentationLevel := currentIndentationLevel - 1.! !
+
+!testRun: #PortfolioReportTest #test01PortfolioStructureOfEmptyPortfolioOnlyShowsItsName stamp: 'TS 5/31/2023 15:27:54'!
+PASSED!
+
+!testRun: #PortfolioReportTest #test02PortfolioStructureOfPortfolioWithChildrenAccountsShowsTheirNamesWith1LevelOfIndentation stamp: 'TS 5/31/2023 15:27:54'!
+PASSED!
+
+!testRun: #PortfolioReportTest #test03PortfolioStructureOfPortfolioWithNestedPortfolioShowsItsStructureCorrectly stamp: 'TS 5/31/2023 15:27:54'!
+PASSED!
+
+!testRun: #PortfolioReportTest #test04PortfolioStructureOfPortfolioWithMultipleLevelsOfNestingShowsItsStructureCorrectly stamp: 'TS 5/31/2023 15:27:54'!
+PASSED!
+
+!testRun: #PortfolioReportTest #test05PortfolioSummaryOfEmptyPortfolioOnlyShowsItsName stamp: 'TS 5/31/2023 15:27:54'!
+PASSED!
+
+!testRun: #PortfolioReportTest #test06PortfolioSummaryOfPortfolioWithChildAccountShowsItsNameAndItsChildsAccountSummary stamp: 'TS 5/31/2023 15:27:54'!
+PASSED!
+
+!testRun: #PortfolioReportTest #test07PortfolioSummaryOfPortfolioWithChildPortfolioShowsItsName stamp: 'TS 5/31/2023 15:27:54'!
+PASSED!
+
+!testRun: #PortfolioReportTest #test08PortfolioSummaryOfNestedPortfoliosShowsAllSummariesCorrectly stamp: 'TS 5/31/2023 15:27:54'!
+PASSED!
+!PortfolioTransactionSummary methodsFor: 'operation' stamp: 'TS 5/31/2023 15:28:05' prior: 50632496 overrides: 50630400!
+operateOnPortfolio: aPortfolio
+
+	self addLine: aPortfolio accountName.
+	
+	self withIncreasedIndentationLevelDo: [
+		aPortfolio doOperationOnAccountsOf: self
+	]! !
+!PortfolioTransactionSummary methodsFor: 'operation' stamp: 'TS 5/31/2023 15:28:14' prior: 50632692 overrides: 50630400!
+operateOnPortfolio: aPortfolio
+
+	self addLine: aPortfolio accountName.
+	
+	self withIncreasedIndentationLevelDo: [ aPortfolio doOperationOnAccountsOf: self ]
+! !
+
+!testRun: #PortfolioReportTest #test01PortfolioStructureOfEmptyPortfolioOnlyShowsItsName stamp: 'TS 5/31/2023 15:28:16'!
+PASSED!
+
+!testRun: #PortfolioReportTest #test02PortfolioStructureOfPortfolioWithChildrenAccountsShowsTheirNamesWith1LevelOfIndentation stamp: 'TS 5/31/2023 15:28:16'!
+PASSED!
+
+!testRun: #PortfolioReportTest #test03PortfolioStructureOfPortfolioWithNestedPortfolioShowsItsStructureCorrectly stamp: 'TS 5/31/2023 15:28:16'!
+PASSED!
+
+!testRun: #PortfolioReportTest #test04PortfolioStructureOfPortfolioWithMultipleLevelsOfNestingShowsItsStructureCorrectly stamp: 'TS 5/31/2023 15:28:16'!
+PASSED!
+
+!testRun: #PortfolioReportTest #test05PortfolioSummaryOfEmptyPortfolioOnlyShowsItsName stamp: 'TS 5/31/2023 15:28:16'!
+PASSED!
+
+!testRun: #PortfolioReportTest #test06PortfolioSummaryOfPortfolioWithChildAccountShowsItsNameAndItsChildsAccountSummary stamp: 'TS 5/31/2023 15:28:16'!
+PASSED!
+
+!testRun: #PortfolioReportTest #test07PortfolioSummaryOfPortfolioWithChildPortfolioShowsItsName stamp: 'TS 5/31/2023 15:28:16'!
+PASSED!
+
+!testRun: #PortfolioReportTest #test08PortfolioSummaryOfNestedPortfoliosShowsAllSummariesCorrectly stamp: 'TS 5/31/2023 15:28:16'!
+PASSED!
+
+!testRun: #PortfolioReportTest #test01PortfolioStructureOfEmptyPortfolioOnlyShowsItsName stamp: 'TS 5/31/2023 15:30:36'!
+PASSED!
+
+!testRun: #PortfolioReportTest #test02PortfolioStructureOfPortfolioWithChildrenAccountsShowsTheirNamesWith1LevelOfIndentation stamp: 'TS 5/31/2023 15:30:36'!
+PASSED!
+
+!testRun: #PortfolioReportTest #test03PortfolioStructureOfPortfolioWithNestedPortfolioShowsItsStructureCorrectly stamp: 'TS 5/31/2023 15:30:36'!
+PASSED!
+
+!testRun: #PortfolioReportTest #test04PortfolioStructureOfPortfolioWithMultipleLevelsOfNestingShowsItsStructureCorrectly stamp: 'TS 5/31/2023 15:30:36'!
+PASSED!
+
+!testRun: #PortfolioReportTest #test05PortfolioSummaryOfEmptyPortfolioOnlyShowsItsName stamp: 'TS 5/31/2023 15:30:36'!
+PASSED!
+
+!testRun: #PortfolioReportTest #test06PortfolioSummaryOfPortfolioWithChildAccountShowsItsNameAndItsChildsAccountSummary stamp: 'TS 5/31/2023 15:30:36'!
+PASSED!
+
+!testRun: #PortfolioReportTest #test07PortfolioSummaryOfPortfolioWithChildPortfolioShowsItsName stamp: 'TS 5/31/2023 15:30:36'!
+PASSED!
+
+!testRun: #PortfolioReportTest #test08PortfolioSummaryOfNestedPortfoliosShowsAllSummariesCorrectly stamp: 'TS 5/31/2023 15:30:36'!
+PASSED!
+
+!testRun: #PortfolioReportTest #test01PortfolioStructureOfEmptyPortfolioOnlyShowsItsName stamp: 'TS 5/31/2023 15:30:38'!
+PASSED!
+
+!testRun: #PortfolioReportTest #test02PortfolioStructureOfPortfolioWithChildrenAccountsShowsTheirNamesWith1LevelOfIndentation stamp: 'TS 5/31/2023 15:30:38'!
+PASSED!
+
+!testRun: #PortfolioReportTest #test03PortfolioStructureOfPortfolioWithNestedPortfolioShowsItsStructureCorrectly stamp: 'TS 5/31/2023 15:30:38'!
+PASSED!
+
+!testRun: #PortfolioReportTest #test04PortfolioStructureOfPortfolioWithMultipleLevelsOfNestingShowsItsStructureCorrectly stamp: 'TS 5/31/2023 15:30:38'!
+PASSED!
+
+!testRun: #PortfolioReportTest #test05PortfolioSummaryOfEmptyPortfolioOnlyShowsItsName stamp: 'TS 5/31/2023 15:30:38'!
+PASSED!
+
+!testRun: #PortfolioReportTest #test06PortfolioSummaryOfPortfolioWithChildAccountShowsItsNameAndItsChildsAccountSummary stamp: 'TS 5/31/2023 15:30:38'!
+PASSED!
+
+!testRun: #PortfolioReportTest #test07PortfolioSummaryOfPortfolioWithChildPortfolioShowsItsName stamp: 'TS 5/31/2023 15:30:38'!
+PASSED!
+
+!testRun: #PortfolioReportTest #test08PortfolioSummaryOfNestedPortfoliosShowsAllSummariesCorrectly stamp: 'TS 5/31/2023 15:30:38'!
+PASSED!
+
+!testRun: #PortfolioTest #test01BalanceOfPortfolioWithoutAccountsIsZero stamp: 'TS 5/31/2023 15:30:38'!
+PASSED!
+
+!testRun: #PortfolioTest #test02BalanceOfPortfolioWithAccountsIsSumOfAccountsBalance stamp: 'TS 5/31/2023 15:30:38'!
+PASSED!
+
+!testRun: #PortfolioTest #test03BalanceOfPortfolioIsCalculatedRecursivelyOnPortfolios stamp: 'TS 5/31/2023 15:30:38'!
+PASSED!
+
+!testRun: #PortfolioTest #test04PortfolioWithoutAccountsHasNoRegisteredTransaction stamp: 'TS 5/31/2023 15:30:38'!
+PASSED!
+
+!testRun: #PortfolioTest #test05PortfolioHasRegisteredItsAccountsTransactions stamp: 'TS 5/31/2023 15:30:38'!
+PASSED!
+
+!testRun: #PortfolioTest #test06PortfolioLooksForRegisteredTransactionsRecursively stamp: 'TS 5/31/2023 15:30:38'!
+PASSED!
+
+!testRun: #PortfolioTest #test07PortfolioHasNoTransactionWhenHasNoAccounts stamp: 'TS 5/31/2023 15:30:38'!
+PASSED!
+
+!testRun: #PortfolioTest #test08PortfolioTransactionsIncludesAllItsAccountsTransactions stamp: 'TS 5/31/2023 15:30:38'!
+PASSED!
+
+!testRun: #PortfolioTest #test09PortfolioTransactionsAreCalculatedRecursively stamp: 'TS 5/31/2023 15:30:38'!
+PASSED!
+
+!testRun: #PortfolioTest #test10PortfolioCanNotIncludeTheSameAccountMoreThanOnce stamp: 'TS 5/31/2023 15:30:38'!
+PASSED!
+
+!testRun: #PortfolioTest #test11PortfolioCanNotIncludeAccountOfItsPortfolios stamp: 'TS 5/31/2023 15:30:38'!
+PASSED!
+
+!testRun: #PortfolioTest #test12PortfolioCanNotIncludeItself stamp: 'TS 5/31/2023 15:30:38'!
+PASSED!
+
+!testRun: #PortfolioTest #test13ComposedPortfolioCanNotHaveParentPortfolioAccount stamp: 'TS 5/31/2023 15:30:38'!
+PASSED!
+
+!testRun: #PortfolioTest #test14ComposedPortfolioCanNotHaveAccountOfAnyRootParentRecursively stamp: 'TS 5/31/2023 15:30:38'!
+PASSED!
+
+!testRun: #PortfolioTest #test15PortfolioCanNotIncludeAnyOfTheComposedAccountOfPortfolioToAdd stamp: 'TS 5/31/2023 15:30:38'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test01ReceptiveAccountHaveZeroAsBalanceWhenCreated stamp: 'TS 5/31/2023 15:30:38'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test02DepositIncreasesBalanceOnTransactionValue stamp: 'TS 5/31/2023 15:30:38'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test03WithdrawDecreasesBalanceOnTransactionValue stamp: 'TS 5/31/2023 15:30:38'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test04WithdrawValueMustBePositive stamp: 'TS 5/31/2023 15:30:38'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test05ReceptiveAccountKnowsRegisteredTransactions stamp: 'TS 5/31/2023 15:30:38'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test06ReceptiveAccountDoNotKnowNotRegisteredTransactions stamp: 'TS 5/31/2023 15:30:38'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test07AccountKnowsItsTransactions stamp: 'TS 5/31/2023 15:30:38'!
+PASSED!
+
+!testRun: #TransactionReportTest #test01AccountSummaryOfEmptyAccountOnlyContainsBalanceLine stamp: 'TS 5/31/2023 15:30:38'!
+PASSED!
+
+!testRun: #TransactionReportTest #test02AccountSummaryContainsDepositTransactions stamp: 'TS 5/31/2023 15:30:38'!
+PASSED!
+
+!testRun: #TransactionReportTest #test03AccountSummaryContainsWithdrawTransactions stamp: 'TS 5/31/2023 15:30:38'!
+PASSED!
+
+!testRun: #TransactionReportTest #test04AccountSummaryContainsTransfers stamp: 'TS 5/31/2023 15:30:38'!
+PASSED!
+
+!testRun: #TransactionReportTest #test05TransferNetOfAccountWithNoTransfersIsZero stamp: 'TS 5/31/2023 15:30:38'!
+PASSED!
+
+!testRun: #TransactionReportTest #test06TransferNetOfReceivingAccountIsCorrect stamp: 'TS 5/31/2023 15:30:38'!
+PASSED!
+
+!testRun: #TransactionReportTest #test07TransferNetOfSendingAccountIsCorrect stamp: 'TS 5/31/2023 15:30:38'!
+PASSED!
+
+!testRun: #TransactionReportTest #test08PortfoliosHaveCorrectAccountSummaryAndTransferNet stamp: 'TS 5/31/2023 15:30:38'!
+PASSED!
+
+!testRun: #TransferTest #test01TransferRemovesBalanceFromSenderAndAddsItToReceiver stamp: 'TS 5/31/2023 15:30:38'!
+PASSED!
+
+!testRun: #TransferTest #test02TransferLegsAreRegisteredOnParticipantAccounts stamp: 'TS 5/31/2023 15:30:38'!
+PASSED!
+
+!testRun: #TransferTest #test03TransferLegsCanAccessTransfer stamp: 'TS 5/31/2023 15:30:38'!
+PASSED!
+
+!testRun: #TransferTest #test04TransferLegsHasCorrectTransferValue stamp: 'TS 5/31/2023 15:30:38'!
+PASSED!
+
+!testRun: #TransferTest #test05CantCreateATransferBetweenTheSameAccount stamp: 'TS 5/31/2023 15:30:38'!
+PASSED!
+
+!testRun: #TransferTest #test06TransferValueMustBePositive stamp: 'TS 5/31/2023 15:30:38'!
+PASSED!
+
+!classDefinition: #PortfolioTreeSummary category: 'Portfolio-Solucion' stamp: 'TS 5/31/2023 15:31:37'!
+AccountOperation subclass: #PortfolioTreeSummary
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Portfolio-Solucion'!
+
+!classDefinition: #PortfolioStructureSummary category: 'Portfolio-Solucion' stamp: 'TS 5/31/2023 15:31:37'!
+PortfolioTreeSummary subclass: #PortfolioStructureSummary
+	instanceVariableNames: 'portfolio reportLines currentIndentationLevel'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Portfolio-Solucion'!
+
+AccountOperation subclass: #PortfolioStructureSummary
+	instanceVariableNames: 'portfolio reportLines currentIndentationLevel'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Portfolio-Solucion'!
+
+!classDefinition: #PortfolioStructureSummary category: 'Portfolio-Solucion' stamp: 'TS 5/31/2023 15:31:53'!
+AccountOperation subclass: #PortfolioStructureSummary
+	instanceVariableNames: 'portfolio reportLines currentIndentationLevel'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Portfolio-Solucion'!
+
+!classRemoval: #PortfolioTreeSummary stamp: 'TS 5/31/2023 15:31:55'!
+AccountOperation subclass: #PortfolioTreeSummary
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Portfolio-Solucion'!
+!PortfolioTransactionSummary methodsFor: 'indentation' stamp: 'TS 5/31/2023 15:33:01' prior: 50632039!
+addLine: aLine
+
+	self addLine: aLine withIndentationLevel: currentIndentationLevel! !
+
+!testRun: #PortfolioReportTest #test01PortfolioStructureOfEmptyPortfolioOnlyShowsItsName stamp: 'TS 5/31/2023 15:33:01'!
+PASSED!
+
+!testRun: #PortfolioReportTest #test02PortfolioStructureOfPortfolioWithChildrenAccountsShowsTheirNamesWith1LevelOfIndentation stamp: 'TS 5/31/2023 15:33:01'!
+PASSED!
+
+!testRun: #PortfolioReportTest #test03PortfolioStructureOfPortfolioWithNestedPortfolioShowsItsStructureCorrectly stamp: 'TS 5/31/2023 15:33:01'!
+PASSED!
+
+!testRun: #PortfolioReportTest #test04PortfolioStructureOfPortfolioWithMultipleLevelsOfNestingShowsItsStructureCorrectly stamp: 'TS 5/31/2023 15:33:01'!
+PASSED!
+
+!testRun: #PortfolioReportTest #test05PortfolioSummaryOfEmptyPortfolioOnlyShowsItsName stamp: 'TS 5/31/2023 15:33:01'!
+ERROR!
+
+!testRun: #PortfolioReportTest #test06PortfolioSummaryOfPortfolioWithChildAccountShowsItsNameAndItsChildsAccountSummary stamp: 'TS 5/31/2023 15:33:01'!
+ERROR!
+
+!testRun: #PortfolioReportTest #test07PortfolioSummaryOfPortfolioWithChildPortfolioShowsItsName stamp: 'TS 5/31/2023 15:33:01'!
+ERROR!
+
+!testRun: #PortfolioReportTest #test08PortfolioSummaryOfNestedPortfoliosShowsAllSummariesCorrectly stamp: 'TS 5/31/2023 15:33:01'!
+ERROR!
+
+!testRun: #PortfolioReportTest #test05PortfolioSummaryOfEmptyPortfolioOnlyShowsItsName stamp: 'TS 5/31/2023 15:33:03'!
+ERROR!
+!PortfolioTransactionSummary methodsFor: 'indentation' stamp: 'TS 5/31/2023 15:33:09'!
+addLine: aLine withIndentationLevel: aCurrentIndentationLevel 
+	self shouldBeImplemented.! !
+!PortfolioTransactionSummary methodsFor: 'indentation' stamp: 'TS 5/31/2023 00:34:56' prior: 50632997!
+addLine: aLine
+
+	reportLines addLast: (self currentIndentation), aLine! !
+
+!methodRemoval: PortfolioTransactionSummary #addLine:withIndentationLevel: stamp: 'TS 5/31/2023 15:34:19'!
+addLine: aLine withIndentationLevel: aCurrentIndentationLevel 
+	self shouldBeImplemented.!
+!PortfolioTransactionSummary methodsFor: 'indentation' stamp: 'TS 5/31/2023 15:34:29' prior: 50633051!
+addLine: aLine
+
+	reportLines addLast: (self getTabsForIndentationLevel), aLine! !
+!PortfolioStructureSummary methodsFor: 'indentation' stamp: 'TS 5/31/2023 15:35:07' prior: 50629915!
+addLine: aLine
+
+	reportLines addLast: (self getTabsForIndentationLevel), aLine
+! !
+!PortfolioStructureSummary methodsFor: 'indentation' stamp: 'TS 5/31/2023 15:35:12'!
+getTabsForIndentationLevel
+
+	^ String new: currentIndentationLevel withAll: Character tab! !
+!PortfolioTransactionSummary methodsFor: 'indentation' stamp: 'TS 5/31/2023 15:35:24'!
+getTabsForIndentationLevel
+
+	^ String new: currentIndentationLevel withAll: Character tab! !
+
+!methodRemoval: PortfolioTransactionSummary #currentIndentation stamp: 'TS 5/31/2023 15:35:25'!
+currentIndentation
+
+	^ String new: currentIndentationLevel withAll: Character tab!
+
+!testRun: #PortfolioReportTest #test01PortfolioStructureOfEmptyPortfolioOnlyShowsItsName stamp: 'TS 5/31/2023 15:35:34'!
+PASSED!
+
+!testRun: #PortfolioReportTest #test02PortfolioStructureOfPortfolioWithChildrenAccountsShowsTheirNamesWith1LevelOfIndentation stamp: 'TS 5/31/2023 15:35:34'!
+PASSED!
+
+!testRun: #PortfolioReportTest #test03PortfolioStructureOfPortfolioWithNestedPortfolioShowsItsStructureCorrectly stamp: 'TS 5/31/2023 15:35:34'!
+PASSED!
+
+!testRun: #PortfolioReportTest #test04PortfolioStructureOfPortfolioWithMultipleLevelsOfNestingShowsItsStructureCorrectly stamp: 'TS 5/31/2023 15:35:34'!
+PASSED!
+
+!testRun: #PortfolioReportTest #test05PortfolioSummaryOfEmptyPortfolioOnlyShowsItsName stamp: 'TS 5/31/2023 15:35:34'!
+PASSED!
+
+!testRun: #PortfolioReportTest #test06PortfolioSummaryOfPortfolioWithChildAccountShowsItsNameAndItsChildsAccountSummary stamp: 'TS 5/31/2023 15:35:34'!
+PASSED!
+
+!testRun: #PortfolioReportTest #test07PortfolioSummaryOfPortfolioWithChildPortfolioShowsItsName stamp: 'TS 5/31/2023 15:35:34'!
+PASSED!
+
+!testRun: #PortfolioReportTest #test08PortfolioSummaryOfNestedPortfoliosShowsAllSummariesCorrectly stamp: 'TS 5/31/2023 15:35:34'!
+PASSED!
+
+!methodRemoval: PortfolioStructureSummary #addLine:withIndentationLevel: stamp: 'TS 5/31/2023 15:35:59'!
+addLine: aLine withIndentationLevel: anIndentationLevel
+
+	reportLines addLast: (self getTabsForIndentationLevel: anIndentationLevel), aLine!
+
+!methodRemoval: PortfolioStructureSummary #getTabsForIndentationLevel: stamp: 'TS 5/31/2023 15:36:01'!
+getTabsForIndentationLevel: anIndentationLevel
+
+	^ String new: anIndentationLevel withAll: Character tab!
+!PortfolioStructureSummary methodsFor: 'indentation' stamp: 'TS 5/31/2023 15:36:58'!
+withIncreasedIndentationLevelDo: aBlock	
+
+	currentIndentationLevel := currentIndentationLevel + 1.
+	
+	aBlock value.
+
+	currentIndentationLevel := currentIndentationLevel - 1.! !
+!PortfolioStructureSummary methodsFor: 'operation' stamp: 'TS 5/31/2023 15:37:12' prior: 50632644 overrides: 50630400!
+operateOnPortfolio: aPortfolio 
+
+	self addLine: aPortfolio accountName.
+
+	self withIncreasedIndentationLevelDo: [ aPortfolio doOperationOnAccountsOf: self ]! !
+
+!testRun: #PortfolioReportTest #test01PortfolioStructureOfEmptyPortfolioOnlyShowsItsName stamp: 'TS 5/31/2023 15:37:21'!
+PASSED!
+
+!testRun: #PortfolioReportTest #test02PortfolioStructureOfPortfolioWithChildrenAccountsShowsTheirNamesWith1LevelOfIndentation stamp: 'TS 5/31/2023 15:37:21'!
+PASSED!
+
+!testRun: #PortfolioReportTest #test03PortfolioStructureOfPortfolioWithNestedPortfolioShowsItsStructureCorrectly stamp: 'TS 5/31/2023 15:37:21'!
+PASSED!
+
+!testRun: #PortfolioReportTest #test04PortfolioStructureOfPortfolioWithMultipleLevelsOfNestingShowsItsStructureCorrectly stamp: 'TS 5/31/2023 15:37:21'!
+PASSED!
+
+!testRun: #PortfolioReportTest #test05PortfolioSummaryOfEmptyPortfolioOnlyShowsItsName stamp: 'TS 5/31/2023 15:37:21'!
+PASSED!
+
+!testRun: #PortfolioReportTest #test06PortfolioSummaryOfPortfolioWithChildAccountShowsItsNameAndItsChildsAccountSummary stamp: 'TS 5/31/2023 15:37:21'!
+PASSED!
+
+!testRun: #PortfolioReportTest #test07PortfolioSummaryOfPortfolioWithChildPortfolioShowsItsName stamp: 'TS 5/31/2023 15:37:21'!
+PASSED!
+
+!testRun: #PortfolioReportTest #test08PortfolioSummaryOfNestedPortfoliosShowsAllSummariesCorrectly stamp: 'TS 5/31/2023 15:37:21'!
+PASSED!
+
+!classDefinition: #PortfolioTreeSummary category: 'Portfolio-Solucion' stamp: 'TS 5/31/2023 15:38:53'!
+AccountOperation subclass: #PortfolioTreeSummary
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Portfolio-Solucion'!
+
+!classDefinition: #PortfolioStructureSummary category: 'Portfolio-Solucion' stamp: 'TS 5/31/2023 15:38:53'!
+PortfolioTreeSummary subclass: #PortfolioStructureSummary
+	instanceVariableNames: 'portfolio reportLines currentIndentationLevel'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Portfolio-Solucion'!
+
+PortfolioTreeSummary subclass: #PortfolioTransactionSummary
+	instanceVariableNames: 'portfolio reportLines currentIndentationLevel'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Portfolio-Solucion'!
+
+!classDefinition: #PortfolioTransactionSummary category: 'Portfolio-Solucion' stamp: 'TS 5/31/2023 15:39:00'!
+PortfolioTreeSummary subclass: #PortfolioTransactionSummary
+	instanceVariableNames: 'portfolio reportLines currentIndentationLevel'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Portfolio-Solucion'!
+
+!classDefinition: #PortfolioStructureSummary category: 'Portfolio-Solucion' stamp: 'TS 5/31/2023 15:39:27'!
+PortfolioTreeSummary subclass: #PortfolioStructureSummary
+	instanceVariableNames: 'portfolio currentIndentationLevel'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Portfolio-Solucion'!
+
+!classDefinition: #PortfolioTransactionSummary category: 'Portfolio-Solucion' stamp: 'TS 5/31/2023 15:39:27'!
+PortfolioTreeSummary subclass: #PortfolioTransactionSummary
+	instanceVariableNames: 'portfolio currentIndentationLevel'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Portfolio-Solucion'!
+
+!classDefinition: #PortfolioTreeSummary category: 'Portfolio-Solucion' stamp: 'TS 5/31/2023 15:39:27'!
+AccountOperation subclass: #PortfolioTreeSummary
+	instanceVariableNames: 'reportLines'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Portfolio-Solucion'!
+
+!classDefinition: #PortfolioStructureSummary category: 'Portfolio-Solucion' stamp: 'TS 5/31/2023 15:39:38'!
+PortfolioTreeSummary subclass: #PortfolioStructureSummary
+	instanceVariableNames: 'portfolio'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Portfolio-Solucion'!
+
+!classDefinition: #PortfolioTransactionSummary category: 'Portfolio-Solucion' stamp: 'TS 5/31/2023 15:39:38'!
+PortfolioTreeSummary subclass: #PortfolioTransactionSummary
+	instanceVariableNames: 'portfolio'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Portfolio-Solucion'!
+
+!classDefinition: #PortfolioTreeSummary category: 'Portfolio-Solucion' stamp: 'TS 5/31/2023 15:39:38'!
+AccountOperation subclass: #PortfolioTreeSummary
+	instanceVariableNames: 'reportLines currentIndentationLevel'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Portfolio-Solucion'!
+
+!classDefinition: #PortfolioStructureSummary category: 'Portfolio-Solucion' stamp: 'TS 5/31/2023 15:39:47'!
+PortfolioTreeSummary subclass: #PortfolioStructureSummary
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Portfolio-Solucion'!
+
+!classDefinition: #PortfolioTransactionSummary category: 'Portfolio-Solucion' stamp: 'TS 5/31/2023 15:39:47'!
+PortfolioTreeSummary subclass: #PortfolioTransactionSummary
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Portfolio-Solucion'!
+
+!classDefinition: #PortfolioTreeSummary category: 'Portfolio-Solucion' stamp: 'TS 5/31/2023 15:39:47'!
+AccountOperation subclass: #PortfolioTreeSummary
+	instanceVariableNames: 'reportLines currentIndentationLevel portfolio'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Portfolio-Solucion'!
+!PortfolioTreeSummary methodsFor: 'indentation' stamp: 'TS 5/31/2023 15:39:54'!
+addLine: aLine
+
+	reportLines addLast: (self getTabsForIndentationLevel), aLine
+! !
+
+!methodRemoval: PortfolioStructureSummary #addLine: stamp: 'TS 5/31/2023 15:39:54'!
+addLine: aLine
+
+	reportLines addLast: (self getTabsForIndentationLevel), aLine
+!
+
+!methodRemoval: PortfolioTransactionSummary #addLine: stamp: 'TS 5/31/2023 15:39:54'!
+addLine: aLine
+
+	reportLines addLast: (self getTabsForIndentationLevel), aLine!
+!PortfolioTreeSummary methodsFor: 'indentation' stamp: 'TS 5/31/2023 15:39:59'!
+getTabsForIndentationLevel
+
+	^ String new: currentIndentationLevel withAll: Character tab! !
+
+!methodRemoval: PortfolioStructureSummary #getTabsForIndentationLevel stamp: 'TS 5/31/2023 15:39:59'!
+getTabsForIndentationLevel
+
+	^ String new: currentIndentationLevel withAll: Character tab!
+
+!methodRemoval: PortfolioTransactionSummary #getTabsForIndentationLevel stamp: 'TS 5/31/2023 15:39:59'!
+getTabsForIndentationLevel
+
+	^ String new: currentIndentationLevel withAll: Character tab!
+!PortfolioTreeSummary methodsFor: 'report' stamp: 'TS 5/31/2023 15:40:19'!
+lines
+
+	reportLines := OrderedCollection new.
+	currentIndentationLevel := 0.
+
+	self operateOnPortfolio: portfolio.
+
+	^ reportLines! !
+
+!methodRemoval: PortfolioStructureSummary #lines stamp: 'TS 5/31/2023 15:40:19'!
+lines
+
+	reportLines := OrderedCollection new.
+	currentIndentationLevel := 0.
+
+	self operateOnPortfolio: portfolio.
+
+	^ reportLines!
+
+!methodRemoval: PortfolioTransactionSummary #lines stamp: 'TS 5/31/2023 15:40:19'!
+lines
+
+	reportLines := OrderedCollection new.
+	currentIndentationLevel := 0.
+	
+	self operateOnPortfolio: portfolio.
+
+	^ reportLines!
+!PortfolioTreeSummary methodsFor: 'indentation' stamp: 'TS 5/31/2023 15:40:41'!
+withIncreasedIndentationLevelDo: aBlock	
+
+	currentIndentationLevel := currentIndentationLevel + 1.
+	
+	aBlock value.
+
+	currentIndentationLevel := currentIndentationLevel - 1.! !
+
+!methodRemoval: PortfolioStructureSummary #withIncreasedIndentationLevelDo: stamp: 'TS 5/31/2023 15:40:41'!
+withIncreasedIndentationLevelDo: aBlock	
+
+	currentIndentationLevel := currentIndentationLevel + 1.
+	
+	aBlock value.
+
+	currentIndentationLevel := currentIndentationLevel - 1.!
+
+!methodRemoval: PortfolioTransactionSummary #withIncreasedIndentationLevelDo: stamp: 'TS 5/31/2023 15:40:41'!
+withIncreasedIndentationLevelDo: aBlock	
+
+	currentIndentationLevel := currentIndentationLevel + 1.
+	
+	aBlock value.
+
+	currentIndentationLevel := currentIndentationLevel - 1.!
+
+!testRun: #PortfolioReportTest #test01PortfolioStructureOfEmptyPortfolioOnlyShowsItsName stamp: 'TS 5/31/2023 15:40:49'!
+PASSED!
+
+!testRun: #PortfolioReportTest #test02PortfolioStructureOfPortfolioWithChildrenAccountsShowsTheirNamesWith1LevelOfIndentation stamp: 'TS 5/31/2023 15:40:49'!
+PASSED!
+
+!testRun: #PortfolioReportTest #test03PortfolioStructureOfPortfolioWithNestedPortfolioShowsItsStructureCorrectly stamp: 'TS 5/31/2023 15:40:49'!
+PASSED!
+
+!testRun: #PortfolioReportTest #test04PortfolioStructureOfPortfolioWithMultipleLevelsOfNestingShowsItsStructureCorrectly stamp: 'TS 5/31/2023 15:40:49'!
+PASSED!
+
+!testRun: #PortfolioReportTest #test05PortfolioSummaryOfEmptyPortfolioOnlyShowsItsName stamp: 'TS 5/31/2023 15:40:49'!
+PASSED!
+
+!testRun: #PortfolioReportTest #test06PortfolioSummaryOfPortfolioWithChildAccountShowsItsNameAndItsChildsAccountSummary stamp: 'TS 5/31/2023 15:40:49'!
+PASSED!
+
+!testRun: #PortfolioReportTest #test07PortfolioSummaryOfPortfolioWithChildPortfolioShowsItsName stamp: 'TS 5/31/2023 15:40:49'!
+PASSED!
+
+!testRun: #PortfolioReportTest #test08PortfolioSummaryOfNestedPortfoliosShowsAllSummariesCorrectly stamp: 'TS 5/31/2023 15:40:49'!
+PASSED!
+!PortfolioTreeSummary methodsFor: 'initialization' stamp: 'TS 5/31/2023 15:41:17'!
+initializeFor: aPortfolio 
+
+	portfolio := aPortfolio! !
+
+!methodRemoval: PortfolioStructureSummary #initializeFor: stamp: 'TS 5/31/2023 15:41:17'!
+initializeFor: aPortfolio 
+
+	portfolio := aPortfolio!
+
+!methodRemoval: PortfolioTransactionSummary #initializeFor: stamp: 'TS 5/31/2023 15:41:17'!
+initializeFor: aPortfolio 
+
+	portfolio := aPortfolio.!
+!PortfolioTreeSummary class methodsFor: 'instance creation' stamp: 'TS 5/31/2023 15:41:22'!
+for: aPortfolio 
+
+	^self new initializeFor: aPortfolio ! !
+
+!methodRemoval: PortfolioStructureSummary class #for: stamp: 'TS 5/31/2023 15:41:22'!
+for: aPortfolio 
+
+	^self new initializeFor: aPortfolio !
+
+!methodRemoval: PortfolioTransactionSummary class #for: stamp: 'TS 5/31/2023 15:41:22'!
+for: aPortfolio 
+
+	^self new initializeFor: aPortfolio!
+
+!testRun: #PortfolioReportTest #test01PortfolioStructureOfEmptyPortfolioOnlyShowsItsName stamp: 'TS 5/31/2023 15:41:42'!
+PASSED!
+
+!testRun: #PortfolioReportTest #test02PortfolioStructureOfPortfolioWithChildrenAccountsShowsTheirNamesWith1LevelOfIndentation stamp: 'TS 5/31/2023 15:41:42'!
+PASSED!
+
+!testRun: #PortfolioReportTest #test03PortfolioStructureOfPortfolioWithNestedPortfolioShowsItsStructureCorrectly stamp: 'TS 5/31/2023 15:41:42'!
+PASSED!
+
+!testRun: #PortfolioReportTest #test04PortfolioStructureOfPortfolioWithMultipleLevelsOfNestingShowsItsStructureCorrectly stamp: 'TS 5/31/2023 15:41:42'!
+PASSED!
+
+!testRun: #PortfolioReportTest #test05PortfolioSummaryOfEmptyPortfolioOnlyShowsItsName stamp: 'TS 5/31/2023 15:41:42'!
+PASSED!
+
+!testRun: #PortfolioReportTest #test06PortfolioSummaryOfPortfolioWithChildAccountShowsItsNameAndItsChildsAccountSummary stamp: 'TS 5/31/2023 15:41:42'!
+PASSED!
+
+!testRun: #PortfolioReportTest #test07PortfolioSummaryOfPortfolioWithChildPortfolioShowsItsName stamp: 'TS 5/31/2023 15:41:42'!
+PASSED!
+
+!testRun: #PortfolioReportTest #test08PortfolioSummaryOfNestedPortfoliosShowsAllSummariesCorrectly stamp: 'TS 5/31/2023 15:41:42'!
+PASSED!
+!PortfolioTransactionSummary methodsFor: 'operation' stamp: 'TS 5/31/2023 15:42:37'!
+addAccountName: anAccount
+
+	self addLine: anAccount accountName.
+! !
+!PortfolioTreeSummary methodsFor: 'operation' stamp: 'TS 5/31/2023 15:42:42'!
+addAccountName: anAccount
+
+	self addLine: anAccount accountName.
+! !
+
+!methodRemoval: PortfolioTransactionSummary #addAccountName: stamp: 'TS 5/31/2023 15:42:42'!
+addAccountName: anAccount
+
+	self addLine: anAccount accountName.
+!
+!PortfolioTransactionSummary methodsFor: 'operation' stamp: 'TS 5/31/2023 15:42:52' prior: 50632701 overrides: 50630400!
+operateOnPortfolio: aPortfolio
+
+	self addAccountName: aPortfolio .
+	
+	self withIncreasedIndentationLevelDo: [ aPortfolio doOperationOnAccountsOf: self ]
+! !
+!PortfolioTransactionSummary methodsFor: 'operation' stamp: 'TS 5/31/2023 15:42:53' prior: 50633514 overrides: 50630400!
+operateOnPortfolio: aPortfolio
+
+	self addAccountName: aPortfolio.
+	
+	self withIncreasedIndentationLevelDo: [ aPortfolio doOperationOnAccountsOf: self ]
+! !
+
+!testRun: #PortfolioReportTest #test01PortfolioStructureOfEmptyPortfolioOnlyShowsItsName stamp: 'TS 5/31/2023 15:42:54'!
+PASSED!
+
+!testRun: #PortfolioReportTest #test02PortfolioStructureOfPortfolioWithChildrenAccountsShowsTheirNamesWith1LevelOfIndentation stamp: 'TS 5/31/2023 15:42:54'!
+PASSED!
+
+!testRun: #PortfolioReportTest #test03PortfolioStructureOfPortfolioWithNestedPortfolioShowsItsStructureCorrectly stamp: 'TS 5/31/2023 15:42:54'!
+PASSED!
+
+!testRun: #PortfolioReportTest #test04PortfolioStructureOfPortfolioWithMultipleLevelsOfNestingShowsItsStructureCorrectly stamp: 'TS 5/31/2023 15:42:54'!
+PASSED!
+
+!testRun: #PortfolioReportTest #test05PortfolioSummaryOfEmptyPortfolioOnlyShowsItsName stamp: 'TS 5/31/2023 15:42:54'!
+PASSED!
+
+!testRun: #PortfolioReportTest #test06PortfolioSummaryOfPortfolioWithChildAccountShowsItsNameAndItsChildsAccountSummary stamp: 'TS 5/31/2023 15:42:54'!
+PASSED!
+
+!testRun: #PortfolioReportTest #test07PortfolioSummaryOfPortfolioWithChildPortfolioShowsItsName stamp: 'TS 5/31/2023 15:42:54'!
+PASSED!
+
+!testRun: #PortfolioReportTest #test08PortfolioSummaryOfNestedPortfoliosShowsAllSummariesCorrectly stamp: 'TS 5/31/2023 15:42:54'!
+PASSED!
+!PortfolioTransactionSummary methodsFor: 'operation' stamp: 'TS 5/31/2023 15:43:03' prior: 50632458 overrides: 50630405!
+operateOnReceptiveAccount: aReceptiveAccount
+
+	self addAccountName: aReceptiveAccount.
+
+	self withIncreasedIndentationLevelDo: [
+		(AccountSummary for: aReceptiveAccount) lines do: [:aLine |
+			self addLine: aLine
+		]
+	]! !
+
+!testRun: #PortfolioReportTest #test01PortfolioStructureOfEmptyPortfolioOnlyShowsItsName stamp: 'TS 5/31/2023 15:43:05'!
+PASSED!
+
+!testRun: #PortfolioReportTest #test02PortfolioStructureOfPortfolioWithChildrenAccountsShowsTheirNamesWith1LevelOfIndentation stamp: 'TS 5/31/2023 15:43:05'!
+PASSED!
+
+!testRun: #PortfolioReportTest #test03PortfolioStructureOfPortfolioWithNestedPortfolioShowsItsStructureCorrectly stamp: 'TS 5/31/2023 15:43:05'!
+PASSED!
+
+!testRun: #PortfolioReportTest #test04PortfolioStructureOfPortfolioWithMultipleLevelsOfNestingShowsItsStructureCorrectly stamp: 'TS 5/31/2023 15:43:05'!
+PASSED!
+
+!testRun: #PortfolioReportTest #test05PortfolioSummaryOfEmptyPortfolioOnlyShowsItsName stamp: 'TS 5/31/2023 15:43:05'!
+PASSED!
+
+!testRun: #PortfolioReportTest #test06PortfolioSummaryOfPortfolioWithChildAccountShowsItsNameAndItsChildsAccountSummary stamp: 'TS 5/31/2023 15:43:05'!
+PASSED!
+
+!testRun: #PortfolioReportTest #test07PortfolioSummaryOfPortfolioWithChildPortfolioShowsItsName stamp: 'TS 5/31/2023 15:43:05'!
+PASSED!
+
+!testRun: #PortfolioReportTest #test08PortfolioSummaryOfNestedPortfoliosShowsAllSummariesCorrectly stamp: 'TS 5/31/2023 15:43:05'!
+PASSED!
+!PortfolioStructureSummary methodsFor: 'operation' stamp: 'TS 5/31/2023 15:43:09' prior: 50633154 overrides: 50630400!
+operateOnPortfolio: aPortfolio 
+
+	self addAccountName: aPortfolio.
+
+	self withIncreasedIndentationLevelDo: [ aPortfolio doOperationOnAccountsOf: self ]! !
+
+!testRun: #PortfolioReportTest #test01PortfolioStructureOfEmptyPortfolioOnlyShowsItsName stamp: 'TS 5/31/2023 15:43:10'!
+PASSED!
+
+!testRun: #PortfolioReportTest #test02PortfolioStructureOfPortfolioWithChildrenAccountsShowsTheirNamesWith1LevelOfIndentation stamp: 'TS 5/31/2023 15:43:10'!
+PASSED!
+
+!testRun: #PortfolioReportTest #test03PortfolioStructureOfPortfolioWithNestedPortfolioShowsItsStructureCorrectly stamp: 'TS 5/31/2023 15:43:10'!
+PASSED!
+
+!testRun: #PortfolioReportTest #test04PortfolioStructureOfPortfolioWithMultipleLevelsOfNestingShowsItsStructureCorrectly stamp: 'TS 5/31/2023 15:43:10'!
+PASSED!
+
+!testRun: #PortfolioReportTest #test05PortfolioSummaryOfEmptyPortfolioOnlyShowsItsName stamp: 'TS 5/31/2023 15:43:10'!
+PASSED!
+
+!testRun: #PortfolioReportTest #test06PortfolioSummaryOfPortfolioWithChildAccountShowsItsNameAndItsChildsAccountSummary stamp: 'TS 5/31/2023 15:43:10'!
+PASSED!
+
+!testRun: #PortfolioReportTest #test07PortfolioSummaryOfPortfolioWithChildPortfolioShowsItsName stamp: 'TS 5/31/2023 15:43:10'!
+PASSED!
+
+!testRun: #PortfolioReportTest #test08PortfolioSummaryOfNestedPortfoliosShowsAllSummariesCorrectly stamp: 'TS 5/31/2023 15:43:10'!
+PASSED!
+!PortfolioStructureSummary methodsFor: 'operation' stamp: 'TS 5/31/2023 15:43:16' prior: 50630258 overrides: 50630405!
+operateOnReceptiveAccount: aReceptiveAccount
+
+	self addAccountName: aReceptiveAccount.
+! !
+
+!testRun: #PortfolioReportTest #test01PortfolioStructureOfEmptyPortfolioOnlyShowsItsName stamp: 'TS 5/31/2023 15:43:17'!
+PASSED!
+
+!testRun: #PortfolioReportTest #test02PortfolioStructureOfPortfolioWithChildrenAccountsShowsTheirNamesWith1LevelOfIndentation stamp: 'TS 5/31/2023 15:43:17'!
+PASSED!
+
+!testRun: #PortfolioReportTest #test03PortfolioStructureOfPortfolioWithNestedPortfolioShowsItsStructureCorrectly stamp: 'TS 5/31/2023 15:43:17'!
+PASSED!
+
+!testRun: #PortfolioReportTest #test04PortfolioStructureOfPortfolioWithMultipleLevelsOfNestingShowsItsStructureCorrectly stamp: 'TS 5/31/2023 15:43:17'!
+PASSED!
+
+!testRun: #PortfolioReportTest #test05PortfolioSummaryOfEmptyPortfolioOnlyShowsItsName stamp: 'TS 5/31/2023 15:43:17'!
+PASSED!
+
+!testRun: #PortfolioReportTest #test06PortfolioSummaryOfPortfolioWithChildAccountShowsItsNameAndItsChildsAccountSummary stamp: 'TS 5/31/2023 15:43:17'!
+PASSED!
+
+!testRun: #PortfolioReportTest #test07PortfolioSummaryOfPortfolioWithChildPortfolioShowsItsName stamp: 'TS 5/31/2023 15:43:17'!
+PASSED!
+
+!testRun: #PortfolioReportTest #test08PortfolioSummaryOfNestedPortfoliosShowsAllSummariesCorrectly stamp: 'TS 5/31/2023 15:43:17'!
+PASSED!
+
+----SNAPSHOT----(31 May 2023 15:43:26) CuisUniversity-5832.image priorSource: 9631355!
+!AccountOperation commentStamp: '<historical>' prior: 0!
+Esta clase representa una operación que se ejecuta sobre todo el árbol de cuentas de un Portfolio!
+!AccountOperation commentStamp: '<historical>' prior: 50633708!
+Esta clase representa una operación que se ejecuta sobre todo el árbol de cuentas de un Portfolio!
+!PortfolioTreeSummary methodsFor: 'report' stamp: 'TS 5/31/2023 15:46:38' prior: 50633349!
+lines
+
+	reportLines := OrderedCollection new.
+	currentIndentationLevel := 0.
+
+	portfolio doOperationOf: self.
+
+	^ reportLines! !
+
+!testRun: #PortfolioReportTest #test01PortfolioStructureOfEmptyPortfolioOnlyShowsItsName stamp: 'TS 5/31/2023 15:46:51'!
+PASSED!
+
+!testRun: #PortfolioReportTest #test02PortfolioStructureOfPortfolioWithChildrenAccountsShowsTheirNamesWith1LevelOfIndentation stamp: 'TS 5/31/2023 15:46:51'!
+PASSED!
+
+!testRun: #PortfolioReportTest #test03PortfolioStructureOfPortfolioWithNestedPortfolioShowsItsStructureCorrectly stamp: 'TS 5/31/2023 15:46:51'!
+PASSED!
+
+!testRun: #PortfolioReportTest #test04PortfolioStructureOfPortfolioWithMultipleLevelsOfNestingShowsItsStructureCorrectly stamp: 'TS 5/31/2023 15:46:51'!
+PASSED!
+
+!testRun: #PortfolioReportTest #test05PortfolioSummaryOfEmptyPortfolioOnlyShowsItsName stamp: 'TS 5/31/2023 15:46:51'!
+PASSED!
+
+!testRun: #PortfolioReportTest #test06PortfolioSummaryOfPortfolioWithChildAccountShowsItsNameAndItsChildsAccountSummary stamp: 'TS 5/31/2023 15:46:51'!
+PASSED!
+
+!testRun: #PortfolioReportTest #test07PortfolioSummaryOfPortfolioWithChildPortfolioShowsItsName stamp: 'TS 5/31/2023 15:46:51'!
+PASSED!
+
+!testRun: #PortfolioReportTest #test08PortfolioSummaryOfNestedPortfoliosShowsAllSummariesCorrectly stamp: 'TS 5/31/2023 15:46:51'!
+PASSED!
+
+!testRun: #PortfolioReportTest #test01PortfolioStructureOfEmptyPortfolioOnlyShowsItsName stamp: 'TS 5/31/2023 15:46:53'!
+PASSED!
+
+!testRun: #PortfolioReportTest #test02PortfolioStructureOfPortfolioWithChildrenAccountsShowsTheirNamesWith1LevelOfIndentation stamp: 'TS 5/31/2023 15:46:53'!
+PASSED!
+
+!testRun: #PortfolioReportTest #test03PortfolioStructureOfPortfolioWithNestedPortfolioShowsItsStructureCorrectly stamp: 'TS 5/31/2023 15:46:53'!
+PASSED!
+
+!testRun: #PortfolioReportTest #test04PortfolioStructureOfPortfolioWithMultipleLevelsOfNestingShowsItsStructureCorrectly stamp: 'TS 5/31/2023 15:46:53'!
+PASSED!
+
+!testRun: #PortfolioReportTest #test05PortfolioSummaryOfEmptyPortfolioOnlyShowsItsName stamp: 'TS 5/31/2023 15:46:53'!
+PASSED!
+
+!testRun: #PortfolioReportTest #test06PortfolioSummaryOfPortfolioWithChildAccountShowsItsNameAndItsChildsAccountSummary stamp: 'TS 5/31/2023 15:46:53'!
+PASSED!
+
+!testRun: #PortfolioReportTest #test07PortfolioSummaryOfPortfolioWithChildPortfolioShowsItsName stamp: 'TS 5/31/2023 15:46:53'!
+PASSED!
+
+!testRun: #PortfolioReportTest #test08PortfolioSummaryOfNestedPortfoliosShowsAllSummariesCorrectly stamp: 'TS 5/31/2023 15:46:53'!
+PASSED!
+
+!testRun: #PortfolioTest #test01BalanceOfPortfolioWithoutAccountsIsZero stamp: 'TS 5/31/2023 15:46:53'!
+PASSED!
+
+!testRun: #PortfolioTest #test02BalanceOfPortfolioWithAccountsIsSumOfAccountsBalance stamp: 'TS 5/31/2023 15:46:53'!
+PASSED!
+
+!testRun: #PortfolioTest #test03BalanceOfPortfolioIsCalculatedRecursivelyOnPortfolios stamp: 'TS 5/31/2023 15:46:53'!
+PASSED!
+
+!testRun: #PortfolioTest #test04PortfolioWithoutAccountsHasNoRegisteredTransaction stamp: 'TS 5/31/2023 15:46:53'!
+PASSED!
+
+!testRun: #PortfolioTest #test05PortfolioHasRegisteredItsAccountsTransactions stamp: 'TS 5/31/2023 15:46:53'!
+PASSED!
+
+!testRun: #PortfolioTest #test06PortfolioLooksForRegisteredTransactionsRecursively stamp: 'TS 5/31/2023 15:46:53'!
+PASSED!
+
+!testRun: #PortfolioTest #test07PortfolioHasNoTransactionWhenHasNoAccounts stamp: 'TS 5/31/2023 15:46:53'!
+PASSED!
+
+!testRun: #PortfolioTest #test08PortfolioTransactionsIncludesAllItsAccountsTransactions stamp: 'TS 5/31/2023 15:46:53'!
+PASSED!
+
+!testRun: #PortfolioTest #test09PortfolioTransactionsAreCalculatedRecursively stamp: 'TS 5/31/2023 15:46:53'!
+PASSED!
+
+!testRun: #PortfolioTest #test10PortfolioCanNotIncludeTheSameAccountMoreThanOnce stamp: 'TS 5/31/2023 15:46:53'!
+PASSED!
+
+!testRun: #PortfolioTest #test11PortfolioCanNotIncludeAccountOfItsPortfolios stamp: 'TS 5/31/2023 15:46:53'!
+PASSED!
+
+!testRun: #PortfolioTest #test12PortfolioCanNotIncludeItself stamp: 'TS 5/31/2023 15:46:53'!
+PASSED!
+
+!testRun: #PortfolioTest #test13ComposedPortfolioCanNotHaveParentPortfolioAccount stamp: 'TS 5/31/2023 15:46:53'!
+PASSED!
+
+!testRun: #PortfolioTest #test14ComposedPortfolioCanNotHaveAccountOfAnyRootParentRecursively stamp: 'TS 5/31/2023 15:46:53'!
+PASSED!
+
+!testRun: #PortfolioTest #test15PortfolioCanNotIncludeAnyOfTheComposedAccountOfPortfolioToAdd stamp: 'TS 5/31/2023 15:46:53'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test01ReceptiveAccountHaveZeroAsBalanceWhenCreated stamp: 'TS 5/31/2023 15:46:53'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test02DepositIncreasesBalanceOnTransactionValue stamp: 'TS 5/31/2023 15:46:53'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test03WithdrawDecreasesBalanceOnTransactionValue stamp: 'TS 5/31/2023 15:46:53'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test04WithdrawValueMustBePositive stamp: 'TS 5/31/2023 15:46:53'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test05ReceptiveAccountKnowsRegisteredTransactions stamp: 'TS 5/31/2023 15:46:53'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test06ReceptiveAccountDoNotKnowNotRegisteredTransactions stamp: 'TS 5/31/2023 15:46:53'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test07AccountKnowsItsTransactions stamp: 'TS 5/31/2023 15:46:53'!
+PASSED!
+
+!testRun: #TransactionReportTest #test01AccountSummaryOfEmptyAccountOnlyContainsBalanceLine stamp: 'TS 5/31/2023 15:46:53'!
+PASSED!
+
+!testRun: #TransactionReportTest #test02AccountSummaryContainsDepositTransactions stamp: 'TS 5/31/2023 15:46:53'!
+PASSED!
+
+!testRun: #TransactionReportTest #test03AccountSummaryContainsWithdrawTransactions stamp: 'TS 5/31/2023 15:46:53'!
+PASSED!
+
+!testRun: #TransactionReportTest #test04AccountSummaryContainsTransfers stamp: 'TS 5/31/2023 15:46:53'!
+PASSED!
+
+!testRun: #TransactionReportTest #test05TransferNetOfAccountWithNoTransfersIsZero stamp: 'TS 5/31/2023 15:46:53'!
+PASSED!
+
+!testRun: #TransactionReportTest #test06TransferNetOfReceivingAccountIsCorrect stamp: 'TS 5/31/2023 15:46:53'!
+PASSED!
+
+!testRun: #TransactionReportTest #test07TransferNetOfSendingAccountIsCorrect stamp: 'TS 5/31/2023 15:46:53'!
+PASSED!
+
+!testRun: #TransactionReportTest #test08PortfoliosHaveCorrectAccountSummaryAndTransferNet stamp: 'TS 5/31/2023 15:46:53'!
+PASSED!
+
+!testRun: #TransferTest #test01TransferRemovesBalanceFromSenderAndAddsItToReceiver stamp: 'TS 5/31/2023 15:46:53'!
+PASSED!
+
+!testRun: #TransferTest #test02TransferLegsAreRegisteredOnParticipantAccounts stamp: 'TS 5/31/2023 15:46:53'!
+PASSED!
+
+!testRun: #TransferTest #test03TransferLegsCanAccessTransfer stamp: 'TS 5/31/2023 15:46:53'!
+PASSED!
+
+!testRun: #TransferTest #test04TransferLegsHasCorrectTransferValue stamp: 'TS 5/31/2023 15:46:53'!
+PASSED!
+
+!testRun: #TransferTest #test05CantCreateATransferBetweenTheSameAccount stamp: 'TS 5/31/2023 15:46:53'!
+PASSED!
+
+!testRun: #TransferTest #test06TransferValueMustBePositive stamp: 'TS 5/31/2023 15:46:53'!
+PASSED!
+Esta clase representa una operación que se ejecuta sobre todo el árbol de cuentas de un Portfolio!
+!PortfolioTreeSummary commentStamp: '<historical>' prior: 0!
+Esta clase representa una operación cuyo resultado es una serie de líneas que utiliza indentación para visualizar la estructura del árbol de un Portfolio.!
+!PortfolioTransactionSummary methodsFor: 'operation' stamp: 'TS 5/31/2023 15:49:35' prior: 50633569 overrides: 50630405!
+operateOnReceptiveAccount: aReceptiveAccount
+
+	self addAccountName: aReceptiveAccount.
+
+	self withIncreasedIndentationLevelDo: [
+		(AccountSummary for: aReceptiveAccount) lines do: [:aLine | self addLine: aLine ]
+	]! !
+
+!classRenamed: #PortfolioTreeSummary as: #PortfolioTreeViewSummary stamp: 'TS 5/31/2023 15:51:00'!
+Smalltalk renameClassNamed: #PortfolioTreeSummary as: #PortfolioTreeViewSummary!
+Esta clase representa una operación que se ejecuta sobre todo el árbol de cuentas de un Portfolio!
+Esta clase representa una operación cuyo resultado es una serie de líneas que utiliza indentación para visualizar la estructura del árbol de un Portfolio.!
+Esta clase representa una operación que se ejecuta sobre todo el árbol de cuentas de un Portfolio!
+Esta clase representa una operación cuyo resultado es una serie de líneas que utiliza indentación para visualizar la estructura del árbol de un Portfolio.!
+!Portfolio methodsFor: 'operation' stamp: 'TS 5/31/2023 15:53:25'!
+onAccountsDoOperationOf: anAccountOperation
+
+	accounts do: [:anAccount | anAccount doOperationOf: anAccountOperation ]! !
+
+!methodRemoval: Portfolio #doOperationOnAccountsOf: stamp: 'TS 5/31/2023 15:53:25'!
+doOperationOnAccountsOf: anAccountOperation
+
+	accounts do: [:anAccount | anAccount doOperationOf: anAccountOperation ]!
+!Account methodsFor: 'operation' stamp: 'TS 5/31/2023 15:54:13'!
+onTransactionDoOperationOf: aTransactionOperation
+
+	self onTransactionsDo: [:aTransaction | aTransaction doOperationOf: aTransactionOperation ]! !
+
+!testRun: #PortfolioReportTest #test01PortfolioStructureOfEmptyPortfolioOnlyShowsItsName stamp: 'TS 5/31/2023 15:54:18'!
+ERROR!
+
+!testRun: #PortfolioReportTest #test02PortfolioStructureOfPortfolioWithChildrenAccountsShowsTheirNamesWith1LevelOfIndentation stamp: 'TS 5/31/2023 15:54:18'!
+ERROR!
+
+!testRun: #PortfolioReportTest #test03PortfolioStructureOfPortfolioWithNestedPortfolioShowsItsStructureCorrectly stamp: 'TS 5/31/2023 15:54:18'!
+ERROR!
+
+!testRun: #PortfolioReportTest #test04PortfolioStructureOfPortfolioWithMultipleLevelsOfNestingShowsItsStructureCorrectly stamp: 'TS 5/31/2023 15:54:18'!
+ERROR!
+
+!testRun: #PortfolioReportTest #test05PortfolioSummaryOfEmptyPortfolioOnlyShowsItsName stamp: 'TS 5/31/2023 15:54:18'!
+ERROR!
+
+!testRun: #PortfolioReportTest #test06PortfolioSummaryOfPortfolioWithChildAccountShowsItsNameAndItsChildsAccountSummary stamp: 'TS 5/31/2023 15:54:18'!
+ERROR!
+
+!testRun: #PortfolioReportTest #test07PortfolioSummaryOfPortfolioWithChildPortfolioShowsItsName stamp: 'TS 5/31/2023 15:54:18'!
+ERROR!
+
+!testRun: #PortfolioReportTest #test08PortfolioSummaryOfNestedPortfoliosShowsAllSummariesCorrectly stamp: 'TS 5/31/2023 15:54:18'!
+ERROR!
+
+!testRun: #PortfolioTest #test01BalanceOfPortfolioWithoutAccountsIsZero stamp: 'TS 5/31/2023 15:54:18'!
+PASSED!
+
+!testRun: #PortfolioTest #test02BalanceOfPortfolioWithAccountsIsSumOfAccountsBalance stamp: 'TS 5/31/2023 15:54:18'!
+PASSED!
+
+!testRun: #PortfolioTest #test03BalanceOfPortfolioIsCalculatedRecursivelyOnPortfolios stamp: 'TS 5/31/2023 15:54:18'!
+PASSED!
+
+!testRun: #PortfolioTest #test04PortfolioWithoutAccountsHasNoRegisteredTransaction stamp: 'TS 5/31/2023 15:54:18'!
+PASSED!
+
+!testRun: #PortfolioTest #test05PortfolioHasRegisteredItsAccountsTransactions stamp: 'TS 5/31/2023 15:54:18'!
+PASSED!
+
+!testRun: #PortfolioTest #test06PortfolioLooksForRegisteredTransactionsRecursively stamp: 'TS 5/31/2023 15:54:18'!
+PASSED!
+
+!testRun: #PortfolioTest #test07PortfolioHasNoTransactionWhenHasNoAccounts stamp: 'TS 5/31/2023 15:54:18'!
+PASSED!
+
+!testRun: #PortfolioTest #test08PortfolioTransactionsIncludesAllItsAccountsTransactions stamp: 'TS 5/31/2023 15:54:18'!
+PASSED!
+
+!testRun: #PortfolioTest #test09PortfolioTransactionsAreCalculatedRecursively stamp: 'TS 5/31/2023 15:54:18'!
+PASSED!
+
+!testRun: #PortfolioTest #test10PortfolioCanNotIncludeTheSameAccountMoreThanOnce stamp: 'TS 5/31/2023 15:54:18'!
+PASSED!
+
+!testRun: #PortfolioTest #test11PortfolioCanNotIncludeAccountOfItsPortfolios stamp: 'TS 5/31/2023 15:54:18'!
+PASSED!
+
+!testRun: #PortfolioTest #test12PortfolioCanNotIncludeItself stamp: 'TS 5/31/2023 15:54:18'!
+PASSED!
+
+!testRun: #PortfolioTest #test13ComposedPortfolioCanNotHaveParentPortfolioAccount stamp: 'TS 5/31/2023 15:54:18'!
+PASSED!
+
+!testRun: #PortfolioTest #test14ComposedPortfolioCanNotHaveAccountOfAnyRootParentRecursively stamp: 'TS 5/31/2023 15:54:18'!
+PASSED!
+
+!testRun: #PortfolioTest #test15PortfolioCanNotIncludeAnyOfTheComposedAccountOfPortfolioToAdd stamp: 'TS 5/31/2023 15:54:18'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test01ReceptiveAccountHaveZeroAsBalanceWhenCreated stamp: 'TS 5/31/2023 15:54:18'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test02DepositIncreasesBalanceOnTransactionValue stamp: 'TS 5/31/2023 15:54:18'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test03WithdrawDecreasesBalanceOnTransactionValue stamp: 'TS 5/31/2023 15:54:18'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test04WithdrawValueMustBePositive stamp: 'TS 5/31/2023 15:54:18'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test05ReceptiveAccountKnowsRegisteredTransactions stamp: 'TS 5/31/2023 15:54:18'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test06ReceptiveAccountDoNotKnowNotRegisteredTransactions stamp: 'TS 5/31/2023 15:54:18'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test07AccountKnowsItsTransactions stamp: 'TS 5/31/2023 15:54:18'!
+PASSED!
+
+!testRun: #TransactionReportTest #test01AccountSummaryOfEmptyAccountOnlyContainsBalanceLine stamp: 'TS 5/31/2023 15:54:18'!
+PASSED!
+
+!testRun: #TransactionReportTest #test02AccountSummaryContainsDepositTransactions stamp: 'TS 5/31/2023 15:54:18'!
+PASSED!
+
+!testRun: #TransactionReportTest #test03AccountSummaryContainsWithdrawTransactions stamp: 'TS 5/31/2023 15:54:18'!
+PASSED!
+
+!testRun: #TransactionReportTest #test04AccountSummaryContainsTransfers stamp: 'TS 5/31/2023 15:54:18'!
+PASSED!
+
+!testRun: #TransactionReportTest #test05TransferNetOfAccountWithNoTransfersIsZero stamp: 'TS 5/31/2023 15:54:18'!
+PASSED!
+
+!testRun: #TransactionReportTest #test06TransferNetOfReceivingAccountIsCorrect stamp: 'TS 5/31/2023 15:54:18'!
+PASSED!
+
+!testRun: #TransactionReportTest #test07TransferNetOfSendingAccountIsCorrect stamp: 'TS 5/31/2023 15:54:18'!
+PASSED!
+
+!testRun: #TransactionReportTest #test08PortfoliosHaveCorrectAccountSummaryAndTransferNet stamp: 'TS 5/31/2023 15:54:18'!
+PASSED!
+
+!testRun: #TransferTest #test01TransferRemovesBalanceFromSenderAndAddsItToReceiver stamp: 'TS 5/31/2023 15:54:18'!
+PASSED!
+
+!testRun: #TransferTest #test02TransferLegsAreRegisteredOnParticipantAccounts stamp: 'TS 5/31/2023 15:54:18'!
+PASSED!
+
+!testRun: #TransferTest #test03TransferLegsCanAccessTransfer stamp: 'TS 5/31/2023 15:54:18'!
+PASSED!
+
+!testRun: #TransferTest #test04TransferLegsHasCorrectTransferValue stamp: 'TS 5/31/2023 15:54:18'!
+PASSED!
+
+!testRun: #TransferTest #test05CantCreateATransferBetweenTheSameAccount stamp: 'TS 5/31/2023 15:54:18'!
+PASSED!
+
+!testRun: #TransferTest #test06TransferValueMustBePositive stamp: 'TS 5/31/2023 15:54:18'!
+PASSED!
+
+!testRun: #PortfolioReportTest #test01PortfolioStructureOfEmptyPortfolioOnlyShowsItsName stamp: 'TS 5/31/2023 15:54:24'!
+ERROR!
+!PortfolioStructureSummary methodsFor: 'operation' stamp: 'TS 5/31/2023 15:54:37' prior: 50633617 overrides: 50630400!
+operateOnPortfolio: aPortfolio 
+
+	self addAccountName: aPortfolio.
+
+	self withIncreasedIndentationLevelDo: [ aPortfolio onAccountsDoOperationOf:self ]! !
+!PortfolioStructureSummary methodsFor: 'operation' stamp: 'TS 5/31/2023 15:54:38' prior: 50634158 overrides: 50630400!
+operateOnPortfolio: aPortfolio 
+
+	self addAccountName: aPortfolio.
+
+	self withIncreasedIndentationLevelDo: [ aPortfolio onAccountsDoOperationOf: self ]! !
+!PortfolioTransactionSummary methodsFor: 'operation' stamp: 'TS 5/31/2023 15:54:47' prior: 50633523 overrides: 50630400!
+operateOnPortfolio: aPortfolio
+
+	self addAccountName: aPortfolio.
+	
+	self withIncreasedIndentationLevelDo: [ aPortfolio onAccountsDoOperationOf: self ]
+! !
+
+!testRun: #PortfolioReportTest #test01PortfolioStructureOfEmptyPortfolioOnlyShowsItsName stamp: 'TS 5/31/2023 15:54:48'!
+PASSED!
+
+!testRun: #PortfolioReportTest #test02PortfolioStructureOfPortfolioWithChildrenAccountsShowsTheirNamesWith1LevelOfIndentation stamp: 'TS 5/31/2023 15:54:48'!
+PASSED!
+
+!testRun: #PortfolioReportTest #test03PortfolioStructureOfPortfolioWithNestedPortfolioShowsItsStructureCorrectly stamp: 'TS 5/31/2023 15:54:48'!
+PASSED!
+
+!testRun: #PortfolioReportTest #test04PortfolioStructureOfPortfolioWithMultipleLevelsOfNestingShowsItsStructureCorrectly stamp: 'TS 5/31/2023 15:54:48'!
+PASSED!
+
+!testRun: #PortfolioReportTest #test05PortfolioSummaryOfEmptyPortfolioOnlyShowsItsName stamp: 'TS 5/31/2023 15:54:48'!
+PASSED!
+
+!testRun: #PortfolioReportTest #test06PortfolioSummaryOfPortfolioWithChildAccountShowsItsNameAndItsChildsAccountSummary stamp: 'TS 5/31/2023 15:54:48'!
+PASSED!
+
+!testRun: #PortfolioReportTest #test07PortfolioSummaryOfPortfolioWithChildPortfolioShowsItsName stamp: 'TS 5/31/2023 15:54:48'!
+PASSED!
+
+!testRun: #PortfolioReportTest #test08PortfolioSummaryOfNestedPortfoliosShowsAllSummariesCorrectly stamp: 'TS 5/31/2023 15:54:48'!
+PASSED!
+
+!testRun: #PortfolioReportTest #test01PortfolioStructureOfEmptyPortfolioOnlyShowsItsName stamp: 'TS 5/31/2023 15:54:49'!
+PASSED!
+
+!testRun: #PortfolioReportTest #test02PortfolioStructureOfPortfolioWithChildrenAccountsShowsTheirNamesWith1LevelOfIndentation stamp: 'TS 5/31/2023 15:54:49'!
+PASSED!
+
+!testRun: #PortfolioReportTest #test03PortfolioStructureOfPortfolioWithNestedPortfolioShowsItsStructureCorrectly stamp: 'TS 5/31/2023 15:54:49'!
+PASSED!
+
+!testRun: #PortfolioReportTest #test04PortfolioStructureOfPortfolioWithMultipleLevelsOfNestingShowsItsStructureCorrectly stamp: 'TS 5/31/2023 15:54:49'!
+PASSED!
+
+!testRun: #PortfolioReportTest #test05PortfolioSummaryOfEmptyPortfolioOnlyShowsItsName stamp: 'TS 5/31/2023 15:54:49'!
+PASSED!
+
+!testRun: #PortfolioReportTest #test06PortfolioSummaryOfPortfolioWithChildAccountShowsItsNameAndItsChildsAccountSummary stamp: 'TS 5/31/2023 15:54:49'!
+PASSED!
+
+!testRun: #PortfolioReportTest #test07PortfolioSummaryOfPortfolioWithChildPortfolioShowsItsName stamp: 'TS 5/31/2023 15:54:49'!
+PASSED!
+
+!testRun: #PortfolioReportTest #test08PortfolioSummaryOfNestedPortfoliosShowsAllSummariesCorrectly stamp: 'TS 5/31/2023 15:54:49'!
+PASSED!
+
+!testRun: #PortfolioTest #test01BalanceOfPortfolioWithoutAccountsIsZero stamp: 'TS 5/31/2023 15:54:49'!
+PASSED!
+
+!testRun: #PortfolioTest #test02BalanceOfPortfolioWithAccountsIsSumOfAccountsBalance stamp: 'TS 5/31/2023 15:54:49'!
+PASSED!
+
+!testRun: #PortfolioTest #test03BalanceOfPortfolioIsCalculatedRecursivelyOnPortfolios stamp: 'TS 5/31/2023 15:54:49'!
+PASSED!
+
+!testRun: #PortfolioTest #test04PortfolioWithoutAccountsHasNoRegisteredTransaction stamp: 'TS 5/31/2023 15:54:49'!
+PASSED!
+
+!testRun: #PortfolioTest #test05PortfolioHasRegisteredItsAccountsTransactions stamp: 'TS 5/31/2023 15:54:49'!
+PASSED!
+
+!testRun: #PortfolioTest #test06PortfolioLooksForRegisteredTransactionsRecursively stamp: 'TS 5/31/2023 15:54:49'!
+PASSED!
+
+!testRun: #PortfolioTest #test07PortfolioHasNoTransactionWhenHasNoAccounts stamp: 'TS 5/31/2023 15:54:49'!
+PASSED!
+
+!testRun: #PortfolioTest #test08PortfolioTransactionsIncludesAllItsAccountsTransactions stamp: 'TS 5/31/2023 15:54:49'!
+PASSED!
+
+!testRun: #PortfolioTest #test09PortfolioTransactionsAreCalculatedRecursively stamp: 'TS 5/31/2023 15:54:49'!
+PASSED!
+
+!testRun: #PortfolioTest #test10PortfolioCanNotIncludeTheSameAccountMoreThanOnce stamp: 'TS 5/31/2023 15:54:49'!
+PASSED!
+
+!testRun: #PortfolioTest #test11PortfolioCanNotIncludeAccountOfItsPortfolios stamp: 'TS 5/31/2023 15:54:49'!
+PASSED!
+
+!testRun: #PortfolioTest #test12PortfolioCanNotIncludeItself stamp: 'TS 5/31/2023 15:54:49'!
+PASSED!
+
+!testRun: #PortfolioTest #test13ComposedPortfolioCanNotHaveParentPortfolioAccount stamp: 'TS 5/31/2023 15:54:49'!
+PASSED!
+
+!testRun: #PortfolioTest #test14ComposedPortfolioCanNotHaveAccountOfAnyRootParentRecursively stamp: 'TS 5/31/2023 15:54:49'!
+PASSED!
+
+!testRun: #PortfolioTest #test15PortfolioCanNotIncludeAnyOfTheComposedAccountOfPortfolioToAdd stamp: 'TS 5/31/2023 15:54:49'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test01ReceptiveAccountHaveZeroAsBalanceWhenCreated stamp: 'TS 5/31/2023 15:54:49'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test02DepositIncreasesBalanceOnTransactionValue stamp: 'TS 5/31/2023 15:54:49'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test03WithdrawDecreasesBalanceOnTransactionValue stamp: 'TS 5/31/2023 15:54:49'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test04WithdrawValueMustBePositive stamp: 'TS 5/31/2023 15:54:49'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test05ReceptiveAccountKnowsRegisteredTransactions stamp: 'TS 5/31/2023 15:54:49'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test06ReceptiveAccountDoNotKnowNotRegisteredTransactions stamp: 'TS 5/31/2023 15:54:49'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test07AccountKnowsItsTransactions stamp: 'TS 5/31/2023 15:54:49'!
+PASSED!
+
+!testRun: #TransactionReportTest #test01AccountSummaryOfEmptyAccountOnlyContainsBalanceLine stamp: 'TS 5/31/2023 15:54:49'!
+PASSED!
+
+!testRun: #TransactionReportTest #test02AccountSummaryContainsDepositTransactions stamp: 'TS 5/31/2023 15:54:49'!
+PASSED!
+
+!testRun: #TransactionReportTest #test03AccountSummaryContainsWithdrawTransactions stamp: 'TS 5/31/2023 15:54:49'!
+PASSED!
+
+!testRun: #TransactionReportTest #test04AccountSummaryContainsTransfers stamp: 'TS 5/31/2023 15:54:49'!
+PASSED!
+
+!testRun: #TransactionReportTest #test05TransferNetOfAccountWithNoTransfersIsZero stamp: 'TS 5/31/2023 15:54:49'!
+PASSED!
+
+!testRun: #TransactionReportTest #test06TransferNetOfReceivingAccountIsCorrect stamp: 'TS 5/31/2023 15:54:49'!
+PASSED!
+
+!testRun: #TransactionReportTest #test07TransferNetOfSendingAccountIsCorrect stamp: 'TS 5/31/2023 15:54:49'!
+PASSED!
+
+!testRun: #TransactionReportTest #test08PortfoliosHaveCorrectAccountSummaryAndTransferNet stamp: 'TS 5/31/2023 15:54:49'!
+PASSED!
+
+!testRun: #TransferTest #test01TransferRemovesBalanceFromSenderAndAddsItToReceiver stamp: 'TS 5/31/2023 15:54:49'!
+PASSED!
+
+!testRun: #TransferTest #test02TransferLegsAreRegisteredOnParticipantAccounts stamp: 'TS 5/31/2023 15:54:49'!
+PASSED!
+
+!testRun: #TransferTest #test03TransferLegsCanAccessTransfer stamp: 'TS 5/31/2023 15:54:49'!
+PASSED!
+
+!testRun: #TransferTest #test04TransferLegsHasCorrectTransferValue stamp: 'TS 5/31/2023 15:54:49'!
+PASSED!
+
+!testRun: #TransferTest #test05CantCreateATransferBetweenTheSameAccount stamp: 'TS 5/31/2023 15:54:49'!
+PASSED!
+
+!testRun: #TransferTest #test06TransferValueMustBePositive stamp: 'TS 5/31/2023 15:54:49'!
+PASSED!
+
+!testRun: #PortfolioReportTest #test01PortfolioStructureOfEmptyPortfolioOnlyShowsItsName stamp: 'TS 5/31/2023 15:54:51'!
+PASSED!
+
+!testRun: #PortfolioReportTest #test02PortfolioStructureOfPortfolioWithChildrenAccountsShowsTheirNamesWith1LevelOfIndentation stamp: 'TS 5/31/2023 15:54:51'!
+PASSED!
+
+!testRun: #PortfolioReportTest #test03PortfolioStructureOfPortfolioWithNestedPortfolioShowsItsStructureCorrectly stamp: 'TS 5/31/2023 15:54:51'!
+PASSED!
+
+!testRun: #PortfolioReportTest #test04PortfolioStructureOfPortfolioWithMultipleLevelsOfNestingShowsItsStructureCorrectly stamp: 'TS 5/31/2023 15:54:51'!
+PASSED!
+
+!testRun: #PortfolioReportTest #test05PortfolioSummaryOfEmptyPortfolioOnlyShowsItsName stamp: 'TS 5/31/2023 15:54:51'!
+PASSED!
+
+!testRun: #PortfolioReportTest #test06PortfolioSummaryOfPortfolioWithChildAccountShowsItsNameAndItsChildsAccountSummary stamp: 'TS 5/31/2023 15:54:51'!
+PASSED!
+
+!testRun: #PortfolioReportTest #test07PortfolioSummaryOfPortfolioWithChildPortfolioShowsItsName stamp: 'TS 5/31/2023 15:54:51'!
+PASSED!
+
+!testRun: #PortfolioReportTest #test08PortfolioSummaryOfNestedPortfoliosShowsAllSummariesCorrectly stamp: 'TS 5/31/2023 15:54:51'!
+PASSED!
+
+!testRun: #PortfolioTest #test01BalanceOfPortfolioWithoutAccountsIsZero stamp: 'TS 5/31/2023 15:54:51'!
+PASSED!
+
+!testRun: #PortfolioTest #test02BalanceOfPortfolioWithAccountsIsSumOfAccountsBalance stamp: 'TS 5/31/2023 15:54:51'!
+PASSED!
+
+!testRun: #PortfolioTest #test03BalanceOfPortfolioIsCalculatedRecursivelyOnPortfolios stamp: 'TS 5/31/2023 15:54:51'!
+PASSED!
+
+!testRun: #PortfolioTest #test04PortfolioWithoutAccountsHasNoRegisteredTransaction stamp: 'TS 5/31/2023 15:54:51'!
+PASSED!
+
+!testRun: #PortfolioTest #test05PortfolioHasRegisteredItsAccountsTransactions stamp: 'TS 5/31/2023 15:54:51'!
+PASSED!
+
+!testRun: #PortfolioTest #test06PortfolioLooksForRegisteredTransactionsRecursively stamp: 'TS 5/31/2023 15:54:51'!
+PASSED!
+
+!testRun: #PortfolioTest #test07PortfolioHasNoTransactionWhenHasNoAccounts stamp: 'TS 5/31/2023 15:54:51'!
+PASSED!
+
+!testRun: #PortfolioTest #test08PortfolioTransactionsIncludesAllItsAccountsTransactions stamp: 'TS 5/31/2023 15:54:51'!
+PASSED!
+
+!testRun: #PortfolioTest #test09PortfolioTransactionsAreCalculatedRecursively stamp: 'TS 5/31/2023 15:54:51'!
+PASSED!
+
+!testRun: #PortfolioTest #test10PortfolioCanNotIncludeTheSameAccountMoreThanOnce stamp: 'TS 5/31/2023 15:54:51'!
+PASSED!
+
+!testRun: #PortfolioTest #test11PortfolioCanNotIncludeAccountOfItsPortfolios stamp: 'TS 5/31/2023 15:54:51'!
+PASSED!
+
+!testRun: #PortfolioTest #test12PortfolioCanNotIncludeItself stamp: 'TS 5/31/2023 15:54:51'!
+PASSED!
+
+!testRun: #PortfolioTest #test13ComposedPortfolioCanNotHaveParentPortfolioAccount stamp: 'TS 5/31/2023 15:54:51'!
+PASSED!
+
+!testRun: #PortfolioTest #test14ComposedPortfolioCanNotHaveAccountOfAnyRootParentRecursively stamp: 'TS 5/31/2023 15:54:51'!
+PASSED!
+
+!testRun: #PortfolioTest #test15PortfolioCanNotIncludeAnyOfTheComposedAccountOfPortfolioToAdd stamp: 'TS 5/31/2023 15:54:51'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test01ReceptiveAccountHaveZeroAsBalanceWhenCreated stamp: 'TS 5/31/2023 15:54:51'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test02DepositIncreasesBalanceOnTransactionValue stamp: 'TS 5/31/2023 15:54:51'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test03WithdrawDecreasesBalanceOnTransactionValue stamp: 'TS 5/31/2023 15:54:51'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test04WithdrawValueMustBePositive stamp: 'TS 5/31/2023 15:54:51'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test05ReceptiveAccountKnowsRegisteredTransactions stamp: 'TS 5/31/2023 15:54:51'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test06ReceptiveAccountDoNotKnowNotRegisteredTransactions stamp: 'TS 5/31/2023 15:54:51'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test07AccountKnowsItsTransactions stamp: 'TS 5/31/2023 15:54:51'!
+PASSED!
+
+!testRun: #TransactionReportTest #test01AccountSummaryOfEmptyAccountOnlyContainsBalanceLine stamp: 'TS 5/31/2023 15:54:51'!
+PASSED!
+
+!testRun: #TransactionReportTest #test02AccountSummaryContainsDepositTransactions stamp: 'TS 5/31/2023 15:54:51'!
+PASSED!
+
+!testRun: #TransactionReportTest #test03AccountSummaryContainsWithdrawTransactions stamp: 'TS 5/31/2023 15:54:51'!
+PASSED!
+
+!testRun: #TransactionReportTest #test04AccountSummaryContainsTransfers stamp: 'TS 5/31/2023 15:54:51'!
+PASSED!
+
+!testRun: #TransactionReportTest #test05TransferNetOfAccountWithNoTransfersIsZero stamp: 'TS 5/31/2023 15:54:51'!
+PASSED!
+
+!testRun: #TransactionReportTest #test06TransferNetOfReceivingAccountIsCorrect stamp: 'TS 5/31/2023 15:54:51'!
+PASSED!
+
+!testRun: #TransactionReportTest #test07TransferNetOfSendingAccountIsCorrect stamp: 'TS 5/31/2023 15:54:51'!
+PASSED!
+
+!testRun: #TransactionReportTest #test08PortfoliosHaveCorrectAccountSummaryAndTransferNet stamp: 'TS 5/31/2023 15:54:51'!
+PASSED!
+
+!testRun: #TransferTest #test01TransferRemovesBalanceFromSenderAndAddsItToReceiver stamp: 'TS 5/31/2023 15:54:51'!
+PASSED!
+
+!testRun: #TransferTest #test02TransferLegsAreRegisteredOnParticipantAccounts stamp: 'TS 5/31/2023 15:54:51'!
+PASSED!
+
+!testRun: #TransferTest #test03TransferLegsCanAccessTransfer stamp: 'TS 5/31/2023 15:54:51'!
+PASSED!
+
+!testRun: #TransferTest #test04TransferLegsHasCorrectTransferValue stamp: 'TS 5/31/2023 15:54:51'!
+PASSED!
+
+!testRun: #TransferTest #test05CantCreateATransferBetweenTheSameAccount stamp: 'TS 5/31/2023 15:54:51'!
+PASSED!
+
+!testRun: #TransferTest #test06TransferValueMustBePositive stamp: 'TS 5/31/2023 15:54:51'!
+PASSED!
+!AccountSummary methodsFor: 'report' stamp: 'TS 5/31/2023 15:55:15' prior: 50627441!
+lines
+
+	reportLines := OrderedCollection new.
+
+	account onTransactionDoOperationOf: self.
+
+	self addLine: 'Balance = ', account balance asString.
+	
+	^ reportLines! !
+
+!testRun: #TransactionReportTest #test01AccountSummaryOfEmptyAccountOnlyContainsBalanceLine stamp: 'TS 5/31/2023 15:55:16'!
+PASSED!
+
+!testRun: #TransactionReportTest #test02AccountSummaryContainsDepositTransactions stamp: 'TS 5/31/2023 15:55:16'!
+PASSED!
+
+!testRun: #TransactionReportTest #test03AccountSummaryContainsWithdrawTransactions stamp: 'TS 5/31/2023 15:55:16'!
+PASSED!
+
+!testRun: #TransactionReportTest #test04AccountSummaryContainsTransfers stamp: 'TS 5/31/2023 15:55:16'!
+PASSED!
+
+!testRun: #TransactionReportTest #test05TransferNetOfAccountWithNoTransfersIsZero stamp: 'TS 5/31/2023 15:55:16'!
+PASSED!
+
+!testRun: #TransactionReportTest #test06TransferNetOfReceivingAccountIsCorrect stamp: 'TS 5/31/2023 15:55:16'!
+PASSED!
+
+!testRun: #TransactionReportTest #test07TransferNetOfSendingAccountIsCorrect stamp: 'TS 5/31/2023 15:55:16'!
+PASSED!
+
+!testRun: #TransactionReportTest #test08PortfoliosHaveCorrectAccountSummaryAndTransferNet stamp: 'TS 5/31/2023 15:55:16'!
+PASSED!
+!TransferNet methodsFor: 'report' stamp: 'TS 5/31/2023 15:55:23' prior: 50630234 overrides: 16902254!
+value
+	
+	netValue := 0.
+
+	account onTransactionDoOperationOf: self.
+
+	^ netValue! !
+
+!testRun: #TransactionReportTest #test01AccountSummaryOfEmptyAccountOnlyContainsBalanceLine stamp: 'TS 5/31/2023 15:55:26'!
+PASSED!
+
+!testRun: #TransactionReportTest #test02AccountSummaryContainsDepositTransactions stamp: 'TS 5/31/2023 15:55:26'!
+PASSED!
+
+!testRun: #TransactionReportTest #test03AccountSummaryContainsWithdrawTransactions stamp: 'TS 5/31/2023 15:55:26'!
+PASSED!
+
+!testRun: #TransactionReportTest #test04AccountSummaryContainsTransfers stamp: 'TS 5/31/2023 15:55:26'!
+PASSED!
+
+!testRun: #TransactionReportTest #test05TransferNetOfAccountWithNoTransfersIsZero stamp: 'TS 5/31/2023 15:55:26'!
+PASSED!
+
+!testRun: #TransactionReportTest #test06TransferNetOfReceivingAccountIsCorrect stamp: 'TS 5/31/2023 15:55:26'!
+PASSED!
+
+!testRun: #TransactionReportTest #test07TransferNetOfSendingAccountIsCorrect stamp: 'TS 5/31/2023 15:55:26'!
+PASSED!
+
+!testRun: #TransactionReportTest #test08PortfoliosHaveCorrectAccountSummaryAndTransferNet stamp: 'TS 5/31/2023 15:55:26'!
+PASSED!
+
+!testRun: #TransactionReportTest #test01AccountSummaryOfEmptyAccountOnlyContainsBalanceLine stamp: 'TS 5/31/2023 15:55:27'!
+PASSED!
+
+!testRun: #TransactionReportTest #test02AccountSummaryContainsDepositTransactions stamp: 'TS 5/31/2023 15:55:27'!
+PASSED!
+
+!testRun: #TransactionReportTest #test03AccountSummaryContainsWithdrawTransactions stamp: 'TS 5/31/2023 15:55:27'!
+PASSED!
+
+!testRun: #TransactionReportTest #test04AccountSummaryContainsTransfers stamp: 'TS 5/31/2023 15:55:27'!
+PASSED!
+
+!testRun: #TransactionReportTest #test05TransferNetOfAccountWithNoTransfersIsZero stamp: 'TS 5/31/2023 15:55:27'!
+PASSED!
+
+!testRun: #TransactionReportTest #test06TransferNetOfReceivingAccountIsCorrect stamp: 'TS 5/31/2023 15:55:27'!
+PASSED!
+
+!testRun: #TransactionReportTest #test07TransferNetOfSendingAccountIsCorrect stamp: 'TS 5/31/2023 15:55:27'!
+PASSED!
+
+!testRun: #TransactionReportTest #test08PortfoliosHaveCorrectAccountSummaryAndTransferNet stamp: 'TS 5/31/2023 15:55:27'!
+PASSED!
+
+!testRun: #TransactionReportTest #test01AccountSummaryOfEmptyAccountOnlyContainsBalanceLine stamp: 'TS 5/31/2023 15:55:34'!
+PASSED!
+
+!testRun: #TransactionReportTest #test02AccountSummaryContainsDepositTransactions stamp: 'TS 5/31/2023 15:55:34'!
+PASSED!
+
+!testRun: #TransactionReportTest #test03AccountSummaryContainsWithdrawTransactions stamp: 'TS 5/31/2023 15:55:34'!
+PASSED!
+
+!testRun: #TransactionReportTest #test04AccountSummaryContainsTransfers stamp: 'TS 5/31/2023 15:55:34'!
+PASSED!
+
+!testRun: #TransactionReportTest #test05TransferNetOfAccountWithNoTransfersIsZero stamp: 'TS 5/31/2023 15:55:34'!
+PASSED!
+
+!testRun: #TransactionReportTest #test06TransferNetOfReceivingAccountIsCorrect stamp: 'TS 5/31/2023 15:55:34'!
+PASSED!
+
+!testRun: #TransactionReportTest #test07TransferNetOfSendingAccountIsCorrect stamp: 'TS 5/31/2023 15:55:34'!
+PASSED!
+
+!testRun: #TransactionReportTest #test08PortfoliosHaveCorrectAccountSummaryAndTransferNet stamp: 'TS 5/31/2023 15:55:34'!
+PASSED!
+!TransferLeg methodsFor: 'accessing' stamp: 'TS 5/31/2023 15:55:47' prior: 50625308!
+transfer
+
+	^ transfer! !
+Esta clase representa una operación que se ejecuta sobre todo el árbol de cuentas de un Portfolio!
+Esta clase representa una operación cuyo resultado es una serie de líneas que utiliza indentación para visualizar la estructura del árbol de un Portfolio.!
+
+----SNAPSHOT----(31 May 2023 15:55:55) CuisUniversity-5832.image priorSource: 9665749!
+Esta clase representa una operación que se ejecuta sobre todo el árbol de cuentas de un Portfolio!
+Esta clase representa una operación cuyo resultado es una serie de líneas que utiliza indentación para visualizar la estructura del árbol de un Portfolio.!
+
+----QUIT----(31 May 2023 15:56:22) CuisUniversity-5832.image priorSource: 9697784!

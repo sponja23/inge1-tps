@@ -745,6 +745,11 @@ doOperationOf: anAccountOperation
 
 	self subclassResponsibility! !
 
+!Account methodsFor: 'operation' stamp: 'TS 5/31/2023 15:54:13'!
+onTransactionDoOperationOf: aTransactionOperation
+
+	self onTransactionsDo: [:aTransaction | aTransaction doOperationOf: aTransactionOperation ]! !
+
 
 !Account methodsFor: 'accessing' stamp: 'TS 5/30/2023 17:08:20'!
 accountName
@@ -897,6 +902,11 @@ doOperationOf: anAccountOperation
 
 	anAccountOperation operateOnPortfolio: self! !
 
+!Portfolio methodsFor: 'operation' stamp: 'TS 5/31/2023 15:53:25'!
+onAccountsDoOperationOf: anAccountOperation
+
+	accounts do: [:anAccount | anAccount doOperationOf: anAccountOperation ]! !
+
 "-- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- "!
 
 !classDefinition: 'Portfolio class' category: 'Portfolio-Solucion'!
@@ -1019,6 +1029,9 @@ Object subclass: #AccountOperation
 	classVariableNames: ''
 	poolDictionaries: ''
 	category: 'Portfolio-Solucion'!
+!AccountOperation commentStamp: '<historical>' prior: 0!
+Esta clase representa una operación que se ejecuta sobre todo el árbol de cuentas de un Portfolio!
+
 
 !AccountOperation methodsFor: 'operation' stamp: 'TS 5/30/2023 23:56:33'!
 operateOnPortfolio: aPortfolio
@@ -1031,111 +1044,28 @@ operateOnReceptiveAccount: aReceptiveAccount
 	self subclassResponsibility! !
 
 
-!classDefinition: #PortfolioStructureSummary category: 'Portfolio-Solucion'!
-AccountOperation subclass: #PortfolioStructureSummary
-	instanceVariableNames: 'portfolio reportLines currentIndentationLevel'
+!classDefinition: #PortfolioTreeViewSummary category: 'Portfolio-Solucion'!
+AccountOperation subclass: #PortfolioTreeViewSummary
+	instanceVariableNames: 'reportLines currentIndentationLevel portfolio'
 	classVariableNames: ''
 	poolDictionaries: ''
 	category: 'Portfolio-Solucion'!
-
-!PortfolioStructureSummary methodsFor: 'initialization' stamp: 'TS 5/30/2023 16:00:27'!
-initializeFor: aPortfolio 
-
-	portfolio := aPortfolio! !
+!PortfolioTreeViewSummary commentStamp: '<historical>' prior: 0!
+Esta clase representa una operación cuyo resultado es una serie de líneas que utiliza indentación para visualizar la estructura del árbol de un Portfolio.!
 
 
-!PortfolioStructureSummary methodsFor: 'report' stamp: 'TS 5/30/2023 23:53:23'!
-lines
-
-	reportLines := OrderedCollection new.
-	currentIndentationLevel := 0.
-
-	self operateOnPortfolio: portfolio.
-
-	^ reportLines! !
-
-
-!PortfolioStructureSummary methodsFor: 'operation' stamp: 'TS 5/31/2023 00:43:42'!
-operateOnPortfolio: aPortfolio 
-
-	self addLine: aPortfolio accountName.
-
-	currentIndentationLevel := currentIndentationLevel + 1.
-
-	aPortfolio onAccountsDo: [:anAccount | anAccount doOperationOf: self ].
-
-	currentIndentationLevel := currentIndentationLevel - 1.! !
-
-!PortfolioStructureSummary methodsFor: 'operation' stamp: 'TS 5/30/2023 23:52:59'!
-operateOnReceptiveAccount: aReceptiveAccount
-
-	self addLine: aReceptiveAccount accountName
-! !
-
-
-!PortfolioStructureSummary methodsFor: 'indentation' stamp: 'TS 5/30/2023 17:02:06'!
+!PortfolioTreeViewSummary methodsFor: 'indentation' stamp: 'TS 5/31/2023 15:39:54'!
 addLine: aLine
 
-	self addLine: aLine withIndentationLevel: currentIndentationLevel
+	reportLines addLast: (self getTabsForIndentationLevel), aLine
 ! !
 
-!PortfolioStructureSummary methodsFor: 'indentation' stamp: 'TS 5/30/2023 16:42:21'!
-addLine: aLine withIndentationLevel: anIndentationLevel
-
-	reportLines addLast: (self getTabsForIndentationLevel: anIndentationLevel), aLine! !
-
-!PortfolioStructureSummary methodsFor: 'indentation' stamp: 'TS 5/30/2023 16:40:27'!
-getTabsForIndentationLevel: anIndentationLevel
-
-	^ String new: anIndentationLevel withAll: Character tab! !
-
-"-- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- "!
-
-!classDefinition: 'PortfolioStructureSummary class' category: 'Portfolio-Solucion'!
-PortfolioStructureSummary class
-	instanceVariableNames: ''!
-
-!PortfolioStructureSummary class methodsFor: 'instance creation' stamp: 'TS 5/30/2023 16:00:12'!
-for: aPortfolio 
-
-	^self new initializeFor: aPortfolio ! !
-
-
-!classDefinition: #PortfolioTransactionSummary category: 'Portfolio-Solucion'!
-AccountOperation subclass: #PortfolioTransactionSummary
-	instanceVariableNames: 'portfolio reportLines currentIndentationLevel'
-	classVariableNames: ''
-	poolDictionaries: ''
-	category: 'Portfolio-Solucion'!
-
-!PortfolioTransactionSummary methodsFor: 'initialization' stamp: 'TS 5/31/2023 00:04:25'!
-initializeFor: aPortfolio 
-
-	portfolio := aPortfolio.! !
-
-
-!PortfolioTransactionSummary methodsFor: 'report' stamp: 'TS 5/31/2023 00:41:46'!
-lines
-
-	reportLines := OrderedCollection new.
-	currentIndentationLevel := 0.
-	
-	self operateOnPortfolio: portfolio.
-
-	^ reportLines! !
-
-
-!PortfolioTransactionSummary methodsFor: 'indentation' stamp: 'TS 5/31/2023 00:34:56'!
-addLine: aLine
-
-	reportLines addLast: (self currentIndentation), aLine! !
-
-!PortfolioTransactionSummary methodsFor: 'indentation' stamp: 'TS 5/31/2023 00:40:28'!
-currentIndentation
+!PortfolioTreeViewSummary methodsFor: 'indentation' stamp: 'TS 5/31/2023 15:39:59'!
+getTabsForIndentationLevel
 
 	^ String new: currentIndentationLevel withAll: Character tab! !
 
-!PortfolioTransactionSummary methodsFor: 'indentation' stamp: 'TS 5/31/2023 00:40:28'!
+!PortfolioTreeViewSummary methodsFor: 'indentation' stamp: 'TS 5/31/2023 15:40:41'!
 withIncreasedIndentationLevelDo: aBlock	
 
 	currentIndentationLevel := currentIndentationLevel + 1.
@@ -1145,36 +1075,85 @@ withIncreasedIndentationLevelDo: aBlock
 	currentIndentationLevel := currentIndentationLevel - 1.! !
 
 
-!PortfolioTransactionSummary methodsFor: 'operation' stamp: 'TS 5/31/2023 00:42:28'!
-operateOnPortfolio: aPortfolio
+!PortfolioTreeViewSummary methodsFor: 'report' stamp: 'TS 5/31/2023 15:46:38'!
+lines
 
-	self addLine: aPortfolio accountName.
-	
-	self withIncreasedIndentationLevelDo: [
-		aPortfolio onAccountsDo: [:anAccount | anAccount doOperationOf: self ].
-	]! !
+	reportLines := OrderedCollection new.
+	currentIndentationLevel := 0.
 
-!PortfolioTransactionSummary methodsFor: 'operation' stamp: 'TS 5/31/2023 00:41:57'!
-operateOnReceptiveAccount: aReceptiveAccount
+	portfolio doOperationOf: self.
 
-	self addLine: aReceptiveAccount accountName.
+	^ reportLines! !
 
-	self withIncreasedIndentationLevelDo: [
-		(AccountSummary for: aReceptiveAccount) lines do: [:aLine |
-			self addLine: aLine
-		]
-	]! !
+
+!PortfolioTreeViewSummary methodsFor: 'initialization' stamp: 'TS 5/31/2023 15:41:17'!
+initializeFor: aPortfolio 
+
+	portfolio := aPortfolio! !
+
+
+!PortfolioTreeViewSummary methodsFor: 'operation' stamp: 'TS 5/31/2023 15:42:42'!
+addAccountName: anAccount
+
+	self addLine: anAccount accountName.
+! !
 
 "-- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- "!
 
-!classDefinition: 'PortfolioTransactionSummary class' category: 'Portfolio-Solucion'!
-PortfolioTransactionSummary class
+!classDefinition: 'PortfolioTreeViewSummary class' category: 'Portfolio-Solucion'!
+PortfolioTreeViewSummary class
 	instanceVariableNames: ''!
 
-!PortfolioTransactionSummary class methodsFor: 'instance creation' stamp: 'TS 5/31/2023 00:04:16'!
+!PortfolioTreeViewSummary class methodsFor: 'instance creation' stamp: 'TS 5/31/2023 15:41:22'!
 for: aPortfolio 
 
-	^self new initializeFor: aPortfolio! !
+	^self new initializeFor: aPortfolio ! !
+
+
+!classDefinition: #PortfolioStructureSummary category: 'Portfolio-Solucion'!
+PortfolioTreeViewSummary subclass: #PortfolioStructureSummary
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Portfolio-Solucion'!
+
+!PortfolioStructureSummary methodsFor: 'operation' stamp: 'TS 5/31/2023 15:54:38'!
+operateOnPortfolio: aPortfolio 
+
+	self addAccountName: aPortfolio.
+
+	self withIncreasedIndentationLevelDo: [ aPortfolio onAccountsDoOperationOf: self ]! !
+
+!PortfolioStructureSummary methodsFor: 'operation' stamp: 'TS 5/31/2023 15:43:16'!
+operateOnReceptiveAccount: aReceptiveAccount
+
+	self addAccountName: aReceptiveAccount.
+! !
+
+
+!classDefinition: #PortfolioTransactionSummary category: 'Portfolio-Solucion'!
+PortfolioTreeViewSummary subclass: #PortfolioTransactionSummary
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Portfolio-Solucion'!
+
+!PortfolioTransactionSummary methodsFor: 'operation' stamp: 'TS 5/31/2023 15:54:47'!
+operateOnPortfolio: aPortfolio
+
+	self addAccountName: aPortfolio.
+	
+	self withIncreasedIndentationLevelDo: [ aPortfolio onAccountsDoOperationOf: self ]
+! !
+
+!PortfolioTransactionSummary methodsFor: 'operation' stamp: 'TS 5/31/2023 15:49:35'!
+operateOnReceptiveAccount: aReceptiveAccount
+
+	self addAccountName: aReceptiveAccount.
+
+	self withIncreasedIndentationLevelDo: [
+		(AccountSummary for: aReceptiveAccount) lines do: [:aLine | self addLine: aLine ]
+	]! !
 
 
 !classDefinition: #AccountTransaction category: 'Portfolio-Solucion'!
@@ -1267,10 +1246,10 @@ initializeFor: aTransfer
 	transfer := aTransfer! !
 
 
-!TransferLeg methodsFor: 'accessing' stamp: 'SMG 5/27/2023 20:22:36'!
+!TransferLeg methodsFor: 'accessing' stamp: 'TS 5/31/2023 15:55:47'!
 transfer
 
-	^transfer! !
+	^ transfer! !
 
 
 !TransferLeg methodsFor: 'value' stamp: 'SMG 5/27/2023 20:32:43'!
@@ -1443,14 +1422,12 @@ addLine: aString
 
 	reportLines addLast: aString! !
 
-!AccountSummary methodsFor: 'report' stamp: 'TS 5/30/2023 15:46:42'!
+!AccountSummary methodsFor: 'report' stamp: 'TS 5/31/2023 15:55:15'!
 lines
 
 	reportLines := OrderedCollection new.
 
-	account onTransactionsDo: [:aTransaction |
-		aTransaction doOperationOf: self
-	].
+	account onTransactionDoOperationOf: self.
 
 	self addLine: 'Balance = ', account balance asString.
 	
@@ -1496,14 +1473,12 @@ TransactionOperation subclass: #TransferNet
 	poolDictionaries: ''
 	category: 'Portfolio-Solucion'!
 
-!TransferNet methodsFor: 'report' stamp: 'TS 5/30/2023 23:50:03'!
+!TransferNet methodsFor: 'report' stamp: 'TS 5/31/2023 15:55:23'!
 value
 	
 	netValue := 0.
 
-	account onTransactionsDo: [:aTransaction | 
-		aTransaction doOperationOf: self
-	].
+	account onTransactionDoOperationOf: self.
 
 	^ netValue! !
 
