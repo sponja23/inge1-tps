@@ -1,0 +1,1063 @@
+
+
+----QUIT----(30 May 2023 00:05:32) CuisUniversity-5832.image priorSource: 4928100!
+
+----STARTUP---- (30 May 2023 00:05:33) as /Users/hernan/Documents/Cuis/5.0-64Bits/Cuis-University-Installer/CuisUniversity-5832.image!
+
+
+----QUIT----(30 May 2023 00:05:33) CuisUniversity-5832.image priorSource: 9366537!
+
+----STARTUP---- (6 June 2023 16:25:17) as /home/sponja/Temp/Cuises/cursada3/CuisUniversity-5832.image!
+
+
+TestCase subclass: #CartTest
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'TusLibros'!
+
+!classDefinition: #CartTest category: 'TusLibros' stamp: 'TS 6/6/2023 16:27:43'!
+TestCase subclass: #CartTest
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'TusLibros'!
+
+!classDefinition: #CartTest category: 'TusLibros' stamp: 'TS 6/6/2023 16:28:45'!
+TestCase subclass: #CartTest
+	instanceVariableNames: 'cart'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'TusLibros'!
+
+TestCase subclass: #CartTest
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'TusLibros'!
+
+!classDefinition: #CartTest category: 'TusLibros' stamp: 'TS 6/6/2023 16:29:45'!
+TestCase subclass: #CartTest
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'TusLibros'!
+
+!classDefinition: #Cart category: 'TusLibros' stamp: 'TS 6/6/2023 16:30:50'!
+Object subclass: #Cart
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'TusLibros'!
+!CartTest methodsFor: 'no messages' stamp: 'TS 6/6/2023 16:30:45'!
+test01NewCartStartsOutEmpty
+
+	| cart |
+	cart := Cart new.
+	
+	self assert: cart items isEmpty! !
+!CartTest methodsFor: 'as yet unclassified' stamp: 'TS 6/6/2023 16:31:12' prior: 50624401!
+test01NewCartStartsOutEmpty
+
+	| cart |
+	cart := Cart new.
+	
+	self assert: cart items isEmpty! !
+
+!testRun: #CartTest #test01NewCartStartsOutEmpty stamp: 'TS 6/6/2023 16:31:18'!
+ERROR!
+!Cart methodsFor: 'accessing' stamp: 'TS 6/6/2023 16:32:06'!
+items
+	self shouldBeImplemented.! !
+
+!testRun: #CartTest #test01NewCartStartsOutEmpty stamp: 'TS 6/6/2023 16:32:14'!
+ERROR!
+!Cart methodsFor: 'accessing' stamp: 'TS 6/6/2023 16:32:25' prior: 50624415!
+items
+
+	^ #()! !
+
+!testRun: #CartTest #test01NewCartStartsOutEmpty stamp: 'TS 6/6/2023 16:32:25'!
+PASSED!
+
+!testRun: #CartTest #test01NewCartStartsOutEmpty stamp: 'TS 6/6/2023 16:32:25'!
+PASSED!
+!CartTest methodsFor: 'tests' stamp: 'TS 6/6/2023 16:34:54' prior: 50624407!
+test01NewCartStartsOutEmpty
+
+	| cart |
+	cart := Cart new.
+	
+	self assert: cart listItems isEmpty! !
+!Cart methodsFor: 'accessing' stamp: 'TS 6/6/2023 16:35:03'!
+listItems
+
+	^ #()! !
+
+!methodRemoval: Cart #items stamp: 'TS 6/6/2023 16:35:03'!
+items
+
+	^ #()!
+
+!testRun: #CartTest #test01NewCartStartsOutEmpty stamp: 'TS 6/6/2023 16:35:06'!
+PASSED!
+
+!classDefinition: #BookInventory category: 'TusLibros' stamp: 'TS 6/6/2023 16:52:25'!
+Object subclass: #BookInventory
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'TusLibros'!
+!CartTest methodsFor: 'tests' stamp: 'TS 6/6/2023 16:52:20'!
+test02ValidISBNsCanBeAddedToCart
+
+	| cart bookInventory isbn |
+	isbn := '0321146530'.
+	bookInventory := BookInventory new: isbn.
+	cart := Cart for: bookInventory.
+
+	self assert: cart listItems isEmpty! !
+!CartTest methodsFor: 'tests' stamp: 'TS 6/6/2023 16:58:36' prior: 50624452!
+test02ValidISBNsCanBeAddedToCart
+
+	| cart bookInventory isbn |
+	isbn := '0321146530'.
+	bookInventory := BookInventory with: { isbn }.
+	cart := Cart for: bookInventory.
+
+	cart add: 1 of: isbn.
+
+	self assert: cart listItems includes: isbn! !
+
+!testRun: #CartTest #test02ValidISBNsCanBeAddedToCart stamp: 'TS 6/6/2023 16:58:46'!
+ERROR!
+!BookInventory class methodsFor: 'instance creation' stamp: 'TS 6/6/2023 16:58:49'!
+with: anArray 
+	"DO NOT FORGET TO RENAME COLLABORATORS AND REMOVE THIS COMMENT!!!!"
+	self shouldBeImplemented.
+	^self new initializeWith: anArray ! !
+!BookInventory class methodsFor: 'instance creation' stamp: 'TS 6/6/2023 16:59:15' prior: 50624475!
+with: aCollectionOfISBNs 
+
+	^self new initializeWith: aCollectionOfISBNs ! !
+
+!testRun: #CartTest #test02ValidISBNsCanBeAddedToCart stamp: 'TS 6/6/2023 16:59:16'!
+ERROR!
+
+!classDefinition: #BookInventory category: 'TusLibros' stamp: 'TS 6/6/2023 16:59:24'!
+Object subclass: #BookInventory
+	instanceVariableNames: 'collectionOfISBNs'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'TusLibros'!
+!BookInventory methodsFor: 'initialization' stamp: 'TS 6/6/2023 16:59:24'!
+initializeWith: aCollectionOfISBNs 
+	self shouldBeImplemented.
+	collectionOfISBNs := aCollectionOfISBNs.! !
+!BookInventory methodsFor: 'initialization' stamp: 'TS 6/6/2023 16:59:35' prior: 50624498!
+initializeWith: aCollectionOfISBNs 
+
+	collectionOfISBNs := aCollectionOfISBNs.! !
+
+!classDefinition: #BookInventory category: 'TusLibros' stamp: 'TS 6/6/2023 16:59:38'!
+Object subclass: #BookInventory
+	instanceVariableNames: 'items'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'TusLibros'!
+!BookInventory methodsFor: 'as yet unclassified' stamp: 'TS 6/6/2023 16:59:38' prior: 50624505!
+initializeWith: aCollectionOfISBNs 
+
+	items := aCollectionOfISBNs.! !
+
+!testRun: #CartTest #test02ValidISBNsCanBeAddedToCart stamp: 'TS 6/6/2023 16:59:41'!
+ERROR!
+!Cart class methodsFor: 'instance creation' stamp: 'TS 6/6/2023 16:59:47'!
+for: aBookInventory 
+	"DO NOT FORGET TO RENAME COLLABORATORS AND REMOVE THIS COMMENT!!!!"
+	self shouldBeImplemented.
+	^self new initializeFor: aBookInventory ! !
+!Cart class methodsFor: 'instance creation' stamp: 'TS 6/6/2023 16:59:58' prior: 50624526!
+for: anInventory
+
+	^self new initializeFor: anInventory ! !
+
+!testRun: #CartTest #test02ValidISBNsCanBeAddedToCart stamp: 'TS 6/6/2023 16:59:59'!
+ERROR!
+
+!classDefinition: #Cart category: 'TusLibros' stamp: 'TS 6/6/2023 17:00:08'!
+Object subclass: #Cart
+	instanceVariableNames: 'inventory'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'TusLibros'!
+!Cart methodsFor: 'initialization' stamp: 'TS 6/6/2023 17:00:08'!
+initializeFor: anInventory 
+	self shouldBeImplemented.
+	inventory := anInventory.! !
+!Cart methodsFor: 'initialization' stamp: 'TS 6/6/2023 17:00:11' prior: 50624548!
+initializeFor: anInventory 
+
+	inventory := anInventory.! !
+
+!testRun: #CartTest #test02ValidISBNsCanBeAddedToCart stamp: 'TS 6/6/2023 17:00:12'!
+ERROR!
+!Cart methodsFor: 'adding' stamp: 'TS 6/6/2023 17:00:29'!
+add: aRenameMe1 of: isbn 
+	self shouldBeImplemented.! !
+
+----SNAPSHOT----(6 June 2023 17:10:19) CuisUniversity-5832.image priorSource: 9366758!
+
+----QUIT----(6 June 2023 17:11:16) CuisUniversity-5832.image priorSource: 9373271!
+
+----STARTUP---- (7 June 2023 15:21:32) as /home/sponja/Temp/Cuises/cursada3/CuisUniversity-5832.image!
+
+!CartTest methodsFor: 'tests' stamp: 'TS 6/7/2023 15:44:58'!
+test02ValidISBNCanBeAddedToCart
+
+	| cart bookInventory isbn |
+	isbn := '0321146530'.
+	bookInventory := BookInventory with: { isbn }.
+	cart := Cart for: bookInventory.
+
+	cart add: 1 of: isbn.
+
+	self assert: cart listItems includes: isbn! !
+
+!methodRemoval: CartTest #test02ValidISBNsCanBeAddedToCart stamp: 'TS 6/7/2023 15:44:58'!
+test02ValidISBNsCanBeAddedToCart
+
+	| cart bookInventory isbn |
+	isbn := '0321146530'.
+	bookInventory := BookInventory with: { isbn }.
+	cart := Cart for: bookInventory.
+
+	cart add: 1 of: isbn.
+
+	self assert: cart listItems includes: isbn!
+
+!testRun: #CartTest #test02ValidISBNCanBeAddedToCart stamp: 'TS 6/7/2023 15:45:00'!
+ERROR!
+
+!classDefinition: #Cart category: 'TusLibros' stamp: 'TS 6/7/2023 15:45:18'!
+Object subclass: #Cart
+	instanceVariableNames: 'inventory items'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'TusLibros'!
+!Cart methodsFor: 'adding' stamp: 'TS 6/7/2023 15:45:16' prior: 50624561!
+add: aRenameMe1 of: isbn 
+
+	items := { isbn }.! !
+!Cart methodsFor: 'adding' stamp: 'TS 6/7/2023 15:45:21' prior: 50624604!
+add: anAmount of: isbn 
+
+	items := { isbn }.! !
+!Cart methodsFor: 'adding' stamp: 'TS 6/7/2023 15:45:25' prior: 50624608!
+add: anAmount of: anItem 
+
+	items := { anItem }.! !
+
+!testRun: #CartTest #test02ValidISBNCanBeAddedToCart stamp: 'TS 6/7/2023 15:45:26'!
+FAILURE!
+!Cart methodsFor: 'accessing' stamp: 'TS 6/7/2023 15:45:47' prior: 50624437!
+listItems
+
+	^ items! !
+
+!testRun: #CartTest #test02ValidISBNCanBeAddedToCart stamp: 'TS 6/7/2023 15:45:49'!
+PASSED!
+
+!testRun: #CartTest #test01NewCartStartsOutEmpty stamp: 'TS 6/7/2023 15:45:49'!
+ERROR!
+
+!testRun: #CartTest #test02ValidISBNCanBeAddedToCart stamp: 'TS 6/7/2023 15:45:49'!
+PASSED!
+
+!testRun: #CartTest #test01NewCartStartsOutEmpty stamp: 'TS 6/7/2023 15:45:49'!
+ERROR!
+!Cart methodsFor: 'initialization' stamp: 'TS 6/7/2023 15:46:08' prior: 50624554!
+initializeFor: anInventory 
+
+	items := #().
+	inventory := anInventory.! !
+
+!testRun: #CartTest #test01NewCartStartsOutEmpty stamp: 'TS 6/7/2023 15:46:13'!
+ERROR!
+
+!testRun: #CartTest #test02ValidISBNCanBeAddedToCart stamp: 'TS 6/7/2023 15:46:13'!
+PASSED!
+
+!testRun: #CartTest #test01NewCartStartsOutEmpty stamp: 'TS 6/7/2023 15:46:13'!
+ERROR!
+!CartTest methodsFor: 'tests' stamp: 'TS 6/7/2023 15:46:53' prior: 50624431!
+test01NewCartStartsOutEmpty
+
+	| cart |
+	cart := Cart for: nil.
+	
+	self assert: cart listItems isEmpty! !
+
+!testRun: #CartTest #test01NewCartStartsOutEmpty stamp: 'TS 6/7/2023 15:46:56'!
+PASSED!
+
+!testRun: #CartTest #test02ValidISBNCanBeAddedToCart stamp: 'TS 6/7/2023 15:46:56'!
+PASSED!
+!CartTest methodsFor: 'tests' stamp: 'TS 6/7/2023 15:48:27'!
+test03MultipleDifferentISBNsCanBeAddedToCart
+
+	| cart bookInventory isbn1 isbn2 |
+	isbn1 := '0321146530'.
+	isbn2 := '0117841327'.
+	bookInventory := BookInventory with: { isbn1. isbn2 }.
+	cart := Cart for: bookInventory.
+
+	cart add: 1 of: isbn1.
+	cart add: 1 of: isbn2.
+
+	self assert: cart listItems includes: isbn1.
+	self assert: cart listItems includes: isbn2! !
+!CartTest methodsFor: 'tests' stamp: 'TS 6/7/2023 15:48:30' prior: 50624659!
+test03MultipleDifferentISBNsCanBeAddedToCart
+
+	| cart bookInventory isbn1 isbn2 |
+	isbn1 := '0321146530'.
+	isbn2 := '0117841327'.
+	bookInventory := BookInventory with: { isbn1. isbn2 }.
+	cart := Cart for: bookInventory.
+
+	cart add: 1 of: isbn1.
+	cart add: 1 of: isbn2.
+
+	self assert: cart listItems includes: isbn1.
+	self assert: cart listItems includes: isbn2! !
+
+!testRun: #CartTest #test03MultipleDifferentISBNsCanBeAddedToCart stamp: 'TS 6/7/2023 15:48:30'!
+FAILURE!
+!Cart methodsFor: 'adding' stamp: 'TS 6/7/2023 15:48:47' prior: 50624612!
+add: anAmount of: anItem 
+
+	items add: anItem! !
+!Cart methodsFor: 'initialization' stamp: 'TS 6/7/2023 15:48:55' prior: 50624634!
+initializeFor: anInventory 
+
+	items := OrderedCollection new.
+	inventory := anInventory.! !
+
+!testRun: #CartTest #test01NewCartStartsOutEmpty stamp: 'TS 6/7/2023 15:48:57'!
+PASSED!
+
+!testRun: #CartTest #test02ValidISBNCanBeAddedToCart stamp: 'TS 6/7/2023 15:48:57'!
+PASSED!
+
+!testRun: #CartTest #test03MultipleDifferentISBNsCanBeAddedToCart stamp: 'TS 6/7/2023 15:48:57'!
+PASSED!
+!CartTest methodsFor: 'tests' stamp: 'TS 6/7/2023 15:49:09'!
+test03MultipleDifferentValidISBNsCanBeAddedToCart
+
+	| cart bookInventory isbn1 isbn2 |
+	isbn1 := '0321146530'.
+	isbn2 := '0117841327'.
+	bookInventory := BookInventory with: { isbn1. isbn2 }.
+	cart := Cart for: bookInventory.
+
+	cart add: 1 of: isbn1.
+	cart add: 1 of: isbn2.
+
+	self assert: cart listItems includes: isbn1.
+	self assert: cart listItems includes: isbn2! !
+
+!methodRemoval: CartTest #test03MultipleDifferentISBNsCanBeAddedToCart stamp: 'TS 6/7/2023 15:49:09'!
+test03MultipleDifferentISBNsCanBeAddedToCart
+
+	| cart bookInventory isbn1 isbn2 |
+	isbn1 := '0321146530'.
+	isbn2 := '0117841327'.
+	bookInventory := BookInventory with: { isbn1. isbn2 }.
+	cart := Cart for: bookInventory.
+
+	cart add: 1 of: isbn1.
+	cart add: 1 of: isbn2.
+
+	self assert: cart listItems includes: isbn1.
+	self assert: cart listItems includes: isbn2!
+
+!testRun: #CartTest #test03MultipleDifferentValidISBNsCanBeAddedToCart stamp: 'TS 6/7/2023 15:49:12'!
+PASSED!
+
+!testRun: #CartTest #test01NewCartStartsOutEmpty stamp: 'TS 6/7/2023 15:49:12'!
+PASSED!
+
+!testRun: #CartTest #test02ValidISBNCanBeAddedToCart stamp: 'TS 6/7/2023 15:49:12'!
+PASSED!
+
+!testRun: #CartTest #test03MultipleDifferentValidISBNsCanBeAddedToCart stamp: 'TS 6/7/2023 15:49:12'!
+PASSED!
+!CartTest methodsFor: 'tests' stamp: 'TS 6/7/2023 15:49:53'!
+test04MultipleOfTheSameValidISBNCanBeAddedToCart
+
+	| cart bookInventory isbn1 isbn2 |
+	isbn1 := '0321146530'.
+	isbn2 := '0117841327'.
+	bookInventory := BookInventory with: { isbn1. isbn2 }.
+	cart := Cart for: bookInventory.
+
+	cart add: 1 of: isbn1.
+
+	self assert: cart listItems includes: isbn1! !
+!CartTest methodsFor: 'tests' stamp: 'TS 6/7/2023 16:00:42' prior: 50624751!
+test04MultipleOfTheSameValidISBNCanBeAddedToCart
+
+	| cart bookInventory isbn1 |
+	isbn1 := '0321146530'.
+	bookInventory := BookInventory with: { isbn1. isbn1. isbn1. isbn1 }.
+	cart := Cart for: bookInventory.
+
+	cart add: 4 of: isbn1.
+
+	self assert: 4 equals: (cart occurrencesOf: isbn1)! !
+!CartTest methodsFor: 'tests' stamp: 'TS 6/7/2023 16:00:48' prior: 50624763!
+test04MultipleOfTheSameValidISBNCanBeAddedToCart
+
+	| cart bookInventory isbn |
+	isbn := '0321146530'.
+	bookInventory := BookInventory with: { isbn. isbn. isbn. isbn }.
+	cart := Cart for: bookInventory.
+
+	cart add: 4 of: isbn.
+
+	self assert: 4 equals: (cart occurrencesOf: isbn)! !
+
+!testRun: #CartTest #test04MultipleOfTheSameValidISBNCanBeAddedToCart stamp: 'TS 6/7/2023 16:01:02'!
+ERROR!
+!CartTest methodsFor: 'tests' stamp: 'TS 6/7/2023 16:01:09' prior: 50624775!
+test04MultipleOfTheSameValidISBNCanBeAddedToCart
+
+	| cart bookInventory isbn |
+	isbn := '0321146530'.
+	bookInventory := BookInventory with: { isbn. isbn. isbn. isbn }.
+	cart := Cart for: bookInventory.
+
+	cart add: 4 of: isbn.
+
+	self assert: 4 equals: (cart listItems occurrencesOf: isbn)! !
+
+!testRun: #CartTest #test04MultipleOfTheSameValidISBNCanBeAddedToCart stamp: 'TS 6/7/2023 16:01:09'!
+FAILURE!
+!Cart methodsFor: 'adding' stamp: 'TS 6/7/2023 16:01:30' prior: 50624691!
+add: anAmount of: anItem 
+
+	anAmount timesRepeat: [ items add: anItem ]! !
+
+!testRun: #CartTest #test01NewCartStartsOutEmpty stamp: 'TS 6/7/2023 16:01:31'!
+PASSED!
+
+!testRun: #CartTest #test02ValidISBNCanBeAddedToCart stamp: 'TS 6/7/2023 16:01:31'!
+PASSED!
+
+!testRun: #CartTest #test03MultipleDifferentValidISBNsCanBeAddedToCart stamp: 'TS 6/7/2023 16:01:31'!
+PASSED!
+
+!testRun: #CartTest #test04MultipleOfTheSameValidISBNCanBeAddedToCart stamp: 'TS 6/7/2023 16:01:31'!
+PASSED!
+!Cart methodsFor: 'adding' stamp: 'TS 6/7/2023 16:02:13' prior: 50624805!
+add: anAmount of: anItem 
+
+	items add: anAmount withOccurrences: anItem! !
+
+!testRun: #CartTest #test01NewCartStartsOutEmpty stamp: 'TS 6/7/2023 16:02:15'!
+PASSED!
+
+!testRun: #CartTest #test02ValidISBNCanBeAddedToCart stamp: 'TS 6/7/2023 16:02:15'!
+ERROR!
+
+!testRun: #CartTest #test03MultipleDifferentValidISBNsCanBeAddedToCart stamp: 'TS 6/7/2023 16:02:15'!
+ERROR!
+
+!testRun: #CartTest #test04MultipleOfTheSameValidISBNCanBeAddedToCart stamp: 'TS 6/7/2023 16:02:15'!
+ERROR!
+
+!testRun: #CartTest #test02ValidISBNCanBeAddedToCart stamp: 'TS 6/7/2023 16:02:17'!
+ERROR!
+!Cart methodsFor: 'adding' stamp: 'TS 6/7/2023 16:02:31' prior: 50624823!
+add: anAmount of: anItem 
+
+	items add: anItem withOccurrences: anItem! !
+!Cart methodsFor: 'adding' stamp: 'TS 6/7/2023 16:02:34' prior: 50624844!
+add: anAmount of: anItem 
+
+	items add: anItem withOccurrences: anAmount! !
+
+!testRun: #CartTest #test01NewCartStartsOutEmpty stamp: 'TS 6/7/2023 16:02:35'!
+PASSED!
+
+!testRun: #CartTest #test02ValidISBNCanBeAddedToCart stamp: 'TS 6/7/2023 16:02:35'!
+PASSED!
+
+!testRun: #CartTest #test03MultipleDifferentValidISBNsCanBeAddedToCart stamp: 'TS 6/7/2023 16:02:36'!
+PASSED!
+
+!testRun: #CartTest #test04MultipleOfTheSameValidISBNCanBeAddedToCart stamp: 'TS 6/7/2023 16:02:36'!
+PASSED!
+!CartTest methodsFor: 'tests' stamp: 'TS 6/7/2023 16:12:28'!
+test05OutOfStockISBNCantBeAddedToCart
+
+	| cart bookInventory isbn |
+	isbn := '0321146530'.
+	bookInventory := BookInventory with: {}.
+	cart := Cart for: bookInventory.
+
+	self
+		should: [ cart add: 1 of: isbn ]
+		raise: Error - MessageNotUnderstood
+		withMessageText: Cart cantAddInvalidISBN! !
+
+!testRun: #CartTest #test05OutOfStockISBNCantBeAddedToCart stamp: 'TS 6/7/2023 16:12:30'!
+ERROR!
+!Cart class methodsFor: 'error descriptions' stamp: 'TS 6/7/2023 16:12:40'!
+cantAddInvalidISBN
+	self shouldBeImplemented.! !
+!Cart class methodsFor: 'error descriptions' stamp: 'TS 6/7/2023 16:13:04' prior: 50624881!
+cantAddInvalidISBN
+
+	^ 'El ISBN agregado es inválido o está fuera de stock'! !
+!Cart class methodsFor: 'error descriptions' stamp: 'TS 6/7/2023 16:13:23' prior: 50624886!
+cantAddInvalidISBN
+
+	^ 'El ítem está fuera de stock'! !
+
+!testRun: #CartTest #test05OutOfStockISBNCantBeAddedToCart stamp: 'TS 6/7/2023 16:13:24'!
+FAILURE!
+!Cart methodsFor: 'adding' stamp: 'TS 6/7/2023 16:14:22' prior: 50624849!
+add: anAmount of: anItem 
+
+	inventory hasStockOf: anItem ifFalse: [ self error: self class cantAddInvalidISBN ].
+
+	items add: anItem withOccurrences: anAmount! !
+!Cart methodsFor: 'adding' stamp: 'TS 6/7/2023 16:14:28' prior: 50624900!
+add: anAmount of: anItem 
+
+	(inventory hasStockOf: anItem) ifFalse: [ self error: self class cantAddInvalidISBN ].
+
+	items add: anItem withOccurrences: anAmount! !
+!Cart class methodsFor: 'error descriptions' stamp: 'TS 6/7/2023 16:14:43'!
+cantAddInvalidISBNErrorDescription
+
+	^ 'El ítem está fuera de stock'! !
+!Cart methodsFor: 'as yet unclassified' stamp: 'TS 6/7/2023 16:14:43' prior: 50624908!
+add: anAmount of: anItem 
+
+	(inventory hasStockOf: anItem) ifFalse: [ self error: self class cantAddInvalidISBNErrorDescription ].
+
+	items add: anItem withOccurrences: anAmount! !
+!CartTest methodsFor: 'as yet unclassified' stamp: 'TS 6/7/2023 16:14:43' prior: 50624866!
+test05OutOfStockISBNCantBeAddedToCart
+
+	| cart bookInventory isbn |
+	isbn := '0321146530'.
+	bookInventory := BookInventory with: {}.
+	cart := Cart for: bookInventory.
+
+	self
+		should: [ cart add: 1 of: isbn ]
+		raise: Error - MessageNotUnderstood
+		withMessageText: Cart cantAddInvalidISBNErrorDescription! !
+
+!methodRemoval: Cart class #cantAddInvalidISBN stamp: 'TS 6/7/2023 16:14:43'!
+cantAddInvalidISBN
+
+	^ 'El ítem está fuera de stock'!
+
+!testRun: #CartTest #test01NewCartStartsOutEmpty stamp: 'TS 6/7/2023 16:14:47'!
+PASSED!
+
+!testRun: #CartTest #test02ValidISBNCanBeAddedToCart stamp: 'TS 6/7/2023 16:14:47'!
+ERROR!
+
+!testRun: #CartTest #test03MultipleDifferentValidISBNsCanBeAddedToCart stamp: 'TS 6/7/2023 16:14:47'!
+ERROR!
+
+!testRun: #CartTest #test04MultipleOfTheSameValidISBNCanBeAddedToCart stamp: 'TS 6/7/2023 16:14:47'!
+ERROR!
+
+!testRun: #CartTest #test05OutOfStockISBNCantBeAddedToCart stamp: 'TS 6/7/2023 16:14:47'!
+ERROR!
+
+!testRun: #CartTest #test02ValidISBNCanBeAddedToCart stamp: 'TS 6/7/2023 16:14:49'!
+ERROR!
+!BookInventory methodsFor: 'stock' stamp: 'TS 6/7/2023 16:15:09'!
+hasStockOf: anItem 
+	self shouldBeImplemented.! !
+!BookInventory methodsFor: 'stock' stamp: 'TS 6/7/2023 16:15:47' prior: 50624966!
+hasStockOf: anItem 
+
+	items includes: anItem! !
+
+!testRun: #CartTest #test02ValidISBNCanBeAddedToCart stamp: 'TS 6/7/2023 16:15:48'!
+ERROR!
+
+!testRun: #CartTest #test02ValidISBNCanBeAddedToCart stamp: 'TS 6/7/2023 16:15:56'!
+ERROR!
+!BookInventory methodsFor: 'stock' stamp: 'TS 6/7/2023 16:16:02' prior: 50624971!
+hasStockOf: anItem 
+
+	^items includes: anItem! !
+!BookInventory methodsFor: 'stock' stamp: 'TS 6/7/2023 16:16:03' prior: 50624981!
+hasStockOf: anItem 
+
+	^ items includes: anItem! !
+
+!testRun: #CartTest #test01NewCartStartsOutEmpty stamp: 'TS 6/7/2023 16:16:04'!
+PASSED!
+
+!testRun: #CartTest #test02ValidISBNCanBeAddedToCart stamp: 'TS 6/7/2023 16:16:04'!
+PASSED!
+
+!testRun: #CartTest #test03MultipleDifferentValidISBNsCanBeAddedToCart stamp: 'TS 6/7/2023 16:16:04'!
+PASSED!
+
+!testRun: #CartTest #test04MultipleOfTheSameValidISBNCanBeAddedToCart stamp: 'TS 6/7/2023 16:16:04'!
+PASSED!
+
+!testRun: #CartTest #test05OutOfStockISBNCantBeAddedToCart stamp: 'TS 6/7/2023 16:16:04'!
+PASSED!
+!CartTest methodsFor: 'tests' stamp: 'TS 6/7/2023 16:16:20'!
+test05MissingISBNCantBeAddedToCart
+
+	| cart bookInventory isbn |
+	isbn := '0321146530'.
+	bookInventory := BookInventory with: {}.
+	cart := Cart for: bookInventory.
+
+	self
+		should: [ cart add: 1 of: isbn ]
+		raise: Error - MessageNotUnderstood
+		withMessageText: Cart cantAddInvalidISBNErrorDescription! !
+
+!methodRemoval: CartTest #test05OutOfStockISBNCantBeAddedToCart stamp: 'TS 6/7/2023 16:16:20'!
+test05OutOfStockISBNCantBeAddedToCart
+
+	| cart bookInventory isbn |
+	isbn := '0321146530'.
+	bookInventory := BookInventory with: {}.
+	cart := Cart for: bookInventory.
+
+	self
+		should: [ cart add: 1 of: isbn ]
+		raise: Error - MessageNotUnderstood
+		withMessageText: Cart cantAddInvalidISBNErrorDescription!
+
+!testRun: #CartTest #test05MissingISBNCantBeAddedToCart stamp: 'TS 6/7/2023 16:17:02'!
+PASSED!
+
+!testRun: #CartTest #test01NewCartStartsOutEmpty stamp: 'TS 6/7/2023 16:17:02'!
+PASSED!
+
+!testRun: #CartTest #test02ValidISBNCanBeAddedToCart stamp: 'TS 6/7/2023 16:17:02'!
+PASSED!
+
+!testRun: #CartTest #test03MultipleDifferentValidISBNsCanBeAddedToCart stamp: 'TS 6/7/2023 16:17:02'!
+PASSED!
+
+!testRun: #CartTest #test04MultipleOfTheSameValidISBNCanBeAddedToCart stamp: 'TS 6/7/2023 16:17:02'!
+PASSED!
+
+!testRun: #CartTest #test05MissingISBNCantBeAddedToCart stamp: 'TS 6/7/2023 16:17:02'!
+PASSED!
+!CartTest methodsFor: 'tests' stamp: 'TS 6/7/2023 16:17:15' prior: 50625006!
+test05MissingISBNCantBeAddedToCart
+
+	| cart bookInventory isbn |
+	isbn := '0321146530'.
+	bookInventory := BookInventory with: {}.
+	cart := Cart for: bookInventory.
+
+	self
+		should: [ cart add: 1 of: isbn ]
+		raise: Error - MessageNotUnderstood
+		withMessageText: BookInventory missingISBNErrorDescription! !
+
+!methodRemoval: Cart class #cantAddInvalidISBNErrorDescription stamp: 'TS 6/7/2023 16:17:21'!
+cantAddInvalidISBNErrorDescription
+
+	^ 'El ítem está fuera de stock'!
+
+!testRun: #CartTest #test01NewCartStartsOutEmpty stamp: 'TS 6/7/2023 16:17:22'!
+PASSED!
+
+!testRun: #CartTest #test02ValidISBNCanBeAddedToCart stamp: 'TS 6/7/2023 16:17:22'!
+PASSED!
+
+!testRun: #CartTest #test03MultipleDifferentValidISBNsCanBeAddedToCart stamp: 'TS 6/7/2023 16:17:22'!
+PASSED!
+
+!testRun: #CartTest #test04MultipleOfTheSameValidISBNCanBeAddedToCart stamp: 'TS 6/7/2023 16:17:22'!
+PASSED!
+
+!testRun: #CartTest #test05MissingISBNCantBeAddedToCart stamp: 'TS 6/7/2023 16:17:22'!
+ERROR!
+
+!testRun: #CartTest #test05MissingISBNCantBeAddedToCart stamp: 'TS 6/7/2023 16:17:22'!
+ERROR!
+!BookInventory class methodsFor: 'error descriptions' stamp: 'TS 6/7/2023 16:17:32'!
+missingISBNErrorDescription
+	self shouldBeImplemented.! !
+!BookInventory class methodsFor: 'error descriptions' stamp: 'TS 6/7/2023 16:17:56' prior: 50625087!
+missingISBNErrorDescription
+
+	^ 'El ISBN no se encuentra en el inventario'! !
+
+!testRun: #CartTest #test05MissingISBNCantBeAddedToCart stamp: 'TS 6/7/2023 16:17:56'!
+ERROR!
+!Cart methodsFor: 'adding' stamp: 'TS 6/7/2023 16:18:26' prior: 50624922!
+add: anAmount of: anItem 
+
+	inventory assertHasItem: anItem.
+
+	items add: anItem withOccurrences: anAmount! !
+
+!testRun: #CartTest #test01NewCartStartsOutEmpty stamp: 'TS 6/7/2023 16:18:36'!
+PASSED!
+
+!testRun: #CartTest #test02ValidISBNCanBeAddedToCart stamp: 'TS 6/7/2023 16:18:36'!
+ERROR!
+
+!testRun: #CartTest #test03MultipleDifferentValidISBNsCanBeAddedToCart stamp: 'TS 6/7/2023 16:18:36'!
+ERROR!
+
+!testRun: #CartTest #test04MultipleOfTheSameValidISBNCanBeAddedToCart stamp: 'TS 6/7/2023 16:18:36'!
+ERROR!
+
+!testRun: #CartTest #test05MissingISBNCantBeAddedToCart stamp: 'TS 6/7/2023 16:18:36'!
+ERROR!
+
+!testRun: #CartTest #test02ValidISBNCanBeAddedToCart stamp: 'TS 6/7/2023 16:18:37'!
+ERROR!
+!BookInventory methodsFor: 'stock' stamp: 'TS 6/7/2023 16:18:42'!
+assertHasItem: anItem 
+	self shouldBeImplemented.! !
+!BookInventory methodsFor: 'stock' stamp: 'TS 6/7/2023 16:19:11' prior: 50625124!
+assertHasItem: anItem 
+
+	(items includes: anItem) ifFalse: [ self error: self class missingISBNErrorDescription ]! !
+
+!testRun: #CartTest #test02ValidISBNCanBeAddedToCart stamp: 'TS 6/7/2023 16:19:13'!
+PASSED!
+
+!testRun: #CartTest #test01NewCartStartsOutEmpty stamp: 'TS 6/7/2023 16:19:15'!
+PASSED!
+
+!testRun: #CartTest #test02ValidISBNCanBeAddedToCart stamp: 'TS 6/7/2023 16:19:15'!
+PASSED!
+
+!testRun: #CartTest #test03MultipleDifferentValidISBNsCanBeAddedToCart stamp: 'TS 6/7/2023 16:19:15'!
+PASSED!
+
+!testRun: #CartTest #test04MultipleOfTheSameValidISBNCanBeAddedToCart stamp: 'TS 6/7/2023 16:19:15'!
+PASSED!
+
+!testRun: #CartTest #test05MissingISBNCantBeAddedToCart stamp: 'TS 6/7/2023 16:19:15'!
+PASSED!
+!CartTest methodsFor: 'tests' stamp: 'TS 6/7/2023 16:20:11'!
+test06ISBNWithoutEnoughStockCantBeAddedToCart
+
+	| cart bookInventory isbn |
+	isbn := '0321146530'.
+	bookInventory := BookInventory with: { isbn }.
+	cart := Cart for: bookInventory.
+
+	self
+		should: [ cart add: 2 of: isbn ]
+		raise: Error - MessageNotUnderstood
+		withMessageText: BookInventory notEnoughStockErrorDescription! !
+
+!testRun: #CartTest #test01NewCartStartsOutEmpty stamp: 'TS 6/7/2023 16:20:14'!
+PASSED!
+
+!testRun: #CartTest #test02ValidISBNCanBeAddedToCart stamp: 'TS 6/7/2023 16:20:14'!
+PASSED!
+
+!testRun: #CartTest #test03MultipleDifferentValidISBNsCanBeAddedToCart stamp: 'TS 6/7/2023 16:20:14'!
+PASSED!
+
+!testRun: #CartTest #test04MultipleOfTheSameValidISBNCanBeAddedToCart stamp: 'TS 6/7/2023 16:20:14'!
+PASSED!
+
+!testRun: #CartTest #test05MissingISBNCantBeAddedToCart stamp: 'TS 6/7/2023 16:20:14'!
+PASSED!
+
+!testRun: #CartTest #test06ISBNWithoutEnoughStockCantBeAddedToCart stamp: 'TS 6/7/2023 16:20:14'!
+ERROR!
+
+!testRun: #CartTest #test06ISBNWithoutEnoughStockCantBeAddedToCart stamp: 'TS 6/7/2023 16:20:14'!
+ERROR!
+!BookInventory class methodsFor: 'error descriptions' stamp: 'TS 6/7/2023 16:20:17'!
+notEnoughStockErrorDescription
+	self shouldBeImplemented.! !
+!BookInventory class methodsFor: 'error descriptions' stamp: 'TS 6/7/2023 16:20:33' prior: 50625190!
+notEnoughStockErrorDescription
+
+	^ 'No hay suficiente stock del ítem deseado'! !
+
+!testRun: #CartTest #test06ISBNWithoutEnoughStockCantBeAddedToCart stamp: 'TS 6/7/2023 16:20:34'!
+FAILURE!
+!BookInventory methodsFor: 'stock' stamp: 'TS 6/7/2023 16:21:33'!
+assertHas: anAmount assertHasItem: anItem 
+
+	(items includes: anItem) ifFalse: [ self error: self class missingISBNErrorDescription ]! !
+!Cart methodsFor: 'as yet unclassified' stamp: 'TS 6/7/2023 16:21:33' prior: 50625100!
+add: anAmount of: anItem 
+
+	inventory assertHas: anAmount assertHasItem: anItem.
+
+	items add: anItem withOccurrences: anAmount! !
+
+!methodRemoval: BookInventory #assertHasItem: stamp: 'TS 6/7/2023 16:21:33'!
+assertHasItem: anItem 
+
+	(items includes: anItem) ifFalse: [ self error: self class missingISBNErrorDescription ]!
+!BookInventory methodsFor: 'stock' stamp: 'TS 6/7/2023 16:21:42'!
+assertHas: anAmount of: anItem 
+
+	(items includes: anItem) ifFalse: [ self error: self class missingISBNErrorDescription ]! !
+!Cart methodsFor: 'as yet unclassified' stamp: 'TS 6/7/2023 16:21:42' prior: 50625212!
+add: anAmount of: anItem 
+
+	inventory assertHas: anAmount of: anItem.
+
+	items add: anItem withOccurrences: anAmount! !
+
+!methodRemoval: BookInventory #assertHas:assertHasItem: stamp: 'TS 6/7/2023 16:21:42'!
+assertHas: anAmount assertHasItem: anItem 
+
+	(items includes: anItem) ifFalse: [ self error: self class missingISBNErrorDescription ]!
+
+!testRun: #CartTest #test01NewCartStartsOutEmpty stamp: 'TS 6/7/2023 16:21:51'!
+PASSED!
+
+!testRun: #CartTest #test02ValidISBNCanBeAddedToCart stamp: 'TS 6/7/2023 16:21:51'!
+PASSED!
+
+!testRun: #CartTest #test03MultipleDifferentValidISBNsCanBeAddedToCart stamp: 'TS 6/7/2023 16:21:51'!
+PASSED!
+
+!testRun: #CartTest #test04MultipleOfTheSameValidISBNCanBeAddedToCart stamp: 'TS 6/7/2023 16:21:51'!
+PASSED!
+
+!testRun: #CartTest #test05MissingISBNCantBeAddedToCart stamp: 'TS 6/7/2023 16:21:51'!
+PASSED!
+
+!testRun: #CartTest #test06ISBNWithoutEnoughStockCantBeAddedToCart stamp: 'TS 6/7/2023 16:21:51'!
+FAILURE!
+
+!testRun: #CartTest #test06ISBNWithoutEnoughStockCantBeAddedToCart stamp: 'TS 6/7/2023 16:21:51'!
+FAILURE!
+!BookInventory methodsFor: 'stock' stamp: 'TS 6/7/2023 16:22:36' prior: 50625225!
+assertHas: anAmount of: anItem 
+
+	(items occurrencesOf: anItem >= anAmount) ifFalse: [ self error: self class missingISBNErrorDescription ]! !
+
+!testRun: #CartTest #test01NewCartStartsOutEmpty stamp: 'TS 6/7/2023 16:22:37'!
+PASSED!
+
+!testRun: #CartTest #test02ValidISBNCanBeAddedToCart stamp: 'TS 6/7/2023 16:22:37'!
+ERROR!
+
+!testRun: #CartTest #test03MultipleDifferentValidISBNsCanBeAddedToCart stamp: 'TS 6/7/2023 16:22:37'!
+ERROR!
+
+!testRun: #CartTest #test04MultipleOfTheSameValidISBNCanBeAddedToCart stamp: 'TS 6/7/2023 16:22:37'!
+ERROR!
+
+!testRun: #CartTest #test05MissingISBNCantBeAddedToCart stamp: 'TS 6/7/2023 16:22:37'!
+FAILURE!
+
+!testRun: #CartTest #test06ISBNWithoutEnoughStockCantBeAddedToCart stamp: 'TS 6/7/2023 16:22:37'!
+FAILURE!
+
+!testRun: #CartTest #test02ValidISBNCanBeAddedToCart stamp: 'TS 6/7/2023 16:22:38'!
+ERROR!
+!BookInventory methodsFor: 'stock' stamp: 'TS 6/7/2023 16:22:49' prior: 50625268!
+assertHas: anAmount of: anItem 
+
+	((items occurrencesOf: anItem) >= anAmount) ifFalse: [ self error: self class missingISBNErrorDescription ]! !
+
+!testRun: #CartTest #test01NewCartStartsOutEmpty stamp: 'TS 6/7/2023 16:22:50'!
+PASSED!
+
+!testRun: #CartTest #test02ValidISBNCanBeAddedToCart stamp: 'TS 6/7/2023 16:22:50'!
+PASSED!
+
+!testRun: #CartTest #test03MultipleDifferentValidISBNsCanBeAddedToCart stamp: 'TS 6/7/2023 16:22:50'!
+PASSED!
+
+!testRun: #CartTest #test04MultipleOfTheSameValidISBNCanBeAddedToCart stamp: 'TS 6/7/2023 16:22:50'!
+PASSED!
+
+!testRun: #CartTest #test05MissingISBNCantBeAddedToCart stamp: 'TS 6/7/2023 16:22:50'!
+PASSED!
+
+!testRun: #CartTest #test06ISBNWithoutEnoughStockCantBeAddedToCart stamp: 'TS 6/7/2023 16:22:50'!
+FAILURE!
+
+!testRun: #CartTest #test06ISBNWithoutEnoughStockCantBeAddedToCart stamp: 'TS 6/7/2023 16:22:50'!
+FAILURE!
+!BookInventory methodsFor: 'stock' stamp: 'TS 6/7/2023 16:23:21' prior: 50625297!
+assertHas: anAmount of: anItem 
+
+	(items includes: anItem) ifFalse: [ self error: self class missingISBNErrorDescription ].
+	((items occurrencesOf: anItem) >= anAmount) ifFalse: [ self error: self class notEnoughStockErrorDescription ]! !
+
+!testRun: #CartTest #test01NewCartStartsOutEmpty stamp: 'TS 6/7/2023 16:23:25'!
+PASSED!
+
+!testRun: #CartTest #test02ValidISBNCanBeAddedToCart stamp: 'TS 6/7/2023 16:23:25'!
+PASSED!
+
+!testRun: #CartTest #test03MultipleDifferentValidISBNsCanBeAddedToCart stamp: 'TS 6/7/2023 16:23:25'!
+PASSED!
+
+!testRun: #CartTest #test04MultipleOfTheSameValidISBNCanBeAddedToCart stamp: 'TS 6/7/2023 16:23:25'!
+PASSED!
+
+!testRun: #CartTest #test05MissingISBNCantBeAddedToCart stamp: 'TS 6/7/2023 16:23:25'!
+PASSED!
+
+!testRun: #CartTest #test06ISBNWithoutEnoughStockCantBeAddedToCart stamp: 'TS 6/7/2023 16:23:25'!
+PASSED!
+!Cart methodsFor: 'initialization' stamp: 'TS 6/7/2023 16:24:07' prior: 50624696!
+initializeFor: anInventory 
+
+	items := Bag new.
+	inventory := anInventory.! !
+
+!testRun: #CartTest #test01NewCartStartsOutEmpty stamp: 'TS 6/7/2023 16:24:09'!
+PASSED!
+
+!testRun: #CartTest #test02ValidISBNCanBeAddedToCart stamp: 'TS 6/7/2023 16:24:09'!
+PASSED!
+
+!testRun: #CartTest #test03MultipleDifferentValidISBNsCanBeAddedToCart stamp: 'TS 6/7/2023 16:24:09'!
+PASSED!
+
+!testRun: #CartTest #test04MultipleOfTheSameValidISBNCanBeAddedToCart stamp: 'TS 6/7/2023 16:24:09'!
+PASSED!
+
+!testRun: #CartTest #test05MissingISBNCantBeAddedToCart stamp: 'TS 6/7/2023 16:24:09'!
+PASSED!
+
+!testRun: #CartTest #test06ISBNWithoutEnoughStockCantBeAddedToCart stamp: 'TS 6/7/2023 16:24:09'!
+PASSED!
+!BookInventory methodsFor: 'initialization' stamp: 'TS 6/7/2023 16:24:17' prior: 50624518!
+initializeWith: aCollectionOfISBNs 
+
+	items := aCollectionOfISBNs asBag.! !
+
+!testRun: #CartTest #test01NewCartStartsOutEmpty stamp: 'TS 6/7/2023 16:24:18'!
+PASSED!
+
+!testRun: #CartTest #test02ValidISBNCanBeAddedToCart stamp: 'TS 6/7/2023 16:24:18'!
+PASSED!
+
+!testRun: #CartTest #test03MultipleDifferentValidISBNsCanBeAddedToCart stamp: 'TS 6/7/2023 16:24:18'!
+PASSED!
+
+!testRun: #CartTest #test04MultipleOfTheSameValidISBNCanBeAddedToCart stamp: 'TS 6/7/2023 16:24:18'!
+PASSED!
+
+!testRun: #CartTest #test05MissingISBNCantBeAddedToCart stamp: 'TS 6/7/2023 16:24:18'!
+PASSED!
+
+!testRun: #CartTest #test06ISBNWithoutEnoughStockCantBeAddedToCart stamp: 'TS 6/7/2023 16:24:18'!
+PASSED!
+
+----SNAPSHOT----(7 June 2023 16:25:49) CuisUniversity-5832.image priorSource: 9373359!
+
+----SNAPSHOT----(7 June 2023 16:26:34) CuisUniversity-5832.image priorSource: 9400137!
+!BookInventory methodsFor: 'initialization' stamp: 'TS 6/7/2023 16:27:11' prior: 50625381!
+initializeWith: aCollectionOfItems 
+
+	items := aCollectionOfItems asBag.! !
+
+!classRenamed: #BookInventory as: #Inventory stamp: 'TS 6/7/2023 16:27:18'!
+Smalltalk renameClassNamed: #BookInventory as: #Inventory!
+!CartTest methodsFor: 'as yet unclassified' stamp: 'TS 6/7/2023 16:27:19' prior: 50624790!
+test04MultipleOfTheSameValidISBNCanBeAddedToCart
+
+	| cart bookInventory isbn |
+	isbn := '0321146530'.
+	bookInventory := Inventory with: { isbn. isbn. isbn. isbn }.
+	cart := Cart for: bookInventory.
+
+	cart add: 4 of: isbn.
+
+	self assert: 4 equals: (cart listItems occurrencesOf: isbn)! !
+!CartTest methodsFor: 'as yet unclassified' stamp: 'TS 6/7/2023 16:27:19' prior: 50624710!
+test03MultipleDifferentValidISBNsCanBeAddedToCart
+
+	| cart bookInventory isbn1 isbn2 |
+	isbn1 := '0321146530'.
+	isbn2 := '0117841327'.
+	bookInventory := Inventory with: { isbn1. isbn2 }.
+	cart := Cart for: bookInventory.
+
+	cart add: 1 of: isbn1.
+	cart add: 1 of: isbn2.
+
+	self assert: cart listItems includes: isbn1.
+	self assert: cart listItems includes: isbn2! !
+!CartTest methodsFor: 'as yet unclassified' stamp: 'TS 6/7/2023 16:27:19' prior: 50625050!
+test05MissingISBNCantBeAddedToCart
+
+	| cart bookInventory isbn |
+	isbn := '0321146530'.
+	bookInventory := Inventory with: {}.
+	cart := Cart for: bookInventory.
+
+	self
+		should: [ cart add: 1 of: isbn ]
+		raise: Error - MessageNotUnderstood
+		withMessageText: Inventory missingISBNErrorDescription! !
+!CartTest methodsFor: 'as yet unclassified' stamp: 'TS 6/7/2023 16:27:19' prior: 50625154!
+test06ISBNWithoutEnoughStockCantBeAddedToCart
+
+	| cart bookInventory isbn |
+	isbn := '0321146530'.
+	bookInventory := Inventory with: { isbn }.
+	cart := Cart for: bookInventory.
+
+	self
+		should: [ cart add: 2 of: isbn ]
+		raise: Error - MessageNotUnderstood
+		withMessageText: Inventory notEnoughStockErrorDescription! !
+!CartTest methodsFor: 'as yet unclassified' stamp: 'TS 6/7/2023 16:27:19' prior: 50624574!
+test02ValidISBNCanBeAddedToCart
+
+	| cart bookInventory isbn |
+	isbn := '0321146530'.
+	bookInventory := Inventory with: { isbn }.
+	cart := Cart for: bookInventory.
+
+	cart add: 1 of: isbn.
+
+	self assert: cart listItems includes: isbn! !
+
+!testRun: #CartTest #test01NewCartStartsOutEmpty stamp: 'TS 6/7/2023 16:27:39'!
+PASSED!
+
+!testRun: #CartTest #test02ValidISBNCanBeAddedToCart stamp: 'TS 6/7/2023 16:27:39'!
+PASSED!
+
+!testRun: #CartTest #test03MultipleDifferentValidISBNsCanBeAddedToCart stamp: 'TS 6/7/2023 16:27:39'!
+PASSED!
+
+!testRun: #CartTest #test04MultipleOfTheSameValidISBNCanBeAddedToCart stamp: 'TS 6/7/2023 16:27:39'!
+PASSED!
+
+!testRun: #CartTest #test05MissingISBNCantBeAddedToCart stamp: 'TS 6/7/2023 16:27:39'!
+PASSED!
+
+!testRun: #CartTest #test06ISBNWithoutEnoughStockCantBeAddedToCart stamp: 'TS 6/7/2023 16:27:39'!
+PASSED!
+
+----QUIT----(7 June 2023 16:27:59) CuisUniversity-5832.image priorSource: 9400225!
