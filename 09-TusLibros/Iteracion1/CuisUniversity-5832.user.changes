@@ -1061,3 +1061,760 @@ PASSED!
 PASSED!
 
 ----QUIT----(7 June 2023 16:27:59) CuisUniversity-5832.image priorSource: 9400225!
+
+----STARTUP---- (8 June 2023 14:38:16) as /home/sponja/Temp/Cuises/cursada3/CuisUniversity-5832.image!
+
+!Inventory methodsFor: 'stock' stamp: 'TS 6/8/2023 14:44:50'!
+hasItem: anItem 
+
+	^ items includes: anItem! !
+
+!methodRemoval: Inventory #hasStockOf: stamp: 'TS 6/8/2023 14:44:50'!
+hasStockOf: anItem 
+
+	^ items includes: anItem!
+
+!methodRemoval: CartTest #test06ISBNWithoutEnoughStockCantBeAddedToCart stamp: 'TS 6/8/2023 14:45:08'!
+test06ISBNWithoutEnoughStockCantBeAddedToCart
+
+	| cart bookInventory isbn |
+	isbn := '0321146530'.
+	bookInventory := Inventory with: { isbn }.
+	cart := Cart for: bookInventory.
+
+	self
+		should: [ cart add: 2 of: isbn ]
+		raise: Error - MessageNotUnderstood
+		withMessageText: Inventory notEnoughStockErrorDescription!
+!CartTest methodsFor: 'tests' stamp: 'TS 6/8/2023 14:45:15' prior: 50625448!
+test05MissingISBNCantBeAddedToCart
+
+	| cart bookInventory isbn |
+	isbn := '0321146530'.
+	bookInventory := Inventory with: {}.
+	cart := Cart for: bookInventory.
+
+	self
+		should: [ cart add: 1 of: isbn ]
+		raise: Error - MessageNotUnderstood
+		withMessageText: Cart missingISBNErrorDescription! !
+!CartTest methodsFor: 'tests' stamp: 'TS 6/8/2023 14:45:27' prior: 50625530!
+test05MissingISBNCantBeAddedToCart
+
+	| cart bookInventory isbn |
+	isbn := '0321146530'.
+	bookInventory := Inventory with: {}.
+	cart := Cart for: bookInventory.
+
+	self
+		should: [ cart add: 1 of: isbn ]
+		raise: Error - MessageNotUnderstood
+		withMessageText: Inventory missingISBNErrorDescription! !
+!CartTest methodsFor: 'tests' stamp: 'TS 6/8/2023 14:45:34' prior: 50625542!
+test05MissingISBNCantBeAddedToCart
+
+	| cart bookInventory isbn |
+	isbn := '0321146530'.
+	bookInventory := Inventory with: {}.
+	cart := Cart for: bookInventory.
+
+	self
+		should: [ cart add: 1 of: isbn ]
+		raise: Error - MessageNotUnderstood
+		withMessageText: Cart missingISBNErrorDescription! !
+!Inventory class methodsFor: 'error descriptions' stamp: 'TS 6/8/2023 14:45:45' prior: 50625092!
+missingISBNErrorDescription
+
+	^ 'El ítem no se encuentra en el inventario'! !
+!Cart class methodsFor: 'error descriptions' stamp: 'TS 6/8/2023 14:45:53'!
+missingISBNErrorDescription
+
+	^ 'El ítem no se encuentra en el inventario'! !
+
+!methodRemoval: Inventory class #missingISBNErrorDescription stamp: 'TS 6/8/2023 14:46:05'!
+missingISBNErrorDescription
+
+	^ 'El ítem no se encuentra en el inventario'!
+
+!methodRemoval: Inventory class #notEnoughStockErrorDescription stamp: 'TS 6/8/2023 14:46:07'!
+notEnoughStockErrorDescription
+
+	^ 'No hay suficiente stock del ítem deseado'!
+!Cart methodsFor: 'adding' stamp: 'TS 6/8/2023 14:46:52' prior: 50625232!
+add: anAmount of: anItem 
+
+	(inventory hasItem: anItem) ifFalse: [ self error: self class missingISBNErrorDescription ].
+
+	items add: anItem withOccurrences: anAmount! !
+
+!testRun: #CartTest #test01NewCartStartsOutEmpty stamp: 'TS 6/8/2023 14:46:55'!
+PASSED!
+
+!testRun: #CartTest #test02ValidISBNCanBeAddedToCart stamp: 'TS 6/8/2023 14:46:55'!
+PASSED!
+
+!testRun: #CartTest #test03MultipleDifferentValidISBNsCanBeAddedToCart stamp: 'TS 6/8/2023 14:46:55'!
+PASSED!
+
+!testRun: #CartTest #test04MultipleOfTheSameValidISBNCanBeAddedToCart stamp: 'TS 6/8/2023 14:46:55'!
+PASSED!
+
+!testRun: #CartTest #test05MissingISBNCantBeAddedToCart stamp: 'TS 6/8/2023 14:46:55'!
+PASSED!
+!CartTest methodsFor: 'tests' stamp: 'TS 6/8/2023 14:47:04' prior: 50625421!
+test04MultipleOfTheSameValidISBNCanBeAddedToCart
+
+	| cart bookInventory isbn |
+	isbn := '0321146530'.
+	bookInventory := Inventory with: { isbn }.
+	cart := Cart for: bookInventory.
+
+	cart add: 4 of: isbn.
+
+	self assert: 4 equals: (cart listItems occurrencesOf: isbn)! !
+
+!testRun: #CartTest #test04MultipleOfTheSameValidISBNCanBeAddedToCart stamp: 'TS 6/8/2023 14:47:05'!
+PASSED!
+
+!testRun: #CartTest #test01NewCartStartsOutEmpty stamp: 'TS 6/8/2023 14:47:05'!
+PASSED!
+
+!testRun: #CartTest #test02ValidISBNCanBeAddedToCart stamp: 'TS 6/8/2023 14:47:05'!
+PASSED!
+
+!testRun: #CartTest #test03MultipleDifferentValidISBNsCanBeAddedToCart stamp: 'TS 6/8/2023 14:47:05'!
+PASSED!
+
+!testRun: #CartTest #test04MultipleOfTheSameValidISBNCanBeAddedToCart stamp: 'TS 6/8/2023 14:47:05'!
+PASSED!
+
+!testRun: #CartTest #test05MissingISBNCantBeAddedToCart stamp: 'TS 6/8/2023 14:47:05'!
+PASSED!
+
+!methodRemoval: Inventory #assertHas:of: stamp: 'TS 6/8/2023 14:47:37'!
+assertHas: anAmount of: anItem 
+
+	(items includes: anItem) ifFalse: [ self error: self class missingISBNErrorDescription ].
+	((items occurrencesOf: anItem) >= anAmount) ifFalse: [ self error: self class notEnoughStockErrorDescription ]!
+!Cart methodsFor: 'adding' stamp: 'TS 6/8/2023 14:47:59'!
+assertItemInInventory: anItem
+
+	^ (inventory hasItem: anItem) ifFalse: [ self error: self class missingISBNErrorDescription ]! !
+!Cart methodsFor: 'adding' stamp: 'TS 6/8/2023 14:47:59' prior: 50625588!
+add: anAmount of: anItem 
+
+	self assertItemInInventory: anItem.
+
+	items add: anItem withOccurrences: anAmount! !
+
+!testRun: #CartTest #test01NewCartStartsOutEmpty stamp: 'TS 6/8/2023 14:49:32'!
+PASSED!
+
+!testRun: #CartTest #test02ValidISBNCanBeAddedToCart stamp: 'TS 6/8/2023 14:49:32'!
+PASSED!
+
+!testRun: #CartTest #test03MultipleDifferentValidISBNsCanBeAddedToCart stamp: 'TS 6/8/2023 14:49:32'!
+PASSED!
+
+!testRun: #CartTest #test04MultipleOfTheSameValidISBNCanBeAddedToCart stamp: 'TS 6/8/2023 14:49:32'!
+PASSED!
+
+!testRun: #CartTest #test05MissingISBNCantBeAddedToCart stamp: 'TS 6/8/2023 14:49:32'!
+PASSED!
+
+!testRun: #CartTest #test01NewCartStartsOutEmpty stamp: 'TS 6/8/2023 14:49:36'!
+PASSED!
+
+!testRun: #CartTest #test02ValidISBNCanBeAddedToCart stamp: 'TS 6/8/2023 14:49:36'!
+PASSED!
+
+!testRun: #CartTest #test03MultipleDifferentValidISBNsCanBeAddedToCart stamp: 'TS 6/8/2023 14:49:36'!
+PASSED!
+
+!testRun: #CartTest #test04MultipleOfTheSameValidISBNCanBeAddedToCart stamp: 'TS 6/8/2023 14:49:36'!
+PASSED!
+
+!testRun: #CartTest #test05MissingISBNCantBeAddedToCart stamp: 'TS 6/8/2023 14:49:36'!
+PASSED!
+
+!testRun: #CartTest #test01NewCartStartsOutEmpty stamp: 'TS 6/8/2023 14:49:38'!
+PASSED!
+
+!testRun: #CartTest #test02ValidISBNCanBeAddedToCart stamp: 'TS 6/8/2023 14:49:38'!
+PASSED!
+
+!testRun: #CartTest #test03MultipleDifferentValidISBNsCanBeAddedToCart stamp: 'TS 6/8/2023 14:49:38'!
+PASSED!
+
+!testRun: #CartTest #test04MultipleOfTheSameValidISBNCanBeAddedToCart stamp: 'TS 6/8/2023 14:49:38'!
+PASSED!
+
+!testRun: #CartTest #test05MissingISBNCantBeAddedToCart stamp: 'TS 6/8/2023 14:49:38'!
+PASSED!
+
+!testRun: #CartTest #test01NewCartStartsOutEmpty stamp: 'TS 6/8/2023 14:49:39'!
+PASSED!
+
+!testRun: #CartTest #test02ValidISBNCanBeAddedToCart stamp: 'TS 6/8/2023 14:49:39'!
+PASSED!
+
+!testRun: #CartTest #test03MultipleDifferentValidISBNsCanBeAddedToCart stamp: 'TS 6/8/2023 14:49:39'!
+PASSED!
+
+!testRun: #CartTest #test04MultipleOfTheSameValidISBNCanBeAddedToCart stamp: 'TS 6/8/2023 14:49:39'!
+PASSED!
+
+!testRun: #CartTest #test05MissingISBNCantBeAddedToCart stamp: 'TS 6/8/2023 14:49:39'!
+PASSED!
+
+!testRun: #CartTest #test01NewCartStartsOutEmpty stamp: 'TS 6/8/2023 14:49:40'!
+PASSED!
+
+!testRun: #CartTest #test02ValidISBNCanBeAddedToCart stamp: 'TS 6/8/2023 14:49:40'!
+PASSED!
+
+!testRun: #CartTest #test03MultipleDifferentValidISBNsCanBeAddedToCart stamp: 'TS 6/8/2023 14:49:40'!
+PASSED!
+
+!testRun: #CartTest #test04MultipleOfTheSameValidISBNCanBeAddedToCart stamp: 'TS 6/8/2023 14:49:40'!
+PASSED!
+
+!testRun: #CartTest #test05MissingISBNCantBeAddedToCart stamp: 'TS 6/8/2023 14:49:40'!
+PASSED!
+
+----SNAPSHOT----(8 June 2023 14:49:52) CuisUniversity-5832.image priorSource: 9403272!
+
+----SNAPSHOT----(8 June 2023 14:51:46) CuisUniversity-5832.image priorSource: 9410927!
+!CartTest methodsFor: 'tests' stamp: 'TS 6/8/2023 14:52:47'!
+test06CantAddNonPositiveNumberOfItemsToCart
+
+	| cart bookInventory isbn |
+	isbn := '0321146530'.
+	bookInventory := Inventory with: {}.
+	cart := Cart for: bookInventory.
+
+	self
+		should: [ cart add: 0 of: isbn ]
+		raise: Error - MessageNotUnderstood
+		withMessageText: Cart nonPositiveItemAmountErrorDescription! !
+!Cart methodsFor: 'adding' stamp: 'TS 6/8/2023 14:53:34' prior: 50625658!
+add: anAmount of: anItem 
+
+	self assertItemInInventory: anItem.
+	(anAmount strictlyPositive) ifFalse: [ self error: self class ]
+
+	items add: anItem withOccurrences: anAmount! !
+!Cart methodsFor: 'adding' stamp: 'TS 6/8/2023 14:53:42' prior: 50625760!
+add: anAmount of: anItem 
+
+	self assertItemInInventory: anItem.
+
+	items add: anItem withOccurrences: anAmount! !
+!Cart methodsFor: 'adding' stamp: 'TS 6/8/2023 14:53:46' prior: 50625768!
+add: anAmount of: anItem 
+
+	self assertItemInInventory: anItem.
+
+	items add: anItem withOccurrences: anAmount! !
+
+!testRun: #CartTest #test01NewCartStartsOutEmpty stamp: 'TS 6/8/2023 14:53:47'!
+PASSED!
+
+!testRun: #CartTest #test02ValidISBNCanBeAddedToCart stamp: 'TS 6/8/2023 14:53:47'!
+PASSED!
+
+!testRun: #CartTest #test03MultipleDifferentValidISBNsCanBeAddedToCart stamp: 'TS 6/8/2023 14:53:47'!
+PASSED!
+
+!testRun: #CartTest #test04MultipleOfTheSameValidISBNCanBeAddedToCart stamp: 'TS 6/8/2023 14:53:47'!
+PASSED!
+
+!testRun: #CartTest #test05MissingISBNCantBeAddedToCart stamp: 'TS 6/8/2023 14:53:47'!
+PASSED!
+
+!testRun: #CartTest #test06CantAddNonPositiveNumberOfItemsToCart stamp: 'TS 6/8/2023 14:53:47'!
+ERROR!
+
+!testRun: #CartTest #test06CantAddNonPositiveNumberOfItemsToCart stamp: 'TS 6/8/2023 14:53:47'!
+ERROR!
+!Cart class methodsFor: 'error descriptions' stamp: 'TS 6/8/2023 14:53:51'!
+nonPositiveItemAmountErrorDescription
+	self shouldBeImplemented.! !
+!Cart class methodsFor: 'error descriptions' stamp: 'TS 6/8/2023 14:54:13' prior: 50625802!
+nonPositiveItemAmountErrorDescription
+
+	^ 'No se puede agregar una cantidad no positiva de ítems al carrito'! !
+
+!testRun: #CartTest #test06CantAddNonPositiveNumberOfItemsToCart stamp: 'TS 6/8/2023 14:54:14'!
+FAILURE!
+!Cart methodsFor: 'adding' stamp: 'TS 6/8/2023 14:54:49' prior: 50625774!
+add: anAmount of: anItem 
+
+	self assertItemInInventory: anItem.
+	(anAmount strictlyPositive) ifFalse: [ self error: self class nonPositiveItemAmountErrorDescription ].
+
+	items add: anItem withOccurrences: anAmount! !
+
+!testRun: #CartTest #test01NewCartStartsOutEmpty stamp: 'TS 6/8/2023 14:54:51'!
+PASSED!
+
+!testRun: #CartTest #test02ValidISBNCanBeAddedToCart stamp: 'TS 6/8/2023 14:54:51'!
+PASSED!
+
+!testRun: #CartTest #test03MultipleDifferentValidISBNsCanBeAddedToCart stamp: 'TS 6/8/2023 14:54:51'!
+PASSED!
+
+!testRun: #CartTest #test04MultipleOfTheSameValidISBNCanBeAddedToCart stamp: 'TS 6/8/2023 14:54:51'!
+PASSED!
+
+!testRun: #CartTest #test05MissingISBNCantBeAddedToCart stamp: 'TS 6/8/2023 14:54:51'!
+PASSED!
+
+!testRun: #CartTest #test06CantAddNonPositiveNumberOfItemsToCart stamp: 'TS 6/8/2023 14:54:51'!
+FAILURE!
+
+!testRun: #CartTest #test06CantAddNonPositiveNumberOfItemsToCart stamp: 'TS 6/8/2023 14:54:51'!
+FAILURE!
+
+!testRun: #CartTest #test06CantAddNonPositiveNumberOfItemsToCart stamp: 'TS 6/8/2023 14:54:57'!
+FAILURE!
+!CartTest methodsFor: 'tests' stamp: 'TS 6/8/2023 14:55:14' prior: 50625747!
+test06CantAddNonPositiveNumberOfItemsToCart
+
+	| cart bookInventory isbn |
+	isbn := '0321146530'.
+	bookInventory := Inventory with: { isbn }.
+	cart := Cart for: bookInventory.
+
+	self
+		should: [ cart add: 0 of: isbn ]
+		raise: Error - MessageNotUnderstood
+		withMessageText: Cart nonPositiveItemAmountErrorDescription! !
+
+!testRun: #CartTest #test01NewCartStartsOutEmpty stamp: 'TS 6/8/2023 14:55:15'!
+PASSED!
+
+!testRun: #CartTest #test02ValidISBNCanBeAddedToCart stamp: 'TS 6/8/2023 14:55:15'!
+PASSED!
+
+!testRun: #CartTest #test03MultipleDifferentValidISBNsCanBeAddedToCart stamp: 'TS 6/8/2023 14:55:15'!
+PASSED!
+
+!testRun: #CartTest #test04MultipleOfTheSameValidISBNCanBeAddedToCart stamp: 'TS 6/8/2023 14:55:15'!
+PASSED!
+
+!testRun: #CartTest #test05MissingISBNCantBeAddedToCart stamp: 'TS 6/8/2023 14:55:15'!
+PASSED!
+
+!testRun: #CartTest #test06CantAddNonPositiveNumberOfItemsToCart stamp: 'TS 6/8/2023 14:55:15'!
+PASSED!
+!Cart methodsFor: 'adding' stamp: 'TS 6/8/2023 14:55:47'!
+assertValidAmount: anAmount
+
+	^ (anAmount strictlyPositive) ifFalse: [ self error: self class nonPositiveItemAmountErrorDescription ]! !
+!Cart methodsFor: 'adding' stamp: 'TS 6/8/2023 14:55:47' prior: 50625817!
+add: anAmount of: anItem 
+
+	self assertItemInInventory: anItem.
+	self assertValidAmount: anAmount.
+
+	items add: anItem withOccurrences: anAmount! !
+
+!testRun: #CartTest #test01NewCartStartsOutEmpty stamp: 'TS 6/8/2023 14:55:48'!
+PASSED!
+
+!testRun: #CartTest #test02ValidISBNCanBeAddedToCart stamp: 'TS 6/8/2023 14:55:48'!
+PASSED!
+
+!testRun: #CartTest #test03MultipleDifferentValidISBNsCanBeAddedToCart stamp: 'TS 6/8/2023 14:55:48'!
+PASSED!
+
+!testRun: #CartTest #test04MultipleOfTheSameValidISBNCanBeAddedToCart stamp: 'TS 6/8/2023 14:55:48'!
+PASSED!
+
+!testRun: #CartTest #test05MissingISBNCantBeAddedToCart stamp: 'TS 6/8/2023 14:55:48'!
+PASSED!
+
+!testRun: #CartTest #test06CantAddNonPositiveNumberOfItemsToCart stamp: 'TS 6/8/2023 14:55:48'!
+PASSED!
+
+!testRun: #CartTest #test01NewCartStartsOutEmpty stamp: 'TS 6/8/2023 14:56:10'!
+PASSED!
+
+!testRun: #CartTest #test02ValidISBNCanBeAddedToCart stamp: 'TS 6/8/2023 14:56:10'!
+PASSED!
+
+!testRun: #CartTest #test03MultipleDifferentValidISBNsCanBeAddedToCart stamp: 'TS 6/8/2023 14:56:10'!
+PASSED!
+
+!testRun: #CartTest #test04MultipleOfTheSameValidISBNCanBeAddedToCart stamp: 'TS 6/8/2023 14:56:10'!
+PASSED!
+
+!testRun: #CartTest #test05MissingISBNCantBeAddedToCart stamp: 'TS 6/8/2023 14:56:10'!
+PASSED!
+
+!testRun: #CartTest #test06CantAddNonPositiveNumberOfItemsToCart stamp: 'TS 6/8/2023 14:56:10'!
+PASSED!
+
+!testRun: #CartTest #test01NewCartStartsOutEmpty stamp: 'TS 6/8/2023 14:56:13'!
+PASSED!
+
+!testRun: #CartTest #test02ValidISBNCanBeAddedToCart stamp: 'TS 6/8/2023 14:56:13'!
+PASSED!
+
+!testRun: #CartTest #test03MultipleDifferentValidISBNsCanBeAddedToCart stamp: 'TS 6/8/2023 14:56:13'!
+PASSED!
+
+!testRun: #CartTest #test04MultipleOfTheSameValidISBNCanBeAddedToCart stamp: 'TS 6/8/2023 14:56:13'!
+PASSED!
+
+!testRun: #CartTest #test05MissingISBNCantBeAddedToCart stamp: 'TS 6/8/2023 14:56:13'!
+PASSED!
+
+!testRun: #CartTest #test06CantAddNonPositiveNumberOfItemsToCart stamp: 'TS 6/8/2023 14:56:13'!
+PASSED!
+
+----SNAPSHOT----(8 June 2023 14:56:16) CuisUniversity-5832.image priorSource: 9411015!
+
+----QUIT----(8 June 2023 14:56:24) CuisUniversity-5832.image priorSource: 9417703!
+
+----STARTUP---- (8 June 2023 15:43:38) as /home/sponja/Temp/Cuises/cursada3/CuisUniversity-5832.image!
+
+!CartTest methodsFor: 'tests' stamp: 'TS 6/8/2023 15:43:49'!
+test05MissingItemCantBeAddedToCart
+
+	| cart bookInventory isbn |
+	isbn := '0321146530'.
+	bookInventory := Inventory with: {}.
+	cart := Cart for: bookInventory.
+
+	self
+		should: [ cart add: 1 of: isbn ]
+		raise: Error - MessageNotUnderstood
+		withMessageText: Cart missingISBNErrorDescription! !
+
+!methodRemoval: CartTest #test05MissingISBNCantBeAddedToCart stamp: 'TS 6/8/2023 15:43:49'!
+test05MissingISBNCantBeAddedToCart
+
+	| cart bookInventory isbn |
+	isbn := '0321146530'.
+	bookInventory := Inventory with: {}.
+	cart := Cart for: bookInventory.
+
+	self
+		should: [ cart add: 1 of: isbn ]
+		raise: Error - MessageNotUnderstood
+		withMessageText: Cart missingISBNErrorDescription!
+!CartTest methodsFor: 'tests' stamp: 'TS 6/8/2023 15:43:54'!
+test04MultipleOfTheSameValidItemCanBeAddedToCart
+
+	| cart bookInventory isbn |
+	isbn := '0321146530'.
+	bookInventory := Inventory with: { isbn }.
+	cart := Cart for: bookInventory.
+
+	cart add: 4 of: isbn.
+
+	self assert: 4 equals: (cart listItems occurrencesOf: isbn)! !
+
+!methodRemoval: CartTest #test04MultipleOfTheSameValidISBNCanBeAddedToCart stamp: 'TS 6/8/2023 15:43:54'!
+test04MultipleOfTheSameValidISBNCanBeAddedToCart
+
+	| cart bookInventory isbn |
+	isbn := '0321146530'.
+	bookInventory := Inventory with: { isbn }.
+	cart := Cart for: bookInventory.
+
+	cart add: 4 of: isbn.
+
+	self assert: 4 equals: (cart listItems occurrencesOf: isbn)!
+!CartTest methodsFor: 'tests' stamp: 'TS 6/8/2023 15:44:00'!
+test03MultipleDifferentValidItemsCanBeAddedToCart
+
+	| cart bookInventory isbn1 isbn2 |
+	isbn1 := '0321146530'.
+	isbn2 := '0117841327'.
+	bookInventory := Inventory with: { isbn1. isbn2 }.
+	cart := Cart for: bookInventory.
+
+	cart add: 1 of: isbn1.
+	cart add: 1 of: isbn2.
+
+	self assert: cart listItems includes: isbn1.
+	self assert: cart listItems includes: isbn2! !
+
+!methodRemoval: CartTest #test03MultipleDifferentValidISBNsCanBeAddedToCart stamp: 'TS 6/8/2023 15:44:00'!
+test03MultipleDifferentValidISBNsCanBeAddedToCart
+
+	| cart bookInventory isbn1 isbn2 |
+	isbn1 := '0321146530'.
+	isbn2 := '0117841327'.
+	bookInventory := Inventory with: { isbn1. isbn2 }.
+	cart := Cart for: bookInventory.
+
+	cart add: 1 of: isbn1.
+	cart add: 1 of: isbn2.
+
+	self assert: cart listItems includes: isbn1.
+	self assert: cart listItems includes: isbn2!
+!CartTest methodsFor: 'tests' stamp: 'TS 6/8/2023 15:44:05'!
+test02ValidItemCanBeAddedToCart
+
+	| cart bookInventory isbn |
+	isbn := '0321146530'.
+	bookInventory := Inventory with: { isbn }.
+	cart := Cart for: bookInventory.
+
+	cart add: 1 of: isbn.
+
+	self assert: cart listItems includes: isbn! !
+
+!methodRemoval: CartTest #test02ValidISBNCanBeAddedToCart stamp: 'TS 6/8/2023 15:44:05'!
+test02ValidISBNCanBeAddedToCart
+
+	| cart bookInventory isbn |
+	isbn := '0321146530'.
+	bookInventory := Inventory with: { isbn }.
+	cart := Cart for: bookInventory.
+
+	cart add: 1 of: isbn.
+
+	self assert: cart listItems includes: isbn!
+
+!testRun: #CartTest #test01NewCartStartsOutEmpty stamp: 'TS 6/8/2023 15:44:07'!
+PASSED!
+
+!testRun: #CartTest #test02ValidItemCanBeAddedToCart stamp: 'TS 6/8/2023 15:44:07'!
+PASSED!
+
+!testRun: #CartTest #test03MultipleDifferentValidItemsCanBeAddedToCart stamp: 'TS 6/8/2023 15:44:07'!
+PASSED!
+
+!testRun: #CartTest #test04MultipleOfTheSameValidItemCanBeAddedToCart stamp: 'TS 6/8/2023 15:44:07'!
+PASSED!
+
+!testRun: #CartTest #test05MissingItemCantBeAddedToCart stamp: 'TS 6/8/2023 15:44:07'!
+PASSED!
+
+!testRun: #CartTest #test06CantAddNonPositiveNumberOfItemsToCart stamp: 'TS 6/8/2023 15:44:07'!
+PASSED!
+!CartTest methodsFor: 'tests' stamp: 'TS 6/8/2023 15:44:17' prior: 50626037!
+test02ValidItemCanBeAddedToCart
+
+	| cart inventory isbn |
+	isbn := '0321146530'.
+	inventory := Inventory with: { isbn }.
+	cart := Cart for: inventory.
+
+	cart add: 1 of: isbn.
+
+	self assert: cart listItems includes: isbn! !
+!CartTest methodsFor: 'tests' stamp: 'TS 6/8/2023 15:44:19' prior: 50626076!
+test02ValidItemCanBeAddedToCart
+
+	| cart inventory item |
+	item := '0321146530'.
+	inventory := Inventory with: { item }.
+	cart := Cart for: inventory.
+
+	cart add: 1 of: item.
+
+	self assert: cart listItems includes: item! !
+!CartTest methodsFor: 'tests' stamp: 'TS 6/8/2023 15:44:27' prior: 50626008!
+test03MultipleDifferentValidItemsCanBeAddedToCart
+
+	| cart bookInventory item1 isbn2 |
+	item1 := '0321146530'.
+	isbn2 := '0117841327'.
+	bookInventory := Inventory with: { item1. isbn2 }.
+	cart := Cart for: bookInventory.
+
+	cart add: 1 of: item1.
+	cart add: 1 of: isbn2.
+
+	self assert: cart listItems includes: item1.
+	self assert: cart listItems includes: isbn2! !
+!CartTest methodsFor: 'tests' stamp: 'TS 6/8/2023 15:44:32' prior: 50626096!
+test03MultipleDifferentValidItemsCanBeAddedToCart
+
+	| cart bookInventory item1 item2 |
+	item1 := '0321146530'.
+	item2 := '0117841327'.
+	bookInventory := Inventory with: { item1. item2 }.
+	cart := Cart for: bookInventory.
+
+	cart add: 1 of: item1.
+	cart add: 1 of: item2.
+
+	self assert: cart listItems includes: item1.
+	self assert: cart listItems includes: item2! !
+!CartTest methodsFor: 'tests' stamp: 'TS 6/8/2023 15:44:37' prior: 50626110!
+test03MultipleDifferentValidItemsCanBeAddedToCart
+
+	| cart inventory item1 item2 |
+	item1 := '0321146530'.
+	item2 := '0117841327'.
+	inventory := Inventory with: { item1. item2 }.
+	cart := Cart for: inventory.
+
+	cart add: 1 of: item1.
+	cart add: 1 of: item2.
+
+	self assert: cart listItems includes: item1.
+	self assert: cart listItems includes: item2! !
+
+!testRun: #CartTest #test03MultipleDifferentValidItemsCanBeAddedToCart stamp: 'TS 6/8/2023 15:44:40'!
+PASSED!
+
+!testRun: #CartTest #test01NewCartStartsOutEmpty stamp: 'TS 6/8/2023 15:44:40'!
+PASSED!
+
+!testRun: #CartTest #test02ValidItemCanBeAddedToCart stamp: 'TS 6/8/2023 15:44:40'!
+PASSED!
+
+!testRun: #CartTest #test03MultipleDifferentValidItemsCanBeAddedToCart stamp: 'TS 6/8/2023 15:44:40'!
+PASSED!
+
+!testRun: #CartTest #test04MultipleOfTheSameValidItemCanBeAddedToCart stamp: 'TS 6/8/2023 15:44:40'!
+PASSED!
+
+!testRun: #CartTest #test05MissingItemCantBeAddedToCart stamp: 'TS 6/8/2023 15:44:40'!
+PASSED!
+
+!testRun: #CartTest #test06CantAddNonPositiveNumberOfItemsToCart stamp: 'TS 6/8/2023 15:44:40'!
+PASSED!
+!CartTest methodsFor: 'tests' stamp: 'TS 6/8/2023 15:44:45' prior: 50625986!
+test04MultipleOfTheSameValidItemCanBeAddedToCart
+
+	| cart inventory isbn |
+	isbn := '0321146530'.
+	inventory := Inventory with: { isbn }.
+	cart := Cart for: inventory.
+
+	cart add: 4 of: isbn.
+
+	self assert: 4 equals: (cart listItems occurrencesOf: isbn)! !
+!CartTest methodsFor: 'tests' stamp: 'TS 6/8/2023 15:44:48' prior: 50626160!
+test04MultipleOfTheSameValidItemCanBeAddedToCart
+
+	| cart inventory item |
+	item := '0321146530'.
+	inventory := Inventory with: { item }.
+	cart := Cart for: inventory.
+
+	cart add: 4 of: item.
+
+	self assert: 4 equals: (cart listItems occurrencesOf: item)! !
+
+!testRun: #CartTest #test04MultipleOfTheSameValidItemCanBeAddedToCart stamp: 'TS 6/8/2023 15:44:49'!
+PASSED!
+
+!testRun: #CartTest #test01NewCartStartsOutEmpty stamp: 'TS 6/8/2023 15:44:49'!
+PASSED!
+
+!testRun: #CartTest #test02ValidItemCanBeAddedToCart stamp: 'TS 6/8/2023 15:44:49'!
+PASSED!
+
+!testRun: #CartTest #test03MultipleDifferentValidItemsCanBeAddedToCart stamp: 'TS 6/8/2023 15:44:49'!
+PASSED!
+
+!testRun: #CartTest #test04MultipleOfTheSameValidItemCanBeAddedToCart stamp: 'TS 6/8/2023 15:44:49'!
+PASSED!
+
+!testRun: #CartTest #test05MissingItemCantBeAddedToCart stamp: 'TS 6/8/2023 15:44:49'!
+PASSED!
+
+!testRun: #CartTest #test06CantAddNonPositiveNumberOfItemsToCart stamp: 'TS 6/8/2023 15:44:49'!
+PASSED!
+!CartTest methodsFor: 'tests' stamp: 'TS 6/8/2023 15:44:54' prior: 50625962!
+test05MissingItemCantBeAddedToCart
+
+	| cart bookInventory item |
+	item := '0321146530'.
+	bookInventory := Inventory with: {}.
+	cart := Cart for: bookInventory.
+
+	self
+		should: [ cart add: 1 of: item ]
+		raise: Error - MessageNotUnderstood
+		withMessageText: Cart missingISBNErrorDescription! !
+!CartTest methodsFor: 'tests' stamp: 'TS 6/8/2023 15:45:00' prior: 50626204!
+test05MissingItemCantBeAddedToCart
+
+	| cart inventory item |
+	item := '0321146530'.
+	inventory := Inventory with: {}.
+	cart := Cart for: inventory.
+
+	self
+		should: [ cart add: 1 of: item ]
+		raise: Error - MessageNotUnderstood
+		withMessageText: Cart missingISBNErrorDescription! !
+
+!testRun: #CartTest #test05MissingItemCantBeAddedToCart stamp: 'TS 6/8/2023 15:45:02'!
+PASSED!
+
+!testRun: #CartTest #test01NewCartStartsOutEmpty stamp: 'TS 6/8/2023 15:45:02'!
+PASSED!
+
+!testRun: #CartTest #test02ValidItemCanBeAddedToCart stamp: 'TS 6/8/2023 15:45:02'!
+PASSED!
+
+!testRun: #CartTest #test03MultipleDifferentValidItemsCanBeAddedToCart stamp: 'TS 6/8/2023 15:45:02'!
+PASSED!
+
+!testRun: #CartTest #test04MultipleOfTheSameValidItemCanBeAddedToCart stamp: 'TS 6/8/2023 15:45:02'!
+PASSED!
+
+!testRun: #CartTest #test05MissingItemCantBeAddedToCart stamp: 'TS 6/8/2023 15:45:02'!
+PASSED!
+
+!testRun: #CartTest #test06CantAddNonPositiveNumberOfItemsToCart stamp: 'TS 6/8/2023 15:45:02'!
+PASSED!
+!CartTest methodsFor: 'tests' stamp: 'TS 6/8/2023 15:45:08' prior: 50625852!
+test06CantAddNonPositiveNumberOfItemsToCart
+
+	| cart inventory isbn |
+	isbn := '0321146530'.
+	inventory := Inventory with: { isbn }.
+	cart := Cart for: inventory.
+
+	self
+		should: [ cart add: 0 of: isbn ]
+		raise: Error - MessageNotUnderstood
+		withMessageText: Cart nonPositiveItemAmountErrorDescription! !
+!CartTest methodsFor: 'tests' stamp: 'TS 6/8/2023 15:45:10' prior: 50626250!
+test06CantAddNonPositiveNumberOfItemsToCart
+
+	| cart inventory item |
+	item := '0321146530'.
+	inventory := Inventory with: { item }.
+	cart := Cart for: inventory.
+
+	self
+		should: [ cart add: 0 of: item ]
+		raise: Error - MessageNotUnderstood
+		withMessageText: Cart nonPositiveItemAmountErrorDescription! !
+
+!testRun: #CartTest #test06CantAddNonPositiveNumberOfItemsToCart stamp: 'TS 6/8/2023 15:45:12'!
+PASSED!
+
+!testRun: #CartTest #test01NewCartStartsOutEmpty stamp: 'TS 6/8/2023 15:45:12'!
+PASSED!
+
+!testRun: #CartTest #test02ValidItemCanBeAddedToCart stamp: 'TS 6/8/2023 15:45:12'!
+PASSED!
+
+!testRun: #CartTest #test03MultipleDifferentValidItemsCanBeAddedToCart stamp: 'TS 6/8/2023 15:45:12'!
+PASSED!
+
+!testRun: #CartTest #test04MultipleOfTheSameValidItemCanBeAddedToCart stamp: 'TS 6/8/2023 15:45:12'!
+PASSED!
+
+!testRun: #CartTest #test05MissingItemCantBeAddedToCart stamp: 'TS 6/8/2023 15:45:12'!
+PASSED!
+
+!testRun: #CartTest #test06CantAddNonPositiveNumberOfItemsToCart stamp: 'TS 6/8/2023 15:45:12'!
+PASSED!
+
+----QUIT----(8 June 2023 15:45:19) CuisUniversity-5832.image priorSource: 9417791!

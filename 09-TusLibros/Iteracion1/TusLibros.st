@@ -13,68 +13,68 @@ test01NewCartStartsOutEmpty
 	
 	self assert: cart listItems isEmpty! !
 
-!CartTest methodsFor: 'tests' stamp: 'TS 6/7/2023 16:27:19'!
-test02ValidISBNCanBeAddedToCart
+!CartTest methodsFor: 'tests' stamp: 'TS 6/8/2023 15:44:19'!
+test02ValidItemCanBeAddedToCart
 
-	| cart bookInventory isbn |
-	isbn := '0321146530'.
-	bookInventory := Inventory with: { isbn }.
-	cart := Cart for: bookInventory.
+	| cart inventory item |
+	item := '0321146530'.
+	inventory := Inventory with: { item }.
+	cart := Cart for: inventory.
 
-	cart add: 1 of: isbn.
+	cart add: 1 of: item.
 
-	self assert: cart listItems includes: isbn! !
+	self assert: cart listItems includes: item! !
 
-!CartTest methodsFor: 'tests' stamp: 'TS 6/7/2023 16:27:19'!
-test03MultipleDifferentValidISBNsCanBeAddedToCart
+!CartTest methodsFor: 'tests' stamp: 'TS 6/8/2023 15:44:37'!
+test03MultipleDifferentValidItemsCanBeAddedToCart
 
-	| cart bookInventory isbn1 isbn2 |
-	isbn1 := '0321146530'.
-	isbn2 := '0117841327'.
-	bookInventory := Inventory with: { isbn1. isbn2 }.
-	cart := Cart for: bookInventory.
+	| cart inventory item1 item2 |
+	item1 := '0321146530'.
+	item2 := '0117841327'.
+	inventory := Inventory with: { item1. item2 }.
+	cart := Cart for: inventory.
 
-	cart add: 1 of: isbn1.
-	cart add: 1 of: isbn2.
+	cart add: 1 of: item1.
+	cart add: 1 of: item2.
 
-	self assert: cart listItems includes: isbn1.
-	self assert: cart listItems includes: isbn2! !
+	self assert: cart listItems includes: item1.
+	self assert: cart listItems includes: item2! !
 
-!CartTest methodsFor: 'tests' stamp: 'TS 6/8/2023 14:47:04'!
-test04MultipleOfTheSameValidISBNCanBeAddedToCart
+!CartTest methodsFor: 'tests' stamp: 'TS 6/8/2023 15:44:48'!
+test04MultipleOfTheSameValidItemCanBeAddedToCart
 
-	| cart bookInventory isbn |
-	isbn := '0321146530'.
-	bookInventory := Inventory with: { isbn }.
-	cart := Cart for: bookInventory.
+	| cart inventory item |
+	item := '0321146530'.
+	inventory := Inventory with: { item }.
+	cart := Cart for: inventory.
 
-	cart add: 4 of: isbn.
+	cart add: 4 of: item.
 
-	self assert: 4 equals: (cart listItems occurrencesOf: isbn)! !
+	self assert: 4 equals: (cart listItems occurrencesOf: item)! !
 
-!CartTest methodsFor: 'tests' stamp: 'TS 6/8/2023 14:45:34'!
-test05MissingISBNCantBeAddedToCart
+!CartTest methodsFor: 'tests' stamp: 'TS 6/8/2023 15:45:00'!
+test05MissingItemCantBeAddedToCart
 
-	| cart bookInventory isbn |
-	isbn := '0321146530'.
-	bookInventory := Inventory with: {}.
-	cart := Cart for: bookInventory.
+	| cart inventory item |
+	item := '0321146530'.
+	inventory := Inventory with: {}.
+	cart := Cart for: inventory.
 
 	self
-		should: [ cart add: 1 of: isbn ]
+		should: [ cart add: 1 of: item ]
 		raise: Error - MessageNotUnderstood
 		withMessageText: Cart missingISBNErrorDescription! !
 
-!CartTest methodsFor: 'tests' stamp: 'TS 6/8/2023 14:55:14'!
+!CartTest methodsFor: 'tests' stamp: 'TS 6/8/2023 15:45:10'!
 test06CantAddNonPositiveNumberOfItemsToCart
 
-	| cart bookInventory isbn |
-	isbn := '0321146530'.
-	bookInventory := Inventory with: { isbn }.
-	cart := Cart for: bookInventory.
+	| cart inventory item |
+	item := '0321146530'.
+	inventory := Inventory with: { item }.
+	cart := Cart for: inventory.
 
 	self
-		should: [ cart add: 0 of: isbn ]
+		should: [ cart add: 0 of: item ]
 		raise: Error - MessageNotUnderstood
 		withMessageText: Cart nonPositiveItemAmountErrorDescription! !
 
