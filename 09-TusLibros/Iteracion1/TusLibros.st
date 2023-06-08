@@ -40,19 +40,19 @@ test03MultipleDifferentValidISBNsCanBeAddedToCart
 	self assert: cart listItems includes: isbn1.
 	self assert: cart listItems includes: isbn2! !
 
-!CartTest methodsFor: 'tests' stamp: 'TS 6/7/2023 16:27:19'!
+!CartTest methodsFor: 'tests' stamp: 'TS 6/8/2023 14:47:04'!
 test04MultipleOfTheSameValidISBNCanBeAddedToCart
 
 	| cart bookInventory isbn |
 	isbn := '0321146530'.
-	bookInventory := Inventory with: { isbn. isbn. isbn. isbn }.
+	bookInventory := Inventory with: { isbn }.
 	cart := Cart for: bookInventory.
 
 	cart add: 4 of: isbn.
 
 	self assert: 4 equals: (cart listItems occurrencesOf: isbn)! !
 
-!CartTest methodsFor: 'tests' stamp: 'TS 6/7/2023 16:27:19'!
+!CartTest methodsFor: 'tests' stamp: 'TS 6/8/2023 14:45:34'!
 test05MissingISBNCantBeAddedToCart
 
 	| cart bookInventory isbn |
@@ -63,10 +63,10 @@ test05MissingISBNCantBeAddedToCart
 	self
 		should: [ cart add: 1 of: isbn ]
 		raise: Error - MessageNotUnderstood
-		withMessageText: Inventory missingISBNErrorDescription! !
+		withMessageText: Cart missingISBNErrorDescription! !
 
-!CartTest methodsFor: 'tests' stamp: 'TS 6/7/2023 16:27:19'!
-test06ISBNWithoutEnoughStockCantBeAddedToCart
+!CartTest methodsFor: 'tests' stamp: 'TS 6/8/2023 14:55:14'!
+test06CantAddNonPositiveNumberOfItemsToCart
 
 	| cart bookInventory isbn |
 	isbn := '0321146530'.
@@ -74,9 +74,9 @@ test06ISBNWithoutEnoughStockCantBeAddedToCart
 	cart := Cart for: bookInventory.
 
 	self
-		should: [ cart add: 2 of: isbn ]
+		should: [ cart add: 0 of: isbn ]
 		raise: Error - MessageNotUnderstood
-		withMessageText: Inventory notEnoughStockErrorDescription! !
+		withMessageText: Cart nonPositiveItemAmountErrorDescription! !
 
 
 !classDefinition: #Cart category: 'TusLibros'!
@@ -99,10 +99,22 @@ initializeFor: anInventory
 	inventory := anInventory.! !
 
 
-!Cart methodsFor: 'adding' stamp: 'TS 6/7/2023 16:21:42'!
+!Cart methodsFor: 'validation' stamp: 'TS 6/8/2023 14:47:59'!
+assertItemInInventory: anItem
+
+	^ (inventory hasItem: anItem) ifFalse: [ self error: self class missingISBNErrorDescription ]! !
+
+!Cart methodsFor: 'validation' stamp: 'TS 6/8/2023 14:55:47'!
+assertValidAmount: anAmount
+
+	^ (anAmount strictlyPositive) ifFalse: [ self error: self class nonPositiveItemAmountErrorDescription ]! !
+
+
+!Cart methodsFor: 'adding' stamp: 'TS 6/8/2023 14:55:47'!
 add: anAmount of: anItem 
 
-	inventory assertHas: anAmount of: anItem.
+	self assertItemInInventory: anItem.
+	self assertValidAmount: anAmount.
 
 	items add: anItem withOccurrences: anAmount! !
 
@@ -118,6 +130,16 @@ for: anInventory
 	^self new initializeFor: anInventory ! !
 
 
+!Cart class methodsFor: 'error descriptions' stamp: 'TS 6/8/2023 14:45:53'!
+missingISBNErrorDescription
+
+	^ 'El ítem no se encuentra en el inventario'! !
+
+!Cart class methodsFor: 'error descriptions' stamp: 'TS 6/8/2023 14:54:13'!
+nonPositiveItemAmountErrorDescription
+
+	^ 'No se puede agregar una cantidad no positiva de ítems al carrito'! !
+
 
 !classDefinition: #Inventory category: 'TusLibros'!
 Object subclass: #Inventory
@@ -132,14 +154,8 @@ initializeWith: aCollectionOfItems
 	items := aCollectionOfItems asBag.! !
 
 
-!Inventory methodsFor: 'stock' stamp: 'TS 6/7/2023 16:23:21'!
-assertHas: anAmount of: anItem 
-
-	(items includes: anItem) ifFalse: [ self error: self class missingISBNErrorDescription ].
-	((items occurrencesOf: anItem) >= anAmount) ifFalse: [ self error: self class notEnoughStockErrorDescription ]! !
-
-!Inventory methodsFor: 'stock' stamp: 'TS 6/7/2023 16:16:03'!
-hasStockOf: anItem 
+!Inventory methodsFor: 'stock' stamp: 'TS 6/8/2023 14:44:50'!
+hasItem: anItem 
 
 	^ items includes: anItem! !
 
@@ -153,14 +169,3 @@ Inventory class
 with: aCollectionOfISBNs 
 
 	^self new initializeWith: aCollectionOfISBNs ! !
-
-
-!Inventory class methodsFor: 'error descriptions' stamp: 'TS 6/7/2023 16:17:56'!
-missingISBNErrorDescription
-
-	^ 'El ISBN no se encuentra en el inventario'! !
-
-!Inventory class methodsFor: 'error descriptions' stamp: 'TS 6/7/2023 16:20:33'!
-notEnoughStockErrorDescription
-
-	^ 'No hay suficiente stock del ítem deseado'! !
