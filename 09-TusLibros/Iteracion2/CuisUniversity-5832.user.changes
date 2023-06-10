@@ -2382,3 +2382,3460 @@ PASSED!
 ----SNAPSHOT----(9 June 2023 23:28:28) CuisUniversity-5832.image priorSource: 9407170!
 
 ----QUIT----(9 June 2023 23:28:36) CuisUniversity-5832.image priorSource: 9461786!
+
+----STARTUP---- (10 June 2023 15:03:49) as /home/sofia/Downloads/cuises/cuis1/CuisUniversity-5832.image!
+
+!CreditCard class methodsFor: 'instance creation' stamp: 'SG 6/10/2023 15:15:39'!
+number: aCreditCardNumber owner: anOwner expirationDate: aMonthOfYear  
+
+	^self new initializeWithNumber: aCreditCardNumber andOwner: anOwner andExpirationDate: aMonthOfYear! !
+!CreditCardTest methodsFor: 'as yet unclassified' stamp: 'SG 6/10/2023 15:15:39' prior: 50626379!
+test03CreditCardOwnerCantHaveMoreThan30Characters
+
+	self
+		should: [ CreditCard number: 1 owner: (String new: 31 withAll: $a ) expirationDate: (January of: 2000) ]
+		raise: Error - MessageNotUnderstood
+		withMessageText: CreditCard creditCardOwnerOverCharacterLimitErrorDescription.
+! !
+!CreditCardTest methodsFor: 'as yet unclassified' stamp: 'SG 6/10/2023 15:15:39' prior: 50626328!
+test01CreditCardNumberMustBeAStrictlyPositiveInteger
+
+	
+	self
+		should: [ CreditCard number: -1 owner: 'HERNAN A WILKINSON' expirationDate: (January of: 2000) ]
+		raise: Error - MessageNotUnderstood
+		withMessageText: CreditCard invalidCreditCardNumberErrorDescription.
+		
+	self
+		should: [ CreditCard number: 1/2 owner: 'HERNAN A WILKINSON' expirationDate: (January of: 2000) ]
+		raise: Error - MessageNotUnderstood
+		withMessageText: CreditCard invalidCreditCardNumberErrorDescription! !
+!StoreTest methodsFor: 'as yet unclassified' stamp: 'SG 6/10/2023 15:15:39' prior: 50626699!
+createCreditCardThatExpiresOn: aMonthOfYear
+
+	^ CreditCard number: 1234 owner: 'HERNAN A WILKINSON' expirationDate: aMonthOfYear! !
+!CreditCardTest methodsFor: 'as yet unclassified' stamp: 'SG 6/10/2023 15:15:39' prior: 50626368!
+test02CreditCardOwnerMustBeANonEmptyString
+
+	self
+		should: [ CreditCard number: 1 owner: '' expirationDate: (January of: 2000) ]
+		raise: Error - MessageNotUnderstood
+		withMessageText: CreditCard emptyCreditCardOwnerErrorDescription.
+! !
+
+!methodRemoval: CreditCard class #withNumber:owner:expirationDate: stamp: 'SG 6/10/2023 15:15:39'!
+withNumber: aCreditCardNumber owner: anOwner expirationDate: aMonthOfYear  
+
+	^self new initializeWithNumber: aCreditCardNumber andOwner: anOwner andExpirationDate: aMonthOfYear!
+
+Object subclass: #StoreTestFactory
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'TusLibros'!
+
+!classDefinition: #StoreTestFactory category: 'TusLibros' stamp: 'SG 6/10/2023 15:19:03'!
+Object subclass: #StoreTestFactory
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'TusLibros'!
+!StoreTestFactory methodsFor: 'no messages' stamp: 'SG 6/10/2023 15:19:19'!
+defaultCatalog
+	
+	^ {
+		self itemSellByTheStore -> self priceOfItemSoldByStore.
+		self otherItemSellByTheStore -> self priceOfOtherItemSellByTheStore.
+	} asDictionary! !
+!StoreTestFactory methodsFor: 'as yet unclassified' stamp: 'SG 6/10/2023 15:19:29'!
+itemSellByTheStore
+	
+	^ 'validBook'! !
+!StoreTestFactory methodsFor: 'catalog' stamp: 'SG 6/10/2023 15:19:43'!
+priceOfItemSoldByStore
+
+	^ 10! !
+!StoreTestFactory methodsFor: 'catalog' stamp: 'SG 6/10/2023 15:20:00'!
+otherItemSellByTheStore
+
+	^ 'other valid item'! !
+!StoreTestFactory methodsFor: 'catalog' stamp: 'SG 6/10/2023 15:20:11'!
+priceOfOtherItemSellByTheStore
+
+	^ 5! !
+!StoreTestFactory methodsFor: 'nil' stamp: 'SG 6/10/2023 15:21:12'!
+createCart
+	
+	^Cart acceptingItemsOf: self defaultCatalog! !
+!StoreTestFactory methodsFor: 'nil' stamp: 'SG 6/10/2023 15:21:36'!
+createCreditCardThatExpiresOn: aMonthOfYear
+
+	^ CreditCard number: 1234 owner: 'HERNAN A WILKINSON' expirationDate: aMonthOfYear! !
+!StoreTestFactory methodsFor: 'nil' stamp: 'SG 6/10/2023 15:21:53'!
+currentDate
+
+	^ January of: 2000! !
+!StoreTestFactory methodsFor: 'dates' stamp: 'SG 6/10/2023 15:22:01'!
+futureDate
+
+	^ February of: 2000! !
+!StoreTestFactory methodsFor: 'dates' stamp: 'SG 6/10/2023 15:22:07'!
+pastDate
+
+	^ December of: 1999! !
+!StoreTestFactory methodsFor: 'nil' stamp: 'SG 6/10/2023 15:22:15'!
+createCashier
+
+	^Cashier onDate: self currentDate! !
+
+TestCase subclass: #CartTest
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'TusLibros'!
+
+!classDefinition: #CartTest category: 'TusLibros' stamp: 'SG 6/10/2023 15:29:17'!
+TestCase subclass: #CartTest
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'TusLibros'!
+
+!classDefinition: #CartTest category: 'TusLibros' stamp: 'SG 6/10/2023 15:29:39'!
+TestCase subclass: #CartTest
+	instanceVariableNames: 'testObjectFactory'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'TusLibros'!
+!CartTest methodsFor: 'nil' stamp: 'SG 6/10/2023 15:29:37' overrides: 16961394!
+setUp
+
+	testObjectFactory := StoreTestFactory! !
+!CartTest methodsFor: 'as yet unclassified' stamp: 'SG 6/10/2023 15:29:41' prior: 50627490 overrides: 16961394!
+setUp
+
+	testObjectFactory := StoreTestFactory new! !
+!CartTest methodsFor: 'tests' stamp: 'SG 6/10/2023 15:30:02' prior: 50624490!
+test01NewCartsAreCreatedEmpty
+
+	| cart |
+	cart := testObjectFactory createCart.
+
+	self assert: cart isEmpty! !
+!CartTest methodsFor: 'tests' stamp: 'SG 6/10/2023 15:30:33' prior: 50624468!
+test02CanNotAddItemsThatDoNotBelongToStore
+
+	| cart |
+	
+	cart := testObjectFactory createCart.
+	
+	self 
+		should: [ cart add: self itemNotSellByTheStore ]
+		raise: Error - MessageNotUnderstood
+		withExceptionDo: [ :anError |
+			self assert: anError messageText = cart invalidItemErrorMessage.
+			self assert: cart isEmpty ]! !
+!CartTest methodsFor: 'tests' stamp: 'SG 6/10/2023 15:30:41' prior: 50627507!
+test02CanNotAddItemsThatDoNotBelongToStore
+
+	| cart |
+	
+	cart := testObjectFactory createCart.
+	
+	self 
+		should: [ cart add: testObjectFactory itemNotSellByTheStore ]
+		raise: Error - MessageNotUnderstood
+		withExceptionDo: [ :anError |
+			self assert: anError messageText = cart invalidItemErrorMessage.
+			self assert: cart isEmpty ]! !
+!CartTest methodsFor: 'tests' stamp: 'SG 6/10/2023 15:30:52' prior: 50624495!
+test03AfterAddingAnItemTheCartIsNotEmptyAnymore
+
+	| cart |
+	
+	cart := testObjectFactory createCart.
+	
+	cart add: self itemSellByTheStore.
+	self deny: cart isEmpty ! !
+!CartTest methodsFor: 'tests' stamp: 'SG 6/10/2023 15:30:53' prior: 50627534!
+test03AfterAddingAnItemTheCartIsNotEmptyAnymore
+
+	| cart |
+	
+	cart := testObjectFactory createCart.
+	
+	cart add: self itemSellByTheStore.
+	self deny: cart isEmpty ! !
+!CartTest methodsFor: 'tests' stamp: 'SG 6/10/2023 15:30:57' prior: 50627542!
+test03AfterAddingAnItemTheCartIsNotEmptyAnymore
+
+	| cart |
+	
+	cart := testObjectFactory createCart.
+	
+	cart add: testObjectFactory itemSellByTheStore.
+	self deny: cart isEmpty ! !
+!CartTest methodsFor: 'nil' stamp: 'SG 6/10/2023 15:31:22'!
+createCart
+
+	^ testObjectFactory createCart! !
+
+!methodRemoval: CartTest #createCart stamp: 'SG 6/10/2023 15:31:35'!
+createCart
+
+	^ testObjectFactory createCart!
+!CartTest methodsFor: 'tests' stamp: 'SG 6/10/2023 15:31:35' prior: 50624481!
+test08CartRemembersTheNumberOfAddedItems
+
+	| cart |
+	
+	cart :=  testObjectFactory createCart.
+	
+	cart add: 2 of: self itemSellByTheStore.
+	self assert: (cart occurrencesOf: self itemSellByTheStore) = 2! !
+!CartTest methodsFor: 'tests' stamp: 'SG 6/10/2023 15:31:35' prior: 50627550!
+test03AfterAddingAnItemTheCartIsNotEmptyAnymore
+
+	| cart |
+	
+	cart :=  testObjectFactory createCart.
+	
+	cart add: testObjectFactory itemSellByTheStore.
+	self deny: cart isEmpty ! !
+!CartTest methodsFor: 'tests' stamp: 'SG 6/10/2023 15:31:35' prior: 50624503!
+test07CartDoesNotHoldNotAddedItems
+
+	| cart |
+	
+	cart :=  testObjectFactory createCart.
+	
+	self deny: (cart includes: self itemSellByTheStore)! !
+!CartTest methodsFor: 'tests' stamp: 'SG 6/10/2023 15:31:35' prior: 50624455!
+test04CanNotAddNonPositiveNumberOfItems
+
+	| cart |
+	
+	cart :=  testObjectFactory createCart.
+	
+	self 
+		should: [cart add: 0 of: self itemSellByTheStore ]
+		raise: Error - MessageNotUnderstood
+		withExceptionDo: [ :anError |
+			self assert: anError messageText = cart invalidQuantityErrorMessage.
+			self assert: cart isEmpty ]! !
+!CartTest methodsFor: 'tests' stamp: 'SG 6/10/2023 15:31:35' prior: 50624510!
+test05CanNotAddMoreThanOneItemNotSellByTheStore
+
+	| cart |
+	
+	cart :=  testObjectFactory createCart.
+	
+	self 
+		should: [cart add: 2 of: self itemNotSellByTheStore  ]
+		raise: Error - MessageNotUnderstood
+		withExceptionDo: [ :anError |
+			self assert: anError messageText = cart invalidItemErrorMessage.
+			self assert: cart isEmpty ]! !
+!CartTest methodsFor: 'tests' stamp: 'SG 6/10/2023 15:31:35' prior: 50627520!
+test02CanNotAddItemsThatDoNotBelongToStore
+
+	| cart |
+	
+	cart :=  testObjectFactory createCart.
+	
+	self 
+		should: [ cart add: testObjectFactory itemNotSellByTheStore ]
+		raise: Error - MessageNotUnderstood
+		withExceptionDo: [ :anError |
+			self assert: anError messageText = cart invalidItemErrorMessage.
+			self assert: cart isEmpty ]! !
+!CartTest methodsFor: 'tests' stamp: 'SG 6/10/2023 15:31:35' prior: 50624523!
+test06CartRemembersAddedItems
+
+	| cart |
+	
+	cart :=  testObjectFactory createCart.
+	
+	cart add: self itemSellByTheStore.
+	self assert: (cart includes: self itemSellByTheStore)! !
+!CartTest methodsFor: 'tests' stamp: 'SG 6/10/2023 15:31:35' prior: 50627501!
+test01NewCartsAreCreatedEmpty
+
+	| cart |
+	cart :=  testObjectFactory createCart.
+
+	self assert: cart isEmpty! !
+!CartTest methodsFor: 'tests' stamp: 'SG 6/10/2023 15:31:50' prior: 50627591!
+test04CanNotAddNonPositiveNumberOfItems
+
+	| cart |
+	
+	cart :=  testObjectFactory createCart.
+	
+	self 
+		should: [cart add: 0 of: testObjectFactory itemSellByTheStore ]
+		raise: Error - MessageNotUnderstood
+		withExceptionDo: [ :anError |
+			self assert: anError messageText = cart invalidQuantityErrorMessage.
+			self assert: cart isEmpty ]! !
+!CartTest methodsFor: 'tests' stamp: 'SG 6/10/2023 15:31:56' prior: 50627604!
+test05CanNotAddMoreThanOneItemNotSellByTheStore
+
+	| cart |
+	
+	cart :=  testObjectFactory createCart.
+	
+	self 
+		should: [cart add: 2 of: testObjectFactory itemNotSellByTheStore  ]
+		raise: Error - MessageNotUnderstood
+		withExceptionDo: [ :anError |
+			self assert: anError messageText = cart invalidItemErrorMessage.
+			self assert: cart isEmpty ]! !
+!CartTest methodsFor: 'tests' stamp: 'SG 6/10/2023 15:32:05' prior: 50627632!
+test06CartRemembersAddedItems
+
+	| cart |
+	
+	cart :=  testObjectFactory createCart.
+	
+	cart add: testObjectFactory itemSellByTheStore.
+	self assert: (cart includes: testObjectFactory itemSellByTheStore)! !
+!CartTest methodsFor: 'tests' stamp: 'SG 6/10/2023 15:32:23' prior: 50627675!
+test06CartRemembersAddedItems
+
+	| cart |
+	
+	cart :=  testObjectFactory createCart.
+	
+	cart add: testObjectFactory itemSellByTheStore.
+	self assert: (cart includes: testObjectFactory itemSellByTheStore)! !
+!CartTest methodsFor: 'tests' stamp: 'SG 6/10/2023 15:32:31' prior: 50627684!
+test06CartRemembersAddedItems
+
+	| cart item |
+	
+	cart :=  testObjectFactory createCart.
+	
+	item := testObjectFactory itemSellByTheStore.
+	cart add: item.
+	self assert: (cart includes: testObjectFactory itemSellByTheStore)! !
+!CartTest methodsFor: 'tests' stamp: 'SG 6/10/2023 15:32:36' prior: 50627693!
+test06CartRemembersAddedItems
+
+	| cart item |
+	
+	cart :=  testObjectFactory createCart.
+	item := testObjectFactory itemSellByTheStore.
+	
+	cart add: item.
+	self assert: (cart includes: testObjectFactory itemSellByTheStore)! !
+!CartTest methodsFor: 'tests' stamp: 'SG 6/10/2023 15:32:59' prior: 50627584!
+test07CartDoesNotHoldNotAddedItems
+
+	| cart |
+	
+	cart :=  testObjectFactory createCart.
+	
+	self deny: (cart includes: testObjectFactory itemSellByTheStore)! !
+!CartTest methodsFor: 'tests' stamp: 'SG 6/10/2023 15:33:17' prior: 50627566!
+test08CartRemembersTheNumberOfAddedItems
+
+	| cart |
+	
+	cart :=  testObjectFactory createCart.
+	
+	cart add: 2 of: testObjectFactory itemSellByTheStore.
+	self assert: (cart occurrencesOf: testObjectFactory itemSellByTheStore) = 2! !
+!CartTest methodsFor: 'tests' stamp: 'SG 6/10/2023 15:33:19' prior: 50627721!
+test08CartRemembersTheNumberOfAddedItems
+
+	| cart item |
+	
+	cart :=  testObjectFactory createCart.
+	
+	cart add: 2 of: testObjectFactory itemSellByTheStore.
+	item := testObjectFactory itemSellByTheStore.
+	self assert: (cart occurrencesOf: item) = 2! !
+!CartTest methodsFor: 'tests' stamp: 'SG 6/10/2023 15:33:26' prior: 50627731!
+test08CartRemembersTheNumberOfAddedItems
+
+	| cart item |
+	
+	cart :=  testObjectFactory createCart.
+	item := testObjectFactory itemSellByTheStore.
+	
+	cart add: 2 of: item.
+	self assert: (cart occurrencesOf: item) = 2! !
+
+!testRun: #CartTest #test08CartRemembersTheNumberOfAddedItems stamp: 'SG 6/10/2023 15:33:28'!
+PASSED!
+
+!testRun: #CartTest #test01NewCartsAreCreatedEmpty stamp: 'SG 6/10/2023 15:33:28'!
+PASSED!
+
+!testRun: #CartTest #test02CanNotAddItemsThatDoNotBelongToStore stamp: 'SG 6/10/2023 15:33:28'!
+ERROR!
+
+!testRun: #CartTest #test03AfterAddingAnItemTheCartIsNotEmptyAnymore stamp: 'SG 6/10/2023 15:33:28'!
+PASSED!
+
+!testRun: #CartTest #test04CanNotAddNonPositiveNumberOfItems stamp: 'SG 6/10/2023 15:33:28'!
+PASSED!
+
+!testRun: #CartTest #test05CanNotAddMoreThanOneItemNotSellByTheStore stamp: 'SG 6/10/2023 15:33:28'!
+ERROR!
+
+!testRun: #CartTest #test06CartRemembersAddedItems stamp: 'SG 6/10/2023 15:33:28'!
+PASSED!
+
+!testRun: #CartTest #test07CartDoesNotHoldNotAddedItems stamp: 'SG 6/10/2023 15:33:28'!
+PASSED!
+
+!testRun: #CartTest #test08CartRemembersTheNumberOfAddedItems stamp: 'SG 6/10/2023 15:33:28'!
+PASSED!
+
+!testRun: #CartTest #test02CanNotAddItemsThatDoNotBelongToStore stamp: 'SG 6/10/2023 15:33:30'!
+ERROR!
+!StoreTestFactory methodsFor: 'catalog' stamp: 'SG 6/10/2023 15:33:52'!
+itemNotSellByTheStore
+	
+	^ 'invalidBook'! !
+
+!testRun: #CartTest #test01NewCartsAreCreatedEmpty stamp: 'SG 6/10/2023 15:33:54'!
+PASSED!
+
+!testRun: #CartTest #test02CanNotAddItemsThatDoNotBelongToStore stamp: 'SG 6/10/2023 15:33:54'!
+PASSED!
+
+!testRun: #CartTest #test03AfterAddingAnItemTheCartIsNotEmptyAnymore stamp: 'SG 6/10/2023 15:33:54'!
+PASSED!
+
+!testRun: #CartTest #test04CanNotAddNonPositiveNumberOfItems stamp: 'SG 6/10/2023 15:33:54'!
+PASSED!
+
+!testRun: #CartTest #test05CanNotAddMoreThanOneItemNotSellByTheStore stamp: 'SG 6/10/2023 15:33:54'!
+PASSED!
+
+!testRun: #CartTest #test06CartRemembersAddedItems stamp: 'SG 6/10/2023 15:33:54'!
+PASSED!
+
+!testRun: #CartTest #test07CartDoesNotHoldNotAddedItems stamp: 'SG 6/10/2023 15:33:54'!
+PASSED!
+
+!testRun: #CartTest #test08CartRemembersTheNumberOfAddedItems stamp: 'SG 6/10/2023 15:33:54'!
+PASSED!
+
+!classDefinition: #StoreTest category: 'TusLibros' stamp: 'SG 6/10/2023 15:34:47'!
+TestCase subclass: #StoreTest
+	instanceVariableNames: 'testObjectFactory'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'TusLibros'!
+!StoreTest methodsFor: 'nil' stamp: 'SG 6/10/2023 15:34:44' overrides: 16961394!
+setUp
+
+	testObjectFactory := StoreTestFactory new! !
+!StoreTest methodsFor: 'support' stamp: 'SG 6/10/2023 15:35:11' prior: 50625530!
+createCart
+	
+	^ testObjectFactory createCart! !
+!StoreTest methodsFor: 'support' stamp: 'SG 6/10/2023 15:35:26' prior: 50627382!
+createCreditCardThatExpiresOn: aMonthOfYear
+
+	^ testObjectFactory createCreditCardThatExpiresOn: aMonthOfYear! !
+!StoreTest methodsFor: 'support' stamp: 'SG 6/10/2023 15:35:35' prior: 50626760!
+currentDate
+
+	^ testObjectFactory currentDate! !
+!StoreTest methodsFor: 'support' stamp: 'SG 6/10/2023 15:35:47' prior: 50625238!
+defaultCatalog
+	
+	^ testObjectFactory defaultCatalog ! !
+!StoreTest methodsFor: 'support' stamp: 'SG 6/10/2023 15:35:47' prior: 50627842!
+defaultCatalog
+	
+	^ testObjectFactory defaultCatalog! !
+!StoreTest methodsFor: 'support' stamp: 'SG 6/10/2023 15:36:03' prior: 50626768!
+futureDate
+
+	^ testObjectFactory futureDate! !
+!StoreTest methodsFor: 'support' stamp: 'SG 6/10/2023 15:36:12' prior: 50624690!
+itemNotSellByTheStore
+	
+	^ testObjectFactory itemNotSellByTheStore ! !
+!StoreTest methodsFor: 'support' stamp: 'SG 6/10/2023 15:36:12' prior: 50627856!
+itemNotSellByTheStore
+	
+	^ testObjectFactory itemNotSellByTheStore! !
+!StoreTest methodsFor: 'support' stamp: 'SG 6/10/2023 15:36:22' prior: 50624698!
+itemSellByTheStore
+	
+	^ testObjectFactory itemSellByTheStore ! !
+!StoreTest methodsFor: 'support' stamp: 'SG 6/10/2023 15:36:22' prior: 50627866!
+itemSellByTheStore
+	
+	^ testObjectFactory itemSellByTheStore! !
+!StoreTest methodsFor: 'support' stamp: 'SG 6/10/2023 15:36:31' prior: 50625141!
+otherItemSellByTheStore
+
+	^ testObjectFactory otherItemSellByTheStore! !
+!StoreTest methodsFor: 'support' stamp: 'SG 6/10/2023 15:36:37' prior: 50626764!
+pastDate
+
+	^ testObjectFactory pastDate! !
+!StoreTest methodsFor: 'support' stamp: 'SG 6/10/2023 15:36:51' prior: 50625096!
+priceOfItemSoldByStore
+
+	^ testObjectFactory priceOfItemSoldByStore! !
+!StoreTest methodsFor: 'support' stamp: 'SG 6/10/2023 15:36:59' prior: 50625221!
+priceOfOtherItemSellByTheStore
+
+	^ testObjectFactory priceOfOtherItemSellByTheStore ! !
+!StoreTest methodsFor: 'support' stamp: 'SG 6/10/2023 15:37:00' prior: 50627890!
+priceOfOtherItemSellByTheStore
+
+	^ testObjectFactory priceOfOtherItemSellByTheStore! !
+
+!testRun: #CartTest #test01NewCartsAreCreatedEmpty stamp: 'SG 6/10/2023 15:37:18'!
+PASSED!
+
+!testRun: #CartTest #test02CanNotAddItemsThatDoNotBelongToStore stamp: 'SG 6/10/2023 15:37:18'!
+PASSED!
+
+!testRun: #CartTest #test03AfterAddingAnItemTheCartIsNotEmptyAnymore stamp: 'SG 6/10/2023 15:37:18'!
+PASSED!
+
+!testRun: #CartTest #test04CanNotAddNonPositiveNumberOfItems stamp: 'SG 6/10/2023 15:37:18'!
+PASSED!
+
+!testRun: #CartTest #test05CanNotAddMoreThanOneItemNotSellByTheStore stamp: 'SG 6/10/2023 15:37:18'!
+PASSED!
+
+!testRun: #CartTest #test06CartRemembersAddedItems stamp: 'SG 6/10/2023 15:37:18'!
+PASSED!
+
+!testRun: #CartTest #test07CartDoesNotHoldNotAddedItems stamp: 'SG 6/10/2023 15:37:18'!
+PASSED!
+
+!testRun: #CartTest #test08CartRemembersTheNumberOfAddedItems stamp: 'SG 6/10/2023 15:37:18'!
+PASSED!
+
+!testRun: #CashierTest #test01CannotCheckoutEmptyCart stamp: 'SG 6/10/2023 15:37:18'!
+PASSED!
+
+!testRun: #CashierTest #test02CheckoutPriceOfCartWithSingleItemIsThatItemsPrice stamp: 'SG 6/10/2023 15:37:18'!
+PASSED!
+
+!testRun: #CashierTest #test03CheckoutPriceOfCartWithMultipleOfTheSameItemIsCalculatedCorrectly stamp: 'SG 6/10/2023 15:37:18'!
+PASSED!
+
+!testRun: #CashierTest #test04CheckoutPriceOfCartWithMultipleDifferentItemsIsCalculatedCorrectly stamp: 'SG 6/10/2023 15:37:18'!
+PASSED!
+
+!testRun: #CashierTest #test05CheckoutFailsIfCreditCardHasExpired stamp: 'SG 6/10/2023 15:37:18'!
+PASSED!
+
+!testRun: #CreditCardTest #test01CreditCardNumberMustBeAStrictlyPositiveInteger stamp: 'SG 6/10/2023 15:37:18'!
+PASSED!
+
+!testRun: #CreditCardTest #test02CreditCardOwnerMustBeANonEmptyString stamp: 'SG 6/10/2023 15:37:18'!
+PASSED!
+
+!testRun: #CreditCardTest #test03CreditCardOwnerCantHaveMoreThan30Characters stamp: 'SG 6/10/2023 15:37:18'!
+PASSED!
+
+!testRun: #CreditCardTest #test04CreditCardHasntExpiredBeforeExpirationDate stamp: 'SG 6/10/2023 15:37:18'!
+PASSED!
+
+!testRun: #CreditCardTest #test05CreditCardHasExpiredAfterExpirationDate stamp: 'SG 6/10/2023 15:37:18'!
+PASSED!
+
+!testRun: #CartTest #test01NewCartsAreCreatedEmpty stamp: 'SG 6/10/2023 15:37:24'!
+PASSED!
+
+!testRun: #CartTest #test02CanNotAddItemsThatDoNotBelongToStore stamp: 'SG 6/10/2023 15:37:24'!
+PASSED!
+
+!testRun: #CartTest #test03AfterAddingAnItemTheCartIsNotEmptyAnymore stamp: 'SG 6/10/2023 15:37:24'!
+PASSED!
+
+!testRun: #CartTest #test04CanNotAddNonPositiveNumberOfItems stamp: 'SG 6/10/2023 15:37:24'!
+PASSED!
+
+!testRun: #CartTest #test05CanNotAddMoreThanOneItemNotSellByTheStore stamp: 'SG 6/10/2023 15:37:24'!
+PASSED!
+
+!testRun: #CartTest #test06CartRemembersAddedItems stamp: 'SG 6/10/2023 15:37:24'!
+PASSED!
+
+!testRun: #CartTest #test07CartDoesNotHoldNotAddedItems stamp: 'SG 6/10/2023 15:37:24'!
+PASSED!
+
+!testRun: #CartTest #test08CartRemembersTheNumberOfAddedItems stamp: 'SG 6/10/2023 15:37:24'!
+PASSED!
+
+!testRun: #CashierTest #test01CannotCheckoutEmptyCart stamp: 'SG 6/10/2023 15:37:24'!
+PASSED!
+
+!testRun: #CashierTest #test02CheckoutPriceOfCartWithSingleItemIsThatItemsPrice stamp: 'SG 6/10/2023 15:37:24'!
+PASSED!
+
+!testRun: #CashierTest #test03CheckoutPriceOfCartWithMultipleOfTheSameItemIsCalculatedCorrectly stamp: 'SG 6/10/2023 15:37:24'!
+PASSED!
+
+!testRun: #CashierTest #test04CheckoutPriceOfCartWithMultipleDifferentItemsIsCalculatedCorrectly stamp: 'SG 6/10/2023 15:37:24'!
+PASSED!
+
+!testRun: #CashierTest #test05CheckoutFailsIfCreditCardHasExpired stamp: 'SG 6/10/2023 15:37:24'!
+PASSED!
+
+!testRun: #CreditCardTest #test01CreditCardNumberMustBeAStrictlyPositiveInteger stamp: 'SG 6/10/2023 15:37:24'!
+PASSED!
+
+!testRun: #CreditCardTest #test02CreditCardOwnerMustBeANonEmptyString stamp: 'SG 6/10/2023 15:37:24'!
+PASSED!
+
+!testRun: #CreditCardTest #test03CreditCardOwnerCantHaveMoreThan30Characters stamp: 'SG 6/10/2023 15:37:24'!
+PASSED!
+
+!testRun: #CreditCardTest #test04CreditCardHasntExpiredBeforeExpirationDate stamp: 'SG 6/10/2023 15:37:24'!
+PASSED!
+
+!testRun: #CreditCardTest #test05CreditCardHasExpiredAfterExpirationDate stamp: 'SG 6/10/2023 15:37:24'!
+PASSED!
+
+!methodRemoval: StoreTest #setUp stamp: 'SG 6/10/2023 15:39:03'!
+setUp
+
+	testObjectFactory := StoreTestFactory new!
+!CreditCardTest methodsFor: 'nil' stamp: 'SG 6/10/2023 15:39:05' overrides: 16961394!
+setUp
+
+	testObjectFactory := StoreTestFactory new! !
+!CashierTest methodsFor: 'nil' stamp: 'SG 6/10/2023 15:39:11' overrides: 16961394!
+setUp
+
+	testObjectFactory := StoreTestFactory new! !
+
+!methodRemoval: CreditCardTest #setUp stamp: 'SG 6/10/2023 15:39:20'!
+setUp
+
+	testObjectFactory := StoreTestFactory new!
+!CashierTest methodsFor: 'as yet unclassified' stamp: 'SG 6/10/2023 15:39:23' prior: 50628035 overrides: 16961394!
+setUp
+
+	testObjectFactory := StoreTestFactory new! !
+
+TestCase subclass: #StoreTest
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'TusLibros'!
+
+!classDefinition: #StoreTest category: 'TusLibros' stamp: 'SG 6/10/2023 15:39:59'!
+TestCase subclass: #StoreTest
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'TusLibros'!
+
+!methodRemoval: StoreTest #createCart stamp: 'SG 6/10/2023 15:40:09'!
+createCart
+	
+	^ testObjectFactory createCart!
+!CashierTest methodsFor: 'tests' stamp: 'SG 6/10/2023 15:40:09' prior: 50626929!
+test02CheckoutPriceOfCartWithSingleItemIsThatItemsPrice
+
+	| cart cashier |
+	cart :=  testObjectFactory createCart.
+	cart add: self itemSellByTheStore.
+	
+	cashier := self createCashier.
+	
+	self assert: self priceOfItemSoldByStore equals: (cashier checkout: cart withCreditCard: ((self createCreditCardThatExpiresOn: self futureDate))).! !
+!CashierTest methodsFor: 'tests' stamp: 'SG 6/10/2023 15:40:09' prior: 50627000!
+test05CheckoutFailsIfCreditCardHasExpired
+
+	| cart cashier |
+	cart :=  testObjectFactory createCart.
+	cart add: self itemSellByTheStore.
+	cart add: self otherItemSellByTheStore.
+	
+	cashier := self createCashier.
+	
+	self 
+		should: [cashier checkout: cart withCreditCard: (self createCreditCardThatExpiresOn: self pastDate) ]
+		raise: Error - MessageNotUnderstood
+		withMessageText: Cashier cantCheckoutUsingExpiredCreditCardErrorDescription! !
+!CashierTest methodsFor: 'tests' stamp: 'SG 6/10/2023 15:40:09' prior: 50626957!
+test03CheckoutPriceOfCartWithMultipleOfTheSameItemIsCalculatedCorrectly
+
+	| cart cashier |
+	cart :=  testObjectFactory createCart.
+	cart add: self itemSellByTheStore.
+	cart add: self itemSellByTheStore.
+	
+	cashier := self createCashier.
+	
+	self
+		assert: 2 * self priceOfItemSoldByStore
+		equals: (cashier checkout: cart withCreditCard: ((self createCreditCardThatExpiresOn: self futureDate))).! !
+!CashierTest methodsFor: 'tests' stamp: 'SG 6/10/2023 15:40:09' prior: 50626916!
+test01CannotCheckoutEmptyCart
+
+	| cart cashier |
+	cart :=  testObjectFactory createCart.
+	
+	cashier := self createCashier.
+	
+	self
+		should: [ cashier checkout: cart withCreditCard: (self createCreditCardThatExpiresOn: self futureDate) ]
+		raise: Error - MessageNotUnderstood
+		withMessageText: Cashier cantCheckoutEmptyCartErrorDescription! !
+!CashierTest methodsFor: 'tests' stamp: 'SG 6/10/2023 15:40:09' prior: 50626972!
+test04CheckoutPriceOfCartWithMultipleDifferentItemsIsCalculatedCorrectly
+
+	| cart cashier |
+	cart :=  testObjectFactory createCart.
+	cart add: self itemSellByTheStore.
+	cart add: self otherItemSellByTheStore.
+	
+	cashier := self createCashier.
+	
+	self
+		assert: self priceOfItemSoldByStore + self priceOfOtherItemSellByTheStore
+		equals: (cashier checkout: cart withCreditCard: ((self createCreditCardThatExpiresOn: self futureDate))).! !
+
+!methodRemoval: StoreTest #createCreditCardThatExpiresOn: stamp: 'SG 6/10/2023 15:40:14'!
+createCreditCardThatExpiresOn: aMonthOfYear
+
+	^ testObjectFactory createCreditCardThatExpiresOn: aMonthOfYear!
+!CashierTest methodsFor: 'tests' stamp: 'SG 6/10/2023 15:40:14' prior: 50628110!
+test01CannotCheckoutEmptyCart
+
+	| cart cashier |
+	cart :=  testObjectFactory createCart.
+	
+	cashier := self createCashier.
+	
+	self
+		should: [ cashier checkout: cart withCreditCard: ( testObjectFactory createCreditCardThatExpiresOn: self futureDate) ]
+		raise: Error - MessageNotUnderstood
+		withMessageText: Cashier cantCheckoutEmptyCartErrorDescription! !
+!CreditCardTest methodsFor: 'tests' stamp: 'SG 6/10/2023 15:40:14' prior: 50626751!
+test04CreditCardHasntExpiredBeforeExpirationDate
+
+	| creditCard |
+	creditCard :=  testObjectFactory createCreditCardThatExpiresOn: self currentDate.
+
+	self deny: (creditCard hasExpiredBy: (self pastDate)).! !
+!CashierTest methodsFor: 'tests' stamp: 'SG 6/10/2023 15:40:14' prior: 50628095!
+test03CheckoutPriceOfCartWithMultipleOfTheSameItemIsCalculatedCorrectly
+
+	| cart cashier |
+	cart :=  testObjectFactory createCart.
+	cart add: self itemSellByTheStore.
+	cart add: self itemSellByTheStore.
+	
+	cashier := self createCashier.
+	
+	self
+		assert: 2 * self priceOfItemSoldByStore
+		equals: (cashier checkout: cart withCreditCard: ( testObjectFactory createCreditCardThatExpiresOn: self futureDate)).! !
+!CashierTest methodsFor: 'tests' stamp: 'SG 6/10/2023 15:40:14' prior: 50628064!
+test02CheckoutPriceOfCartWithSingleItemIsThatItemsPrice
+
+	| cart cashier |
+	cart :=  testObjectFactory createCart.
+	cart add: self itemSellByTheStore.
+	
+	cashier := self createCashier.
+	
+	self assert: self priceOfItemSoldByStore equals: (cashier checkout: cart withCreditCard: ( testObjectFactory createCreditCardThatExpiresOn: self futureDate)).! !
+!CashierTest methodsFor: 'tests' stamp: 'SG 6/10/2023 15:40:14' prior: 50628124!
+test04CheckoutPriceOfCartWithMultipleDifferentItemsIsCalculatedCorrectly
+
+	| cart cashier |
+	cart :=  testObjectFactory createCart.
+	cart add: self itemSellByTheStore.
+	cart add: self otherItemSellByTheStore.
+	
+	cashier := self createCashier.
+	
+	self
+		assert: self priceOfItemSoldByStore + self priceOfOtherItemSellByTheStore
+		equals: (cashier checkout: cart withCreditCard: ( testObjectFactory createCreditCardThatExpiresOn: self futureDate)).! !
+!CreditCardTest methodsFor: 'tests' stamp: 'SG 6/10/2023 15:40:14' prior: 50626742!
+test05CreditCardHasExpiredAfterExpirationDate
+
+	| creditCard |
+	creditCard :=  testObjectFactory createCreditCardThatExpiresOn: self currentDate.
+
+	self assert: (creditCard hasExpiredBy: (self futureDate)).! !
+!CashierTest methodsFor: 'tests' stamp: 'SG 6/10/2023 15:40:14' prior: 50628078!
+test05CheckoutFailsIfCreditCardHasExpired
+
+	| cart cashier |
+	cart :=  testObjectFactory createCart.
+	cart add: self itemSellByTheStore.
+	cart add: self otherItemSellByTheStore.
+	
+	cashier := self createCashier.
+	
+	self 
+		should: [cashier checkout: cart withCreditCard: ( testObjectFactory createCreditCardThatExpiresOn: self pastDate) ]
+		raise: Error - MessageNotUnderstood
+		withMessageText: Cashier cantCheckoutUsingExpiredCreditCardErrorDescription! !
+
+!methodRemoval: StoreTest #currentDate stamp: 'SG 6/10/2023 15:40:19'!
+currentDate
+
+	^ testObjectFactory currentDate!
+!CashierTest methodsFor: 'support' stamp: 'SG 6/10/2023 15:40:19' prior: 50627072!
+createCashier
+
+	^Cashier onDate: ( testObjectFactory currentDate)! !
+!CreditCardTest methodsFor: 'tests' stamp: 'SG 6/10/2023 15:40:19' prior: 50628218!
+test05CreditCardHasExpiredAfterExpirationDate
+
+	| creditCard |
+	creditCard :=  testObjectFactory createCreditCardThatExpiresOn: ( testObjectFactory currentDate).
+
+	self assert: (creditCard hasExpiredBy: (self futureDate)).! !
+!CreditCardTest methodsFor: 'tests' stamp: 'SG 6/10/2023 15:40:19' prior: 50628161!
+test04CreditCardHasntExpiredBeforeExpirationDate
+
+	| creditCard |
+	creditCard :=  testObjectFactory createCreditCardThatExpiresOn: ( testObjectFactory currentDate).
+
+	self deny: (creditCard hasExpiredBy: (self pastDate)).! !
+
+!methodRemoval: StoreTest #defaultCatalog stamp: 'SG 6/10/2023 15:40:22'!
+defaultCatalog
+	
+	^ testObjectFactory defaultCatalog!
+
+!methodRemoval: StoreTest #futureDate stamp: 'SG 6/10/2023 15:40:25'!
+futureDate
+
+	^ testObjectFactory futureDate!
+!CashierTest methodsFor: 'tests' stamp: 'SG 6/10/2023 15:40:25' prior: 50628187!
+test02CheckoutPriceOfCartWithSingleItemIsThatItemsPrice
+
+	| cart cashier |
+	cart :=  testObjectFactory createCart.
+	cart add: self itemSellByTheStore.
+	
+	cashier := self createCashier.
+	
+	self assert: self priceOfItemSoldByStore equals: (cashier checkout: cart withCreditCard: ( testObjectFactory createCreditCardThatExpiresOn: ( testObjectFactory futureDate))).! !
+!CashierTest methodsFor: 'tests' stamp: 'SG 6/10/2023 15:40:25' prior: 50628171!
+test03CheckoutPriceOfCartWithMultipleOfTheSameItemIsCalculatedCorrectly
+
+	| cart cashier |
+	cart :=  testObjectFactory createCart.
+	cart add: self itemSellByTheStore.
+	cart add: self itemSellByTheStore.
+	
+	cashier := self createCashier.
+	
+	self
+		assert: 2 * self priceOfItemSoldByStore
+		equals: (cashier checkout: cart withCreditCard: ( testObjectFactory createCreditCardThatExpiresOn: ( testObjectFactory futureDate))).! !
+!CreditCardTest methodsFor: 'tests' stamp: 'SG 6/10/2023 15:40:25' prior: 50628254!
+test05CreditCardHasExpiredAfterExpirationDate
+
+	| creditCard |
+	creditCard :=  testObjectFactory createCreditCardThatExpiresOn: ( testObjectFactory currentDate).
+
+	self assert: (creditCard hasExpiredBy: ( testObjectFactory futureDate)).! !
+!CashierTest methodsFor: 'tests' stamp: 'SG 6/10/2023 15:40:25' prior: 50628147!
+test01CannotCheckoutEmptyCart
+
+	| cart cashier |
+	cart :=  testObjectFactory createCart.
+	
+	cashier := self createCashier.
+	
+	self
+		should: [ cashier checkout: cart withCreditCard: ( testObjectFactory createCreditCardThatExpiresOn: ( testObjectFactory futureDate)) ]
+		raise: Error - MessageNotUnderstood
+		withMessageText: Cashier cantCheckoutEmptyCartErrorDescription! !
+!CashierTest methodsFor: 'tests' stamp: 'SG 6/10/2023 15:40:25' prior: 50628201!
+test04CheckoutPriceOfCartWithMultipleDifferentItemsIsCalculatedCorrectly
+
+	| cart cashier |
+	cart :=  testObjectFactory createCart.
+	cart add: self itemSellByTheStore.
+	cart add: self otherItemSellByTheStore.
+	
+	cashier := self createCashier.
+	
+	self
+		assert: self priceOfItemSoldByStore + self priceOfOtherItemSellByTheStore
+		equals: (cashier checkout: cart withCreditCard: ( testObjectFactory createCreditCardThatExpiresOn: ( testObjectFactory futureDate))).! !
+
+!methodRemoval: StoreTest #itemNotSellByTheStore stamp: 'SG 6/10/2023 15:40:29'!
+itemNotSellByTheStore
+	
+	^ testObjectFactory itemNotSellByTheStore!
+
+!classDefinition: #CashierTest category: 'TusLibros' stamp: 'SG 6/10/2023 15:41:50'!
+StoreTest subclass: #CashierTest
+	instanceVariableNames: 'testObjectFactory'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'TusLibros'!
+!CashierTest methodsFor: 'support' stamp: 'SG 6/10/2023 15:41:48' prior: 50628249!
+createCashier
+
+	^testObjectFactory createCashier! !
+
+!methodRemoval: CashierTest #createCashier stamp: 'SG 6/10/2023 15:42:09'!
+createCashier
+
+	^testObjectFactory createCashier!
+!CashierTest methodsFor: 'tests' stamp: 'SG 6/10/2023 15:42:09' prior: 50628282!
+test02CheckoutPriceOfCartWithSingleItemIsThatItemsPrice
+
+	| cart cashier |
+	cart :=  testObjectFactory createCart.
+	cart add: self itemSellByTheStore.
+	
+	cashier := testObjectFactory createCashier.
+	
+	self assert: self priceOfItemSoldByStore equals: (cashier checkout: cart withCreditCard: ( testObjectFactory createCreditCardThatExpiresOn: ( testObjectFactory futureDate))).! !
+!CashierTest methodsFor: 'tests' stamp: 'SG 6/10/2023 15:42:09' prior: 50628338!
+test04CheckoutPriceOfCartWithMultipleDifferentItemsIsCalculatedCorrectly
+
+	| cart cashier |
+	cart :=  testObjectFactory createCart.
+	cart add: self itemSellByTheStore.
+	cart add: self otherItemSellByTheStore.
+	
+	cashier := testObjectFactory createCashier.
+	
+	self
+		assert: self priceOfItemSoldByStore + self priceOfOtherItemSellByTheStore
+		equals: (cashier checkout: cart withCreditCard: ( testObjectFactory createCreditCardThatExpiresOn: ( testObjectFactory futureDate))).! !
+!CashierTest methodsFor: 'tests' stamp: 'SG 6/10/2023 15:42:09' prior: 50628296!
+test03CheckoutPriceOfCartWithMultipleOfTheSameItemIsCalculatedCorrectly
+
+	| cart cashier |
+	cart :=  testObjectFactory createCart.
+	cart add: self itemSellByTheStore.
+	cart add: self itemSellByTheStore.
+	
+	cashier := testObjectFactory createCashier.
+	
+	self
+		assert: 2 * self priceOfItemSoldByStore
+		equals: (cashier checkout: cart withCreditCard: ( testObjectFactory createCreditCardThatExpiresOn: ( testObjectFactory futureDate))).! !
+!CashierTest methodsFor: 'tests' stamp: 'SG 6/10/2023 15:42:09' prior: 50628228!
+test05CheckoutFailsIfCreditCardHasExpired
+
+	| cart cashier |
+	cart :=  testObjectFactory createCart.
+	cart add: self itemSellByTheStore.
+	cart add: self otherItemSellByTheStore.
+	
+	cashier := testObjectFactory createCashier.
+	
+	self 
+		should: [cashier checkout: cart withCreditCard: ( testObjectFactory createCreditCardThatExpiresOn: self pastDate) ]
+		raise: Error - MessageNotUnderstood
+		withMessageText: Cashier cantCheckoutUsingExpiredCreditCardErrorDescription! !
+!CashierTest methodsFor: 'tests' stamp: 'SG 6/10/2023 15:42:09' prior: 50628323!
+test01CannotCheckoutEmptyCart
+
+	| cart cashier |
+	cart :=  testObjectFactory createCart.
+	
+	cashier := testObjectFactory createCashier.
+	
+	self
+		should: [ cashier checkout: cart withCreditCard: ( testObjectFactory createCreditCardThatExpiresOn: ( testObjectFactory futureDate)) ]
+		raise: Error - MessageNotUnderstood
+		withMessageText: Cashier cantCheckoutEmptyCartErrorDescription! !
+!CashierTest methodsFor: 'tests' stamp: 'SG 6/10/2023 15:42:29' prior: 50628410!
+test03CheckoutPriceOfCartWithMultipleOfTheSameItemIsCalculatedCorrectly
+
+	| cart cashier |
+	cart :=  testObjectFactory createCart.
+	cart add: testObjectFactory itemSellByTheStore.
+	cart add: testObjectFactory itemSellByTheStore.
+	
+	cashier := testObjectFactory createCashier.
+	
+	self
+		assert: 2 * self priceOfItemSoldByStore
+		equals: (cashier checkout: cart withCreditCard: ( testObjectFactory createCreditCardThatExpiresOn: ( testObjectFactory futureDate))).! !
+
+!testRun: #CashierTest #test03CheckoutPriceOfCartWithMultipleOfTheSameItemIsCalculatedCorrectly stamp: 'SG 6/10/2023 15:42:35'!
+ERROR!
+!CashierTest methodsFor: 'tests' stamp: 'SG 6/10/2023 15:42:47' prior: 50628377!
+test02CheckoutPriceOfCartWithSingleItemIsThatItemsPrice
+
+	| cart cashier |
+	cart :=  testObjectFactory createCart.
+	cart add: testObjectFactory itemSellByTheStore.
+	
+	cashier := testObjectFactory createCashier.
+	
+	self assert: self priceOfItemSoldByStore equals: (cashier checkout: cart withCreditCard: ( testObjectFactory createCreditCardThatExpiresOn: ( testObjectFactory futureDate))).! !
+!CashierTest methodsFor: 'tests' stamp: 'SG 6/10/2023 15:42:55' prior: 50628482!
+test02CheckoutPriceOfCartWithSingleItemIsThatItemsPrice
+
+	| cart cashier |
+	cart :=  testObjectFactory createCart.
+	cart add: testObjectFactory itemSellByTheStore.
+	
+	cashier := testObjectFactory createCashier.
+	
+	self assert: testObjectFactory priceOfItemSoldByStore equals: (cashier checkout: cart withCreditCard: ( testObjectFactory createCreditCardThatExpiresOn: ( testObjectFactory futureDate))).! !
+!CashierTest methodsFor: 'tests' stamp: 'SG 6/10/2023 15:43:10' prior: 50628392!
+test04CheckoutPriceOfCartWithMultipleDifferentItemsIsCalculatedCorrectly
+
+	| cart cashier |
+	cart :=  testObjectFactory createCart.
+	cart add: testObjectFactory itemSellByTheStore.
+	cart add: testObjectFactory otherItemSellByTheStore.
+	
+	cashier := testObjectFactory createCashier.
+	
+	self
+		assert: testObjectFactory priceOfItemSoldByStore + testObjectFactory priceOfOtherItemSellByTheStore
+		equals: (cashier checkout: cart withCreditCard: ( testObjectFactory createCreditCardThatExpiresOn: ( testObjectFactory futureDate))).! !
+!CashierTest methodsFor: 'tests' stamp: 'SG 6/10/2023 15:43:17' prior: 50628427!
+test05CheckoutFailsIfCreditCardHasExpired
+
+	| cart cashier |
+	cart :=  testObjectFactory createCart.
+	cart add: testObjectFactory itemSellByTheStore.
+	cart add: testObjectFactory otherItemSellByTheStore.
+	
+	cashier := testObjectFactory createCashier.
+	
+	self 
+		should: [cashier checkout: cart withCreditCard: ( testObjectFactory createCreditCardThatExpiresOn: testObjectFactory pastDate) ]
+		raise: Error - MessageNotUnderstood
+		withMessageText: Cashier cantCheckoutUsingExpiredCreditCardErrorDescription! !
+
+!testRun: #CashierTest #test01CannotCheckoutEmptyCart stamp: 'SG 6/10/2023 15:43:24'!
+PASSED!
+
+!testRun: #CashierTest #test02CheckoutPriceOfCartWithSingleItemIsThatItemsPrice stamp: 'SG 6/10/2023 15:43:24'!
+PASSED!
+
+!testRun: #CashierTest #test03CheckoutPriceOfCartWithMultipleOfTheSameItemIsCalculatedCorrectly stamp: 'SG 6/10/2023 15:43:24'!
+ERROR!
+
+!testRun: #CashierTest #test04CheckoutPriceOfCartWithMultipleDifferentItemsIsCalculatedCorrectly stamp: 'SG 6/10/2023 15:43:24'!
+PASSED!
+
+!testRun: #CashierTest #test05CheckoutFailsIfCreditCardHasExpired stamp: 'SG 6/10/2023 15:43:24'!
+PASSED!
+
+!testRun: #CashierTest #test03CheckoutPriceOfCartWithMultipleOfTheSameItemIsCalculatedCorrectly stamp: 'SG 6/10/2023 15:43:24'!
+ERROR!
+
+!testRun: #CashierTest #test01CannotCheckoutEmptyCart stamp: 'SG 6/10/2023 15:43:44'!
+PASSED!
+
+!testRun: #CashierTest #test02CheckoutPriceOfCartWithSingleItemIsThatItemsPrice stamp: 'SG 6/10/2023 15:43:46'!
+PASSED!
+
+!testRun: #CashierTest #test03CheckoutPriceOfCartWithMultipleOfTheSameItemIsCalculatedCorrectly stamp: 'SG 6/10/2023 15:43:47'!
+ERROR!
+
+!testRun: #CashierTest #test03CheckoutPriceOfCartWithMultipleOfTheSameItemIsCalculatedCorrectly stamp: 'SG 6/10/2023 15:43:47'!
+ERROR!
+!CashierTest methodsFor: 'tests' stamp: 'SG 6/10/2023 15:43:53' prior: 50628460!
+test03CheckoutPriceOfCartWithMultipleOfTheSameItemIsCalculatedCorrectly
+
+	| cart cashier |
+	cart :=  testObjectFactory createCart.
+	cart add: testObjectFactory itemSellByTheStore.
+	cart add: testObjectFactory itemSellByTheStore.
+	
+	cashier := testObjectFactory createCashier.
+	
+	self
+		assert: 2 * testObjectFactory priceOfItemSoldByStore
+		equals: (cashier checkout: cart withCreditCard: ( testObjectFactory createCreditCardThatExpiresOn: ( testObjectFactory futureDate))).! !
+
+!testRun: #CashierTest #test03CheckoutPriceOfCartWithMultipleOfTheSameItemIsCalculatedCorrectly stamp: 'SG 6/10/2023 15:43:55'!
+PASSED!
+
+!testRun: #CashierTest #test01CannotCheckoutEmptyCart stamp: 'SG 6/10/2023 15:43:57'!
+PASSED!
+
+!testRun: #CashierTest #test02CheckoutPriceOfCartWithSingleItemIsThatItemsPrice stamp: 'SG 6/10/2023 15:43:57'!
+PASSED!
+
+!testRun: #CashierTest #test03CheckoutPriceOfCartWithMultipleOfTheSameItemIsCalculatedCorrectly stamp: 'SG 6/10/2023 15:43:57'!
+PASSED!
+
+!testRun: #CashierTest #test04CheckoutPriceOfCartWithMultipleDifferentItemsIsCalculatedCorrectly stamp: 'SG 6/10/2023 15:43:57'!
+PASSED!
+
+!testRun: #CashierTest #test05CheckoutFailsIfCreditCardHasExpired stamp: 'SG 6/10/2023 15:43:57'!
+PASSED!
+
+!testRun: #CashierTest #test04CheckoutPriceOfCartWithMultipleDifferentItemsIsCalculatedCorrectly stamp: 'SG 6/10/2023 15:44:00'!
+PASSED!
+
+!methodRemoval: StoreTest #itemSellByTheStore stamp: 'SG 6/10/2023 15:44:22'!
+itemSellByTheStore
+	
+	^ testObjectFactory itemSellByTheStore!
+
+!methodRemoval: StoreTest #otherItemSellByTheStore stamp: 'SG 6/10/2023 15:44:24'!
+otherItemSellByTheStore
+
+	^ testObjectFactory otherItemSellByTheStore!
+
+!methodRemoval: StoreTest #pastDate stamp: 'SG 6/10/2023 15:44:25'!
+pastDate
+
+	^ testObjectFactory pastDate!
+
+!methodRemoval: StoreTest #priceOfItemSoldByStore stamp: 'SG 6/10/2023 15:44:26'!
+priceOfItemSoldByStore
+
+	^ testObjectFactory priceOfItemSoldByStore!
+
+!methodRemoval: StoreTest #priceOfOtherItemSellByTheStore stamp: 'SG 6/10/2023 15:44:27'!
+priceOfOtherItemSellByTheStore
+
+	^ testObjectFactory priceOfOtherItemSellByTheStore!
+
+TestCase subclass: #CashierTest
+	instanceVariableNames: 'testObjectFactory'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'TusLibros'!
+
+!classDefinition: #CashierTest category: 'TusLibros' stamp: 'SG 6/10/2023 15:44:33'!
+TestCase subclass: #CashierTest
+	instanceVariableNames: 'testObjectFactory'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'TusLibros'!
+!CreditCardTest methodsFor: 'tests' stamp: 'SG 6/10/2023 15:45:08' prior: 50628264!
+test04CreditCardHasntExpiredBeforeExpirationDate
+
+	| creditCard |
+	creditCard :=  CreditCard number: 1234 owner: 'HERNAN A WILKINSON' expirationDate: (January of: 2000).
+
+	self deny: (creditCard hasExpiredBy: (December of: 1999)).! !
+
+!testRun: #CreditCardTest #test04CreditCardHasntExpiredBeforeExpirationDate stamp: 'SG 6/10/2023 15:45:10'!
+PASSED!
+
+!testRun: #CreditCardTest #test01CreditCardNumberMustBeAStrictlyPositiveInteger stamp: 'SG 6/10/2023 15:45:10'!
+PASSED!
+
+!testRun: #CreditCardTest #test02CreditCardOwnerMustBeANonEmptyString stamp: 'SG 6/10/2023 15:45:10'!
+PASSED!
+
+!testRun: #CreditCardTest #test03CreditCardOwnerCantHaveMoreThan30Characters stamp: 'SG 6/10/2023 15:45:10'!
+PASSED!
+
+!testRun: #CreditCardTest #test04CreditCardHasntExpiredBeforeExpirationDate stamp: 'SG 6/10/2023 15:45:10'!
+PASSED!
+
+!testRun: #CreditCardTest #test05CreditCardHasExpiredAfterExpirationDate stamp: 'SG 6/10/2023 15:45:10'!
+ERROR!
+
+!testRun: #CreditCardTest #test05CreditCardHasExpiredAfterExpirationDate stamp: 'SG 6/10/2023 15:45:10'!
+ERROR!
+!CreditCardTest methodsFor: 'tests' stamp: 'SG 6/10/2023 15:45:37' prior: 50628312!
+test05CreditCardHasExpiredAfterExpirationDate
+
+	| creditCard |
+	creditCard :=  CreditCard number: 1234 owner: 'HERNAN A WILKINSON' expirationDate: (January of: 2000).
+
+	self assert: (creditCard hasExpiredBy: (December of: 1999))! !
+
+!testRun: #CreditCardTest #test01CreditCardNumberMustBeAStrictlyPositiveInteger stamp: 'SG 6/10/2023 15:45:39'!
+PASSED!
+
+!testRun: #CreditCardTest #test02CreditCardOwnerMustBeANonEmptyString stamp: 'SG 6/10/2023 15:45:39'!
+PASSED!
+
+!testRun: #CreditCardTest #test03CreditCardOwnerCantHaveMoreThan30Characters stamp: 'SG 6/10/2023 15:45:39'!
+PASSED!
+
+!testRun: #CreditCardTest #test04CreditCardHasntExpiredBeforeExpirationDate stamp: 'SG 6/10/2023 15:45:39'!
+PASSED!
+
+!testRun: #CreditCardTest #test05CreditCardHasExpiredAfterExpirationDate stamp: 'SG 6/10/2023 15:45:39'!
+FAILURE!
+
+!testRun: #CreditCardTest #test05CreditCardHasExpiredAfterExpirationDate stamp: 'SG 6/10/2023 15:45:39'!
+FAILURE!
+!CreditCardTest methodsFor: 'tests' stamp: 'SG 6/10/2023 15:45:50' prior: 50628706!
+test05CreditCardHasExpiredAfterExpirationDate
+
+	| creditCard |
+	creditCard :=  CreditCard number: 1234 owner: 'HERNAN A WILKINSON' expirationDate: (January of: 2000).
+
+	self assert: (creditCard hasExpiredBy: (February of: 2000))! !
+
+!testRun: #CreditCardTest #test05CreditCardHasExpiredAfterExpirationDate stamp: 'SG 6/10/2023 15:45:51'!
+PASSED!
+
+!testRun: #CreditCardTest #test01CreditCardNumberMustBeAStrictlyPositiveInteger stamp: 'SG 6/10/2023 15:45:51'!
+PASSED!
+
+!testRun: #CreditCardTest #test02CreditCardOwnerMustBeANonEmptyString stamp: 'SG 6/10/2023 15:45:51'!
+PASSED!
+
+!testRun: #CreditCardTest #test03CreditCardOwnerCantHaveMoreThan30Characters stamp: 'SG 6/10/2023 15:45:51'!
+PASSED!
+
+!testRun: #CreditCardTest #test04CreditCardHasntExpiredBeforeExpirationDate stamp: 'SG 6/10/2023 15:45:51'!
+PASSED!
+
+!testRun: #CreditCardTest #test05CreditCardHasExpiredAfterExpirationDate stamp: 'SG 6/10/2023 15:45:51'!
+PASSED!
+
+TestCase subclass: #CreditCardTest
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'TusLibros'!
+
+!classDefinition: #CreditCardTest category: 'TusLibros' stamp: 'SG 6/10/2023 15:45:58'!
+TestCase subclass: #CreditCardTest
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'TusLibros'!
+
+!classRemoval: #StoreTest stamp: 'SG 6/10/2023 15:46:01'!
+TestCase subclass: #StoreTest
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'TusLibros'!
+
+!testRun: #CartTest #test01NewCartsAreCreatedEmpty stamp: 'SG 6/10/2023 15:46:06'!
+PASSED!
+
+!testRun: #CartTest #test02CanNotAddItemsThatDoNotBelongToStore stamp: 'SG 6/10/2023 15:46:06'!
+PASSED!
+
+!testRun: #CartTest #test03AfterAddingAnItemTheCartIsNotEmptyAnymore stamp: 'SG 6/10/2023 15:46:06'!
+PASSED!
+
+!testRun: #CartTest #test04CanNotAddNonPositiveNumberOfItems stamp: 'SG 6/10/2023 15:46:06'!
+PASSED!
+
+!testRun: #CartTest #test05CanNotAddMoreThanOneItemNotSellByTheStore stamp: 'SG 6/10/2023 15:46:06'!
+PASSED!
+
+!testRun: #CartTest #test06CartRemembersAddedItems stamp: 'SG 6/10/2023 15:46:06'!
+PASSED!
+
+!testRun: #CartTest #test07CartDoesNotHoldNotAddedItems stamp: 'SG 6/10/2023 15:46:06'!
+PASSED!
+
+!testRun: #CartTest #test08CartRemembersTheNumberOfAddedItems stamp: 'SG 6/10/2023 15:46:06'!
+PASSED!
+
+!testRun: #CashierTest #test01CannotCheckoutEmptyCart stamp: 'SG 6/10/2023 15:46:06'!
+PASSED!
+
+!testRun: #CashierTest #test02CheckoutPriceOfCartWithSingleItemIsThatItemsPrice stamp: 'SG 6/10/2023 15:46:06'!
+PASSED!
+
+!testRun: #CashierTest #test03CheckoutPriceOfCartWithMultipleOfTheSameItemIsCalculatedCorrectly stamp: 'SG 6/10/2023 15:46:06'!
+PASSED!
+
+!testRun: #CashierTest #test04CheckoutPriceOfCartWithMultipleDifferentItemsIsCalculatedCorrectly stamp: 'SG 6/10/2023 15:46:06'!
+PASSED!
+
+!testRun: #CashierTest #test05CheckoutFailsIfCreditCardHasExpired stamp: 'SG 6/10/2023 15:46:06'!
+PASSED!
+
+!testRun: #CreditCardTest #test01CreditCardNumberMustBeAStrictlyPositiveInteger stamp: 'SG 6/10/2023 15:46:06'!
+PASSED!
+
+!testRun: #CreditCardTest #test02CreditCardOwnerMustBeANonEmptyString stamp: 'SG 6/10/2023 15:46:06'!
+PASSED!
+
+!testRun: #CreditCardTest #test03CreditCardOwnerCantHaveMoreThan30Characters stamp: 'SG 6/10/2023 15:46:06'!
+PASSED!
+
+!testRun: #CreditCardTest #test04CreditCardHasntExpiredBeforeExpirationDate stamp: 'SG 6/10/2023 15:46:06'!
+PASSED!
+
+!testRun: #CreditCardTest #test05CreditCardHasExpiredAfterExpirationDate stamp: 'SG 6/10/2023 15:46:06'!
+PASSED!
+!CashierTest methodsFor: 'tests' stamp: 'SG 6/10/2023 15:48:04'!
+test06CheckoutChargesSaleAmountFromCreditCardUsingMerchantProcessor
+
+	| cart cashier |
+	cart :=  testObjectFactory createCart.
+	cart add: testObjectFactory itemSellByTheStore.
+	cart add: testObjectFactory otherItemSellByTheStore.
+	
+	cashier := testObjectFactory createCashier.
+	
+	cashier
+		checkout: cart
+		withCreditCard: ( testObjectFactory createCreditCardThatExpiresOn: testObjectFactory pastDate).! !
+
+!classDefinition: #MockMerchantProcessor category: 'TusLibros' stamp: 'SG 6/10/2023 15:57:56'!
+Object subclass: #MockMerchantProcessor
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'TusLibros'!
+!CashierTest methodsFor: 'tests' stamp: 'SG 6/10/2023 15:57:40' prior: 50628849!
+test06CheckoutChargesSaleAmountFromCreditCardUsingMerchantProcessor
+
+	| cart cashier creditCard merchantProcessor price |
+	cart :=  testObjectFactory createCart.
+	cart add: testObjectFactory itemSellByTheStore.
+	cart add: testObjectFactory otherItemSellByTheStore.
+
+	creditCard := testObjectFactory createCreditCardThatExpiresOn: testObjectFactory pastDate.
+	merchantProcessor := MockMerchantProcessor new.
+	cashier := testObjectFactory createCashier.
+
+	price := cashier checkout: cart withCreditCard: creditCard.
+
+	self assert: (merchantProcessor hasCharged: price from: creditCard)! !
+
+!testRun: #CashierTest #test06CheckoutChargesSaleAmountFromCreditCardUsingMerchantProcessor stamp: 'SG 6/10/2023 15:59:10'!
+ERROR!
+!CashierTest methodsFor: 'tests' stamp: 'SG 6/10/2023 15:59:22' prior: 50628872!
+test06CheckoutChargesSaleAmountFromCreditCardUsingMerchantProcessor
+
+	| cart cashier creditCard merchantProcessor price |
+	cart :=  testObjectFactory createCart.
+	cart add: testObjectFactory itemSellByTheStore.
+	cart add: testObjectFactory otherItemSellByTheStore.
+
+	creditCard := testObjectFactory createCreditCardThatExpiresOn: testObjectFactory futureDate.
+	merchantProcessor := MockMerchantProcessor new.
+	cashier := testObjectFactory createCashier.
+
+	price := cashier checkout: cart withCreditCard: creditCard.
+
+	self assert: (merchantProcessor hasCharged: price from: creditCard)! !
+
+!testRun: #CashierTest #test06CheckoutChargesSaleAmountFromCreditCardUsingMerchantProcessor stamp: 'SG 6/10/2023 15:59:23'!
+ERROR!
+!MockMerchantProcessor methodsFor: 'charging' stamp: 'SG 6/10/2023 15:59:44'!
+hasCharged: price from: creditCard 
+	self shouldBeImplemented.! !
+!MockMerchantProcessor methodsFor: 'charging' stamp: 'SG 6/10/2023 15:59:50' prior: 50628922!
+hasCharged: price from: creditCard 
+
+	^ true! !
+
+!testRun: #CashierTest #test06CheckoutChargesSaleAmountFromCreditCardUsingMerchantProcessor stamp: 'SG 6/10/2023 15:59:51'!
+PASSED!
+
+!testRun: #CashierTest #test01CannotCheckoutEmptyCart stamp: 'SG 6/10/2023 15:59:51'!
+PASSED!
+
+!testRun: #CashierTest #test02CheckoutPriceOfCartWithSingleItemIsThatItemsPrice stamp: 'SG 6/10/2023 15:59:51'!
+PASSED!
+
+!testRun: #CashierTest #test03CheckoutPriceOfCartWithMultipleOfTheSameItemIsCalculatedCorrectly stamp: 'SG 6/10/2023 15:59:51'!
+PASSED!
+
+!testRun: #CashierTest #test04CheckoutPriceOfCartWithMultipleDifferentItemsIsCalculatedCorrectly stamp: 'SG 6/10/2023 15:59:51'!
+PASSED!
+
+!testRun: #CashierTest #test05CheckoutFailsIfCreditCardHasExpired stamp: 'SG 6/10/2023 15:59:51'!
+PASSED!
+
+!testRun: #CashierTest #test06CheckoutChargesSaleAmountFromCreditCardUsingMerchantProcessor stamp: 'SG 6/10/2023 15:59:51'!
+PASSED!
+!CashierTest methodsFor: 'tests' stamp: 'SG 6/10/2023 15:59:57' prior: 50628897!
+test06CheckoutChargesSaleAmountFromCreditCardUsingMerchantProcessor
+
+	| cart cashier creditCard merchantProcessor price |
+	cart :=  testObjectFactory createCart.
+	cart add: testObjectFactory itemSellByTheStore.
+	cart add: testObjectFactory otherItemSellByTheStore.
+
+	creditCard := testObjectFactory createCreditCardThatExpiresOn: testObjectFactory futureDate.
+	merchantProcessor := MockMerchantProcessor new.
+	cashier := testObjectFactory createCashier.
+
+	price := cashier checkout: cart withCreditCard: creditCard.
+
+	self assert: (merchantProcessor hasCharged: price from: creditCard)! !
+!CashierTest methodsFor: 'tests' stamp: 'SG 6/10/2023 16:00:37' prior: 50628959!
+test06CheckoutChargesSaleAmountFromCreditCardUsingMerchantProcessor
+
+	| cart cashier creditCard merchantProcessor price |
+	cart :=  testObjectFactory createCart.
+	cart add: testObjectFactory itemSellByTheStore.
+	cart add: testObjectFactory otherItemSellByTheStore.
+
+	creditCard := testObjectFactory createCreditCardThatExpiresOn: testObjectFactory futureDate.
+	merchantProcessor := MockMerchantProcessor new.
+	cashier := testObjectFactory createCashier.
+
+	price := cashier checkout: cart withCreditCard: creditCard.
+
+	self assert: (merchantProcessor hasCharged: price from: creditCard)! !
+!StoreTestFactory methodsFor: 'cashier' stamp: 'SG 6/10/2023 16:01:53'!
+createCashierChargingFrom: aMerchantProcessor
+
+	^Cashier onDate: self currentDate chargingFrom: aMerchantProcessor! !
+!StoreTestFactory methodsFor: 'cashier' stamp: 'SG 6/10/2023 16:02:30'!
+defaultMerchantProcessor
+
+	^ MockMerchantProcessor new! !
+!StoreTestFactory methodsFor: 'cashier' stamp: 'SG 6/10/2023 16:02:53' prior: 50627468!
+createCashier
+
+	^ self createCashierChargingFrom: self defaultMerchantProcessor! !
+
+!testRun: #CashierTest #test01CannotCheckoutEmptyCart stamp: 'SG 6/10/2023 16:03:03'!
+ERROR!
+
+!testRun: #CashierTest #test02CheckoutPriceOfCartWithSingleItemIsThatItemsPrice stamp: 'SG 6/10/2023 16:03:03'!
+ERROR!
+
+!testRun: #CashierTest #test03CheckoutPriceOfCartWithMultipleOfTheSameItemIsCalculatedCorrectly stamp: 'SG 6/10/2023 16:03:03'!
+ERROR!
+
+!testRun: #CashierTest #test04CheckoutPriceOfCartWithMultipleDifferentItemsIsCalculatedCorrectly stamp: 'SG 6/10/2023 16:03:03'!
+ERROR!
+
+!testRun: #CashierTest #test05CheckoutFailsIfCreditCardHasExpired stamp: 'SG 6/10/2023 16:03:03'!
+ERROR!
+
+!testRun: #CashierTest #test06CheckoutChargesSaleAmountFromCreditCardUsingMerchantProcessor stamp: 'SG 6/10/2023 16:03:03'!
+ERROR!
+
+!testRun: #CashierTest #test01CannotCheckoutEmptyCart stamp: 'SG 6/10/2023 16:03:06'!
+ERROR!
+!Cashier class methodsFor: 'as yet unclassified' stamp: 'SG 6/10/2023 16:03:13'!
+onDate: aRenameMe1 chargingFrom: aMerchantProcessor 
+	self shouldBeImplemented.! !
+
+!methodRemoval: Cashier class #onDate:chargingFrom: stamp: 'SG 6/10/2023 16:03:31'!
+onDate: aRenameMe1 chargingFrom: aMerchantProcessor 
+	self shouldBeImplemented.!
+!Cashier class methodsFor: 'instance creation' stamp: 'SG 6/10/2023 16:04:56'!
+onDate: aDate chargingFrom: aMerchantProcessor
+
+	^self new initializeOnDate: aDate chargingFrom: aMerchantProcessor! !
+
+!classDefinition: #Cashier category: 'TusLibros' stamp: 'SG 6/10/2023 16:05:16'!
+Object subclass: #Cashier
+	instanceVariableNames: 'currentDate merchantProcessor'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'TusLibros'!
+!Cashier methodsFor: 'initialization' stamp: 'SG 6/10/2023 16:05:14'!
+initializeOnDate: aDate chargingFrom: aMerchantProcessor
+
+	currentDate := aDate.
+	merchantProcessor := aMerchantProcessor! !
+
+!methodRemoval: Cashier class #onDate: stamp: 'SG 6/10/2023 16:05:24'!
+onDate: aDate
+
+	^self new initializeOnDate: aDate!
+
+!methodRemoval: Cashier #initializeOnDate: stamp: 'SG 6/10/2023 16:05:27'!
+initializeOnDate: aDate 
+
+	currentDate := aDate.!
+
+!testRun: #CashierTest #test01CannotCheckoutEmptyCart stamp: 'SG 6/10/2023 16:05:29'!
+PASSED!
+
+!testRun: #CashierTest #test02CheckoutPriceOfCartWithSingleItemIsThatItemsPrice stamp: 'SG 6/10/2023 16:05:29'!
+PASSED!
+
+!testRun: #CashierTest #test03CheckoutPriceOfCartWithMultipleOfTheSameItemIsCalculatedCorrectly stamp: 'SG 6/10/2023 16:05:29'!
+PASSED!
+
+!testRun: #CashierTest #test04CheckoutPriceOfCartWithMultipleDifferentItemsIsCalculatedCorrectly stamp: 'SG 6/10/2023 16:05:29'!
+PASSED!
+
+!testRun: #CashierTest #test05CheckoutFailsIfCreditCardHasExpired stamp: 'SG 6/10/2023 16:05:29'!
+PASSED!
+
+!testRun: #CashierTest #test06CheckoutChargesSaleAmountFromCreditCardUsingMerchantProcessor stamp: 'SG 6/10/2023 16:05:29'!
+PASSED!
+
+!testRun: #CartTest #test01NewCartsAreCreatedEmpty stamp: 'SG 6/10/2023 16:05:30'!
+PASSED!
+
+!testRun: #CartTest #test02CanNotAddItemsThatDoNotBelongToStore stamp: 'SG 6/10/2023 16:05:30'!
+PASSED!
+
+!testRun: #CartTest #test03AfterAddingAnItemTheCartIsNotEmptyAnymore stamp: 'SG 6/10/2023 16:05:30'!
+PASSED!
+
+!testRun: #CartTest #test04CanNotAddNonPositiveNumberOfItems stamp: 'SG 6/10/2023 16:05:30'!
+PASSED!
+
+!testRun: #CartTest #test05CanNotAddMoreThanOneItemNotSellByTheStore stamp: 'SG 6/10/2023 16:05:30'!
+PASSED!
+
+!testRun: #CartTest #test06CartRemembersAddedItems stamp: 'SG 6/10/2023 16:05:30'!
+PASSED!
+
+!testRun: #CartTest #test07CartDoesNotHoldNotAddedItems stamp: 'SG 6/10/2023 16:05:30'!
+PASSED!
+
+!testRun: #CartTest #test08CartRemembersTheNumberOfAddedItems stamp: 'SG 6/10/2023 16:05:30'!
+PASSED!
+
+!testRun: #CashierTest #test01CannotCheckoutEmptyCart stamp: 'SG 6/10/2023 16:05:30'!
+PASSED!
+
+!testRun: #CashierTest #test02CheckoutPriceOfCartWithSingleItemIsThatItemsPrice stamp: 'SG 6/10/2023 16:05:30'!
+PASSED!
+
+!testRun: #CashierTest #test03CheckoutPriceOfCartWithMultipleOfTheSameItemIsCalculatedCorrectly stamp: 'SG 6/10/2023 16:05:30'!
+PASSED!
+
+!testRun: #CashierTest #test04CheckoutPriceOfCartWithMultipleDifferentItemsIsCalculatedCorrectly stamp: 'SG 6/10/2023 16:05:30'!
+PASSED!
+
+!testRun: #CashierTest #test05CheckoutFailsIfCreditCardHasExpired stamp: 'SG 6/10/2023 16:05:30'!
+PASSED!
+
+!testRun: #CashierTest #test06CheckoutChargesSaleAmountFromCreditCardUsingMerchantProcessor stamp: 'SG 6/10/2023 16:05:30'!
+PASSED!
+
+!testRun: #CreditCardTest #test01CreditCardNumberMustBeAStrictlyPositiveInteger stamp: 'SG 6/10/2023 16:05:30'!
+PASSED!
+
+!testRun: #CreditCardTest #test02CreditCardOwnerMustBeANonEmptyString stamp: 'SG 6/10/2023 16:05:30'!
+PASSED!
+
+!testRun: #CreditCardTest #test03CreditCardOwnerCantHaveMoreThan30Characters stamp: 'SG 6/10/2023 16:05:30'!
+PASSED!
+
+!testRun: #CreditCardTest #test04CreditCardHasntExpiredBeforeExpirationDate stamp: 'SG 6/10/2023 16:05:30'!
+PASSED!
+
+!testRun: #CreditCardTest #test05CreditCardHasExpiredAfterExpirationDate stamp: 'SG 6/10/2023 16:05:30'!
+PASSED!
+!CashierTest methodsFor: 'tests' stamp: 'SG 6/10/2023 16:05:39' prior: 50628980!
+test06CheckoutChargesSaleAmountFromCreditCardUsingMerchantProcessor
+
+	| cart cashier creditCard merchantProcessor price |
+	cart :=  testObjectFactory createCart.
+	cart add: testObjectFactory itemSellByTheStore.
+	cart add: testObjectFactory otherItemSellByTheStore.
+
+	creditCard := testObjectFactory createCreditCardThatExpiresOn: testObjectFactory futureDate.
+	merchantProcessor := MockMerchantProcessor new.
+	cashier := testObjectFactory createCashierChargingFrom: merchantProcessor.
+
+	price := cashier checkout: cart withCreditCard: creditCard.
+
+	self assert: (merchantProcessor hasCharged: price from: creditCard)! !
+
+!testRun: #CartTest #test01NewCartsAreCreatedEmpty stamp: 'SG 6/10/2023 16:05:41'!
+PASSED!
+
+!testRun: #CartTest #test02CanNotAddItemsThatDoNotBelongToStore stamp: 'SG 6/10/2023 16:05:41'!
+PASSED!
+
+!testRun: #CartTest #test03AfterAddingAnItemTheCartIsNotEmptyAnymore stamp: 'SG 6/10/2023 16:05:41'!
+PASSED!
+
+!testRun: #CartTest #test04CanNotAddNonPositiveNumberOfItems stamp: 'SG 6/10/2023 16:05:41'!
+PASSED!
+
+!testRun: #CartTest #test05CanNotAddMoreThanOneItemNotSellByTheStore stamp: 'SG 6/10/2023 16:05:41'!
+PASSED!
+
+!testRun: #CartTest #test06CartRemembersAddedItems stamp: 'SG 6/10/2023 16:05:41'!
+PASSED!
+
+!testRun: #CartTest #test07CartDoesNotHoldNotAddedItems stamp: 'SG 6/10/2023 16:05:41'!
+PASSED!
+
+!testRun: #CartTest #test08CartRemembersTheNumberOfAddedItems stamp: 'SG 6/10/2023 16:05:41'!
+PASSED!
+
+!testRun: #CashierTest #test01CannotCheckoutEmptyCart stamp: 'SG 6/10/2023 16:05:41'!
+PASSED!
+
+!testRun: #CashierTest #test02CheckoutPriceOfCartWithSingleItemIsThatItemsPrice stamp: 'SG 6/10/2023 16:05:41'!
+PASSED!
+
+!testRun: #CashierTest #test03CheckoutPriceOfCartWithMultipleOfTheSameItemIsCalculatedCorrectly stamp: 'SG 6/10/2023 16:05:41'!
+PASSED!
+
+!testRun: #CashierTest #test04CheckoutPriceOfCartWithMultipleDifferentItemsIsCalculatedCorrectly stamp: 'SG 6/10/2023 16:05:41'!
+PASSED!
+
+!testRun: #CashierTest #test05CheckoutFailsIfCreditCardHasExpired stamp: 'SG 6/10/2023 16:05:41'!
+PASSED!
+
+!testRun: #CashierTest #test06CheckoutChargesSaleAmountFromCreditCardUsingMerchantProcessor stamp: 'SG 6/10/2023 16:05:41'!
+PASSED!
+
+!testRun: #CreditCardTest #test01CreditCardNumberMustBeAStrictlyPositiveInteger stamp: 'SG 6/10/2023 16:05:41'!
+PASSED!
+
+!testRun: #CreditCardTest #test02CreditCardOwnerMustBeANonEmptyString stamp: 'SG 6/10/2023 16:05:41'!
+PASSED!
+
+!testRun: #CreditCardTest #test03CreditCardOwnerCantHaveMoreThan30Characters stamp: 'SG 6/10/2023 16:05:41'!
+PASSED!
+
+!testRun: #CreditCardTest #test04CreditCardHasntExpiredBeforeExpirationDate stamp: 'SG 6/10/2023 16:05:41'!
+PASSED!
+
+!testRun: #CreditCardTest #test05CreditCardHasExpiredAfterExpirationDate stamp: 'SG 6/10/2023 16:05:41'!
+PASSED!
+
+!classDefinition: #MerchantProcessor category: 'TusLibros' stamp: 'SG 6/10/2023 16:09:42'!
+Object subclass: #MerchantProcessor
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'TusLibros'!
+!CashierTest methodsFor: 'tests' stamp: 'SG 6/10/2023 16:09:35'!
+test07CheckoutFailsIfMerchantProcessorIsDown
+
+	| cart cashier creditCard merchantProcessor |
+	cart :=  testObjectFactory createCart.
+	cart add: testObjectFactory itemSellByTheStore.
+	cart add: testObjectFactory otherItemSellByTheStore.
+
+	creditCard := testObjectFactory createCreditCardThatExpiresOn: testObjectFactory futureDate.
+	merchantProcessor := MockMerchantProcessor new.
+	cashier := testObjectFactory createCashierChargingFrom: merchantProcessor.
+
+	merchantProcessor simulateServiceOutage.
+
+	self
+		should: [ cashier checkout: cart withCreditCard: creditCard ]
+		raise: Error - MessageNotUnderstood
+		withMessageText: MerchantProcessor outOfServiceErrorDescription
+! !
+
+!testRun: #CashierTest #test01CannotCheckoutEmptyCart stamp: 'SG 6/10/2023 16:09:51'!
+PASSED!
+
+!testRun: #CashierTest #test02CheckoutPriceOfCartWithSingleItemIsThatItemsPrice stamp: 'SG 6/10/2023 16:09:51'!
+PASSED!
+
+!testRun: #CashierTest #test03CheckoutPriceOfCartWithMultipleOfTheSameItemIsCalculatedCorrectly stamp: 'SG 6/10/2023 16:09:51'!
+PASSED!
+
+!testRun: #CashierTest #test04CheckoutPriceOfCartWithMultipleDifferentItemsIsCalculatedCorrectly stamp: 'SG 6/10/2023 16:09:51'!
+PASSED!
+
+!testRun: #CashierTest #test05CheckoutFailsIfCreditCardHasExpired stamp: 'SG 6/10/2023 16:09:51'!
+PASSED!
+
+!testRun: #CashierTest #test06CheckoutChargesSaleAmountFromCreditCardUsingMerchantProcessor stamp: 'SG 6/10/2023 16:09:51'!
+PASSED!
+
+!testRun: #CashierTest #test07CheckoutFailsIfMerchantProcessorIsDown stamp: 'SG 6/10/2023 16:09:51'!
+ERROR!
+
+!testRun: #CashierTest #test07CheckoutFailsIfMerchantProcessorIsDown stamp: 'SG 6/10/2023 16:09:51'!
+ERROR!
+
+MerchantProcessor subclass: #MockMerchantProcessor
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'TusLibros'!
+
+!classDefinition: #MockMerchantProcessor category: 'TusLibros' stamp: 'SG 6/10/2023 16:09:58'!
+MerchantProcessor subclass: #MockMerchantProcessor
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'TusLibros'!
+
+!testRun: #CashierTest #test07CheckoutFailsIfMerchantProcessorIsDown stamp: 'SG 6/10/2023 16:10:05'!
+ERROR!
+!MockMerchantProcessor methodsFor: 'simulation' stamp: 'SG 6/10/2023 16:10:18'!
+simulateServiceOutage
+	self shouldBeImplemented.! !
+
+True!
+
+true!
+
+1 = 1!
+
+!classDefinition: #MockMerchantProcessor category: 'TusLibros' stamp: 'SG 6/10/2023 16:11:11'!
+MerchantProcessor subclass: #MockMerchantProcessor
+	instanceVariableNames: 'working'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'TusLibros'!
+!MockMerchantProcessor methodsFor: 'simulation' stamp: 'SG 6/10/2023 16:11:05' prior: 50629337!
+simulateServiceOutage
+
+	working := false! !
+
+!testRun: #CashierTest #test07CheckoutFailsIfMerchantProcessorIsDown stamp: 'SG 6/10/2023 16:11:12'!
+ERROR!
+!MerchantProcessor class methodsFor: 'error descriptions' stamp: 'SG 6/10/2023 16:11:22'!
+outOfServiceErrorDescription
+	self shouldBeImplemented.! !
+!MerchantProcessor class methodsFor: 'error descriptions' stamp: 'SG 6/10/2023 16:11:44' prior: 50629359!
+outOfServiceErrorDescription
+
+	^ 'El Merchant Processor está caído'! !
+
+!testRun: #CashierTest #test07CheckoutFailsIfMerchantProcessorIsDown stamp: 'SG 6/10/2023 16:11:45'!
+FAILURE!
+!CashierTest methodsFor: 'tests' stamp: 'SG 6/10/2023 16:13:47' prior: 50629267!
+test07CheckoutFailsIfMerchantProcessorIsDown
+
+	| cart cashier creditCard merchantProcessor price |
+	cart :=  testObjectFactory createCart.
+	cart add: testObjectFactory itemSellByTheStore.
+	cart add: testObjectFactory otherItemSellByTheStore.
+
+	creditCard := testObjectFactory createCreditCardThatExpiresOn: testObjectFactory futureDate.
+	merchantProcessor := MockMerchantProcessor new.
+	cashier := testObjectFactory createCashierChargingFrom: merchantProcessor.
+
+	merchantProcessor simulateServiceOutage.
+
+	self
+		should: [ cashier checkout: cart withCreditCard: creditCard ]
+		raise: Error - MessageNotUnderstood
+		withExceptionDo: [:anError |
+			self assert: MerchantProcessor outOfServiceErrorDescription equals: anError messageText.
+			self deny: (merchantProcessor hasCharged: price from: creditCard)
+		]! !
+!CashierTest methodsFor: 'tests' stamp: 'SG 6/10/2023 16:13:54' prior: 50629374!
+test07CheckoutFailsIfMerchantProcessorIsDown
+
+	| cart cashier creditCard merchantProcessor price |
+	cart :=  testObjectFactory createCart.
+	cart add: testObjectFactory itemSellByTheStore.
+	cart add: testObjectFactory otherItemSellByTheStore.
+
+	creditCard := testObjectFactory createCreditCardThatExpiresOn: testObjectFactory futureDate.
+	merchantProcessor := MockMerchantProcessor new.
+	cashier := testObjectFactory createCashierChargingFrom: merchantProcessor.
+
+	merchantProcessor simulateServiceOutage.
+
+	self
+		should: [ price := cashier checkout: cart withCreditCard: creditCard ]
+		raise: Error - MessageNotUnderstood
+		withExceptionDo: [:anError |
+			self assert: MerchantProcessor outOfServiceErrorDescription equals: anError messageText.
+			self deny: (merchantProcessor hasCharged: price from: creditCard)
+		]! !
+!CashierTest methodsFor: 'tests' stamp: 'SG 6/10/2023 16:13:59' prior: 50629402!
+test07CheckoutFailsIfMerchantProcessorIsDown
+
+	| cart cashier creditCard merchantProcessor price |
+	cart :=  testObjectFactory createCart.
+	cart add: testObjectFactory itemSellByTheStore.
+	cart add: testObjectFactory otherItemSellByTheStore.
+
+	creditCard := testObjectFactory createCreditCardThatExpiresOn: testObjectFactory futureDate.
+	merchantProcessor := MockMerchantProcessor new.
+	cashier := testObjectFactory createCashierChargingFrom: merchantProcessor.
+
+	merchantProcessor simulateServiceOutage.
+
+	self
+		should: [ price := cashier checkout: cart withCreditCard: creditCard ]
+		raise: Error - MessageNotUnderstood
+		withExceptionDo: [:anError |
+			self assert: MerchantProcessor outOfServiceErrorDescription equals: anError messageText.
+			self deny: (merchantProcessor hasCharged: creditCard)
+		]! !
+!CashierTest methodsFor: 'tests' stamp: 'SG 6/10/2023 16:14:04' prior: 50629431!
+test07CheckoutFailsIfMerchantProcessorIsDown
+
+	| cart cashier creditCard merchantProcessor |
+	cart :=  testObjectFactory createCart.
+	cart add: testObjectFactory itemSellByTheStore.
+	cart add: testObjectFactory otherItemSellByTheStore.
+
+	creditCard := testObjectFactory createCreditCardThatExpiresOn: testObjectFactory futureDate.
+	merchantProcessor := MockMerchantProcessor new.
+	cashier := testObjectFactory createCashierChargingFrom: merchantProcessor.
+
+	merchantProcessor simulateServiceOutage.
+
+	self
+		should: [ cashier checkout: cart withCreditCard: creditCard ]
+		raise: Error - MessageNotUnderstood
+		withExceptionDo: [:anError |
+			self assert: MerchantProcessor outOfServiceErrorDescription equals: anError messageText.
+			self deny: (merchantProcessor hasCharged: creditCard)
+		]! !
+
+!testRun: #CashierTest #test07CheckoutFailsIfMerchantProcessorIsDown stamp: 'SG 6/10/2023 16:14:41'!
+FAILURE!
+!CashierTest methodsFor: 'tests' stamp: 'SG 6/10/2023 16:14:52' prior: 50629172!
+test06CheckoutChargesSaleAmountFromCreditCardUsingMerchantProcessor
+
+	| cart cashier creditCard merchantProcessor price |
+	cart :=  testObjectFactory createCart.
+	cart add: testObjectFactory itemSellByTheStore.
+	cart add: testObjectFactory otherItemSellByTheStore.
+
+	creditCard := testObjectFactory createCreditCardThatExpiresOn: testObjectFactory futureDate.
+	merchantProcessor := MockMerchantProcessor new.
+	cashier := testObjectFactory createCashierChargingFrom: merchantProcessor.
+
+	price := cashier checkout: cart withCreditCard: creditCard.
+
+	self assert: (merchantProcessor hasCharged: creditCard)! !
+
+!testRun: #CashierTest #test06CheckoutChargesSaleAmountFromCreditCardUsingMerchantProcessor stamp: 'SG 6/10/2023 16:14:54'!
+ERROR!
+!MockMerchantProcessor methodsFor: 'charging' stamp: 'SG 6/10/2023 16:14:58'!
+hasCharged: creditCard 
+	self shouldBeImplemented.! !
+!MockMerchantProcessor methodsFor: 'charging' stamp: 'SG 6/10/2023 16:15:02' prior: 50629516!
+hasCharged: creditCard 
+
+	^ true! !
+
+!testRun: #CashierTest #test06CheckoutChargesSaleAmountFromCreditCardUsingMerchantProcessor stamp: 'SG 6/10/2023 16:15:03'!
+PASSED!
+
+!testRun: #CashierTest #test01CannotCheckoutEmptyCart stamp: 'SG 6/10/2023 16:15:03'!
+PASSED!
+
+!testRun: #CashierTest #test02CheckoutPriceOfCartWithSingleItemIsThatItemsPrice stamp: 'SG 6/10/2023 16:15:03'!
+PASSED!
+
+!testRun: #CashierTest #test03CheckoutPriceOfCartWithMultipleOfTheSameItemIsCalculatedCorrectly stamp: 'SG 6/10/2023 16:15:03'!
+PASSED!
+
+!testRun: #CashierTest #test04CheckoutPriceOfCartWithMultipleDifferentItemsIsCalculatedCorrectly stamp: 'SG 6/10/2023 16:15:03'!
+PASSED!
+
+!testRun: #CashierTest #test05CheckoutFailsIfCreditCardHasExpired stamp: 'SG 6/10/2023 16:15:03'!
+PASSED!
+
+!testRun: #CashierTest #test06CheckoutChargesSaleAmountFromCreditCardUsingMerchantProcessor stamp: 'SG 6/10/2023 16:15:03'!
+PASSED!
+
+!testRun: #CashierTest #test07CheckoutFailsIfMerchantProcessorIsDown stamp: 'SG 6/10/2023 16:15:03'!
+FAILURE!
+
+!testRun: #CashierTest #test07CheckoutFailsIfMerchantProcessorIsDown stamp: 'SG 6/10/2023 16:15:03'!
+FAILURE!
+
+!methodRemoval: MockMerchantProcessor #hasCharged:from: stamp: 'SG 6/10/2023 16:15:07'!
+hasCharged: price from: creditCard 
+
+	^ true!
+!Cashier methodsFor: 'checkout' stamp: 'SG 6/10/2023 16:15:34' prior: 50627262!
+checkout: aCart withCreditCard: aCreditCard 
+
+	| price |
+	self assertIsValidCart: aCart.
+	self assertCreditCardHasNotExpired: aCreditCard.
+
+	price := self calculateTotalPrice: aCart.
+	
+	! !
+!Cashier methodsFor: 'checkout' stamp: 'SG 6/10/2023 16:15:40' prior: 50629563!
+checkout: aCart withCreditCard: aCreditCard 
+
+	| price |
+	self assertIsValidCart: aCart.
+	self assertCreditCardHasNotExpired: aCreditCard.
+
+	price := self calculateTotalPrice: aCart.
+	
+	^ price! !
+!Cashier methodsFor: 'checkout' stamp: 'SG 6/10/2023 16:15:55' prior: 50629572!
+checkout: aCart withCreditCard: aCreditCard 
+
+	| price |
+	self assertIsValidCart: aCart.
+	self assertCreditCardHasNotExpired: aCreditCard.
+
+	price := self calculateTotalPrice: aCart.
+	
+	merchantProcessor charge: price from: aCreditCard
+	
+	^ price! !
+!Cashier methodsFor: 'checkout' stamp: 'SG 6/10/2023 16:15:57' prior: 50629581!
+checkout: aCart withCreditCard: aCreditCard 
+
+	| price |
+	self assertIsValidCart: aCart.
+	self assertCreditCardHasNotExpired: aCreditCard.
+
+	price := self calculateTotalPrice: aCart.
+	
+	merchantProcessor charge: price from: aCreditCard.
+	
+	^ price! !
+
+!testRun: #CashierTest #test01CannotCheckoutEmptyCart stamp: 'SG 6/10/2023 16:16:02'!
+PASSED!
+
+!testRun: #CashierTest #test02CheckoutPriceOfCartWithSingleItemIsThatItemsPrice stamp: 'SG 6/10/2023 16:16:02'!
+ERROR!
+
+!testRun: #CashierTest #test03CheckoutPriceOfCartWithMultipleOfTheSameItemIsCalculatedCorrectly stamp: 'SG 6/10/2023 16:16:02'!
+ERROR!
+
+!testRun: #CashierTest #test04CheckoutPriceOfCartWithMultipleDifferentItemsIsCalculatedCorrectly stamp: 'SG 6/10/2023 16:16:02'!
+ERROR!
+
+!testRun: #CashierTest #test05CheckoutFailsIfCreditCardHasExpired stamp: 'SG 6/10/2023 16:16:02'!
+PASSED!
+
+!testRun: #CashierTest #test06CheckoutChargesSaleAmountFromCreditCardUsingMerchantProcessor stamp: 'SG 6/10/2023 16:16:02'!
+ERROR!
+
+!testRun: #CashierTest #test07CheckoutFailsIfMerchantProcessorIsDown stamp: 'SG 6/10/2023 16:16:02'!
+ERROR!
+
+!testRun: #CashierTest #test07CheckoutFailsIfMerchantProcessorIsDown stamp: 'SG 6/10/2023 16:16:04'!
+ERROR!
+!MerchantProcessor methodsFor: 'charging' stamp: 'SG 6/10/2023 16:16:16'!
+charge: price from: aCreditCard 
+	self shouldBeImplemented.! !
+!MerchantProcessor methodsFor: 'charging' stamp: 'SG 6/10/2023 16:16:23' prior: 50629632!
+charge: price from: aCreditCard 
+
+	self subclassResponsibility! !
+
+!testRun: #CashierTest #test07CheckoutFailsIfMerchantProcessorIsDown stamp: 'SG 6/10/2023 16:16:24'!
+FAILURE!
+!MockMerchantProcessor methodsFor: 'charging' stamp: 'SG 6/10/2023 16:16:41' overrides: 50629637!
+charge: anAmount from: aCreditCard! !
+!MerchantProcessor methodsFor: 'charging' stamp: 'SG 6/10/2023 16:16:46' prior: 50629637!
+charge: anAmount from: aCreditCard 
+
+	self subclassResponsibility! !
+!MockMerchantProcessor methodsFor: 'charging' stamp: 'SG 6/10/2023 16:17:28' prior: 50629646 overrides: 50629650!
+charge: anAmount from: aCreditCard
+
+	working ifFalse: [ self error: self class outOfServiceErrorDescription ]
+	
+	! !
+!MockMerchantProcessor methodsFor: 'charging' stamp: 'SG 6/10/2023 16:17:30' prior: 50629656 overrides: 50629650!
+charge: anAmount from: aCreditCard
+
+	working ifFalse: [ self error: self class outOfServiceErrorDescription ]
+! !
+
+!testRun: #CashierTest #test01CannotCheckoutEmptyCart stamp: 'SG 6/10/2023 16:17:36'!
+PASSED!
+
+!testRun: #CashierTest #test02CheckoutPriceOfCartWithSingleItemIsThatItemsPrice stamp: 'SG 6/10/2023 16:17:36'!
+ERROR!
+
+!testRun: #CashierTest #test03CheckoutPriceOfCartWithMultipleOfTheSameItemIsCalculatedCorrectly stamp: 'SG 6/10/2023 16:17:36'!
+ERROR!
+
+!testRun: #CashierTest #test04CheckoutPriceOfCartWithMultipleDifferentItemsIsCalculatedCorrectly stamp: 'SG 6/10/2023 16:17:36'!
+ERROR!
+
+!testRun: #CashierTest #test05CheckoutFailsIfCreditCardHasExpired stamp: 'SG 6/10/2023 16:17:36'!
+PASSED!
+
+!testRun: #CashierTest #test06CheckoutChargesSaleAmountFromCreditCardUsingMerchantProcessor stamp: 'SG 6/10/2023 16:17:36'!
+ERROR!
+
+!testRun: #CashierTest #test07CheckoutFailsIfMerchantProcessorIsDown stamp: 'SG 6/10/2023 16:17:36'!
+FAILURE!
+
+!testRun: #CashierTest #test02CheckoutPriceOfCartWithSingleItemIsThatItemsPrice stamp: 'SG 6/10/2023 16:17:38'!
+ERROR!
+!MockMerchantProcessor methodsFor: 'nil' stamp: 'SG 6/10/2023 16:17:52' overrides: 16920235!
+initialize
+
+	working := true! !
+
+!testRun: #CashierTest #test01CannotCheckoutEmptyCart stamp: 'SG 6/10/2023 16:18:02'!
+PASSED!
+
+!testRun: #CashierTest #test02CheckoutPriceOfCartWithSingleItemIsThatItemsPrice stamp: 'SG 6/10/2023 16:18:02'!
+PASSED!
+
+!testRun: #CashierTest #test03CheckoutPriceOfCartWithMultipleOfTheSameItemIsCalculatedCorrectly stamp: 'SG 6/10/2023 16:18:02'!
+PASSED!
+
+!testRun: #CashierTest #test04CheckoutPriceOfCartWithMultipleDifferentItemsIsCalculatedCorrectly stamp: 'SG 6/10/2023 16:18:02'!
+PASSED!
+
+!testRun: #CashierTest #test05CheckoutFailsIfCreditCardHasExpired stamp: 'SG 6/10/2023 16:18:02'!
+PASSED!
+
+!testRun: #CashierTest #test06CheckoutChargesSaleAmountFromCreditCardUsingMerchantProcessor stamp: 'SG 6/10/2023 16:18:02'!
+PASSED!
+
+!testRun: #CashierTest #test07CheckoutFailsIfMerchantProcessorIsDown stamp: 'SG 6/10/2023 16:18:02'!
+FAILURE!
+
+!testRun: #CashierTest #test07CheckoutFailsIfMerchantProcessorIsDown stamp: 'SG 6/10/2023 16:18:02'!
+FAILURE!
+
+!classDefinition: #MockMerchantProcessor category: 'TusLibros' stamp: 'SG 6/10/2023 16:18:44'!
+MerchantProcessor subclass: #MockMerchantProcessor
+	instanceVariableNames: 'working creditCardsCharged'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'TusLibros'!
+!MockMerchantProcessor methodsFor: 'initialization' stamp: 'SG 6/10/2023 16:18:41' prior: 50629701 overrides: 16920235!
+initialize
+
+	working := true.
+	creditCardsCharged := OrderedCollection new! !
+!MockMerchantProcessor methodsFor: 'charging' stamp: 'SG 6/10/2023 16:19:00' prior: 50629664 overrides: 50629650!
+charge: anAmount from: aCreditCard
+
+	working ifFalse: [ self error: self class outOfServiceErrorDescription ].
+	
+	creditCardsCharged add: aCreditCard 
+! !
+!MockMerchantProcessor methodsFor: 'charging' stamp: 'SG 6/10/2023 16:19:01' prior: 50629750 overrides: 50629650!
+charge: anAmount from: aCreditCard
+
+	working ifFalse: [ self error: self class outOfServiceErrorDescription ].
+	
+	creditCardsCharged add: aCreditCard
+! !
+!MockMerchantProcessor methodsFor: 'charging' stamp: 'SG 6/10/2023 16:19:11' prior: 50629521!
+hasCharged: aCreditCard 
+
+	^ true! !
+!MockMerchantProcessor methodsFor: 'charging' stamp: 'SG 6/10/2023 16:19:21' prior: 50629767!
+hasCharged: aCreditCard 
+
+	^ creditCardsCharged includes: aCreditCard! !
+
+!testRun: #CashierTest #test01CannotCheckoutEmptyCart stamp: 'SG 6/10/2023 16:19:30'!
+PASSED!
+
+!testRun: #CashierTest #test02CheckoutPriceOfCartWithSingleItemIsThatItemsPrice stamp: 'SG 6/10/2023 16:19:30'!
+PASSED!
+
+!testRun: #CashierTest #test03CheckoutPriceOfCartWithMultipleOfTheSameItemIsCalculatedCorrectly stamp: 'SG 6/10/2023 16:19:30'!
+PASSED!
+
+!testRun: #CashierTest #test04CheckoutPriceOfCartWithMultipleDifferentItemsIsCalculatedCorrectly stamp: 'SG 6/10/2023 16:19:30'!
+PASSED!
+
+!testRun: #CashierTest #test05CheckoutFailsIfCreditCardHasExpired stamp: 'SG 6/10/2023 16:19:30'!
+PASSED!
+
+!testRun: #CashierTest #test06CheckoutChargesSaleAmountFromCreditCardUsingMerchantProcessor stamp: 'SG 6/10/2023 16:19:30'!
+PASSED!
+
+!testRun: #CashierTest #test07CheckoutFailsIfMerchantProcessorIsDown stamp: 'SG 6/10/2023 16:19:30'!
+PASSED!
+!MockMerchantProcessor methodsFor: 'initialization' stamp: 'SG 6/10/2023 16:20:03' prior: 50629744 overrides: 16920235!
+initialize
+
+	working := true.
+	creditCardsCharged := Set new! !
+
+!testRun: #CashierTest #test01CannotCheckoutEmptyCart stamp: 'SG 6/10/2023 16:20:06'!
+PASSED!
+
+!testRun: #CashierTest #test02CheckoutPriceOfCartWithSingleItemIsThatItemsPrice stamp: 'SG 6/10/2023 16:20:06'!
+PASSED!
+
+!testRun: #CashierTest #test03CheckoutPriceOfCartWithMultipleOfTheSameItemIsCalculatedCorrectly stamp: 'SG 6/10/2023 16:20:06'!
+PASSED!
+
+!testRun: #CashierTest #test04CheckoutPriceOfCartWithMultipleDifferentItemsIsCalculatedCorrectly stamp: 'SG 6/10/2023 16:20:06'!
+PASSED!
+
+!testRun: #CashierTest #test05CheckoutFailsIfCreditCardHasExpired stamp: 'SG 6/10/2023 16:20:06'!
+PASSED!
+
+!testRun: #CashierTest #test06CheckoutChargesSaleAmountFromCreditCardUsingMerchantProcessor stamp: 'SG 6/10/2023 16:20:06'!
+PASSED!
+
+!testRun: #CashierTest #test07CheckoutFailsIfMerchantProcessorIsDown stamp: 'SG 6/10/2023 16:20:06'!
+PASSED!
+!MockMerchantProcessor methodsFor: 'initialization' stamp: 'SG 6/10/2023 16:20:32' prior: 50629805 overrides: 16920235!
+initialize
+
+	working := true.
+	creditCardsCharged := OrderedCollection new! !
+!CashierTest methodsFor: 'tests' stamp: 'SG 6/10/2023 16:20:48' prior: 50629490!
+test06CheckoutChargesSaleAmountFromCreditCardUsingMerchantProcessor
+
+	| cart cashier creditCard merchantProcessor price |
+	cart :=  testObjectFactory createCart.
+	cart add: testObjectFactory itemSellByTheStore.
+	cart add: testObjectFactory otherItemSellByTheStore.
+
+	creditCard := testObjectFactory createCreditCardThatExpiresOn: testObjectFactory futureDate.
+	merchantProcessor := MockMerchantProcessor new.
+	cashier := testObjectFactory createCashierChargingFrom: merchantProcessor.
+
+	price := cashier checkout: cart withCreditCard: creditCard.
+
+	self assert: (merchantProcessor hasCharged: price from: creditCard)! !
+
+!testRun: #CashierTest #test06CheckoutChargesSaleAmountFromCreditCardUsingMerchantProcessor stamp: 'SG 6/10/2023 16:20:50'!
+ERROR!
+!MockMerchantProcessor methodsFor: 'charging' stamp: 'SG 6/10/2023 16:20:55'!
+hasCharged: price from: creditCard 
+	self shouldBeImplemented.! !
+!MockMerchantProcessor methodsFor: 'charging' stamp: 'SG 6/10/2023 16:21:31' prior: 50629869!
+hasCharged: price from: creditCard 
+
+	^ creditCardsCharged includes: creditCard@price! !
+
+!testRun: #CashierTest #test06CheckoutChargesSaleAmountFromCreditCardUsingMerchantProcessor stamp: 'SG 6/10/2023 16:21:35'!
+ERROR!
+!MockMerchantProcessor methodsFor: 'charging' stamp: 'SG 6/10/2023 16:21:55' prior: 50629874!
+hasCharged: price from: creditCard 
+
+	^ creditCardsCharged includes: creditCard -> price! !
+
+1 -> $a!
+
+(1 -> $a) class!
+!MockMerchantProcessor methodsFor: 'charging' stamp: 'SG 6/10/2023 16:24:14' prior: 50629759 overrides: 50629650!
+charge: anAmount from: aCreditCard
+
+	working ifFalse: [ self error: self class outOfServiceErrorDescription ].
+	
+	creditCardsCharged add: aCreditCard -> anAmount
+! !
+
+!testRun: #CashierTest #test06CheckoutChargesSaleAmountFromCreditCardUsingMerchantProcessor stamp: 'SG 6/10/2023 16:24:27'!
+PASSED!
+
+!testRun: #CashierTest #test01CannotCheckoutEmptyCart stamp: 'SG 6/10/2023 16:24:43'!
+PASSED!
+
+!testRun: #CashierTest #test02CheckoutPriceOfCartWithSingleItemIsThatItemsPrice stamp: 'SG 6/10/2023 16:24:43'!
+PASSED!
+
+!testRun: #CashierTest #test03CheckoutPriceOfCartWithMultipleOfTheSameItemIsCalculatedCorrectly stamp: 'SG 6/10/2023 16:24:43'!
+PASSED!
+
+!testRun: #CashierTest #test04CheckoutPriceOfCartWithMultipleDifferentItemsIsCalculatedCorrectly stamp: 'SG 6/10/2023 16:24:43'!
+PASSED!
+
+!testRun: #CashierTest #test05CheckoutFailsIfCreditCardHasExpired stamp: 'SG 6/10/2023 16:24:43'!
+PASSED!
+
+!testRun: #CashierTest #test06CheckoutChargesSaleAmountFromCreditCardUsingMerchantProcessor stamp: 'SG 6/10/2023 16:24:43'!
+PASSED!
+
+!testRun: #CashierTest #test07CheckoutFailsIfMerchantProcessorIsDown stamp: 'SG 6/10/2023 16:24:43'!
+PASSED!
+
+!testRun: #CashierTest #test07CheckoutFailsIfMerchantProcessorIsDown stamp: 'SG 6/10/2023 16:24:45'!
+PASSED!
+!MockMerchantProcessor methodsFor: 'charging' stamp: 'SG 6/10/2023 16:26:03' prior: 50629772!
+hasCharged: aCreditCard 
+
+	^ creditCardsCharged anySatisfy: [:anAssociation | anAssociation key = aCreditCard ]! !
+
+!testRun: #CashierTest #test01CannotCheckoutEmptyCart stamp: 'SG 6/10/2023 16:26:05'!
+PASSED!
+
+!testRun: #CashierTest #test02CheckoutPriceOfCartWithSingleItemIsThatItemsPrice stamp: 'SG 6/10/2023 16:26:05'!
+PASSED!
+
+!testRun: #CashierTest #test03CheckoutPriceOfCartWithMultipleOfTheSameItemIsCalculatedCorrectly stamp: 'SG 6/10/2023 16:26:05'!
+PASSED!
+
+!testRun: #CashierTest #test04CheckoutPriceOfCartWithMultipleDifferentItemsIsCalculatedCorrectly stamp: 'SG 6/10/2023 16:26:05'!
+PASSED!
+
+!testRun: #CashierTest #test05CheckoutFailsIfCreditCardHasExpired stamp: 'SG 6/10/2023 16:26:05'!
+PASSED!
+
+!testRun: #CashierTest #test06CheckoutChargesSaleAmountFromCreditCardUsingMerchantProcessor stamp: 'SG 6/10/2023 16:26:05'!
+PASSED!
+
+!testRun: #CashierTest #test07CheckoutFailsIfMerchantProcessorIsDown stamp: 'SG 6/10/2023 16:26:05'!
+PASSED!
+!CashierTest methodsFor: 'tests' stamp: 'SG 6/10/2023 16:28:55'!
+test08CheckoutFailsIfCreditCardDoesntHaveEnoughBalance
+
+	| cart cashier creditCard merchantProcessor |
+	cart :=  testObjectFactory createCart.
+	cart add: testObjectFactory itemSellByTheStore.
+	cart add: testObjectFactory otherItemSellByTheStore.
+
+	creditCard := testObjectFactory createCreditCardThatExpiresOn: testObjectFactory futureDate.
+	merchantProcessor := MockMerchantProcessor withBalances: { creditCard -> 5 }.
+	cashier := testObjectFactory createCashierChargingFrom: merchantProcessor.
+
+	self
+		should: [ cashier checkout: cart withCreditCard: creditCard ]
+		raise: Error - MessageNotUnderstood
+		withExceptionDo: [:anError |
+			self assert: MerchantProcessor notEnoughBalanceForTransactionErrorDescription equals: anError messageText.
+			self deny: (merchantProcessor hasCharged: creditCard)
+		]! !
+
+!testRun: #CashierTest #test01CannotCheckoutEmptyCart stamp: 'SG 6/10/2023 16:29:34'!
+PASSED!
+
+!testRun: #CashierTest #test02CheckoutPriceOfCartWithSingleItemIsThatItemsPrice stamp: 'SG 6/10/2023 16:29:34'!
+PASSED!
+
+!testRun: #CashierTest #test03CheckoutPriceOfCartWithMultipleOfTheSameItemIsCalculatedCorrectly stamp: 'SG 6/10/2023 16:29:34'!
+PASSED!
+
+!testRun: #CashierTest #test04CheckoutPriceOfCartWithMultipleDifferentItemsIsCalculatedCorrectly stamp: 'SG 6/10/2023 16:29:34'!
+PASSED!
+
+!testRun: #CashierTest #test05CheckoutFailsIfCreditCardHasExpired stamp: 'SG 6/10/2023 16:29:34'!
+PASSED!
+
+!testRun: #CashierTest #test06CheckoutChargesSaleAmountFromCreditCardUsingMerchantProcessor stamp: 'SG 6/10/2023 16:29:34'!
+PASSED!
+
+!testRun: #CashierTest #test07CheckoutFailsIfMerchantProcessorIsDown stamp: 'SG 6/10/2023 16:29:34'!
+PASSED!
+
+!testRun: #CashierTest #test08CheckoutFailsIfCreditCardDoesntHaveEnoughBalance stamp: 'SG 6/10/2023 16:29:34'!
+ERROR!
+
+!testRun: #CashierTest #test08CheckoutFailsIfCreditCardDoesntHaveEnoughBalance stamp: 'SG 6/10/2023 16:29:34'!
+ERROR!
+!MockMerchantProcessor class methodsFor: 'instance creation' stamp: 'SG 6/10/2023 16:29:39'!
+withBalances: anArray 
+	"DO NOT FORGET TO RENAME COLLABORATORS AND REMOVE THIS COMMENT!!!!"
+	self shouldBeImplemented.
+	^self new initializeWithBalances: anArray ! !
+!MockMerchantProcessor class methodsFor: 'instance creation' stamp: 'SG 6/10/2023 16:30:07' prior: 50630028!
+withBalances: aMappingOfCreditCardsToBalances
+
+	^self new initializeWithBalances: aMappingOfCreditCardsToBalances! !
+
+!testRun: #CashierTest #test08CheckoutFailsIfCreditCardDoesntHaveEnoughBalance stamp: 'SG 6/10/2023 16:30:10'!
+ERROR!
+
+!classDefinition: #MockMerchantProcessor category: 'TusLibros' stamp: 'SG 6/10/2023 16:30:13'!
+MerchantProcessor subclass: #MockMerchantProcessor
+	instanceVariableNames: 'working creditCardsCharged mappingOfCreditCardsToBalances'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'TusLibros'!
+!MockMerchantProcessor methodsFor: 'initialization' stamp: 'SG 6/10/2023 16:30:13'!
+initializeWithBalances: aMappingOfCreditCardsToBalances 
+	self shouldBeImplemented.
+	mappingOfCreditCardsToBalances := aMappingOfCreditCardsToBalances.! !
+!MockMerchantProcessor methodsFor: 'initialization' stamp: 'SG 6/10/2023 16:30:34' prior: 50630057!
+initializeWithBalances: aMappingOfCreditCardsToBalances 
+
+	working := true.
+	mappingOfCreditCardsToBalances := aMappingOfCreditCardsToBalances asDictionary.! !
+
+!testRun: #CashierTest #test08CheckoutFailsIfCreditCardDoesntHaveEnoughBalance stamp: 'SG 6/10/2023 16:30:35'!
+FAILURE!
+!MockMerchantProcessor methodsFor: 'charging' stamp: 'SG 6/10/2023 16:31:42' prior: 50629892 overrides: 50629650!
+charge: anAmount from: aCreditCard
+
+	working ifFalse: [ self error: self class outOfServiceErrorDescription ].
+	
+	creditCardsCharged add: aCreditCard -> anAmount
+! !
+
+!testRun: #CashierTest #test01CannotCheckoutEmptyCart stamp: 'SG 6/10/2023 16:31:44'!
+PASSED!
+
+!testRun: #CashierTest #test02CheckoutPriceOfCartWithSingleItemIsThatItemsPrice stamp: 'SG 6/10/2023 16:31:44'!
+PASSED!
+
+!testRun: #CashierTest #test03CheckoutPriceOfCartWithMultipleOfTheSameItemIsCalculatedCorrectly stamp: 'SG 6/10/2023 16:31:44'!
+PASSED!
+
+!testRun: #CashierTest #test04CheckoutPriceOfCartWithMultipleDifferentItemsIsCalculatedCorrectly stamp: 'SG 6/10/2023 16:31:44'!
+PASSED!
+
+!testRun: #CashierTest #test05CheckoutFailsIfCreditCardHasExpired stamp: 'SG 6/10/2023 16:31:44'!
+PASSED!
+
+!testRun: #CashierTest #test06CheckoutChargesSaleAmountFromCreditCardUsingMerchantProcessor stamp: 'SG 6/10/2023 16:31:44'!
+PASSED!
+
+!testRun: #CashierTest #test07CheckoutFailsIfMerchantProcessorIsDown stamp: 'SG 6/10/2023 16:31:44'!
+PASSED!
+
+!testRun: #CashierTest #test08CheckoutFailsIfCreditCardDoesntHaveEnoughBalance stamp: 'SG 6/10/2023 16:31:44'!
+FAILURE!
+
+!testRun: #CashierTest #test08CheckoutFailsIfCreditCardDoesntHaveEnoughBalance stamp: 'SG 6/10/2023 16:31:44'!
+FAILURE!
+!MerchantProcessor class methodsFor: 'error descriptions' stamp: 'SG 6/10/2023 16:32:15'!
+notEnoughBalanceForTransactionErrorDescription
+
+	^ 'La cuenta no tiene saldo suficiente para la transacción'! !
+
+!methodRemoval: MockMerchantProcessor #initialize stamp: 'SG 6/10/2023 16:32:22'!
+initialize
+
+	working := true.
+	creditCardsCharged := OrderedCollection new!
+!MockMerchantProcessor methodsFor: 'charging' stamp: 'SG 6/10/2023 16:32:37' prior: 50630078 overrides: 50629650!
+charge: anAmount from: aCreditCard
+
+	working ifFalse: [ self error: self class outOfServiceErrorDescription ].
+
+	creditCardsCharged add: aCreditCard -> anAmount
+! !
+
+!classDefinition: #MockMerchantProcessor category: 'TusLibros' stamp: 'SG 6/10/2023 16:32:45'!
+MerchantProcessor subclass: #MockMerchantProcessor
+	instanceVariableNames: 'working creditCardsCharged balances'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'TusLibros'!
+!MockMerchantProcessor methodsFor: 'as yet unclassified' stamp: 'SG 6/10/2023 16:32:45' prior: 50630065!
+initializeWithBalances: aMappingOfCreditCardsToBalances 
+
+	working := true.
+	balances := aMappingOfCreditCardsToBalances asDictionary.! !
+!MockMerchantProcessor methodsFor: 'charging' stamp: 'SG 6/10/2023 16:33:28' prior: 50630133 overrides: 50629650!
+charge: anAmount from: aCreditCard
+
+	working ifFalse: [ self error: self class outOfServiceErrorDescription ].
+	(balances at: aCreditCard) < anAmount ifTrue: [ self error: self class notEnoughBalanceForTransactionErrorDescription ].
+
+	creditCardsCharged add: aCreditCard -> anAmount
+! !
+
+!testRun: #CashierTest #test01CannotCheckoutEmptyCart stamp: 'SG 6/10/2023 16:33:30'!
+PASSED!
+
+!testRun: #CashierTest #test02CheckoutPriceOfCartWithSingleItemIsThatItemsPrice stamp: 'SG 6/10/2023 16:33:30'!
+ERROR!
+
+!testRun: #CashierTest #test03CheckoutPriceOfCartWithMultipleOfTheSameItemIsCalculatedCorrectly stamp: 'SG 6/10/2023 16:33:30'!
+ERROR!
+
+!testRun: #CashierTest #test04CheckoutPriceOfCartWithMultipleDifferentItemsIsCalculatedCorrectly stamp: 'SG 6/10/2023 16:33:30'!
+ERROR!
+
+!testRun: #CashierTest #test05CheckoutFailsIfCreditCardHasExpired stamp: 'SG 6/10/2023 16:33:30'!
+PASSED!
+
+!testRun: #CashierTest #test06CheckoutChargesSaleAmountFromCreditCardUsingMerchantProcessor stamp: 'SG 6/10/2023 16:33:30'!
+ERROR!
+
+!testRun: #CashierTest #test07CheckoutFailsIfMerchantProcessorIsDown stamp: 'SG 6/10/2023 16:33:30'!
+ERROR!
+
+!testRun: #CashierTest #test08CheckoutFailsIfCreditCardDoesntHaveEnoughBalance stamp: 'SG 6/10/2023 16:33:30'!
+ERROR!
+!StoreTestFactory methodsFor: 'cashier' stamp: 'SG 6/10/2023 16:34:52' prior: 50629007!
+defaultMerchantProcessor
+
+	^ MockMerchantProcessor withBalances: { self createCreditCardThatExpiresOn: self currentDate }! !
+!StoreTestFactory methodsFor: 'cashier' stamp: 'SG 6/10/2023 16:35:11' prior: 50630201!
+defaultMerchantProcessor
+
+	^ MockMerchantProcessor withBalances: { self createCreditCardThatExpiresOn: self currentDate -> 1000 }! !
+!StoreTestFactory methodsFor: 'cashier' stamp: 'SG 6/10/2023 16:35:17' prior: 50630208!
+defaultMerchantProcessor
+
+	^ MockMerchantProcessor withBalances: { (self createCreditCardThatExpiresOn: self currentDate) -> 1000 }! !
+!StoreTestFactory methodsFor: 'cashier' stamp: 'SG 6/10/2023 16:35:25'!
+defaultCreditCard
+
+	^ self createCreditCardThatExpiresOn: self currentDate! !
+!StoreTestFactory methodsFor: 'cashier' stamp: 'SG 6/10/2023 16:35:25' prior: 50630215!
+defaultMerchantProcessor
+
+	^ MockMerchantProcessor withBalances: { (self defaultCreditCard) -> 1000 }! !
+!StoreTestFactory methodsFor: 'cashier' stamp: 'SG 6/10/2023 16:35:29' prior: 50630228!
+defaultMerchantProcessor
+
+	^ MockMerchantProcessor withBalances: { self defaultCreditCard -> 1000 }! !
+!CashierTest methodsFor: 'tests' stamp: 'SG 6/10/2023 16:36:00'!
+defaultCreditCard
+
+	^ testObjectFactory createCreditCardThatExpiresOn: ( testObjectFactory futureDate)! !
+!CashierTest methodsFor: 'tests' stamp: 'SG 6/10/2023 16:36:00' prior: 50628497!
+test02CheckoutPriceOfCartWithSingleItemIsThatItemsPrice
+
+	| cart cashier |
+	cart :=  testObjectFactory createCart.
+	cart add: testObjectFactory itemSellByTheStore.
+	
+	cashier := testObjectFactory createCashier.
+	
+	self assert: testObjectFactory priceOfItemSoldByStore equals: (cashier checkout: cart withCreditCard: ( self defaultCreditCard)).! !
+!CashierTest methodsFor: 'tests' stamp: 'SG 6/10/2023 16:36:00' prior: 50628513!
+test04CheckoutPriceOfCartWithMultipleDifferentItemsIsCalculatedCorrectly
+
+	| cart cashier |
+	cart :=  testObjectFactory createCart.
+	cart add: testObjectFactory itemSellByTheStore.
+	cart add: testObjectFactory otherItemSellByTheStore.
+	
+	cashier := testObjectFactory createCashier.
+	
+	self
+		assert: testObjectFactory priceOfItemSoldByStore + testObjectFactory priceOfOtherItemSellByTheStore
+		equals: (cashier checkout: cart withCreditCard: ( self defaultCreditCard)).! !
+!CashierTest methodsFor: 'tests' stamp: 'SG 6/10/2023 16:36:00' prior: 50628445!
+test01CannotCheckoutEmptyCart
+
+	| cart cashier |
+	cart :=  testObjectFactory createCart.
+	
+	cashier := testObjectFactory createCashier.
+	
+	self
+		should: [ cashier checkout: cart withCreditCard: ( self defaultCreditCard) ]
+		raise: Error - MessageNotUnderstood
+		withMessageText: Cashier cantCheckoutEmptyCartErrorDescription! !
+!CashierTest methodsFor: 'tests' stamp: 'SG 6/10/2023 16:36:00' prior: 50628590!
+test03CheckoutPriceOfCartWithMultipleOfTheSameItemIsCalculatedCorrectly
+
+	| cart cashier |
+	cart :=  testObjectFactory createCart.
+	cart add: testObjectFactory itemSellByTheStore.
+	cart add: testObjectFactory itemSellByTheStore.
+	
+	cashier := testObjectFactory createCashier.
+	
+	self
+		assert: 2 * testObjectFactory priceOfItemSoldByStore
+		equals: (cashier checkout: cart withCreditCard: ( self defaultCreditCard)).! !
+!CashierTest methodsFor: 'tests' stamp: 'SG 6/10/2023 16:36:11' prior: 50630241!
+defaultCreditCard
+
+	^ testObjectFactory defaultCreditCard! !
+
+!methodRemoval: CashierTest #defaultCreditCard stamp: 'SG 6/10/2023 16:36:17'!
+defaultCreditCard
+
+	^ testObjectFactory defaultCreditCard!
+!CashierTest methodsFor: 'tests' stamp: 'SG 6/10/2023 16:36:17' prior: 50630247!
+test02CheckoutPriceOfCartWithSingleItemIsThatItemsPrice
+
+	| cart cashier |
+	cart :=  testObjectFactory createCart.
+	cart add: testObjectFactory itemSellByTheStore.
+	
+	cashier := testObjectFactory createCashier.
+	
+	self assert: testObjectFactory priceOfItemSoldByStore equals: (cashier checkout: cart withCreditCard: ( ( testObjectFactory defaultCreditCard))).! !
+!CashierTest methodsFor: 'tests' stamp: 'SG 6/10/2023 16:36:17' prior: 50630261!
+test04CheckoutPriceOfCartWithMultipleDifferentItemsIsCalculatedCorrectly
+
+	| cart cashier |
+	cart :=  testObjectFactory createCart.
+	cart add: testObjectFactory itemSellByTheStore.
+	cart add: testObjectFactory otherItemSellByTheStore.
+	
+	cashier := testObjectFactory createCashier.
+	
+	self
+		assert: testObjectFactory priceOfItemSoldByStore + testObjectFactory priceOfOtherItemSellByTheStore
+		equals: (cashier checkout: cart withCreditCard: ( ( testObjectFactory defaultCreditCard))).! !
+!CashierTest methodsFor: 'tests' stamp: 'SG 6/10/2023 16:36:17' prior: 50630279!
+test01CannotCheckoutEmptyCart
+
+	| cart cashier |
+	cart :=  testObjectFactory createCart.
+	
+	cashier := testObjectFactory createCashier.
+	
+	self
+		should: [ cashier checkout: cart withCreditCard: ( ( testObjectFactory defaultCreditCard)) ]
+		raise: Error - MessageNotUnderstood
+		withMessageText: Cashier cantCheckoutEmptyCartErrorDescription! !
+!CashierTest methodsFor: 'tests' stamp: 'SG 6/10/2023 16:36:17' prior: 50630292!
+test03CheckoutPriceOfCartWithMultipleOfTheSameItemIsCalculatedCorrectly
+
+	| cart cashier |
+	cart :=  testObjectFactory createCart.
+	cart add: testObjectFactory itemSellByTheStore.
+	cart add: testObjectFactory itemSellByTheStore.
+	
+	cashier := testObjectFactory createCashier.
+	
+	self
+		assert: 2 * testObjectFactory priceOfItemSoldByStore
+		equals: (cashier checkout: cart withCreditCard: ( ( testObjectFactory defaultCreditCard))).! !
+!CashierTest methodsFor: 'tests' stamp: 'SG 6/10/2023 16:36:29' prior: 50630317!
+test02CheckoutPriceOfCartWithSingleItemIsThatItemsPrice
+
+	| cart cashier |
+	cart :=  testObjectFactory createCart.
+	cart add: testObjectFactory itemSellByTheStore.
+	
+	cashier := testObjectFactory createCashier.
+	
+	self assert: testObjectFactory priceOfItemSoldByStore equals: (cashier checkout: cart withCreditCard: testObjectFactory defaultCreditCard).! !
+!CashierTest methodsFor: 'tests' stamp: 'SG 6/10/2023 16:36:36' prior: 50630363!
+test03CheckoutPriceOfCartWithMultipleOfTheSameItemIsCalculatedCorrectly
+
+	| cart cashier |
+	cart :=  testObjectFactory createCart.
+	cart add: testObjectFactory itemSellByTheStore.
+	cart add: testObjectFactory itemSellByTheStore.
+	
+	cashier := testObjectFactory createCashier.
+	
+	self
+		assert: 2 * testObjectFactory priceOfItemSoldByStore
+		equals: (cashier checkout: cart withCreditCard: testObjectFactory defaultCreditCard).! !
+!CashierTest methodsFor: 'tests' stamp: 'SG 6/10/2023 16:36:42' prior: 50630331!
+test04CheckoutPriceOfCartWithMultipleDifferentItemsIsCalculatedCorrectly
+
+	| cart cashier |
+	cart :=  testObjectFactory createCart.
+	cart add: testObjectFactory itemSellByTheStore.
+	cart add: testObjectFactory otherItemSellByTheStore.
+	
+	cashier := testObjectFactory createCashier.
+	
+	self
+		assert: testObjectFactory priceOfItemSoldByStore + testObjectFactory priceOfOtherItemSellByTheStore
+		equals: (cashier checkout: cart withCreditCard: testObjectFactory defaultCreditCard).! !
+!CashierTest methodsFor: 'tests' stamp: 'SG 6/10/2023 16:36:49' prior: 50628533!
+test05CheckoutFailsIfCreditCardHasExpired
+
+	| cart cashier |
+	cart :=  testObjectFactory createCart.
+	cart add: testObjectFactory itemSellByTheStore.
+	cart add: testObjectFactory otherItemSellByTheStore.
+	
+	cashier := testObjectFactory createCashier.
+	
+	self 
+		should: [cashier checkout: cart withCreditCard: (testObjectFactory createCreditCardThatExpiresOn: testObjectFactory pastDate) ]
+		raise: Error - MessageNotUnderstood
+		withMessageText: Cashier cantCheckoutUsingExpiredCreditCardErrorDescription! !
+!CashierTest methodsFor: 'tests' stamp: 'SG 6/10/2023 16:37:02' prior: 50629843!
+test06CheckoutChargesSaleAmountFromCreditCardUsingMerchantProcessor
+
+	| cart cashier creditCard merchantProcessor price |
+	cart :=  testObjectFactory createCart.
+	cart add: testObjectFactory itemSellByTheStore.
+	cart add: testObjectFactory otherItemSellByTheStore.
+
+	creditCard := testObjectFactory defaultCreditCard.
+	merchantProcessor := MockMerchantProcessor new.
+	cashier := testObjectFactory createCashierChargingFrom: merchantProcessor.
+
+	price := cashier checkout: cart withCreditCard: creditCard.
+
+	self assert: (merchantProcessor hasCharged: price from: creditCard)! !
+!CashierTest methodsFor: 'tests' stamp: 'SG 6/10/2023 16:37:09' prior: 50629459!
+test07CheckoutFailsIfMerchantProcessorIsDown
+
+	| cart cashier creditCard merchantProcessor |
+	cart :=  testObjectFactory createCart.
+	cart add: testObjectFactory itemSellByTheStore.
+	cart add: testObjectFactory otherItemSellByTheStore.
+
+	creditCard := testObjectFactory defaultCreditCard.
+	merchantProcessor := MockMerchantProcessor new.
+	cashier := testObjectFactory createCashierChargingFrom: merchantProcessor.
+
+	merchantProcessor simulateServiceOutage.
+
+	self
+		should: [ cashier checkout: cart withCreditCard: creditCard ]
+		raise: Error - MessageNotUnderstood
+		withExceptionDo: [:anError |
+			self assert: MerchantProcessor outOfServiceErrorDescription equals: anError messageText.
+			self deny: (merchantProcessor hasCharged: creditCard)
+		]! !
+!CashierTest methodsFor: 'tests' stamp: 'SG 6/10/2023 16:37:22' prior: 50629966!
+test08CheckoutFailsIfCreditCardDoesntHaveEnoughBalance
+
+	| cart cashier creditCard merchantProcessor |
+	cart :=  testObjectFactory createCart.
+	cart add: testObjectFactory itemSellByTheStore.
+	cart add: testObjectFactory otherItemSellByTheStore.
+
+	creditCard := testObjectFactory defaultCreditCard.
+	merchantProcessor := MockMerchantProcessor withBalances: { creditCard -> 5 }.
+	cashier := testObjectFactory createCashierChargingFrom: merchantProcessor.
+
+	self
+		should: [ cashier checkout: cart withCreditCard: creditCard ]
+		raise: Error - MessageNotUnderstood
+		withExceptionDo: [:anError |
+			self assert: MerchantProcessor notEnoughBalanceForTransactionErrorDescription equals: anError messageText.
+			self deny: (merchantProcessor hasCharged: creditCard)
+		]! !
+!StoreTestFactory methodsFor: 'cashier' stamp: 'SG 6/10/2023 16:37:33' prior: 50630222!
+defaultCreditCard
+
+	^ self createCreditCardThatExpiresOn: self futureDate! !
+
+!testRun: #CashierTest #test01CannotCheckoutEmptyCart stamp: 'SG 6/10/2023 16:37:44'!
+PASSED!
+
+!testRun: #CashierTest #test02CheckoutPriceOfCartWithSingleItemIsThatItemsPrice stamp: 'SG 6/10/2023 16:37:44'!
+ERROR!
+
+!testRun: #CashierTest #test03CheckoutPriceOfCartWithMultipleOfTheSameItemIsCalculatedCorrectly stamp: 'SG 6/10/2023 16:37:44'!
+ERROR!
+
+!testRun: #CashierTest #test04CheckoutPriceOfCartWithMultipleDifferentItemsIsCalculatedCorrectly stamp: 'SG 6/10/2023 16:37:44'!
+ERROR!
+
+!testRun: #CashierTest #test05CheckoutFailsIfCreditCardHasExpired stamp: 'SG 6/10/2023 16:37:44'!
+PASSED!
+
+!testRun: #CashierTest #test06CheckoutChargesSaleAmountFromCreditCardUsingMerchantProcessor stamp: 'SG 6/10/2023 16:37:44'!
+ERROR!
+
+!testRun: #CashierTest #test07CheckoutFailsIfMerchantProcessorIsDown stamp: 'SG 6/10/2023 16:37:44'!
+ERROR!
+
+!testRun: #CashierTest #test08CheckoutFailsIfCreditCardDoesntHaveEnoughBalance stamp: 'SG 6/10/2023 16:37:44'!
+ERROR!
+
+!testRun: #CashierTest #test02CheckoutPriceOfCartWithSingleItemIsThatItemsPrice stamp: 'SG 6/10/2023 16:37:45'!
+ERROR!
+!CreditCard methodsFor: 'nil' stamp: 'SG 6/10/2023 16:38:56' overrides: 16901772!
+= otherCreditCard
+
+	^ number = otherCreditCard number
+		and: [ owner = otherCreditCard owner ]
+		and: [ expirationDate = otherCreditCard expirationDate ]! !
+!CreditCard methodsFor: 'nil' stamp: 'SG 6/10/2023 16:39:31'!
+number
+
+	^ number! !
+!CreditCard methodsFor: 'as yet unclassified' stamp: 'SG 6/10/2023 16:39:35'!
+owner
+
+	^ number! !
+!CreditCard methodsFor: 'as yet unclassified' stamp: 'SG 6/10/2023 16:39:38' prior: 50630572!
+owner
+
+	^ owner! !
+!CreditCard methodsFor: 'as yet unclassified' stamp: 'SG 6/10/2023 16:39:44'!
+expirationDate
+
+	^ expirationDate! !
+
+!testRun: #CashierTest #test01CannotCheckoutEmptyCart stamp: 'SG 6/10/2023 16:39:52'!
+PASSED!
+
+!testRun: #CashierTest #test02CheckoutPriceOfCartWithSingleItemIsThatItemsPrice stamp: 'SG 6/10/2023 16:39:52'!
+ERROR!
+
+!testRun: #CashierTest #test03CheckoutPriceOfCartWithMultipleOfTheSameItemIsCalculatedCorrectly stamp: 'SG 6/10/2023 16:39:52'!
+ERROR!
+
+!testRun: #CashierTest #test04CheckoutPriceOfCartWithMultipleDifferentItemsIsCalculatedCorrectly stamp: 'SG 6/10/2023 16:39:52'!
+ERROR!
+
+!testRun: #CashierTest #test05CheckoutFailsIfCreditCardHasExpired stamp: 'SG 6/10/2023 16:39:52'!
+PASSED!
+
+!testRun: #CashierTest #test06CheckoutChargesSaleAmountFromCreditCardUsingMerchantProcessor stamp: 'SG 6/10/2023 16:39:52'!
+ERROR!
+
+!testRun: #CashierTest #test07CheckoutFailsIfMerchantProcessorIsDown stamp: 'SG 6/10/2023 16:39:52'!
+ERROR!
+
+!testRun: #CashierTest #test08CheckoutFailsIfCreditCardDoesntHaveEnoughBalance stamp: 'SG 6/10/2023 16:39:52'!
+ERROR!
+
+!testRun: #CashierTest #test02CheckoutPriceOfCartWithSingleItemIsThatItemsPrice stamp: 'SG 6/10/2023 16:39:53'!
+ERROR!
+!MockMerchantProcessor methodsFor: 'initialization' stamp: 'SG 6/10/2023 16:40:19' prior: 50630151!
+initializeWithBalances: aMappingOfCreditCardsToBalances 
+
+	working := true.
+	balances := aMappingOfCreditCardsToBalances asDictionary.
+	creditCardsCharged := OrderedCollection new.! !
+!MockMerchantProcessor methodsFor: 'initialization' stamp: 'SG 6/10/2023 16:40:20' prior: 50630618!
+initializeWithBalances: aMappingOfCreditCardsToBalances 
+
+	working := true.
+	balances := aMappingOfCreditCardsToBalances asDictionary.
+	creditCardsCharged := OrderedCollection new! !
+
+!testRun: #CashierTest #test01CannotCheckoutEmptyCart stamp: 'SG 6/10/2023 16:40:26'!
+PASSED!
+
+!testRun: #CashierTest #test02CheckoutPriceOfCartWithSingleItemIsThatItemsPrice stamp: 'SG 6/10/2023 16:40:26'!
+ERROR!
+
+!testRun: #CashierTest #test03CheckoutPriceOfCartWithMultipleOfTheSameItemIsCalculatedCorrectly stamp: 'SG 6/10/2023 16:40:26'!
+ERROR!
+
+!testRun: #CashierTest #test04CheckoutPriceOfCartWithMultipleDifferentItemsIsCalculatedCorrectly stamp: 'SG 6/10/2023 16:40:26'!
+ERROR!
+
+!testRun: #CashierTest #test05CheckoutFailsIfCreditCardHasExpired stamp: 'SG 6/10/2023 16:40:26'!
+PASSED!
+
+!testRun: #CashierTest #test06CheckoutChargesSaleAmountFromCreditCardUsingMerchantProcessor stamp: 'SG 6/10/2023 16:40:26'!
+ERROR!
+
+!testRun: #CashierTest #test07CheckoutFailsIfMerchantProcessorIsDown stamp: 'SG 6/10/2023 16:40:26'!
+ERROR!
+
+!testRun: #CashierTest #test08CheckoutFailsIfCreditCardDoesntHaveEnoughBalance stamp: 'SG 6/10/2023 16:40:26'!
+PASSED!
+
+!testRun: #CashierTest #test02CheckoutPriceOfCartWithSingleItemIsThatItemsPrice stamp: 'SG 6/10/2023 16:40:27'!
+ERROR!
+!CreditCard methodsFor: 'comparing' stamp: 'SG 6/10/2023 16:42:56' overrides: 16901788!
+hash
+
+	^ (number hash bitXor: owner hash) bitXor: expirationDate hash! !
+
+!testRun: #CashierTest #test01CannotCheckoutEmptyCart stamp: 'SG 6/10/2023 16:42:58'!
+PASSED!
+
+!testRun: #CashierTest #test02CheckoutPriceOfCartWithSingleItemIsThatItemsPrice stamp: 'SG 6/10/2023 16:42:58'!
+PASSED!
+
+!testRun: #CashierTest #test03CheckoutPriceOfCartWithMultipleOfTheSameItemIsCalculatedCorrectly stamp: 'SG 6/10/2023 16:42:58'!
+PASSED!
+
+!testRun: #CashierTest #test04CheckoutPriceOfCartWithMultipleDifferentItemsIsCalculatedCorrectly stamp: 'SG 6/10/2023 16:42:58'!
+PASSED!
+
+!testRun: #CashierTest #test05CheckoutFailsIfCreditCardHasExpired stamp: 'SG 6/10/2023 16:42:58'!
+PASSED!
+
+!testRun: #CashierTest #test06CheckoutChargesSaleAmountFromCreditCardUsingMerchantProcessor stamp: 'SG 6/10/2023 16:42:58'!
+ERROR!
+
+!testRun: #CashierTest #test07CheckoutFailsIfMerchantProcessorIsDown stamp: 'SG 6/10/2023 16:42:58'!
+ERROR!
+
+!testRun: #CashierTest #test08CheckoutFailsIfCreditCardDoesntHaveEnoughBalance stamp: 'SG 6/10/2023 16:42:58'!
+PASSED!
+
+!testRun: #CashierTest #test06CheckoutChargesSaleAmountFromCreditCardUsingMerchantProcessor stamp: 'SG 6/10/2023 16:42:59'!
+ERROR!
+!CashierTest methodsFor: 'tests' stamp: 'SG 6/10/2023 16:45:19' prior: 50630468!
+test07CheckoutFailsIfMerchantProcessorIsDown
+
+	| cart cashier creditCard merchantProcessor |
+	cart :=  testObjectFactory createCart.
+	cart add: testObjectFactory itemSellByTheStore.
+	cart add: testObjectFactory otherItemSellByTheStore.
+
+	creditCard := testObjectFactory defaultCreditCard.
+	merchantProcessor := MockMerchantProcessor withBalances: {}.
+	cashier := testObjectFactory createCashierChargingFrom: merchantProcessor.
+
+	merchantProcessor simulateServiceOutage.
+
+	self
+		should: [ cashier checkout: cart withCreditCard: creditCard ]
+		raise: Error - MessageNotUnderstood
+		withExceptionDo: [:anError |
+			self assert: MerchantProcessor outOfServiceErrorDescription equals: anError messageText.
+			self deny: (merchantProcessor hasCharged: creditCard)
+		]! !
+!CashierTest methodsFor: 'tests' stamp: 'SG 6/10/2023 16:45:58' prior: 50630447!
+test06CheckoutChargesSaleAmountFromCreditCardUsingMerchantProcessor
+
+	| cart cashier creditCard merchantProcessor price |
+	cart :=  testObjectFactory createCart.
+	cart add: testObjectFactory itemSellByTheStore.
+	cart add: testObjectFactory otherItemSellByTheStore.
+
+	creditCard := testObjectFactory defaultCreditCard.
+	merchantProcessor := testObjectFactory defaultMerchantProcessor.
+	cashier := testObjectFactory createCashier.
+
+	price := cashier checkout: cart withCreditCard: creditCard.
+
+	self assert: (merchantProcessor hasCharged: price from: creditCard)! !
+!CashierTest methodsFor: 'tests' stamp: 'SG 6/10/2023 16:46:15' prior: 50630736!
+test06CheckoutChargesSaleAmountFromCreditCardUsingMerchantProcessor
+
+	| cart cashier creditCard merchantProcessor price |
+	cart :=  testObjectFactory createCart.
+	cart add: testObjectFactory itemSellByTheStore.
+	cart add: testObjectFactory otherItemSellByTheStore.
+
+	creditCard := testObjectFactory defaultCreditCard.
+	merchantProcessor := testObjectFactory defaultMerchantProcessor.
+	cashier := testObjectFactory createCashierChargingFrom: merchantProcessor.
+
+	price := cashier checkout: cart withCreditCard: creditCard.
+
+	self assert: (merchantProcessor hasCharged: price from: creditCard)! !
+
+!testRun: #CashierTest #test06CheckoutChargesSaleAmountFromCreditCardUsingMerchantProcessor stamp: 'SG 6/10/2023 16:46:16'!
+PASSED!
+
+!testRun: #CashierTest #test01CannotCheckoutEmptyCart stamp: 'SG 6/10/2023 16:46:16'!
+PASSED!
+
+!testRun: #CashierTest #test02CheckoutPriceOfCartWithSingleItemIsThatItemsPrice stamp: 'SG 6/10/2023 16:46:16'!
+PASSED!
+
+!testRun: #CashierTest #test03CheckoutPriceOfCartWithMultipleOfTheSameItemIsCalculatedCorrectly stamp: 'SG 6/10/2023 16:46:16'!
+PASSED!
+
+!testRun: #CashierTest #test04CheckoutPriceOfCartWithMultipleDifferentItemsIsCalculatedCorrectly stamp: 'SG 6/10/2023 16:46:16'!
+PASSED!
+
+!testRun: #CashierTest #test05CheckoutFailsIfCreditCardHasExpired stamp: 'SG 6/10/2023 16:46:16'!
+PASSED!
+
+!testRun: #CashierTest #test06CheckoutChargesSaleAmountFromCreditCardUsingMerchantProcessor stamp: 'SG 6/10/2023 16:46:16'!
+PASSED!
+
+!testRun: #CashierTest #test07CheckoutFailsIfMerchantProcessorIsDown stamp: 'SG 6/10/2023 16:46:16'!
+PASSED!
+
+!testRun: #CashierTest #test08CheckoutFailsIfCreditCardDoesntHaveEnoughBalance stamp: 'SG 6/10/2023 16:46:16'!
+PASSED!
+!CashierTest methodsFor: 'tests' stamp: 'SG 6/10/2023 16:46:34' prior: 50630709!
+test07CheckoutFailsIfMerchantProcessorIsDown
+
+	| cart cashier creditCard merchantProcessor |
+	cart :=  testObjectFactory createCart.
+	cart add: testObjectFactory itemSellByTheStore.
+	cart add: testObjectFactory otherItemSellByTheStore.
+
+	creditCard := testObjectFactory defaultCreditCard.
+	merchantProcessor := testObjectFactory defaultMerchantProcessor .
+	cashier := testObjectFactory createCashierChargingFrom: merchantProcessor.
+
+	merchantProcessor simulateServiceOutage.
+
+	self
+		should: [ cashier checkout: cart withCreditCard: creditCard ]
+		raise: Error - MessageNotUnderstood
+		withExceptionDo: [:anError |
+			self assert: MerchantProcessor outOfServiceErrorDescription equals: anError messageText.
+			self deny: (merchantProcessor hasCharged: creditCard)
+		]! !
+!CashierTest methodsFor: 'tests' stamp: 'SG 6/10/2023 16:46:34' prior: 50630813!
+test07CheckoutFailsIfMerchantProcessorIsDown
+
+	| cart cashier creditCard merchantProcessor |
+	cart :=  testObjectFactory createCart.
+	cart add: testObjectFactory itemSellByTheStore.
+	cart add: testObjectFactory otherItemSellByTheStore.
+
+	creditCard := testObjectFactory defaultCreditCard.
+	merchantProcessor := testObjectFactory defaultMerchantProcessor.
+	cashier := testObjectFactory createCashierChargingFrom: merchantProcessor.
+
+	merchantProcessor simulateServiceOutage.
+
+	self
+		should: [ cashier checkout: cart withCreditCard: creditCard ]
+		raise: Error - MessageNotUnderstood
+		withExceptionDo: [:anError |
+			self assert: MerchantProcessor outOfServiceErrorDescription equals: anError messageText.
+			self deny: (merchantProcessor hasCharged: creditCard)
+		]! !
+
+!testRun: #CashierTest #test07CheckoutFailsIfMerchantProcessorIsDown stamp: 'SG 6/10/2023 16:46:36'!
+PASSED!
+
+!testRun: #CashierTest #test01CannotCheckoutEmptyCart stamp: 'SG 6/10/2023 16:46:36'!
+PASSED!
+
+!testRun: #CashierTest #test02CheckoutPriceOfCartWithSingleItemIsThatItemsPrice stamp: 'SG 6/10/2023 16:46:36'!
+PASSED!
+
+!testRun: #CashierTest #test03CheckoutPriceOfCartWithMultipleOfTheSameItemIsCalculatedCorrectly stamp: 'SG 6/10/2023 16:46:36'!
+PASSED!
+
+!testRun: #CashierTest #test04CheckoutPriceOfCartWithMultipleDifferentItemsIsCalculatedCorrectly stamp: 'SG 6/10/2023 16:46:36'!
+PASSED!
+
+!testRun: #CashierTest #test05CheckoutFailsIfCreditCardHasExpired stamp: 'SG 6/10/2023 16:46:36'!
+PASSED!
+
+!testRun: #CashierTest #test06CheckoutChargesSaleAmountFromCreditCardUsingMerchantProcessor stamp: 'SG 6/10/2023 16:46:36'!
+PASSED!
+
+!testRun: #CashierTest #test07CheckoutFailsIfMerchantProcessorIsDown stamp: 'SG 6/10/2023 16:46:36'!
+PASSED!
+
+!testRun: #CashierTest #test08CheckoutFailsIfCreditCardDoesntHaveEnoughBalance stamp: 'SG 6/10/2023 16:46:36'!
+PASSED!
+
+!testRun: #CartTest #test01NewCartsAreCreatedEmpty stamp: 'SG 6/10/2023 16:46:37'!
+PASSED!
+
+!testRun: #CartTest #test02CanNotAddItemsThatDoNotBelongToStore stamp: 'SG 6/10/2023 16:46:37'!
+PASSED!
+
+!testRun: #CartTest #test03AfterAddingAnItemTheCartIsNotEmptyAnymore stamp: 'SG 6/10/2023 16:46:37'!
+PASSED!
+
+!testRun: #CartTest #test04CanNotAddNonPositiveNumberOfItems stamp: 'SG 6/10/2023 16:46:37'!
+PASSED!
+
+!testRun: #CartTest #test05CanNotAddMoreThanOneItemNotSellByTheStore stamp: 'SG 6/10/2023 16:46:37'!
+PASSED!
+
+!testRun: #CartTest #test06CartRemembersAddedItems stamp: 'SG 6/10/2023 16:46:37'!
+PASSED!
+
+!testRun: #CartTest #test07CartDoesNotHoldNotAddedItems stamp: 'SG 6/10/2023 16:46:37'!
+PASSED!
+
+!testRun: #CartTest #test08CartRemembersTheNumberOfAddedItems stamp: 'SG 6/10/2023 16:46:37'!
+PASSED!
+
+!testRun: #CashierTest #test01CannotCheckoutEmptyCart stamp: 'SG 6/10/2023 16:46:37'!
+PASSED!
+
+!testRun: #CashierTest #test02CheckoutPriceOfCartWithSingleItemIsThatItemsPrice stamp: 'SG 6/10/2023 16:46:37'!
+PASSED!
+
+!testRun: #CashierTest #test03CheckoutPriceOfCartWithMultipleOfTheSameItemIsCalculatedCorrectly stamp: 'SG 6/10/2023 16:46:37'!
+PASSED!
+
+!testRun: #CashierTest #test04CheckoutPriceOfCartWithMultipleDifferentItemsIsCalculatedCorrectly stamp: 'SG 6/10/2023 16:46:37'!
+PASSED!
+
+!testRun: #CashierTest #test05CheckoutFailsIfCreditCardHasExpired stamp: 'SG 6/10/2023 16:46:37'!
+PASSED!
+
+!testRun: #CashierTest #test06CheckoutChargesSaleAmountFromCreditCardUsingMerchantProcessor stamp: 'SG 6/10/2023 16:46:37'!
+PASSED!
+
+!testRun: #CashierTest #test07CheckoutFailsIfMerchantProcessorIsDown stamp: 'SG 6/10/2023 16:46:37'!
+PASSED!
+
+!testRun: #CashierTest #test08CheckoutFailsIfCreditCardDoesntHaveEnoughBalance stamp: 'SG 6/10/2023 16:46:37'!
+PASSED!
+
+!testRun: #CreditCardTest #test01CreditCardNumberMustBeAStrictlyPositiveInteger stamp: 'SG 6/10/2023 16:46:37'!
+PASSED!
+
+!testRun: #CreditCardTest #test02CreditCardOwnerMustBeANonEmptyString stamp: 'SG 6/10/2023 16:46:37'!
+PASSED!
+
+!testRun: #CreditCardTest #test03CreditCardOwnerCantHaveMoreThan30Characters stamp: 'SG 6/10/2023 16:46:37'!
+PASSED!
+
+!testRun: #CreditCardTest #test04CreditCardHasntExpiredBeforeExpirationDate stamp: 'SG 6/10/2023 16:46:37'!
+PASSED!
+
+!testRun: #CreditCardTest #test05CreditCardHasExpiredAfterExpirationDate stamp: 'SG 6/10/2023 16:46:37'!
+PASSED!
+!MockMerchantProcessor methodsFor: 'charging' stamp: 'SG 6/10/2023 16:47:00' prior: 50630159 overrides: 50629650!
+charge: anAmount from: aCreditCard
+
+	working ifFalse: [ self error: self class outOfServiceErrorDescription ].
+	(balances at: aCreditCard) < anAmount ifTrue: [ self error: self class notEnoughBalanceForTransactionErrorDescription ].
+
+	creditCardsCharged add: aCreditCard -> anAmount.
+! !
+
+!classDefinition: #MockMerchantProcessor category: 'TusLibros' stamp: 'SG 6/10/2023 16:47:06'!
+MerchantProcessor subclass: #MockMerchantProcessor
+	instanceVariableNames: 'working creditCardCharges balances'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'TusLibros'!
+!MockMerchantProcessor methodsFor: 'as yet unclassified' stamp: 'SG 6/10/2023 16:47:06' prior: 50629884!
+hasCharged: price from: creditCard 
+
+	^ creditCardCharges includes: creditCard -> price! !
+!MockMerchantProcessor methodsFor: 'as yet unclassified' stamp: 'SG 6/10/2023 16:47:06' prior: 50630975 overrides: 50629650!
+charge: anAmount from: aCreditCard
+
+	working ifFalse: [ self error: self class outOfServiceErrorDescription ].
+	(balances at: aCreditCard) < anAmount ifTrue: [ self error: self class notEnoughBalanceForTransactionErrorDescription ].
+
+	creditCardCharges add: aCreditCard -> anAmount.
+! !
+!MockMerchantProcessor methodsFor: 'as yet unclassified' stamp: 'SG 6/10/2023 16:47:06' prior: 50630627!
+initializeWithBalances: aMappingOfCreditCardsToBalances 
+
+	working := true.
+	balances := aMappingOfCreditCardsToBalances asDictionary.
+	creditCardCharges := OrderedCollection new! !
+!MockMerchantProcessor methodsFor: 'as yet unclassified' stamp: 'SG 6/10/2023 16:47:06' prior: 50629934!
+hasCharged: aCreditCard 
+
+	^ creditCardCharges anySatisfy: [:anAssociation | anAssociation key = aCreditCard ]! !
+!MockMerchantProcessor methodsFor: 'charging' stamp: 'SG 6/10/2023 16:47:23' prior: 50631003 overrides: 50629650!
+charge: anAmount from: aCreditCard
+
+	working ifFalse: [ self error: self class outOfServiceErrorDescription ].
+	(balances at: aCreditCard) < anAmount ifTrue: [ self error: self class notEnoughBalanceForTransactionErrorDescription ].
+
+	creditCardCharges add: aCreditCard -> anAmount.
+! !
+!MockMerchantProcessor methodsFor: 'charging' stamp: 'SG 6/10/2023 16:47:25' prior: 50631033 overrides: 50629650!
+charge: anAmount from: aCreditCard
+
+	working ifFalse: [ self error: self class outOfServiceErrorDescription ].
+	(balances at: aCreditCard) < anAmount ifTrue: [ self error: self class notEnoughBalanceForTransactionErrorDescription ].
+
+	creditCardCharges add: aCreditCard -> anAmount
+! !
+!CashierTest methodsFor: 'tests' stamp: 'SG 6/10/2023 16:54:36'!
+test09CashierRegistersSalesOnSalesBook
+
+	| cart cashier creditCard salesBook |
+	cart := testObjectFactory createCart.
+	cart add: testObjectFactory itemSellByTheStore.
+	cart add: testObjectFactory otherItemSellByTheStore.
+
+	creditCard := testObjectFactory defaultCreditCard.
+	
+	salesBook := OrderedCollection new.
+	cashier := testObjectFactory createCashierRegisteringSalesOn: salesBook.
+	
+	! !
+!CashierTest methodsFor: 'tests' stamp: 'SG 6/10/2023 16:55:50' prior: 50631057!
+test09CashierRegistersSalesOnSalesBook
+
+	| cart cashier salesBook price |
+	cart := testObjectFactory createCart.
+	cart add: testObjectFactory itemSellByTheStore.
+	cart add: testObjectFactory otherItemSellByTheStore.
+	
+	salesBook := OrderedCollection new.
+	cashier := testObjectFactory createCashierRegisteringSalesOn: salesBook.
+	
+	price := cashier checkout: cart withCreditCard: testObjectFactory defaultCreditCard.
+
+	self assert: salesBook includes: 	price! !
+
+!testRun: #CashierTest #test09CashierRegistersSalesOnSalesBook stamp: 'SG 6/10/2023 16:56:09'!
+ERROR!
+!StoreTestFactory methodsFor: 'cashier' stamp: 'SG 6/10/2023 16:56:14'!
+createCashierRegisteringSalesOn: salesBook 
+	self shouldBeImplemented.! !
+!StoreTestFactory methodsFor: 'cashier' stamp: 'SG 6/10/2023 16:56:20' prior: 50631092!
+createCashierRegisteringSalesOn: aSalesBook 
+! !
+!StoreTestFactory methodsFor: 'cashier' stamp: 'SG 6/10/2023 16:57:24' prior: 50631098!
+createCashierRegisteringSalesOn: aSalesBook 
+
+	^ Cashier
+		onDate: self currentDate
+		chargingFrom: self defaultMerchantProcessor
+		registeringSalesOn: aSalesBook! !
+!StoreTestFactory methodsFor: 'cashier' stamp: 'SG 6/10/2023 16:57:45' prior: 50629001!
+createCashierChargingFrom: aMerchantProcessor
+
+	^ Cashier
+		onDate: self currentDate
+		chargingFrom: aMerchantProcessor
+		registeringSalesOn: OrderedCollection new! !
+
+!testRun: #CartTest #test01NewCartsAreCreatedEmpty stamp: 'SG 6/10/2023 16:57:47'!
+PASSED!
+
+!testRun: #CartTest #test02CanNotAddItemsThatDoNotBelongToStore stamp: 'SG 6/10/2023 16:57:47'!
+PASSED!
+
+!testRun: #CartTest #test03AfterAddingAnItemTheCartIsNotEmptyAnymore stamp: 'SG 6/10/2023 16:57:47'!
+PASSED!
+
+!testRun: #CartTest #test04CanNotAddNonPositiveNumberOfItems stamp: 'SG 6/10/2023 16:57:47'!
+PASSED!
+
+!testRun: #CartTest #test05CanNotAddMoreThanOneItemNotSellByTheStore stamp: 'SG 6/10/2023 16:57:47'!
+PASSED!
+
+!testRun: #CartTest #test06CartRemembersAddedItems stamp: 'SG 6/10/2023 16:57:47'!
+PASSED!
+
+!testRun: #CartTest #test07CartDoesNotHoldNotAddedItems stamp: 'SG 6/10/2023 16:57:47'!
+PASSED!
+
+!testRun: #CartTest #test08CartRemembersTheNumberOfAddedItems stamp: 'SG 6/10/2023 16:57:47'!
+PASSED!
+
+!testRun: #CashierTest #test01CannotCheckoutEmptyCart stamp: 'SG 6/10/2023 16:57:47'!
+ERROR!
+
+!testRun: #CashierTest #test02CheckoutPriceOfCartWithSingleItemIsThatItemsPrice stamp: 'SG 6/10/2023 16:57:47'!
+ERROR!
+
+!testRun: #CashierTest #test03CheckoutPriceOfCartWithMultipleOfTheSameItemIsCalculatedCorrectly stamp: 'SG 6/10/2023 16:57:47'!
+ERROR!
+
+!testRun: #CashierTest #test04CheckoutPriceOfCartWithMultipleDifferentItemsIsCalculatedCorrectly stamp: 'SG 6/10/2023 16:57:47'!
+ERROR!
+
+!testRun: #CashierTest #test05CheckoutFailsIfCreditCardHasExpired stamp: 'SG 6/10/2023 16:57:47'!
+ERROR!
+
+!testRun: #CashierTest #test06CheckoutChargesSaleAmountFromCreditCardUsingMerchantProcessor stamp: 'SG 6/10/2023 16:57:47'!
+ERROR!
+
+!testRun: #CashierTest #test07CheckoutFailsIfMerchantProcessorIsDown stamp: 'SG 6/10/2023 16:57:47'!
+ERROR!
+
+!testRun: #CashierTest #test08CheckoutFailsIfCreditCardDoesntHaveEnoughBalance stamp: 'SG 6/10/2023 16:57:47'!
+ERROR!
+
+!testRun: #CashierTest #test09CashierRegistersSalesOnSalesBook stamp: 'SG 6/10/2023 16:57:47'!
+ERROR!
+
+!testRun: #CashierTest #test01CannotCheckoutEmptyCart stamp: 'SG 6/10/2023 16:57:48'!
+ERROR!
+!Cashier class methodsFor: 'instance creation' stamp: 'SG 6/10/2023 16:57:53'!
+onDate: aGregorianMonthOfYear chargingFrom: aMockMerchantProcessor registeringSalesOn: anOrderedCollection 
+	"DO NOT FORGET TO RENAME COLLABORATORS AND REMOVE THIS COMMENT!!!!"
+	self shouldBeImplemented.
+	^self new initializeOnDate: aGregorianMonthOfYear chargingFrom: aMockMerchantProcessor registeringSalesOn: anOrderedCollection ! !
+
+!methodRemoval: Cashier class #onDate:chargingFrom:registeringSalesOn: stamp: 'SG 6/10/2023 16:58:11'!
+onDate: aGregorianMonthOfYear chargingFrom: aMockMerchantProcessor registeringSalesOn: anOrderedCollection 
+	"DO NOT FORGET TO RENAME COLLABORATORS AND REMOVE THIS COMMENT!!!!"
+	self shouldBeImplemented.
+	^self new initializeOnDate: aGregorianMonthOfYear chargingFrom: aMockMerchantProcessor registeringSalesOn: anOrderedCollection !
+!Cashier class methodsFor: 'instance creation' stamp: 'SG 6/10/2023 16:58:43'!
+onDate: aDate chargingFrom: aMerchantProcessor registeringSalesOn: aSalesBook
+
+	^self new
+		initializeOnDate: aDate
+		chargingFrom: aMerchantProcessor
+		registeringSalesOn: aSalesBook! !
+
+!testRun: #CashierTest #test01CannotCheckoutEmptyCart stamp: 'SG 6/10/2023 16:58:47'!
+ERROR!
+
+!testRun: #CashierTest #test02CheckoutPriceOfCartWithSingleItemIsThatItemsPrice stamp: 'SG 6/10/2023 16:58:47'!
+ERROR!
+
+!testRun: #CashierTest #test03CheckoutPriceOfCartWithMultipleOfTheSameItemIsCalculatedCorrectly stamp: 'SG 6/10/2023 16:58:47'!
+ERROR!
+
+!testRun: #CashierTest #test04CheckoutPriceOfCartWithMultipleDifferentItemsIsCalculatedCorrectly stamp: 'SG 6/10/2023 16:58:47'!
+ERROR!
+
+!testRun: #CashierTest #test05CheckoutFailsIfCreditCardHasExpired stamp: 'SG 6/10/2023 16:58:47'!
+ERROR!
+
+!testRun: #CashierTest #test06CheckoutChargesSaleAmountFromCreditCardUsingMerchantProcessor stamp: 'SG 6/10/2023 16:58:47'!
+ERROR!
+
+!testRun: #CashierTest #test07CheckoutFailsIfMerchantProcessorIsDown stamp: 'SG 6/10/2023 16:58:47'!
+ERROR!
+
+!testRun: #CashierTest #test08CheckoutFailsIfCreditCardDoesntHaveEnoughBalance stamp: 'SG 6/10/2023 16:58:47'!
+ERROR!
+
+!testRun: #CashierTest #test09CashierRegistersSalesOnSalesBook stamp: 'SG 6/10/2023 16:58:47'!
+ERROR!
+
+!testRun: #CashierTest #test01CannotCheckoutEmptyCart stamp: 'SG 6/10/2023 16:58:48'!
+ERROR!
+
+!classDefinition: #Cashier category: 'TusLibros' stamp: 'SG 6/10/2023 16:58:52'!
+Object subclass: #Cashier
+	instanceVariableNames: 'currentDate merchantProcessor date'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'TusLibros'!
+
+!classDefinition: #Cashier category: 'TusLibros' stamp: 'SG 6/10/2023 16:58:53'!
+Object subclass: #Cashier
+	instanceVariableNames: 'currentDate merchantProcessor date salesBook'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'TusLibros'!
+!Cashier methodsFor: 'initialization' stamp: 'SG 6/10/2023 16:58:53'!
+initializeOnDate: aDate chargingFrom: aMerchantProcessor registeringSalesOn: aSalesBook 
+	self shouldBeImplemented.
+	date := aDate.
+	merchantProcessor := aMerchantProcessor.
+	salesBook := aSalesBook.! !
+
+!methodRemoval: Cashier class #onDate:chargingFrom: stamp: 'SG 6/10/2023 16:59:02'!
+onDate: aDate chargingFrom: aMerchantProcessor
+
+	^self new initializeOnDate: aDate chargingFrom: aMerchantProcessor!
+
+!methodRemoval: Cashier #initializeOnDate:chargingFrom:registeringSalesOn: stamp: 'SG 6/10/2023 16:59:19'!
+initializeOnDate: aDate chargingFrom: aMerchantProcessor registeringSalesOn: aSalesBook 
+	self shouldBeImplemented.
+	date := aDate.
+	merchantProcessor := aMerchantProcessor.
+	salesBook := aSalesBook.!
+!Cashier methodsFor: 'initialization' stamp: 'SG 6/10/2023 16:59:39'!
+initializeOnDate: aDate chargingFrom: aMerchantProcessor registeringSalesOn: aSalesBook
+
+
+	currentDate := aDate.
+	merchantProcessor := aMerchantProcessor.
+	salesBook := aSalesBook.! !
+!Cashier methodsFor: 'initialization' stamp: 'SG 6/10/2023 16:59:41' prior: 50631292!
+initializeOnDate: aDate chargingFrom: aMerchantProcessor registeringSalesOn: aSalesBook
+
+	currentDate := aDate.
+	merchantProcessor := aMerchantProcessor.
+	salesBook := aSalesBook.! !
+
+!methodRemoval: Cashier #initializeOnDate:chargingFrom: stamp: 'SG 6/10/2023 16:59:42'!
+initializeOnDate: aDate chargingFrom: aMerchantProcessor
+
+	currentDate := aDate.
+	merchantProcessor := aMerchantProcessor!
+
+!classDefinition: #Cashier category: 'TusLibros' stamp: 'SG 6/10/2023 16:59:52'!
+Object subclass: #Cashier
+	instanceVariableNames: 'currentDate merchantProcessor salesBook'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'TusLibros'!
+
+!testRun: #CashierTest #test01CannotCheckoutEmptyCart stamp: 'SG 6/10/2023 17:00:28'!
+PASSED!
+
+!testRun: #CashierTest #test02CheckoutPriceOfCartWithSingleItemIsThatItemsPrice stamp: 'SG 6/10/2023 17:00:28'!
+PASSED!
+
+!testRun: #CashierTest #test03CheckoutPriceOfCartWithMultipleOfTheSameItemIsCalculatedCorrectly stamp: 'SG 6/10/2023 17:00:28'!
+PASSED!
+
+!testRun: #CashierTest #test04CheckoutPriceOfCartWithMultipleDifferentItemsIsCalculatedCorrectly stamp: 'SG 6/10/2023 17:00:28'!
+PASSED!
+
+!testRun: #CashierTest #test05CheckoutFailsIfCreditCardHasExpired stamp: 'SG 6/10/2023 17:00:28'!
+PASSED!
+
+!testRun: #CashierTest #test06CheckoutChargesSaleAmountFromCreditCardUsingMerchantProcessor stamp: 'SG 6/10/2023 17:00:28'!
+PASSED!
+
+!testRun: #CashierTest #test07CheckoutFailsIfMerchantProcessorIsDown stamp: 'SG 6/10/2023 17:00:28'!
+PASSED!
+
+!testRun: #CashierTest #test08CheckoutFailsIfCreditCardDoesntHaveEnoughBalance stamp: 'SG 6/10/2023 17:00:28'!
+PASSED!
+
+!testRun: #CashierTest #test09CashierRegistersSalesOnSalesBook stamp: 'SG 6/10/2023 17:00:28'!
+FAILURE!
+
+!testRun: #CashierTest #test09CashierRegistersSalesOnSalesBook stamp: 'SG 6/10/2023 17:00:28'!
+FAILURE!
+!Cashier methodsFor: 'checkout' stamp: 'SG 6/10/2023 17:00:47' prior: 50629592!
+checkout: aCart withCreditCard: aCreditCard 
+
+	| price |
+	self assertIsValidCart: aCart.
+	self assertCreditCardHasNotExpired: aCreditCard.
+
+	price := self calculateTotalPrice: aCart.
+	
+	merchantProcessor charge: price from: aCreditCard.
+	salesBook add: price.
+	
+	^ price! !
+
+!testRun: #CashierTest #test01CannotCheckoutEmptyCart stamp: 'SG 6/10/2023 17:00:50'!
+PASSED!
+
+!testRun: #CashierTest #test02CheckoutPriceOfCartWithSingleItemIsThatItemsPrice stamp: 'SG 6/10/2023 17:00:50'!
+PASSED!
+
+!testRun: #CashierTest #test03CheckoutPriceOfCartWithMultipleOfTheSameItemIsCalculatedCorrectly stamp: 'SG 6/10/2023 17:00:50'!
+PASSED!
+
+!testRun: #CashierTest #test04CheckoutPriceOfCartWithMultipleDifferentItemsIsCalculatedCorrectly stamp: 'SG 6/10/2023 17:00:50'!
+PASSED!
+
+!testRun: #CashierTest #test05CheckoutFailsIfCreditCardHasExpired stamp: 'SG 6/10/2023 17:00:50'!
+PASSED!
+
+!testRun: #CashierTest #test06CheckoutChargesSaleAmountFromCreditCardUsingMerchantProcessor stamp: 'SG 6/10/2023 17:00:50'!
+PASSED!
+
+!testRun: #CashierTest #test07CheckoutFailsIfMerchantProcessorIsDown stamp: 'SG 6/10/2023 17:00:50'!
+PASSED!
+
+!testRun: #CashierTest #test08CheckoutFailsIfCreditCardDoesntHaveEnoughBalance stamp: 'SG 6/10/2023 17:00:50'!
+PASSED!
+
+!testRun: #CashierTest #test09CashierRegistersSalesOnSalesBook stamp: 'SG 6/10/2023 17:00:50'!
+PASSED!
+
+!testRun: #CartTest #test01NewCartsAreCreatedEmpty stamp: 'SG 6/10/2023 17:00:51'!
+PASSED!
+
+!testRun: #CartTest #test02CanNotAddItemsThatDoNotBelongToStore stamp: 'SG 6/10/2023 17:00:51'!
+PASSED!
+
+!testRun: #CartTest #test03AfterAddingAnItemTheCartIsNotEmptyAnymore stamp: 'SG 6/10/2023 17:00:51'!
+PASSED!
+
+!testRun: #CartTest #test04CanNotAddNonPositiveNumberOfItems stamp: 'SG 6/10/2023 17:00:51'!
+PASSED!
+
+!testRun: #CartTest #test05CanNotAddMoreThanOneItemNotSellByTheStore stamp: 'SG 6/10/2023 17:00:51'!
+PASSED!
+
+!testRun: #CartTest #test06CartRemembersAddedItems stamp: 'SG 6/10/2023 17:00:51'!
+PASSED!
+
+!testRun: #CartTest #test07CartDoesNotHoldNotAddedItems stamp: 'SG 6/10/2023 17:00:51'!
+PASSED!
+
+!testRun: #CartTest #test08CartRemembersTheNumberOfAddedItems stamp: 'SG 6/10/2023 17:00:51'!
+PASSED!
+
+!testRun: #CashierTest #test01CannotCheckoutEmptyCart stamp: 'SG 6/10/2023 17:00:51'!
+PASSED!
+
+!testRun: #CashierTest #test02CheckoutPriceOfCartWithSingleItemIsThatItemsPrice stamp: 'SG 6/10/2023 17:00:51'!
+PASSED!
+
+!testRun: #CashierTest #test03CheckoutPriceOfCartWithMultipleOfTheSameItemIsCalculatedCorrectly stamp: 'SG 6/10/2023 17:00:51'!
+PASSED!
+
+!testRun: #CashierTest #test04CheckoutPriceOfCartWithMultipleDifferentItemsIsCalculatedCorrectly stamp: 'SG 6/10/2023 17:00:51'!
+PASSED!
+
+!testRun: #CashierTest #test05CheckoutFailsIfCreditCardHasExpired stamp: 'SG 6/10/2023 17:00:51'!
+PASSED!
+
+!testRun: #CashierTest #test06CheckoutChargesSaleAmountFromCreditCardUsingMerchantProcessor stamp: 'SG 6/10/2023 17:00:51'!
+PASSED!
+
+!testRun: #CashierTest #test07CheckoutFailsIfMerchantProcessorIsDown stamp: 'SG 6/10/2023 17:00:51'!
+PASSED!
+
+!testRun: #CashierTest #test08CheckoutFailsIfCreditCardDoesntHaveEnoughBalance stamp: 'SG 6/10/2023 17:00:51'!
+PASSED!
+
+!testRun: #CashierTest #test09CashierRegistersSalesOnSalesBook stamp: 'SG 6/10/2023 17:00:51'!
+PASSED!
+
+!testRun: #CreditCardTest #test01CreditCardNumberMustBeAStrictlyPositiveInteger stamp: 'SG 6/10/2023 17:00:51'!
+PASSED!
+
+!testRun: #CreditCardTest #test02CreditCardOwnerMustBeANonEmptyString stamp: 'SG 6/10/2023 17:00:51'!
+PASSED!
+
+!testRun: #CreditCardTest #test03CreditCardOwnerCantHaveMoreThan30Characters stamp: 'SG 6/10/2023 17:00:51'!
+PASSED!
+
+!testRun: #CreditCardTest #test04CreditCardHasntExpiredBeforeExpirationDate stamp: 'SG 6/10/2023 17:00:51'!
+PASSED!
+
+!testRun: #CreditCardTest #test05CreditCardHasExpiredAfterExpirationDate stamp: 'SG 6/10/2023 17:00:51'!
+PASSED!
+
+----SNAPSHOT----(10 June 2023 17:00:59) CuisUniversity-5832.image priorSource: 9461874!
+!MockMerchantProcessor methodsFor: 'charging' stamp: 'SG 6/10/2023 17:01:34'!
+assertWorking
+
+	^ working ifFalse: [ self error: self class outOfServiceErrorDescription ]! !
+!MockMerchantProcessor methodsFor: 'charging' stamp: 'SG 6/10/2023 17:01:34' prior: 50631046 overrides: 50629650!
+charge: anAmount from: aCreditCard
+
+	self assertWorking.
+	(balances at: aCreditCard) < anAmount ifTrue: [ self error: self class notEnoughBalanceForTransactionErrorDescription ].
+
+	creditCardCharges add: aCreditCard -> anAmount
+! !
+!MockMerchantProcessor methodsFor: 'charging' stamp: 'SG 6/10/2023 17:02:20'!
+assertCreditCard: aCreditCard hasBalanceOfAtLeast: anAmount
+
+	(balances at: aCreditCard) < anAmount ifTrue: [ self error: self class notEnoughBalanceForTransactionErrorDescription ].
+! !
+!MockMerchantProcessor methodsFor: 'charging' stamp: 'SG 6/10/2023 17:02:47' prior: 50631492 overrides: 50629650!
+charge: anAmount from: aCreditCard
+
+	self assertWorking.
+	self assertCreditCard: aCreditCard hasBalanceOfAtLeast: anAmount.
+
+	creditCardCharges add: aCreditCard -> anAmount
+! !
+
+!testRun: #CartTest #test01NewCartsAreCreatedEmpty stamp: 'SG 6/10/2023 17:02:52'!
+PASSED!
+
+!testRun: #CartTest #test02CanNotAddItemsThatDoNotBelongToStore stamp: 'SG 6/10/2023 17:02:52'!
+PASSED!
+
+!testRun: #CartTest #test03AfterAddingAnItemTheCartIsNotEmptyAnymore stamp: 'SG 6/10/2023 17:02:52'!
+PASSED!
+
+!testRun: #CartTest #test04CanNotAddNonPositiveNumberOfItems stamp: 'SG 6/10/2023 17:02:52'!
+PASSED!
+
+!testRun: #CartTest #test05CanNotAddMoreThanOneItemNotSellByTheStore stamp: 'SG 6/10/2023 17:02:52'!
+PASSED!
+
+!testRun: #CartTest #test06CartRemembersAddedItems stamp: 'SG 6/10/2023 17:02:52'!
+PASSED!
+
+!testRun: #CartTest #test07CartDoesNotHoldNotAddedItems stamp: 'SG 6/10/2023 17:02:52'!
+PASSED!
+
+!testRun: #CartTest #test08CartRemembersTheNumberOfAddedItems stamp: 'SG 6/10/2023 17:02:52'!
+PASSED!
+
+!testRun: #CashierTest #test01CannotCheckoutEmptyCart stamp: 'SG 6/10/2023 17:02:52'!
+PASSED!
+
+!testRun: #CashierTest #test02CheckoutPriceOfCartWithSingleItemIsThatItemsPrice stamp: 'SG 6/10/2023 17:02:52'!
+PASSED!
+
+!testRun: #CashierTest #test03CheckoutPriceOfCartWithMultipleOfTheSameItemIsCalculatedCorrectly stamp: 'SG 6/10/2023 17:02:52'!
+PASSED!
+
+!testRun: #CashierTest #test04CheckoutPriceOfCartWithMultipleDifferentItemsIsCalculatedCorrectly stamp: 'SG 6/10/2023 17:02:52'!
+PASSED!
+
+!testRun: #CashierTest #test05CheckoutFailsIfCreditCardHasExpired stamp: 'SG 6/10/2023 17:02:52'!
+PASSED!
+
+!testRun: #CashierTest #test06CheckoutChargesSaleAmountFromCreditCardUsingMerchantProcessor stamp: 'SG 6/10/2023 17:02:52'!
+PASSED!
+
+!testRun: #CashierTest #test07CheckoutFailsIfMerchantProcessorIsDown stamp: 'SG 6/10/2023 17:02:52'!
+PASSED!
+
+!testRun: #CashierTest #test08CheckoutFailsIfCreditCardDoesntHaveEnoughBalance stamp: 'SG 6/10/2023 17:02:52'!
+PASSED!
+
+!testRun: #CashierTest #test09CashierRegistersSalesOnSalesBook stamp: 'SG 6/10/2023 17:02:52'!
+PASSED!
+
+!testRun: #CreditCardTest #test01CreditCardNumberMustBeAStrictlyPositiveInteger stamp: 'SG 6/10/2023 17:02:52'!
+PASSED!
+
+!testRun: #CreditCardTest #test02CreditCardOwnerMustBeANonEmptyString stamp: 'SG 6/10/2023 17:02:52'!
+PASSED!
+
+!testRun: #CreditCardTest #test03CreditCardOwnerCantHaveMoreThan30Characters stamp: 'SG 6/10/2023 17:02:52'!
+PASSED!
+
+!testRun: #CreditCardTest #test04CreditCardHasntExpiredBeforeExpirationDate stamp: 'SG 6/10/2023 17:02:52'!
+PASSED!
+
+!testRun: #CreditCardTest #test05CreditCardHasExpiredAfterExpirationDate stamp: 'SG 6/10/2023 17:02:52'!
+PASSED!
+
+----SNAPSHOT----(10 June 2023 17:03:26) CuisUniversity-5832.image priorSource: 9594611!
+
+----QUIT----(10 June 2023 17:03:39) CuisUniversity-5832.image priorSource: 9598281!
