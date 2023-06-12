@@ -110,31 +110,33 @@ TestCase subclass: #CashierTest
 	poolDictionaries: ''
 	category: 'TusLibros'!
 
-!CashierTest methodsFor: 'tests' stamp: 'SG 6/10/2023 16:36:17'!
+!CashierTest methodsFor: 'tests' stamp: 'TS 6/12/2023 03:39:31'!
 test01CannotCheckoutEmptyCart
 
 	| cart cashier |
 	cart :=  testObjectFactory createCart.
 	
-	cashier := testObjectFactory createCashier.
+	cashier := testObjectFactory defaultCashier.
 	
 	self
-		should: [ cashier checkout: cart withCreditCard: ( ( testObjectFactory defaultCreditCard)) ]
+		should: [ cashier checkout: cart withCreditCard: testObjectFactory defaultCreditCard ]
 		raise: Error - MessageNotUnderstood
 		withMessageText: Cashier cantCheckoutEmptyCartErrorDescription! !
 
-!CashierTest methodsFor: 'tests' stamp: 'SG 6/10/2023 16:36:29'!
+!CashierTest methodsFor: 'tests' stamp: 'TS 6/12/2023 03:39:31'!
 test02CheckoutPriceOfCartWithSingleItemIsThatItemsPrice
 
 	| cart cashier |
 	cart :=  testObjectFactory createCart.
 	cart add: testObjectFactory itemSellByTheStore.
 	
-	cashier := testObjectFactory createCashier.
-	
-	self assert: testObjectFactory priceOfItemSoldByStore equals: (cashier checkout: cart withCreditCard: testObjectFactory defaultCreditCard).! !
+	cashier := testObjectFactory defaultCashier.
 
-!CashierTest methodsFor: 'tests' stamp: 'SG 6/10/2023 16:36:36'!
+	self
+		assert: testObjectFactory priceOfItemSoldByStore
+		equals: (cashier checkout: cart withCreditCard: testObjectFactory defaultCreditCard).! !
+
+!CashierTest methodsFor: 'tests' stamp: 'TS 6/12/2023 03:39:31'!
 test03CheckoutPriceOfCartWithMultipleOfTheSameItemIsCalculatedCorrectly
 
 	| cart cashier |
@@ -142,13 +144,13 @@ test03CheckoutPriceOfCartWithMultipleOfTheSameItemIsCalculatedCorrectly
 	cart add: testObjectFactory itemSellByTheStore.
 	cart add: testObjectFactory itemSellByTheStore.
 	
-	cashier := testObjectFactory createCashier.
+	cashier := testObjectFactory defaultCashier.
 	
 	self
 		assert: 2 * testObjectFactory priceOfItemSoldByStore
 		equals: (cashier checkout: cart withCreditCard: testObjectFactory defaultCreditCard).! !
 
-!CashierTest methodsFor: 'tests' stamp: 'SG 6/10/2023 16:36:42'!
+!CashierTest methodsFor: 'tests' stamp: 'TS 6/12/2023 03:39:31'!
 test04CheckoutPriceOfCartWithMultipleDifferentItemsIsCalculatedCorrectly
 
 	| cart cashier |
@@ -156,13 +158,13 @@ test04CheckoutPriceOfCartWithMultipleDifferentItemsIsCalculatedCorrectly
 	cart add: testObjectFactory itemSellByTheStore.
 	cart add: testObjectFactory otherItemSellByTheStore.
 	
-	cashier := testObjectFactory createCashier.
+	cashier := testObjectFactory defaultCashier.
 	
 	self
 		assert: testObjectFactory priceOfItemSoldByStore + testObjectFactory priceOfOtherItemSellByTheStore
 		equals: (cashier checkout: cart withCreditCard: testObjectFactory defaultCreditCard).! !
 
-!CashierTest methodsFor: 'tests' stamp: 'SG 6/10/2023 16:36:49'!
+!CashierTest methodsFor: 'tests' stamp: 'TS 6/12/2023 03:53:18'!
 test05CheckoutFailsIfCreditCardHasExpired
 
 	| cart cashier |
@@ -170,14 +172,14 @@ test05CheckoutFailsIfCreditCardHasExpired
 	cart add: testObjectFactory itemSellByTheStore.
 	cart add: testObjectFactory otherItemSellByTheStore.
 	
-	cashier := testObjectFactory createCashier.
+	cashier := testObjectFactory defaultCashier.
 	
 	self 
-		should: [cashier checkout: cart withCreditCard: (testObjectFactory createCreditCardThatExpiresOn: testObjectFactory pastDate) ]
+		should: [ cashier checkout: cart withCreditCard: (testObjectFactory createCreditCardThatExpiresOn: testObjectFactory pastDate) ]
 		raise: Error - MessageNotUnderstood
 		withMessageText: Cashier cantCheckoutUsingExpiredCreditCardErrorDescription! !
 
-!CashierTest methodsFor: 'tests' stamp: 'SG 6/10/2023 16:46:15'!
+!CashierTest methodsFor: 'tests' stamp: 'TS 6/12/2023 03:14:07'!
 test06CheckoutChargesSaleAmountFromCreditCardUsingMerchantProcessor
 
 	| cart cashier creditCard merchantProcessor price |
@@ -193,7 +195,7 @@ test06CheckoutChargesSaleAmountFromCreditCardUsingMerchantProcessor
 
 	self assert: (merchantProcessor hasCharged: price from: creditCard)! !
 
-!CashierTest methodsFor: 'tests' stamp: 'SG 6/10/2023 16:46:34'!
+!CashierTest methodsFor: 'tests' stamp: 'TS 6/12/2023 03:35:22'!
 test07CheckoutFailsIfMerchantProcessorIsDown
 
 	| cart cashier creditCard merchantProcessor |
@@ -212,10 +214,10 @@ test07CheckoutFailsIfMerchantProcessorIsDown
 		raise: Error - MessageNotUnderstood
 		withExceptionDo: [:anError |
 			self assert: MerchantProcessor outOfServiceErrorDescription equals: anError messageText.
-			self deny: (merchantProcessor hasCharged: creditCard)
+			self deny: (merchantProcessor hasChargedAnyBalance: creditCard)
 		]! !
 
-!CashierTest methodsFor: 'tests' stamp: 'SG 6/10/2023 16:37:22'!
+!CashierTest methodsFor: 'tests' stamp: 'TS 6/12/2023 03:35:22'!
 test08CheckoutFailsIfCreditCardDoesntHaveEnoughBalance
 
 	| cart cashier creditCard merchantProcessor |
@@ -232,11 +234,11 @@ test08CheckoutFailsIfCreditCardDoesntHaveEnoughBalance
 		raise: Error - MessageNotUnderstood
 		withExceptionDo: [:anError |
 			self assert: MerchantProcessor notEnoughBalanceForTransactionErrorDescription equals: anError messageText.
-			self deny: (merchantProcessor hasCharged: creditCard)
+			self deny: (merchantProcessor hasChargedAnyBalance: creditCard)
 		]! !
 
-!CashierTest methodsFor: 'tests' stamp: 'SG 6/10/2023 16:55:50'!
-test09CashierRegistersSalesOnSalesBook
+!CashierTest methodsFor: 'tests' stamp: 'TS 6/12/2023 04:00:14'!
+test09CashierRegistersSalesOnSalesBookWhenCheckoutIsSuccessful
 
 	| cart cashier salesBook price |
 	cart := testObjectFactory createCart.
@@ -249,6 +251,50 @@ test09CashierRegistersSalesOnSalesBook
 	price := cashier checkout: cart withCreditCard: testObjectFactory defaultCreditCard.
 
 	self assert: salesBook includes: 	price! !
+
+!CashierTest methodsFor: 'tests' stamp: 'TS 6/12/2023 04:08:05'!
+test10CashierDoesntRegisterSalesBookWhenCheckoutFails
+
+	| cart cashier salesBook creditCard merchantProcessor |
+	cart := testObjectFactory createCart.
+	cart add: testObjectFactory itemSellByTheStore.
+	cart add: testObjectFactory otherItemSellByTheStore.
+	
+	salesBook := OrderedCollection new.
+	creditCard := testObjectFactory defaultCreditCard.
+	merchantProcessor := testObjectFactory defaultMerchantProcessor.
+	cashier := testObjectFactory createCashierChargingFrom: merchantProcessor registeringSalesOn: salesBook.
+
+	merchantProcessor simulateServiceOutage.
+
+	self
+		should: [ cashier checkout: cart withCreditCard: creditCard ]
+		raise: Error - MessageNotUnderstood
+		withExceptionDo: [:anError |
+			self assert: salesBook isEmpty
+		]! !
+
+!CashierTest methodsFor: 'tests' stamp: 'TS 6/12/2023 04:16:53'!
+test11CheckoutFailsIfCreditCardHasBeenStolen
+
+	| cart cashier creditCard merchantProcessor |
+	cart := testObjectFactory createCart.
+	cart add: testObjectFactory itemSellByTheStore.
+	cart add: testObjectFactory otherItemSellByTheStore.
+	
+	creditCard := testObjectFactory defaultCreditCard.
+	merchantProcessor := testObjectFactory defaultMerchantProcessor.
+	cashier := testObjectFactory createCashierChargingFrom: merchantProcessor.
+	
+	merchantProcessor markAsStolen: creditCard.
+
+	self
+		should: [ cashier checkout: cart withCreditCard: creditCard ]
+		raise: Error - MessageNotUnderstood
+		withExceptionDo: [:anError |
+			self assert: MerchantProcessor stolenCreditCardErrorDescription equals: anError messageText.
+			self deny: (merchantProcessor hasChargedAnyBalance: creditCard).
+		]! !
 
 
 !CashierTest methodsFor: 'setUp/tearDown' stamp: 'SG 6/10/2023 15:39:23'!
@@ -390,7 +436,6 @@ onItemsDo: aBlock
 
 	items do: aBlock! !
 
-
 "-- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- "!
 
 !classDefinition: 'Cart class' category: 'TusLibros'!
@@ -434,7 +479,7 @@ calculateTotalPrice: aCart
 	
 	^ aCart calculateSubtotal! !
 
-!Cashier methodsFor: 'checkout' stamp: 'SG 6/10/2023 17:00:47'!
+!Cashier methodsFor: 'checkout' stamp: 'TS 6/12/2023 04:11:47'!
 checkout: aCart withCreditCard: aCreditCard 
 
 	| price |
@@ -443,9 +488,9 @@ checkout: aCart withCreditCard: aCreditCard
 
 	price := self calculateTotalPrice: aCart.
 	
-	merchantProcessor charge: price from: aCreditCard.
+	merchantProcessor charge: price from: aCreditCard.	
 	salesBook add: price.
-	
+
 	^ price! !
 
 "-- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- "!
@@ -596,10 +641,15 @@ outOfServiceErrorDescription
 
 	^ 'El Merchant Processor está caído'! !
 
+!MerchantProcessor class methodsFor: 'error descriptions' stamp: 'TS 6/12/2023 04:23:01'!
+stolenCreditCardErrorDescription
+
+	^ 'La tarjeta de crédito fue robada'! !
+
 
 !classDefinition: #MockMerchantProcessor category: 'TusLibros'!
 MerchantProcessor subclass: #MockMerchantProcessor
-	instanceVariableNames: 'working creditCardCharges balances'
+	instanceVariableNames: 'working creditCardCharges balances stolenCreditCards'
 	classVariableNames: ''
 	poolDictionaries: ''
 	category: 'TusLibros'!
@@ -616,25 +666,36 @@ assertWorking
 	^ working ifFalse: [ self error: self class outOfServiceErrorDescription ]! !
 
 
-!MockMerchantProcessor methodsFor: 'charging' stamp: 'SG 6/10/2023 17:02:47'!
+!MockMerchantProcessor methodsFor: 'charging' stamp: 'TS 6/12/2023 04:23:30'!
+assertCreditCardNotStolen: aCreditCard
+
+	^ (stolenCreditCards includes: aCreditCard) ifTrue: [ self error: self class stolenCreditCardErrorDescription ]! !
+
+!MockMerchantProcessor methodsFor: 'charging' stamp: 'TS 6/12/2023 04:23:30'!
 charge: anAmount from: aCreditCard
 
 	self assertWorking.
+	self assertCreditCardNotStolen: aCreditCard.
 	self assertCreditCard: aCreditCard hasBalanceOfAtLeast: anAmount.
 
 	creditCardCharges add: aCreditCard -> anAmount
 ! !
 
 !MockMerchantProcessor methodsFor: 'charging' stamp: 'SG 6/10/2023 16:47:06'!
-hasCharged: aCreditCard 
-
-	^ creditCardCharges anySatisfy: [:anAssociation | anAssociation key = aCreditCard ]! !
-
-!MockMerchantProcessor methodsFor: 'charging' stamp: 'SG 6/10/2023 16:47:06'!
 hasCharged: price from: creditCard 
 
 	^ creditCardCharges includes: creditCard -> price! !
 
+!MockMerchantProcessor methodsFor: 'charging' stamp: 'TS 6/12/2023 03:35:21'!
+hasChargedAnyBalance: aCreditCard 
+
+	^ creditCardCharges anySatisfy: [:anAssociation | anAssociation key = aCreditCard ]! !
+
+
+!MockMerchantProcessor methodsFor: 'simulation' stamp: 'TS 6/12/2023 04:21:02'!
+markAsStolen: aCreditCard
+
+	stolenCreditCards add: aCreditCard! !
 
 !MockMerchantProcessor methodsFor: 'simulation' stamp: 'SG 6/10/2023 16:11:05'!
 simulateServiceOutage
@@ -642,12 +703,13 @@ simulateServiceOutage
 	working := false! !
 
 
-!MockMerchantProcessor methodsFor: 'initialization' stamp: 'SG 6/10/2023 16:47:06'!
+!MockMerchantProcessor methodsFor: 'initialization' stamp: 'TS 6/12/2023 04:21:22'!
 initializeWithBalances: aMappingOfCreditCardsToBalances 
 
 	working := true.
 	balances := aMappingOfCreditCardsToBalances asDictionary.
-	creditCardCharges := OrderedCollection new! !
+	creditCardCharges := OrderedCollection new.
+	stolenCreditCards := Set new! !
 
 "-- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- "!
 
@@ -735,26 +797,34 @@ pastDate
 	^ December of: 1999! !
 
 
-!StoreTestFactory methodsFor: 'cashier' stamp: 'SG 6/10/2023 16:02:53'!
-createCashier
-
-	^ self createCashierChargingFrom: self defaultMerchantProcessor! !
-
-!StoreTestFactory methodsFor: 'cashier' stamp: 'SG 6/10/2023 16:57:45'!
+!StoreTestFactory methodsFor: 'cashier' stamp: 'TS 6/12/2023 04:09:45'!
 createCashierChargingFrom: aMerchantProcessor
 
-	^ Cashier
-		onDate: self currentDate
-		chargingFrom: aMerchantProcessor
+	^ self
+		createCashierChargingFrom: aMerchantProcessor
 		registeringSalesOn: OrderedCollection new! !
 
-!StoreTestFactory methodsFor: 'cashier' stamp: 'SG 6/10/2023 16:57:24'!
-createCashierRegisteringSalesOn: aSalesBook 
+!StoreTestFactory methodsFor: 'cashier' stamp: 'TS 6/12/2023 04:09:15'!
+createCashierChargingFrom: merchantProcessor registeringSalesOn: salesBook 
 
 	^ Cashier
 		onDate: self currentDate
-		chargingFrom: self defaultMerchantProcessor
+		chargingFrom: merchantProcessor
+		registeringSalesOn: salesBook! !
+
+!StoreTestFactory methodsFor: 'cashier' stamp: 'TS 6/12/2023 04:10:24'!
+createCashierRegisteringSalesOn: aSalesBook 
+
+	^ self
+		createCashierChargingFrom: self defaultMerchantProcessor 
 		registeringSalesOn: aSalesBook! !
+
+!StoreTestFactory methodsFor: 'cashier' stamp: 'TS 6/12/2023 04:11:17'!
+defaultCashier
+
+	^ self
+		createCashierChargingFrom: self defaultMerchantProcessor 
+		registeringSalesOn: OrderedCollection new! !
 
 !StoreTestFactory methodsFor: 'cashier' stamp: 'SG 6/10/2023 16:35:29'!
 defaultMerchantProcessor
