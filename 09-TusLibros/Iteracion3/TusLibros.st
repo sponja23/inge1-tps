@@ -478,7 +478,7 @@ test11SuccessfulCheckoutRemovesTheCartFromInterface
 		withMessageText: RestInterface invalidCartIdErrorDescription
 ! !
 
-!RestInterfaceTest methodsFor: 'tests' stamp: 'TS 6/12/2023 21:48:14'!
+!RestInterfaceTest methodsFor: 'tests' stamp: 'TS 6/15/2023 14:40:02'!
 test12CannotAccessCartAfterTimeout
 
 	| interface id |
@@ -494,7 +494,7 @@ test12CannotAccessCartAfterTimeout
 	self
 		should: [ interface listCartWithId: id ]
 		raise: Error - MessageNotUnderstood
-		withMessageText: RestInterface cannotAccesCartAfterTimeoutErrorDescription! !
+		withMessageText: RestInterface cannotAccessCartAfterTimeoutErrorDescription! !
 
 !RestInterfaceTest methodsFor: 'tests' stamp: 'TS 6/12/2023 21:51:04'!
 test13CanAccessCartIfTimeoutHasntPassedSinceLastAccess
@@ -543,6 +543,68 @@ getTime
 debit: anAmount from: aCreditCard 
 
 	^ debitBehavior value: anAmount value: aCreditCard! !
+
+
+!classDefinition: #AccessTimeoutDictionary category: 'TusLibros'!
+Object subclass: #AccessTimeoutDictionary
+	instanceVariableNames: 'clock timeoutDuration values lastAccessTimes'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'TusLibros'!
+
+!AccessTimeoutDictionary methodsFor: 'initialization' stamp: 'TS 6/15/2023 14:25:12'!
+initializeWithClock: aClock andTimeoutDuration: aDuration 
+
+	clock := aClock.
+	timeoutDuration := aDuration.
+
+	values := Dictionary new.
+	lastAccessTimes := Dictionary new.! !
+
+
+!AccessTimeoutDictionary methodsFor: 'accessing' stamp: 'TS 6/15/2023 14:38:50'!
+at: aKey ifAbsent: absentBlock ifTimeout: timeoutBlock
+
+	(self hasTimeoutPassedFor: aKey ifAbsent: absentBlock) ifTrue: timeoutBlock	.
+
+	self updateLastAccessFor: aKey.
+
+	^ values at: aKey! !
+
+!AccessTimeoutDictionary methodsFor: 'accessing' stamp: 'TS 6/15/2023 14:38:32'!
+at: aKey put: aValue
+
+	values at: aKey put: aValue.
+	self updateLastAccessFor: aKey
+! !
+
+!AccessTimeoutDictionary methodsFor: 'accessing' stamp: 'TS 6/15/2023 14:39:01'!
+hasTimeoutPassedFor: aKey ifAbsent: absentBlock
+
+	^ clock getTime >= ((lastAccessTimes at: aKey ifAbsent: absentBlock) + timeoutDuration)! !
+
+!AccessTimeoutDictionary methodsFor: 'accessing' stamp: 'TS 6/15/2023 14:38:32'!
+updateLastAccessFor: aKey
+
+	^ lastAccessTimes at: aKey put: clock getTime! !
+
+
+!AccessTimeoutDictionary methodsFor: 'removing' stamp: 'TS 6/15/2023 14:33:05'!
+removeKey: aKey 
+
+	values removeKey: aKey.
+	lastAccessTimes removeKey: aKey! !
+
+"-- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- "!
+
+!classDefinition: 'AccessTimeoutDictionary class' category: 'TusLibros'!
+AccessTimeoutDictionary class
+	instanceVariableNames: ''!
+
+!AccessTimeoutDictionary class methodsFor: 'instance creation' stamp: 'TS 6/15/2023 14:23:20'!
+withClock: aClock andTimeoutDuration: aDuration 
+
+	^self new initializeWithClock: aClock andTimeoutDuration: aDuration ! !
 
 
 !classDefinition: #Cart category: 'TusLibros'!
@@ -800,12 +862,12 @@ number: aCreditCardNumber owner: anOwner expiringOn: aMonth
 
 !classDefinition: #RestInterface category: 'TusLibros'!
 Object subclass: #RestInterface
-	instanceVariableNames: 'authenticationSystem nextId idToCartMapping catalog merchantProcessor salesBook idToLastAccessTimeMapping clock'
+	instanceVariableNames: 'authenticationSystem nextId idToCartMapping catalog merchantProcessor salesBook idToLastAccessTimeMapping clock carts'
 	classVariableNames: ''
 	poolDictionaries: ''
 	category: 'TusLibros'!
 
-!RestInterface methodsFor: 'initialization' stamp: 'TS 6/12/2023 21:55:07'!
+!RestInterface methodsFor: 'initialization' stamp: 'TS 6/15/2023 14:22:59'!
 initializeAuthenticatingWith: anAuthenticationSystem acceptingItemsFrom: aCatalog debitingFrom: aMerchantProcessor usingClock: aClock   
 
 	authenticationSystem := anAuthenticationSystem.
@@ -814,8 +876,7 @@ initializeAuthenticatingWith: anAuthenticationSystem acceptingItemsFrom: aCatalo
 	clock := aClock.
 
 	nextId := 0.
-	idToCartMapping := Dictionary new.
-	idToLastAccessTimeMapping := Dictionary new.
+	carts := AccessTimeoutDictionary withClock: aClock andTimeoutDuration: self class timeoutDuration.
 	salesBook := OrderedCollection new! !
 
 
@@ -824,7 +885,7 @@ addToCart: aCartId item: anItem quantity: anAmount
 
 	(self getCartWithId: aCartId) add: anAmount of: anItem! !
 
-!RestInterface methodsFor: 'cart' stamp: 'TS 6/12/2023 21:52:11'!
+!RestInterface methodsFor: 'cart' stamp: 'TS 6/15/2023 14:19:58'!
 createCartBy: aUser authenticatedWith: aPassword
 
 	| id |
@@ -832,10 +893,8 @@ createCartBy: aUser authenticatedWith: aPassword
 
 	id := self getNextId.
 
-	idToCartMapping at: id put: self createNewCart.
-	
-	idToLastAccessTimeMapping at: id put: self currentTime.
-	
+	carts at: id put: self createNewCart.
+
 	^ id! !
 
 !RestInterface methodsFor: 'cart' stamp: 'TS 6/12/2023 20:31:55'!
@@ -855,17 +914,14 @@ createNewCart
 
 	^ Cart acceptingItemsOf: catalog! !
 
-!RestInterface methodsFor: 'cart - private' stamp: 'TS 6/12/2023 21:52:46'!
+!RestInterface methodsFor: 'cart - private' stamp: 'TS 6/15/2023 14:40:02'!
 getCartWithId: aCartId
 
-	| cart |
-	cart := idToCartMapping at: aCartId ifAbsent: [ self error: self class invalidCartIdErrorDescription ].
-	
-	self assertTimeoutHasntPassedSinceLastAccess: aCartId.
+	^ carts
+		at: aCartId
+		ifAbsent: [ self error: self class invalidCartIdErrorDescription ]
+		ifTimeout: [ self error: self class cannotAccessCartAfterTimeoutErrorDescription ].
 
-	idToLastAccessTimeMapping at: aCartId put: self currentTime.
-
-	^ cart
 ! !
 
 !RestInterface methodsFor: 'cart - private' stamp: 'TS 6/12/2023 19:35:41'!
@@ -878,22 +934,17 @@ getNextId
 
 	^ id! !
 
-!RestInterface methodsFor: 'cart - private' stamp: 'TS 6/12/2023 21:30:28'!
+!RestInterface methodsFor: 'cart - private' stamp: 'TS 6/15/2023 14:18:47'!
 removeCartWithId: aCartId
 
-	^ idToCartMapping removeKey: aCartId! !
+	^ carts removeKey: aCartId! !
 
 
-!RestInterface methodsFor: 'validation' stamp: 'TS 6/12/2023 19:32:49'!
+!RestInterface methodsFor: 'validation' stamp: 'TS 6/15/2023 14:22:09'!
 assertThat: aUser canAuthenticateUsing: aPassword
 
-	^ (authenticationSystem canUserAccess: aUser withPassword: aPassword) ifFalse: [ self error: self class invalidCredentialsErrorDescription ]! !
-
-!RestInterface methodsFor: 'validation' stamp: 'TS 6/12/2023 21:52:46'!
-assertTimeoutHasntPassedSinceLastAccess: aCartId
-
-	^ (self currentTime < ((idToLastAccessTimeMapping at: aCartId) + self class timeoutDuration))
-		ifFalse: [ self error: self class cannotAccesCartAfterTimeoutErrorDescription ]! !
+	^ (authenticationSystem canUserAccess: aUser withPassword: aPassword)
+		ifFalse: [ self error: self class invalidCredentialsErrorDescription ]! !
 
 
 !RestInterface methodsFor: 'checkout' stamp: 'TS 6/12/2023 21:47:21'!
@@ -930,8 +981,8 @@ authenticatingWith: anAuthenticationSystem acceptingItemsFrom: aCatalog debiting
 		usingClock: aClock! !
 
 
-!RestInterface class methodsFor: 'error descriptions' stamp: 'TS 6/12/2023 21:34:54'!
-cannotAccesCartAfterTimeoutErrorDescription
+!RestInterface class methodsFor: 'error descriptions' stamp: 'TS 6/15/2023 14:40:02'!
+cannotAccessCartAfterTimeoutErrorDescription
 
 	^ 'No se puede acceder al carro después del timeout'! !
 

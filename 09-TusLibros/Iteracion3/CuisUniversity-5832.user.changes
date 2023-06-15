@@ -4748,3 +4748,1114 @@ PASSED!
 PASSED!
 
 ----QUIT----(12 June 2023 21:55:37) CuisUniversity-5832.image priorSource: 9540746!
+
+----STARTUP---- (15 June 2023 14:12:14) as /home/sponja/Temp/Cuises/cursada3/CuisUniversity-5832.image!
+
+
+----End fileIn of /home/sponja/Temp/Cuises/cursada3/TusLibros.st----!
+
+!classDefinition: #RestInterface category: 'TusLibros' stamp: 'TS 6/15/2023 14:16:24'!
+Object subclass: #RestInterface
+	instanceVariableNames: 'authenticationSystem nextId idToCartMapping catalog merchantProcessor salesBook idToLastAccessTimeMapping clock carts'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'TusLibros'!
+
+!classDefinition: #AccessTimeoutDictionary category: 'TusLibros' stamp: 'TS 6/15/2023 14:16:29'!
+Object subclass: #AccessTimeoutDictionary
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'TusLibros'!
+!RestInterface methodsFor: 'initialization' stamp: 'TS 6/15/2023 14:16:20' prior: 50625189!
+initializeAuthenticatingWith: anAuthenticationSystem acceptingItemsFrom: aCatalog debitingFrom: aMerchantProcessor usingClock: aClock   
+
+	authenticationSystem := anAuthenticationSystem.
+	merchantProcessor := aMerchantProcessor.
+	catalog := aCatalog.
+	clock := aClock.
+
+	nextId := 0.
+	carts := AccessTimeoutDictionary withTimeoutDuration: self class timeoutDuration.
+	salesBook := OrderedCollection new! !
+!RestInterface methodsFor: 'cart - private' stamp: 'TS 6/15/2023 14:18:11' prior: 50625233!
+getCartWithId: aCartId
+
+	^ carts
+		at: aCartId
+		ifAbsent: [ self error: self class invalidCartIdErrorDescription ]
+		ifTimeout: [ self error: self class cannotAccesCartAfterTimeoutErrorDescription ].
+
+! !
+!RestInterface methodsFor: 'cart - private' stamp: 'TS 6/15/2023 14:18:47' prior: 50625249!
+removeCartWithId: aCartId
+
+	^ carts removeKey: aCartId! !
+!RestInterface methodsFor: 'cart' stamp: 'TS 6/15/2023 14:19:58' prior: 50625210!
+createCartBy: aUser authenticatedWith: aPassword
+
+	| id |
+	self assertThat: aUser canAuthenticateUsing: aPassword.
+
+	id := self getNextId.
+
+	carts at: id put: self createNewCart.
+
+	^ id! !
+!RestInterface methodsFor: 'initialization' stamp: 'TS 6/15/2023 14:21:11' prior: 50625436!
+initializeAuthenticatingWith: anAuthenticationSystem acceptingItemsFrom: aCatalog debitingFrom: aMerchantProcessor usingClock: aClock   
+
+	authenticationSystem := anAuthenticationSystem.
+	merchantProcessor := aMerchantProcessor.
+	catalog := aCatalog.
+
+	nextId := 0.
+	carts := AccessTimeoutDictionary withClock: aClock withTimeoutDuration: self class timeoutDuration.
+	salesBook := OrderedCollection new! !
+!RestInterface methodsFor: 'initialization' stamp: 'TS 6/15/2023 14:21:20' prior: 50625476!
+initializeAuthenticatingWith: anAuthenticationSystem acceptingItemsFrom: aCatalog debitingFrom: aMerchantProcessor usingClock: aClock   
+
+	authenticationSystem := anAuthenticationSystem.
+	merchantProcessor := aMerchantProcessor.
+	catalog := aCatalog.
+
+	nextId := 0.
+	carts := AccessTimeoutDictionary withClock: aClock andTimeoutDuration: self class timeoutDuration.
+	salesBook := OrderedCollection new! !
+
+!methodRemoval: RestInterface #assertTimeoutHasntPassedSinceLastAccess: stamp: 'TS 6/15/2023 14:22:01'!
+assertTimeoutHasntPassedSinceLastAccess: aCartId
+
+	^ (self currentTime < ((idToLastAccessTimeMapping at: aCartId) + self class timeoutDuration))
+		ifFalse: [ self error: self class cannotAccesCartAfterTimeoutErrorDescription ]!
+!RestInterface methodsFor: 'validation' stamp: 'TS 6/15/2023 14:22:09' prior: 50625254!
+assertThat: aUser canAuthenticateUsing: aPassword
+
+	^ (authenticationSystem canUserAccess: aUser withPassword: aPassword)
+		ifFalse: [ self error: self class invalidCredentialsErrorDescription ]! !
+!RestInterface methodsFor: 'initialization' stamp: 'TS 6/15/2023 14:22:59' prior: 50625492!
+initializeAuthenticatingWith: anAuthenticationSystem acceptingItemsFrom: aCatalog debitingFrom: aMerchantProcessor usingClock: aClock   
+
+	authenticationSystem := anAuthenticationSystem.
+	merchantProcessor := aMerchantProcessor.
+	catalog := aCatalog.
+	clock := aClock.
+
+	nextId := 0.
+	carts := AccessTimeoutDictionary withClock: aClock andTimeoutDuration: self class timeoutDuration.
+	salesBook := OrderedCollection new! !
+
+!testRun: #RestInterfaceTest #test01ValidUserCreatesEmptyCarts stamp: 'TS 6/15/2023 14:23:03'!
+ERROR!
+
+!testRun: #RestInterfaceTest #test02InvalidUserCantCreateCarts stamp: 'TS 6/15/2023 14:23:03'!
+ERROR!
+
+!testRun: #RestInterfaceTest #test03MulitpleCartsCreatedHaveDifferentIDs stamp: 'TS 6/15/2023 14:23:03'!
+ERROR!
+
+!testRun: #RestInterfaceTest #test04ListingCartItemsShowsAddedItems stamp: 'TS 6/15/2023 14:23:03'!
+ERROR!
+
+!testRun: #RestInterfaceTest #test05CannotListCartItemsOfAnInvalidCartID stamp: 'TS 6/15/2023 14:23:03'!
+ERROR!
+
+!testRun: #RestInterfaceTest #test06DifferentIDsPointToDifferentCarts stamp: 'TS 6/15/2023 14:23:03'!
+ERROR!
+
+!testRun: #RestInterfaceTest #test07CannotAddItemsToInvalidID stamp: 'TS 6/15/2023 14:23:03'!
+ERROR!
+
+!testRun: #RestInterfaceTest #test08CheckoutOfValidIdWorksCorrectly stamp: 'TS 6/15/2023 14:23:03'!
+ERROR!
+
+!testRun: #RestInterfaceTest #test09CannotCheckoutCartUsingInvalidId stamp: 'TS 6/15/2023 14:23:03'!
+ERROR!
+
+!testRun: #RestInterfaceTest #test10CannotCheckoutEmptyCart stamp: 'TS 6/15/2023 14:23:03'!
+ERROR!
+
+!testRun: #RestInterfaceTest #test11SuccessfulCheckoutRemovesTheCartFromInterface stamp: 'TS 6/15/2023 14:23:03'!
+ERROR!
+
+!testRun: #RestInterfaceTest #test12CannotAccessCartAfterTimeout stamp: 'TS 6/15/2023 14:23:03'!
+ERROR!
+
+!testRun: #RestInterfaceTest #test13CanAccessCartIfTimeoutHasntPassedSinceLastAccess stamp: 'TS 6/15/2023 14:23:03'!
+ERROR!
+
+!testRun: #RestInterfaceTest #test01ValidUserCreatesEmptyCarts stamp: 'TS 6/15/2023 14:23:05'!
+ERROR!
+!AccessTimeoutDictionary class methodsFor: 'instance creation' stamp: 'TS 6/15/2023 14:23:08'!
+withClock: aRestInterfaceTest andTimeoutDuration: aDuration 
+	"DO NOT FORGET TO RENAME COLLABORATORS AND REMOVE THIS COMMENT!!!!"
+	self shouldBeImplemented.
+	^self new initializeWithClock: aRestInterfaceTest andTimeoutDuration: aDuration ! !
+!AccessTimeoutDictionary class methodsFor: 'instance creation' stamp: 'TS 6/15/2023 14:23:20' prior: 50625592!
+withClock: aClock andTimeoutDuration: aDuration 
+
+	^self new initializeWithClock: aClock andTimeoutDuration: aDuration ! !
+
+!testRun: #RestInterfaceTest #test01ValidUserCreatesEmptyCarts stamp: 'TS 6/15/2023 14:23:25'!
+ERROR!
+
+!classDefinition: #AccessTimeoutDictionary category: 'TusLibros' stamp: 'TS 6/15/2023 14:23:33'!
+Object subclass: #AccessTimeoutDictionary
+	instanceVariableNames: 'clock'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'TusLibros'!
+
+!classDefinition: #AccessTimeoutDictionary category: 'TusLibros' stamp: 'TS 6/15/2023 14:23:33'!
+Object subclass: #AccessTimeoutDictionary
+	instanceVariableNames: 'clock duration'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'TusLibros'!
+!AccessTimeoutDictionary methodsFor: 'initialization' stamp: 'TS 6/15/2023 14:23:33'!
+initializeWithClock: aClock andTimeoutDuration: aDuration 
+	self shouldBeImplemented.
+	clock := aClock.
+	duration := aDuration.! !
+!AccessTimeoutDictionary methodsFor: 'initialization' stamp: 'TS 6/15/2023 14:23:40' prior: 50625630!
+initializeWithClock: aClock andTimeoutDuration: aDuration 
+
+	clock := aClock.
+	duration := aDuration.! !
+
+!classDefinition: #AccessTimeoutDictionary category: 'TusLibros' stamp: 'TS 6/15/2023 14:23:46'!
+Object subclass: #AccessTimeoutDictionary
+	instanceVariableNames: 'clock timeoutDuration'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'TusLibros'!
+!AccessTimeoutDictionary methodsFor: 'as yet unclassified' stamp: 'TS 6/15/2023 14:23:46' prior: 50625638!
+initializeWithClock: aClock andTimeoutDuration: aDuration 
+
+	clock := aClock.
+	timeoutDuration := aDuration.! !
+
+!testRun: #RestInterfaceTest #test01ValidUserCreatesEmptyCarts stamp: 'TS 6/15/2023 14:24:10'!
+ERROR!
+!AccessTimeoutDictionary methodsFor: 'nil' stamp: 'TS 6/15/2023 14:24:28' overrides: 16901525!
+at: aKey put: aValue! !
+!AccessTimeoutDictionary methodsFor: 'accessing' stamp: 'TS 6/15/2023 14:24:47' prior: 50625663 overrides: 16901525!
+at: aKey put: aValue
+
+	! !
+
+!classDefinition: #AccessTimeoutDictionary category: 'TusLibros' stamp: 'TS 6/15/2023 14:25:09'!
+Object subclass: #AccessTimeoutDictionary
+	instanceVariableNames: 'clock timeoutDuration values'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'TusLibros'!
+
+!classDefinition: #AccessTimeoutDictionary category: 'TusLibros' stamp: 'TS 6/15/2023 14:25:10'!
+Object subclass: #AccessTimeoutDictionary
+	instanceVariableNames: 'clock timeoutDuration values lastAccessTimes'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'TusLibros'!
+!AccessTimeoutDictionary methodsFor: 'initialization' stamp: 'TS 6/15/2023 14:25:08' prior: 50625653!
+initializeWithClock: aClock andTimeoutDuration: aDuration 
+
+	clock := aClock.
+	timeoutDuration := aDuration.
+	
+	values := Dictionary new.
+	lastAccessTimes := Dictionary new.! !
+!AccessTimeoutDictionary methodsFor: 'initialization' stamp: 'TS 6/15/2023 14:25:12' prior: 50625690!
+initializeWithClock: aClock andTimeoutDuration: aDuration 
+
+	clock := aClock.
+	timeoutDuration := aDuration.
+
+	values := Dictionary new.
+	lastAccessTimes := Dictionary new.! !
+!AccessTimeoutDictionary methodsFor: 'accessing' stamp: 'TS 6/15/2023 14:26:18' prior: 50625668 overrides: 16901525!
+at: aKey put: aValue
+
+	values at: aKey put: aValue.
+	lastAccessTimes at: aKey put: clock getTime ! !
+!AccessTimeoutDictionary methodsFor: 'accessing' stamp: 'TS 6/15/2023 14:26:19' prior: 50625709 overrides: 16901525!
+at: aKey put: aValue
+
+	values at: aKey put: aValue.
+	lastAccessTimes at: aKey put: clock getTime.! !
+!AccessTimeoutDictionary methodsFor: 'accessing' stamp: 'TS 6/15/2023 14:26:20' prior: 50625716 overrides: 16901525!
+at: aKey put: aValue
+
+	values at: aKey put: aValue.
+	lastAccessTimes at: aKey put: clock getTime! !
+!AccessTimeoutDictionary methodsFor: 'accessing' stamp: 'TS 6/15/2023 14:26:21' prior: 50625723 overrides: 16901525!
+at: aKey put: aValue
+
+	values at: aKey put: aValue.
+	lastAccessTimes at: aKey put: clock getTime
+! !
+
+!testRun: #CartTest #test01NewCartsAreCreatedEmpty stamp: 'TS 6/15/2023 14:27:04'!
+PASSED!
+
+!testRun: #CartTest #test02CanNotAddItemsThatDoNotBelongToStore stamp: 'TS 6/15/2023 14:27:04'!
+PASSED!
+
+!testRun: #CartTest #test03AfterAddingAnItemTheCartIsNotEmptyAnymore stamp: 'TS 6/15/2023 14:27:04'!
+PASSED!
+
+!testRun: #CartTest #test04CanNotAddNonPositiveNumberOfItems stamp: 'TS 6/15/2023 14:27:04'!
+PASSED!
+
+!testRun: #CartTest #test05CanNotAddMoreThanOneItemNotSellByTheStore stamp: 'TS 6/15/2023 14:27:04'!
+PASSED!
+
+!testRun: #CartTest #test06CartRemembersAddedItems stamp: 'TS 6/15/2023 14:27:04'!
+PASSED!
+
+!testRun: #CartTest #test07CartDoesNotHoldNotAddedItems stamp: 'TS 6/15/2023 14:27:04'!
+PASSED!
+
+!testRun: #CartTest #test08CartRemembersTheNumberOfAddedItems stamp: 'TS 6/15/2023 14:27:04'!
+PASSED!
+
+!testRun: #CashierTest #test01CanNotCheckoutAnEmptyCart stamp: 'TS 6/15/2023 14:27:04'!
+PASSED!
+
+!testRun: #CashierTest #test02CalculatedTotalIsCorrect stamp: 'TS 6/15/2023 14:27:04'!
+PASSED!
+
+!testRun: #CashierTest #test03CanNotCheckoutWithAnExpiredCreditCart stamp: 'TS 6/15/2023 14:27:04'!
+PASSED!
+
+!testRun: #CashierTest #test04CheckoutRegistersASale stamp: 'TS 6/15/2023 14:27:04'!
+PASSED!
+
+!testRun: #CashierTest #test05CashierChargesCreditCardUsingMerchantProcessor stamp: 'TS 6/15/2023 14:27:04'!
+PASSED!
+
+!testRun: #CashierTest #test06CashierDoesNotSaleWhenTheCreditCardHasNoCredit stamp: 'TS 6/15/2023 14:27:04'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test01ValidUserCreatesEmptyCarts stamp: 'TS 6/15/2023 14:27:04'!
+ERROR!
+
+!testRun: #RestInterfaceTest #test02InvalidUserCantCreateCarts stamp: 'TS 6/15/2023 14:27:04'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test03MulitpleCartsCreatedHaveDifferentIDs stamp: 'TS 6/15/2023 14:27:04'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test04ListingCartItemsShowsAddedItems stamp: 'TS 6/15/2023 14:27:04'!
+ERROR!
+
+!testRun: #RestInterfaceTest #test05CannotListCartItemsOfAnInvalidCartID stamp: 'TS 6/15/2023 14:27:04'!
+ERROR!
+
+!testRun: #RestInterfaceTest #test06DifferentIDsPointToDifferentCarts stamp: 'TS 6/15/2023 14:27:04'!
+ERROR!
+
+!testRun: #RestInterfaceTest #test07CannotAddItemsToInvalidID stamp: 'TS 6/15/2023 14:27:04'!
+ERROR!
+
+!testRun: #RestInterfaceTest #test08CheckoutOfValidIdWorksCorrectly stamp: 'TS 6/15/2023 14:27:04'!
+ERROR!
+
+!testRun: #RestInterfaceTest #test09CannotCheckoutCartUsingInvalidId stamp: 'TS 6/15/2023 14:27:04'!
+ERROR!
+
+!testRun: #RestInterfaceTest #test10CannotCheckoutEmptyCart stamp: 'TS 6/15/2023 14:27:04'!
+ERROR!
+
+!testRun: #RestInterfaceTest #test11SuccessfulCheckoutRemovesTheCartFromInterface stamp: 'TS 6/15/2023 14:27:04'!
+ERROR!
+
+!testRun: #RestInterfaceTest #test12CannotAccessCartAfterTimeout stamp: 'TS 6/15/2023 14:27:04'!
+ERROR!
+
+!testRun: #RestInterfaceTest #test13CanAccessCartIfTimeoutHasntPassedSinceLastAccess stamp: 'TS 6/15/2023 14:27:04'!
+ERROR!
+
+!testRun: #RestInterfaceTest #test01ValidUserCreatesEmptyCarts stamp: 'TS 6/15/2023 14:27:07'!
+ERROR!
+!AccessTimeoutDictionary methodsFor: 'accessing' stamp: 'TS 6/15/2023 14:27:20'!
+at: aCartId ifAbsent: aRenameMe1 ifTimeout: aRenameMe2 
+	self shouldBeImplemented.! !
+!AccessTimeoutDictionary methodsFor: 'accessing' stamp: 'TS 6/15/2023 14:27:38' prior: 50625829!
+at: aKey ifAbsent: absentBlock ifTimeout: timeoutBLock 
+	! !
+!AccessTimeoutDictionary methodsFor: 'accessing' stamp: 'TS 6/15/2023 14:27:47' prior: 50625835!
+at: aKey ifAbsent: absentBlock ifTimeout: timeoutBlock 
+	! !
+!AccessTimeoutDictionary methodsFor: 'accessing' stamp: 'TS 6/15/2023 14:31:42' prior: 50625840!
+at: aKey ifAbsent: absentBlock ifTimeout: timeoutBlock
+
+	((lastAccessTimes at: aKey ifAbsent: absentBlock) - clock getTime) > timeoutDuration
+		ifTrue: timeoutBlock	.
+
+	^ values at: aKey! !
+
+!testRun: #RestInterfaceTest #test01ValidUserCreatesEmptyCarts stamp: 'TS 6/15/2023 14:32:22'!
+PASSED!
+
+!testRun: #CartTest #test01NewCartsAreCreatedEmpty stamp: 'TS 6/15/2023 14:32:35'!
+PASSED!
+
+!testRun: #CartTest #test02CanNotAddItemsThatDoNotBelongToStore stamp: 'TS 6/15/2023 14:32:35'!
+PASSED!
+
+!testRun: #CartTest #test03AfterAddingAnItemTheCartIsNotEmptyAnymore stamp: 'TS 6/15/2023 14:32:35'!
+PASSED!
+
+!testRun: #CartTest #test04CanNotAddNonPositiveNumberOfItems stamp: 'TS 6/15/2023 14:32:35'!
+PASSED!
+
+!testRun: #CartTest #test05CanNotAddMoreThanOneItemNotSellByTheStore stamp: 'TS 6/15/2023 14:32:35'!
+PASSED!
+
+!testRun: #CartTest #test06CartRemembersAddedItems stamp: 'TS 6/15/2023 14:32:35'!
+PASSED!
+
+!testRun: #CartTest #test07CartDoesNotHoldNotAddedItems stamp: 'TS 6/15/2023 14:32:35'!
+PASSED!
+
+!testRun: #CartTest #test08CartRemembersTheNumberOfAddedItems stamp: 'TS 6/15/2023 14:32:35'!
+PASSED!
+
+!testRun: #CashierTest #test01CanNotCheckoutAnEmptyCart stamp: 'TS 6/15/2023 14:32:35'!
+PASSED!
+
+!testRun: #CashierTest #test02CalculatedTotalIsCorrect stamp: 'TS 6/15/2023 14:32:35'!
+PASSED!
+
+!testRun: #CashierTest #test03CanNotCheckoutWithAnExpiredCreditCart stamp: 'TS 6/15/2023 14:32:35'!
+PASSED!
+
+!testRun: #CashierTest #test04CheckoutRegistersASale stamp: 'TS 6/15/2023 14:32:35'!
+PASSED!
+
+!testRun: #CashierTest #test05CashierChargesCreditCardUsingMerchantProcessor stamp: 'TS 6/15/2023 14:32:35'!
+PASSED!
+
+!testRun: #CashierTest #test06CashierDoesNotSaleWhenTheCreditCardHasNoCredit stamp: 'TS 6/15/2023 14:32:35'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test01ValidUserCreatesEmptyCarts stamp: 'TS 6/15/2023 14:32:35'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test02InvalidUserCantCreateCarts stamp: 'TS 6/15/2023 14:32:35'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test03MulitpleCartsCreatedHaveDifferentIDs stamp: 'TS 6/15/2023 14:32:35'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test04ListingCartItemsShowsAddedItems stamp: 'TS 6/15/2023 14:32:35'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test05CannotListCartItemsOfAnInvalidCartID stamp: 'TS 6/15/2023 14:32:35'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test06DifferentIDsPointToDifferentCarts stamp: 'TS 6/15/2023 14:32:35'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test07CannotAddItemsToInvalidID stamp: 'TS 6/15/2023 14:32:35'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test08CheckoutOfValidIdWorksCorrectly stamp: 'TS 6/15/2023 14:32:35'!
+ERROR!
+
+!testRun: #RestInterfaceTest #test09CannotCheckoutCartUsingInvalidId stamp: 'TS 6/15/2023 14:32:35'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test10CannotCheckoutEmptyCart stamp: 'TS 6/15/2023 14:32:35'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test11SuccessfulCheckoutRemovesTheCartFromInterface stamp: 'TS 6/15/2023 14:32:35'!
+ERROR!
+
+!testRun: #RestInterfaceTest #test12CannotAccessCartAfterTimeout stamp: 'TS 6/15/2023 14:32:35'!
+FAILURE!
+
+!testRun: #RestInterfaceTest #test13CanAccessCartIfTimeoutHasntPassedSinceLastAccess stamp: 'TS 6/15/2023 14:32:35'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test08CheckoutOfValidIdWorksCorrectly stamp: 'TS 6/15/2023 14:32:36'!
+ERROR!
+!AccessTimeoutDictionary methodsFor: 'removing' stamp: 'TS 6/15/2023 14:32:46'!
+removeKey: aCartId 
+	self shouldBeImplemented.! !
+!AccessTimeoutDictionary methodsFor: 'removing' stamp: 'TS 6/15/2023 14:33:05' prior: 50625950!
+removeKey: aKey 
+
+	values removeKey: aKey.
+	lastAccessTimes removeKey: aKey! !
+
+!testRun: #RestInterfaceTest #test08CheckoutOfValidIdWorksCorrectly stamp: 'TS 6/15/2023 14:33:06'!
+PASSED!
+
+!testRun: #CartTest #test01NewCartsAreCreatedEmpty stamp: 'TS 6/15/2023 14:33:09'!
+PASSED!
+
+!testRun: #CartTest #test02CanNotAddItemsThatDoNotBelongToStore stamp: 'TS 6/15/2023 14:33:09'!
+PASSED!
+
+!testRun: #CartTest #test03AfterAddingAnItemTheCartIsNotEmptyAnymore stamp: 'TS 6/15/2023 14:33:09'!
+PASSED!
+
+!testRun: #CartTest #test04CanNotAddNonPositiveNumberOfItems stamp: 'TS 6/15/2023 14:33:09'!
+PASSED!
+
+!testRun: #CartTest #test05CanNotAddMoreThanOneItemNotSellByTheStore stamp: 'TS 6/15/2023 14:33:09'!
+PASSED!
+
+!testRun: #CartTest #test06CartRemembersAddedItems stamp: 'TS 6/15/2023 14:33:09'!
+PASSED!
+
+!testRun: #CartTest #test07CartDoesNotHoldNotAddedItems stamp: 'TS 6/15/2023 14:33:09'!
+PASSED!
+
+!testRun: #CartTest #test08CartRemembersTheNumberOfAddedItems stamp: 'TS 6/15/2023 14:33:09'!
+PASSED!
+
+!testRun: #CashierTest #test01CanNotCheckoutAnEmptyCart stamp: 'TS 6/15/2023 14:33:09'!
+PASSED!
+
+!testRun: #CashierTest #test02CalculatedTotalIsCorrect stamp: 'TS 6/15/2023 14:33:09'!
+PASSED!
+
+!testRun: #CashierTest #test03CanNotCheckoutWithAnExpiredCreditCart stamp: 'TS 6/15/2023 14:33:09'!
+PASSED!
+
+!testRun: #CashierTest #test04CheckoutRegistersASale stamp: 'TS 6/15/2023 14:33:09'!
+PASSED!
+
+!testRun: #CashierTest #test05CashierChargesCreditCardUsingMerchantProcessor stamp: 'TS 6/15/2023 14:33:09'!
+PASSED!
+
+!testRun: #CashierTest #test06CashierDoesNotSaleWhenTheCreditCardHasNoCredit stamp: 'TS 6/15/2023 14:33:09'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test01ValidUserCreatesEmptyCarts stamp: 'TS 6/15/2023 14:33:09'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test02InvalidUserCantCreateCarts stamp: 'TS 6/15/2023 14:33:09'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test03MulitpleCartsCreatedHaveDifferentIDs stamp: 'TS 6/15/2023 14:33:09'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test04ListingCartItemsShowsAddedItems stamp: 'TS 6/15/2023 14:33:09'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test05CannotListCartItemsOfAnInvalidCartID stamp: 'TS 6/15/2023 14:33:09'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test06DifferentIDsPointToDifferentCarts stamp: 'TS 6/15/2023 14:33:09'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test07CannotAddItemsToInvalidID stamp: 'TS 6/15/2023 14:33:09'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test08CheckoutOfValidIdWorksCorrectly stamp: 'TS 6/15/2023 14:33:09'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test09CannotCheckoutCartUsingInvalidId stamp: 'TS 6/15/2023 14:33:09'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test10CannotCheckoutEmptyCart stamp: 'TS 6/15/2023 14:33:09'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test11SuccessfulCheckoutRemovesTheCartFromInterface stamp: 'TS 6/15/2023 14:33:09'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test12CannotAccessCartAfterTimeout stamp: 'TS 6/15/2023 14:33:09'!
+FAILURE!
+
+!testRun: #RestInterfaceTest #test13CanAccessCartIfTimeoutHasntPassedSinceLastAccess stamp: 'TS 6/15/2023 14:33:09'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test12CannotAccessCartAfterTimeout stamp: 'TS 6/15/2023 14:33:09'!
+FAILURE!
+!AccessTimeoutDictionary methodsFor: 'accessing' stamp: 'TS 6/15/2023 14:33:54' prior: 50625845!
+at: aKey ifAbsent: absentBlock ifTimeout: timeoutBlock
+
+	((lastAccessTimes at: aKey ifAbsent: absentBlock) - clock getTime) >= timeoutDuration
+		ifTrue: timeoutBlock	.
+
+	^ values at: aKey! !
+
+!testRun: #RestInterfaceTest #test01ValidUserCreatesEmptyCarts stamp: 'TS 6/15/2023 14:33:55'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test02InvalidUserCantCreateCarts stamp: 'TS 6/15/2023 14:33:55'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test03MulitpleCartsCreatedHaveDifferentIDs stamp: 'TS 6/15/2023 14:33:55'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test04ListingCartItemsShowsAddedItems stamp: 'TS 6/15/2023 14:33:55'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test05CannotListCartItemsOfAnInvalidCartID stamp: 'TS 6/15/2023 14:33:55'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test06DifferentIDsPointToDifferentCarts stamp: 'TS 6/15/2023 14:33:55'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test07CannotAddItemsToInvalidID stamp: 'TS 6/15/2023 14:33:55'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test08CheckoutOfValidIdWorksCorrectly stamp: 'TS 6/15/2023 14:33:55'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test09CannotCheckoutCartUsingInvalidId stamp: 'TS 6/15/2023 14:33:55'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test10CannotCheckoutEmptyCart stamp: 'TS 6/15/2023 14:33:55'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test11SuccessfulCheckoutRemovesTheCartFromInterface stamp: 'TS 6/15/2023 14:33:55'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test12CannotAccessCartAfterTimeout stamp: 'TS 6/15/2023 14:33:55'!
+FAILURE!
+
+!testRun: #RestInterfaceTest #test13CanAccessCartIfTimeoutHasntPassedSinceLastAccess stamp: 'TS 6/15/2023 14:33:55'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test12CannotAccessCartAfterTimeout stamp: 'TS 6/15/2023 14:33:55'!
+FAILURE!
+
+!testRun: #RestInterfaceTest #test01ValidUserCreatesEmptyCarts stamp: 'TS 6/15/2023 14:34:09'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test02InvalidUserCantCreateCarts stamp: 'TS 6/15/2023 14:34:09'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test03MulitpleCartsCreatedHaveDifferentIDs stamp: 'TS 6/15/2023 14:34:09'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test04ListingCartItemsShowsAddedItems stamp: 'TS 6/15/2023 14:34:09'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test05CannotListCartItemsOfAnInvalidCartID stamp: 'TS 6/15/2023 14:34:09'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test06DifferentIDsPointToDifferentCarts stamp: 'TS 6/15/2023 14:34:09'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test07CannotAddItemsToInvalidID stamp: 'TS 6/15/2023 14:34:09'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test08CheckoutOfValidIdWorksCorrectly stamp: 'TS 6/15/2023 14:34:09'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test09CannotCheckoutCartUsingInvalidId stamp: 'TS 6/15/2023 14:34:09'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test10CannotCheckoutEmptyCart stamp: 'TS 6/15/2023 14:34:09'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test11SuccessfulCheckoutRemovesTheCartFromInterface stamp: 'TS 6/15/2023 14:34:09'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test12CannotAccessCartAfterTimeout stamp: 'TS 6/15/2023 14:34:09'!
+FAILURE!
+
+!testRun: #RestInterfaceTest #test13CanAccessCartIfTimeoutHasntPassedSinceLastAccess stamp: 'TS 6/15/2023 14:34:09'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test12CannotAccessCartAfterTimeout stamp: 'TS 6/15/2023 14:34:09'!
+FAILURE!
+!AccessTimeoutDictionary methodsFor: 'accessing' stamp: 'TS 6/15/2023 14:35:15' prior: 50626058!
+at: aKey ifAbsent: absentBlock ifTimeout: timeoutBlock
+
+	clock getTime >= ((lastAccessTimes at: aKey ifAbsent: absentBlock) + timeoutDuration)
+		ifTrue: timeoutBlock	.
+
+	^ values at: aKey! !
+
+!testRun: #RestInterfaceTest #test01ValidUserCreatesEmptyCarts stamp: 'TS 6/15/2023 14:35:17'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test02InvalidUserCantCreateCarts stamp: 'TS 6/15/2023 14:35:17'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test03MulitpleCartsCreatedHaveDifferentIDs stamp: 'TS 6/15/2023 14:35:17'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test04ListingCartItemsShowsAddedItems stamp: 'TS 6/15/2023 14:35:17'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test05CannotListCartItemsOfAnInvalidCartID stamp: 'TS 6/15/2023 14:35:17'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test06DifferentIDsPointToDifferentCarts stamp: 'TS 6/15/2023 14:35:17'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test07CannotAddItemsToInvalidID stamp: 'TS 6/15/2023 14:35:17'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test08CheckoutOfValidIdWorksCorrectly stamp: 'TS 6/15/2023 14:35:17'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test09CannotCheckoutCartUsingInvalidId stamp: 'TS 6/15/2023 14:35:17'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test10CannotCheckoutEmptyCart stamp: 'TS 6/15/2023 14:35:17'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test11SuccessfulCheckoutRemovesTheCartFromInterface stamp: 'TS 6/15/2023 14:35:17'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test12CannotAccessCartAfterTimeout stamp: 'TS 6/15/2023 14:35:17'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test13CanAccessCartIfTimeoutHasntPassedSinceLastAccess stamp: 'TS 6/15/2023 14:35:17'!
+FAILURE!
+
+!testRun: #RestInterfaceTest #test13CanAccessCartIfTimeoutHasntPassedSinceLastAccess stamp: 'TS 6/15/2023 14:35:17'!
+FAILURE!
+
+!testRun: #RestInterfaceTest #test01ValidUserCreatesEmptyCarts stamp: 'TS 6/15/2023 14:35:35'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test02InvalidUserCantCreateCarts stamp: 'TS 6/15/2023 14:35:35'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test03MulitpleCartsCreatedHaveDifferentIDs stamp: 'TS 6/15/2023 14:35:35'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test04ListingCartItemsShowsAddedItems stamp: 'TS 6/15/2023 14:35:35'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test05CannotListCartItemsOfAnInvalidCartID stamp: 'TS 6/15/2023 14:35:35'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test06DifferentIDsPointToDifferentCarts stamp: 'TS 6/15/2023 14:35:35'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test07CannotAddItemsToInvalidID stamp: 'TS 6/15/2023 14:35:35'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test08CheckoutOfValidIdWorksCorrectly stamp: 'TS 6/15/2023 14:35:35'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test09CannotCheckoutCartUsingInvalidId stamp: 'TS 6/15/2023 14:35:35'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test10CannotCheckoutEmptyCart stamp: 'TS 6/15/2023 14:35:35'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test11SuccessfulCheckoutRemovesTheCartFromInterface stamp: 'TS 6/15/2023 14:35:35'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test12CannotAccessCartAfterTimeout stamp: 'TS 6/15/2023 14:35:35'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test13CanAccessCartIfTimeoutHasntPassedSinceLastAccess stamp: 'TS 6/15/2023 14:35:35'!
+FAILURE!
+
+!testRun: #RestInterfaceTest #test13CanAccessCartIfTimeoutHasntPassedSinceLastAccess stamp: 'TS 6/15/2023 14:35:35'!
+FAILURE!
+
+!testRun: #RestInterfaceTest #test01ValidUserCreatesEmptyCarts stamp: 'TS 6/15/2023 14:36:33'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test02InvalidUserCantCreateCarts stamp: 'TS 6/15/2023 14:36:33'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test03MulitpleCartsCreatedHaveDifferentIDs stamp: 'TS 6/15/2023 14:36:33'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test04ListingCartItemsShowsAddedItems stamp: 'TS 6/15/2023 14:36:33'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test05CannotListCartItemsOfAnInvalidCartID stamp: 'TS 6/15/2023 14:36:33'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test06DifferentIDsPointToDifferentCarts stamp: 'TS 6/15/2023 14:36:33'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test07CannotAddItemsToInvalidID stamp: 'TS 6/15/2023 14:36:33'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test08CheckoutOfValidIdWorksCorrectly stamp: 'TS 6/15/2023 14:36:33'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test09CannotCheckoutCartUsingInvalidId stamp: 'TS 6/15/2023 14:36:33'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test10CannotCheckoutEmptyCart stamp: 'TS 6/15/2023 14:36:33'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test11SuccessfulCheckoutRemovesTheCartFromInterface stamp: 'TS 6/15/2023 14:36:33'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test12CannotAccessCartAfterTimeout stamp: 'TS 6/15/2023 14:36:33'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test13CanAccessCartIfTimeoutHasntPassedSinceLastAccess stamp: 'TS 6/15/2023 14:36:33'!
+FAILURE!
+
+!testRun: #RestInterfaceTest #test13CanAccessCartIfTimeoutHasntPassedSinceLastAccess stamp: 'TS 6/15/2023 14:36:33'!
+FAILURE!
+!AccessTimeoutDictionary methodsFor: 'accessing' stamp: 'TS 6/15/2023 14:37:27' prior: 50626164!
+at: aKey ifAbsent: absentBlock ifTimeout: timeoutBlock
+
+	clock getTime >= ((lastAccessTimes at: aKey ifAbsent: absentBlock) + timeoutDuration)
+		ifTrue: timeoutBlock	.
+
+	lastAccessTimes at: aKey put: clock getTime.
+
+	^ values at: aKey! !
+
+!testRun: #CartTest #test01NewCartsAreCreatedEmpty stamp: 'TS 6/15/2023 14:37:32'!
+PASSED!
+
+!testRun: #CartTest #test02CanNotAddItemsThatDoNotBelongToStore stamp: 'TS 6/15/2023 14:37:32'!
+PASSED!
+
+!testRun: #CartTest #test03AfterAddingAnItemTheCartIsNotEmptyAnymore stamp: 'TS 6/15/2023 14:37:32'!
+PASSED!
+
+!testRun: #CartTest #test04CanNotAddNonPositiveNumberOfItems stamp: 'TS 6/15/2023 14:37:32'!
+PASSED!
+
+!testRun: #CartTest #test05CanNotAddMoreThanOneItemNotSellByTheStore stamp: 'TS 6/15/2023 14:37:32'!
+PASSED!
+
+!testRun: #CartTest #test06CartRemembersAddedItems stamp: 'TS 6/15/2023 14:37:32'!
+PASSED!
+
+!testRun: #CartTest #test07CartDoesNotHoldNotAddedItems stamp: 'TS 6/15/2023 14:37:32'!
+PASSED!
+
+!testRun: #CartTest #test08CartRemembersTheNumberOfAddedItems stamp: 'TS 6/15/2023 14:37:32'!
+PASSED!
+
+!testRun: #CashierTest #test01CanNotCheckoutAnEmptyCart stamp: 'TS 6/15/2023 14:37:32'!
+PASSED!
+
+!testRun: #CashierTest #test02CalculatedTotalIsCorrect stamp: 'TS 6/15/2023 14:37:32'!
+PASSED!
+
+!testRun: #CashierTest #test03CanNotCheckoutWithAnExpiredCreditCart stamp: 'TS 6/15/2023 14:37:32'!
+PASSED!
+
+!testRun: #CashierTest #test04CheckoutRegistersASale stamp: 'TS 6/15/2023 14:37:32'!
+PASSED!
+
+!testRun: #CashierTest #test05CashierChargesCreditCardUsingMerchantProcessor stamp: 'TS 6/15/2023 14:37:32'!
+PASSED!
+
+!testRun: #CashierTest #test06CashierDoesNotSaleWhenTheCreditCardHasNoCredit stamp: 'TS 6/15/2023 14:37:32'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test01ValidUserCreatesEmptyCarts stamp: 'TS 6/15/2023 14:37:32'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test02InvalidUserCantCreateCarts stamp: 'TS 6/15/2023 14:37:32'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test03MulitpleCartsCreatedHaveDifferentIDs stamp: 'TS 6/15/2023 14:37:32'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test04ListingCartItemsShowsAddedItems stamp: 'TS 6/15/2023 14:37:32'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test05CannotListCartItemsOfAnInvalidCartID stamp: 'TS 6/15/2023 14:37:32'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test06DifferentIDsPointToDifferentCarts stamp: 'TS 6/15/2023 14:37:32'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test07CannotAddItemsToInvalidID stamp: 'TS 6/15/2023 14:37:32'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test08CheckoutOfValidIdWorksCorrectly stamp: 'TS 6/15/2023 14:37:32'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test09CannotCheckoutCartUsingInvalidId stamp: 'TS 6/15/2023 14:37:32'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test10CannotCheckoutEmptyCart stamp: 'TS 6/15/2023 14:37:32'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test11SuccessfulCheckoutRemovesTheCartFromInterface stamp: 'TS 6/15/2023 14:37:32'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test12CannotAccessCartAfterTimeout stamp: 'TS 6/15/2023 14:37:32'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test13CanAccessCartIfTimeoutHasntPassedSinceLastAccess stamp: 'TS 6/15/2023 14:37:32'!
+PASSED!
+!AccessTimeoutDictionary methodsFor: 'accessing' stamp: 'TS 6/15/2023 14:38:03'!
+hasTimeoutPassed: absentBlock ifAbsent: aKey
+
+	^ clock getTime >= ((lastAccessTimes at: aKey ifAbsent: absentBlock) + timeoutDuration)! !
+!AccessTimeoutDictionary methodsFor: 'accessing' stamp: 'TS 6/15/2023 14:38:03' prior: 50626320!
+at: aKey ifAbsent: absentBlock ifTimeout: timeoutBlock
+
+	(self hasTimeoutPassed: absentBlock ifAbsent: aKey)
+		ifTrue: timeoutBlock	.
+
+	lastAccessTimes at: aKey put: clock getTime.
+
+	^ values at: aKey! !
+!AccessTimeoutDictionary methodsFor: 'accessing' stamp: 'TS 6/15/2023 14:38:14' prior: 50626428!
+at: aKey ifAbsent: absentBlock ifTimeout: timeoutBlock
+
+	(self hasTimeoutPassed: absentBlock ifAbsent: aKey) ifTrue: timeoutBlock	.
+
+	lastAccessTimes at: aKey put: clock getTime.
+
+	^ values at: aKey! !
+!AccessTimeoutDictionary methodsFor: 'accessing' stamp: 'TS 6/15/2023 14:38:32'!
+updateLastAccessFor: aKey
+
+	^ lastAccessTimes at: aKey put: clock getTime! !
+!AccessTimeoutDictionary methodsFor: 'accessing' stamp: 'TS 6/15/2023 14:38:32' prior: 50625730 overrides: 16901525!
+at: aKey put: aValue
+
+	values at: aKey put: aValue.
+	self updateLastAccessFor: aKey
+! !
+!AccessTimeoutDictionary methodsFor: 'accessing' stamp: 'TS 6/15/2023 14:38:32' prior: 50626438!
+at: aKey ifAbsent: absentBlock ifTimeout: timeoutBlock
+
+	(self hasTimeoutPassed: absentBlock ifAbsent: aKey) ifTrue: timeoutBlock	.
+
+	self updateLastAccessFor: aKey.
+
+	^ values at: aKey! !
+!AccessTimeoutDictionary methodsFor: 'accessing' stamp: 'TS 6/15/2023 14:38:44'!
+hasTimeoutPassedFor: absentBlock ifAbsent: aKey
+
+	^ clock getTime >= ((lastAccessTimes at: aKey ifAbsent: absentBlock) + timeoutDuration)! !
+!AccessTimeoutDictionary methodsFor: 'as yet unclassified' stamp: 'TS 6/15/2023 14:38:44' prior: 50626460!
+at: aKey ifAbsent: absentBlock ifTimeout: timeoutBlock
+
+	(self hasTimeoutPassedFor: absentBlock ifAbsent: aKey) ifTrue: timeoutBlock	.
+
+	self updateLastAccessFor: aKey.
+
+	^ values at: aKey! !
+
+!methodRemoval: AccessTimeoutDictionary #hasTimeoutPassed:ifAbsent: stamp: 'TS 6/15/2023 14:38:44'!
+hasTimeoutPassed: absentBlock ifAbsent: aKey
+
+	^ clock getTime >= ((lastAccessTimes at: aKey ifAbsent: absentBlock) + timeoutDuration)!
+!AccessTimeoutDictionary methodsFor: 'accessing' stamp: 'TS 6/15/2023 14:38:50' prior: 50626477!
+at: aKey ifAbsent: absentBlock ifTimeout: timeoutBlock
+
+	(self hasTimeoutPassedFor: aKey ifAbsent: absentBlock) ifTrue: timeoutBlock	.
+
+	self updateLastAccessFor: aKey.
+
+	^ values at: aKey! !
+!AccessTimeoutDictionary methodsFor: 'accessing' stamp: 'TS 6/15/2023 14:39:01' prior: 50626469!
+hasTimeoutPassedFor: aKey ifAbsent: absentBlock
+
+	^ clock getTime >= ((lastAccessTimes at: aKey ifAbsent: absentBlock) + timeoutDuration)! !
+
+!testRun: #CartTest #test01NewCartsAreCreatedEmpty stamp: 'TS 6/15/2023 14:39:31'!
+PASSED!
+
+!testRun: #CartTest #test02CanNotAddItemsThatDoNotBelongToStore stamp: 'TS 6/15/2023 14:39:31'!
+PASSED!
+
+!testRun: #CartTest #test03AfterAddingAnItemTheCartIsNotEmptyAnymore stamp: 'TS 6/15/2023 14:39:31'!
+PASSED!
+
+!testRun: #CartTest #test04CanNotAddNonPositiveNumberOfItems stamp: 'TS 6/15/2023 14:39:31'!
+PASSED!
+
+!testRun: #CartTest #test05CanNotAddMoreThanOneItemNotSellByTheStore stamp: 'TS 6/15/2023 14:39:31'!
+PASSED!
+
+!testRun: #CartTest #test06CartRemembersAddedItems stamp: 'TS 6/15/2023 14:39:31'!
+PASSED!
+
+!testRun: #CartTest #test07CartDoesNotHoldNotAddedItems stamp: 'TS 6/15/2023 14:39:31'!
+PASSED!
+
+!testRun: #CartTest #test08CartRemembersTheNumberOfAddedItems stamp: 'TS 6/15/2023 14:39:31'!
+PASSED!
+
+!testRun: #CashierTest #test01CanNotCheckoutAnEmptyCart stamp: 'TS 6/15/2023 14:39:31'!
+PASSED!
+
+!testRun: #CashierTest #test02CalculatedTotalIsCorrect stamp: 'TS 6/15/2023 14:39:31'!
+PASSED!
+
+!testRun: #CashierTest #test03CanNotCheckoutWithAnExpiredCreditCart stamp: 'TS 6/15/2023 14:39:31'!
+PASSED!
+
+!testRun: #CashierTest #test04CheckoutRegistersASale stamp: 'TS 6/15/2023 14:39:31'!
+PASSED!
+
+!testRun: #CashierTest #test05CashierChargesCreditCardUsingMerchantProcessor stamp: 'TS 6/15/2023 14:39:31'!
+PASSED!
+
+!testRun: #CashierTest #test06CashierDoesNotSaleWhenTheCreditCardHasNoCredit stamp: 'TS 6/15/2023 14:39:31'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test01ValidUserCreatesEmptyCarts stamp: 'TS 6/15/2023 14:39:31'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test02InvalidUserCantCreateCarts stamp: 'TS 6/15/2023 14:39:31'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test03MulitpleCartsCreatedHaveDifferentIDs stamp: 'TS 6/15/2023 14:39:31'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test04ListingCartItemsShowsAddedItems stamp: 'TS 6/15/2023 14:39:31'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test05CannotListCartItemsOfAnInvalidCartID stamp: 'TS 6/15/2023 14:39:31'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test06DifferentIDsPointToDifferentCarts stamp: 'TS 6/15/2023 14:39:31'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test07CannotAddItemsToInvalidID stamp: 'TS 6/15/2023 14:39:31'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test08CheckoutOfValidIdWorksCorrectly stamp: 'TS 6/15/2023 14:39:31'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test09CannotCheckoutCartUsingInvalidId stamp: 'TS 6/15/2023 14:39:31'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test10CannotCheckoutEmptyCart stamp: 'TS 6/15/2023 14:39:31'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test11SuccessfulCheckoutRemovesTheCartFromInterface stamp: 'TS 6/15/2023 14:39:31'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test12CannotAccessCartAfterTimeout stamp: 'TS 6/15/2023 14:39:31'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test13CanAccessCartIfTimeoutHasntPassedSinceLastAccess stamp: 'TS 6/15/2023 14:39:31'!
+PASSED!
+!RestInterface class methodsFor: 'error descriptions' stamp: 'TS 6/15/2023 14:40:02'!
+cannotAccessCartAfterTimeoutErrorDescription
+
+	^ 'No se puede acceder al carro después del timeout'! !
+!RestInterface methodsFor: 'as yet unclassified' stamp: 'TS 6/15/2023 14:40:02' prior: 50625452!
+getCartWithId: aCartId
+
+	^ carts
+		at: aCartId
+		ifAbsent: [ self error: self class invalidCartIdErrorDescription ]
+		ifTimeout: [ self error: self class cannotAccessCartAfterTimeoutErrorDescription ].
+
+! !
+!RestInterfaceTest methodsFor: 'as yet unclassified' stamp: 'TS 6/15/2023 14:40:02' prior: 50624844!
+test12CannotAccessCartAfterTimeout
+
+	| interface id |
+	
+	interface := self defaultInterface.
+	id := interface
+		createCartBy: testObjectsFactory defaultUser
+		authenticatedWith: testObjectsFactory correctPassword.
+	interface addToCart: id item: testObjectsFactory itemSellByTheStore quantity: 1.
+
+	currentTime := currentTime + RestInterface timeoutDuration.
+	
+	self
+		should: [ interface listCartWithId: id ]
+		raise: Error - MessageNotUnderstood
+		withMessageText: RestInterface cannotAccessCartAfterTimeoutErrorDescription! !
+
+!methodRemoval: RestInterface class #cannotAccesCartAfterTimeoutErrorDescription stamp: 'TS 6/15/2023 14:40:02'!
+cannotAccesCartAfterTimeoutErrorDescription
+
+	^ 'No se puede acceder al carro después del timeout'!
+
+!testRun: #CartTest #test01NewCartsAreCreatedEmpty stamp: 'TS 6/15/2023 14:40:05'!
+PASSED!
+
+!testRun: #CartTest #test02CanNotAddItemsThatDoNotBelongToStore stamp: 'TS 6/15/2023 14:40:05'!
+PASSED!
+
+!testRun: #CartTest #test03AfterAddingAnItemTheCartIsNotEmptyAnymore stamp: 'TS 6/15/2023 14:40:05'!
+PASSED!
+
+!testRun: #CartTest #test04CanNotAddNonPositiveNumberOfItems stamp: 'TS 6/15/2023 14:40:05'!
+PASSED!
+
+!testRun: #CartTest #test05CanNotAddMoreThanOneItemNotSellByTheStore stamp: 'TS 6/15/2023 14:40:05'!
+PASSED!
+
+!testRun: #CartTest #test06CartRemembersAddedItems stamp: 'TS 6/15/2023 14:40:05'!
+PASSED!
+
+!testRun: #CartTest #test07CartDoesNotHoldNotAddedItems stamp: 'TS 6/15/2023 14:40:05'!
+PASSED!
+
+!testRun: #CartTest #test08CartRemembersTheNumberOfAddedItems stamp: 'TS 6/15/2023 14:40:05'!
+PASSED!
+
+!testRun: #CashierTest #test01CanNotCheckoutAnEmptyCart stamp: 'TS 6/15/2023 14:40:05'!
+PASSED!
+
+!testRun: #CashierTest #test02CalculatedTotalIsCorrect stamp: 'TS 6/15/2023 14:40:05'!
+PASSED!
+
+!testRun: #CashierTest #test03CanNotCheckoutWithAnExpiredCreditCart stamp: 'TS 6/15/2023 14:40:05'!
+PASSED!
+
+!testRun: #CashierTest #test04CheckoutRegistersASale stamp: 'TS 6/15/2023 14:40:05'!
+PASSED!
+
+!testRun: #CashierTest #test05CashierChargesCreditCardUsingMerchantProcessor stamp: 'TS 6/15/2023 14:40:05'!
+PASSED!
+
+!testRun: #CashierTest #test06CashierDoesNotSaleWhenTheCreditCardHasNoCredit stamp: 'TS 6/15/2023 14:40:05'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test01ValidUserCreatesEmptyCarts stamp: 'TS 6/15/2023 14:40:05'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test02InvalidUserCantCreateCarts stamp: 'TS 6/15/2023 14:40:05'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test03MulitpleCartsCreatedHaveDifferentIDs stamp: 'TS 6/15/2023 14:40:05'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test04ListingCartItemsShowsAddedItems stamp: 'TS 6/15/2023 14:40:05'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test05CannotListCartItemsOfAnInvalidCartID stamp: 'TS 6/15/2023 14:40:05'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test06DifferentIDsPointToDifferentCarts stamp: 'TS 6/15/2023 14:40:05'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test07CannotAddItemsToInvalidID stamp: 'TS 6/15/2023 14:40:05'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test08CheckoutOfValidIdWorksCorrectly stamp: 'TS 6/15/2023 14:40:05'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test09CannotCheckoutCartUsingInvalidId stamp: 'TS 6/15/2023 14:40:05'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test10CannotCheckoutEmptyCart stamp: 'TS 6/15/2023 14:40:05'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test11SuccessfulCheckoutRemovesTheCartFromInterface stamp: 'TS 6/15/2023 14:40:05'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test12CannotAccessCartAfterTimeout stamp: 'TS 6/15/2023 14:40:05'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test13CanAccessCartIfTimeoutHasntPassedSinceLastAccess stamp: 'TS 6/15/2023 14:40:05'!
+PASSED!
+
+----SNAPSHOT----(15 June 2023 14:41:28) CuisUniversity-5832.image priorSource: 9366758!
+
+----QUIT----(15 June 2023 14:41:59) CuisUniversity-5832.image priorSource: 9442660!
