@@ -2361,3 +2361,94 @@ PASSED!
 PASSED!
 
 ----SNAPSHOT----(21 June 2023 16:18:44) CuisUniversity-5832.image priorSource: 10719799!
+
+----STARTUP---- (22 June 2023 15:01:42) as /home/sponja/Temp/Cuises/cursada3/CuisUniversity-5832.image!
+
+
+TusLibrosClientTestWindow open !
+!TusLibrosClientTestWindowModel methodsFor: 'buttonSelectors' stamp: 'TS 6/22/2023 15:02:18' prior: 50667056!
+createCart
+
+	Promise
+		withTask: [ restInterface createCartFor: 'hernan' password: 'smalltlak'	 ]
+		onSuccess: [ :newCartId | cartIds add: newCartId. self triggerEvent: #newCartIdArrived ]
+		onFailure: self failureHandler
+! !
+!TusLibrosClientTestWindowModel methodsFor: 'buttonSelectors' stamp: 'TS 6/22/2023 15:02:22' prior: 50667572!
+createCart
+
+	Promise
+		withTask: [ restInterface createCartFor: 'hernan' password: 'smalltalk'	 ]
+		onSuccess: [ :newCartId | cartIds add: newCartId. self triggerEvent: #newCartIdArrived ]
+		onFailure: self failureHandler
+! !
+!ParallelJob methodsFor: 'execution' stamp: 'TS 6/22/2023 15:08:51' prior: 50665707!
+execute
+	
+	[ 
+		task value.
+		readySemaphore signal
+	] fork! !
+!ParallelJob class methodsFor: 'instance creation' stamp: 'TS 6/22/2023 15:09:34'!
+withConcurrentTasks: aCollectionOfTasks
+
+	^ self withTask: [
+		(aCollectionOfTasks collect: [ :aTask | self withTask: aTask ])
+			do: [:aSubjob | aSubjob execute];
+			do: [:aSubjob | aSubjob wait]
+	]! !
+!TusLibrosSystemFacade methodsFor: 'as yet unclassified' stamp: 'TS 6/22/2023 15:09:34' prior: 50667092!
+bookPerformance: anItem
+
+	| bookPerformance totalMoney totalSales |
+
+	bookPerformance := Dictionary new.
+	
+	(ParallelJob withConcurrentTasks: {
+		[totalSales := self totalSalesOf: anItem].
+		[totalMoney := self totalMoneyRaisedBy: anItem.]
+	}) executeSynchronically.
+
+	bookPerformance at: 'quantity' put: totalSales.
+	bookPerformance at: 'total' put: totalMoney.
+	bookPerformance at: 'summary' put: anItem,' was selled ',totalSales asString, ' times and raised a total amount of money equal to: ', totalMoney asString.
+	
+	^bookPerformance
+	
+
+! !
+!TusLibrosSystemFacade methodsFor: 'as yet unclassified' stamp: 'TS 6/22/2023 15:09:34' prior: 50667112!
+storePerformance
+
+	| totalMoney totalSales performance |
+	
+	performance := Dictionary new.
+	
+	(ParallelJob withConcurrentTasks: {
+		[totalSales := self totalSales].
+		[totalMoney := self totalMoneyRaised]
+	}) executeSynchronically.
+	
+	performance at: 'quantity' put: totalSales.
+	performance at: 'total' put: totalMoney.
+	performance at: 'summary' put: 'The store selled a total of ',totalSales asString, ' books and raised a total amount of money equal to: ', totalMoney asString.
+	
+	^performance
+	
+
+! !
+
+!methodRemoval: ParallelJob class #withTasks: stamp: 'TS 6/22/2023 15:09:34'!
+withTasks: aCollectionOfTasks
+
+	^ self withTask: [
+		(aCollectionOfTasks collect: [ :aTask | self withTask: aTask ])
+			do: [:aSubjob | aSubjob execute];
+			do: [:aSubjob | aSubjob wait]
+	]!
+
+TusLibrosServerRestInterface installForDefaultSystem !
+
+TusLibrosClientTestWindow open!
+
+----SNAPSHOT----(22 June 2023 15:23:30) CuisUniversity-5832.image priorSource: 10749219!

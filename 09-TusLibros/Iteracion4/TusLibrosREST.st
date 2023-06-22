@@ -425,11 +425,11 @@ addToCart
 		onFailure: self failureHandler
 ! !
 
-!TusLibrosClientTestWindowModel methodsFor: 'buttonSelectors' stamp: 'TS 6/21/2023 15:56:30'!
+!TusLibrosClientTestWindowModel methodsFor: 'buttonSelectors' stamp: 'TS 6/22/2023 15:02:22'!
 createCart
 
 	Promise
-		withTask: [ restInterface createCartFor: 'hernan' password: '123'	 ]
+		withTask: [ restInterface createCartFor: 'hernan' password: 'smalltalk'	 ]
 		onSuccess: [ :newCartId | cartIds add: newCartId. self triggerEvent: #newCartIdArrived ]
 		onFailure: self failureHandler
 ! !

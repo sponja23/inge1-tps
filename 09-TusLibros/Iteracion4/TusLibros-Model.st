@@ -501,13 +501,12 @@ initializeWithTask: aTask
 	readySemaphore := Semaphore new! !
 
 
-!ParallelJob methodsFor: 'execution' stamp: 'TS 6/21/2023 14:40:45'!
+!ParallelJob methodsFor: 'execution' stamp: 'TS 6/22/2023 15:08:51'!
 execute
 	
 	[ 
 		task value.
-		readySemaphore signal.
-		
+		readySemaphore signal
 	] fork! !
 
 !ParallelJob methodsFor: 'execution' stamp: 'TS 6/21/2023 15:58:30'!
@@ -526,19 +525,19 @@ wait
 ParallelJob class
 	instanceVariableNames: ''!
 
-!ParallelJob class methodsFor: 'instance creation' stamp: 'TS 6/21/2023 14:38:36'!
-withTask: aTask 
-
-	^self new initializeWithTask: aTask ! !
-
-!ParallelJob class methodsFor: 'instance creation' stamp: 'TS 6/21/2023 16:00:15'!
-withTasks: aCollectionOfTasks
+!ParallelJob class methodsFor: 'instance creation' stamp: 'TS 6/22/2023 15:09:34'!
+withConcurrentTasks: aCollectionOfTasks
 
 	^ self withTask: [
 		(aCollectionOfTasks collect: [ :aTask | self withTask: aTask ])
 			do: [:aSubjob | aSubjob execute];
 			do: [:aSubjob | aSubjob wait]
 	]! !
+
+!ParallelJob class methodsFor: 'instance creation' stamp: 'TS 6/21/2023 14:38:36'!
+withTask: aTask 
+
+	^self new initializeWithTask: aTask ! !
 
 
 !classDefinition: #Sale category: 'TusLibros-Model'!
@@ -807,14 +806,14 @@ salesBook
 	^ salesBook! !
 
 
-!TusLibrosSystemFacade methodsFor: 'private' stamp: 'TS 6/21/2023 15:58:09'!
+!TusLibrosSystemFacade methodsFor: 'private' stamp: 'TS 6/22/2023 15:09:34'!
 bookPerformance: anItem
 
 	| bookPerformance totalMoney totalSales |
 
 	bookPerformance := Dictionary new.
 	
-	(ParallelJob withTasks: {
+	(ParallelJob withConcurrentTasks: {
 		[totalSales := self totalSalesOf: anItem].
 		[totalMoney := self totalMoneyRaisedBy: anItem.]
 	}) executeSynchronically.
@@ -843,14 +842,14 @@ salesDoneBy: aUser
 	"Esto es un indicio de que por ahi conviene empezar a pensar en modelar un SaleBook - Hernan"
 	^ salesBook select: [ :aSale | aSale wasDoneBy: aUser ]! !
 
-!TusLibrosSystemFacade methodsFor: 'private' stamp: 'TS 6/21/2023 15:58:15'!
+!TusLibrosSystemFacade methodsFor: 'private' stamp: 'TS 6/22/2023 15:09:34'!
 storePerformance
 
 	| totalMoney totalSales performance |
 	
 	performance := Dictionary new.
 	
-	(ParallelJob withTasks: {
+	(ParallelJob withConcurrentTasks: {
 		[totalSales := self totalSales].
 		[totalMoney := self totalMoneyRaised]
 	}) executeSynchronically.
